@@ -1,4 +1,4 @@
-package utils
+package com.electro.bikeapp.utils
 
 import groovy.util.logging.Slf4j
 

@@ -1,4 +1,4 @@
-package utils
+package com.electro.bikeapp.utils
 
 import com.fasterxml.jackson.core.JsonGenerator
 import com.fasterxml.jackson.databind.JsonSerializer

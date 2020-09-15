@@ -25,7 +25,12 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  name: brand
+                  name: make
+                  type: varchar(512)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: model
                   type: varchar(512)
                   constraints:
                     nullable: true

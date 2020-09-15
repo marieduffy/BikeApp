@@ -1,0 +1,57 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2
+      author: jbyerline
+      comment: Creates second table
+      changes:
+        - createTable:
+            schemaName: bikes
+            tableName: employee_accounts
+            columns:
+              - column:
+                  name: employee_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: address
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: social
+                  type: varchar(11)
+                  constraints:
+                    nullable: true
+                    unique: true
+              - column:
+                  name: position
+                  type: varchar(512)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: salary
+                  type: float
+                  constraints:
+                    nullable: true
+              - column:
+                  name: payroll_type
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: hours
+                  type: float
+                  constraints:
+                    nullable: true
+        - addPrimaryKey:
+            clustered: true
+            columnNames: employee_id
+            tableName: employee_accounts
+            schemaName: bikes

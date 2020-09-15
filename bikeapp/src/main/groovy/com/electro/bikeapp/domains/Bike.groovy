@@ -26,9 +26,7 @@ class Bike {
     String addedBy
 
     @CreationTimestamp
-    @Column(name = 'added_date', columnDefinition = 'DATETIMEOFFSET(7)')
-    @JsonSerialize(using = UtcDateSerializer)
-    @Convert(converter = OffsetDateTimePersistenceConverter)
+    @Column(name = 'added_date')
     OffsetDateTime addedDate
 
     @Column(name = 'make')
@@ -52,10 +50,7 @@ class Bike {
     @Column(name = 'sold_by')
     String soldBy
 
-    @CreationTimestamp
-    @Column(name = 'sold_date', columnDefinition = 'DATETIMEOFFSET(7)')
-    @JsonSerialize(using = UtcDateSerializer)
-    @Convert(converter = OffsetDateTimePersistenceConverter)
+    @Column(name = 'sold_date')
     OffsetDateTime soldDate
 
     @Column(name = 'is_sold')

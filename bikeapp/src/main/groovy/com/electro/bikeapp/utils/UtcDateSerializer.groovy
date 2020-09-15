@@ -20,7 +20,7 @@ class UtcDateSerializer extends JsonSerializer<OffsetDateTime> {
     void serialize(OffsetDateTime givenOffsetDateTime, JsonGenerator gen, SerializerProvider serializers)
             throws IOException {
         if (givenOffsetDateTime) {
-            String formattedDateTime = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX").format(
+            String formattedDateTime = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss").format(
                     givenOffsetDateTime.atZoneSameInstant(java.time.ZoneId.of('Z')))
             gen.writeString(formattedDateTime)
         }

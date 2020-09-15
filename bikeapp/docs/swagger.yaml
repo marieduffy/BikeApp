@@ -1,0 +1,235 @@
+openapi: 3.0.0
+info:
+  description: API for CDO Analytics Tools Storage
+  version: '1.0.0'
+  title: CDO Analytics Tools Storage API
+  contact:
+    email: DHA_PI_Backend@humana.com
+tags:
+  - name: Tools Storage
+    description: CDO Analytics Tools Storage API
+paths:
+  '/tools':
+    get:
+      tags:
+        - Tools Storage
+      summary: Get list of available tools
+      responses:
+        '200':
+          description: |
+            OK
+            Returns a list of CDO Analytics Tools or an empty list if none exist.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: 'e08e434f-61be-4d9f-b861-f5bff75eaabe'
+                    createdBy:
+                      type: string
+                      example: Xavier Baker
+                    createdTimeStamp:
+                      type: string
+                      format: datetime
+                      example: '2020-11-25T00:00:00.000Z'
+                    link:
+                      type: string
+                      example: 'http://www.google.com'
+                    filename:
+                      type: string
+                      format: binary
+                example:
+                  - id: 'e08e434f-61be-4d9f-b861-f5bff75eaabe'
+                    createdBy: Xavier Baker
+                    createdTimeStamp: '2020-11-25T00:00:00.000Z'
+                    link: 'http://www.google.com'
+                    filename: null
+                  - id: 'e08e434f-61be-4d9f-b861-f5bff75ebbcf'
+                    createdBy: Xavier Baker
+                    createdTimeStamp: '2020-11-25T00:00:00.000Z'
+                    link: null
+                    filename: Diabetes Report
+  '/tools/link/{toolId}':
+    get:
+      tags:
+        - Tools Storage
+      summary: Get a specific URL tool
+      parameters:
+        - name: toolId
+          in: path
+          description: tool ID
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: |
+            OK
+            This endpoint returns the link tool URL string.
+        '400':
+          description: Bad Request. Returned if the URI is invalid
+  '/tools/file/{toolId}':
+    get:
+      tags:
+        - Tools Storage
+      summary: Get a file tool
+      parameters:
+        - name: toolId
+          in: path
+          description: tool ID
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: |
+            OK
+            This endpoint returns the link to request the file type tool itself. This endpoint exists to log the request for auditing purposes.
+        '400':
+          description: Bad Request. Returned if the URI is invalid
+  '/tools/file/direct/{fileName}':
+    get:
+      tags:
+        - Tools Storage
+      summary: Retrieve a file
+      parameters:
+        - name: fileName
+          in: path
+          description: file name to retrieve
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: File binary
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+  '/tools/':
+    post:
+      tags:
+        - Tools Storage
+      requestBody:
+        required: true
+        description: |
+          * Link type tools are created by this endpoint
+          * File type links are created by a 2 step process, first this
+              endpoint is used to create and store the metadata for the
+              new file tool, then the PUT /tools/file endpoint is used to
+              send the actual file contents. This 2 step process allows us
+              to audit creation of the file, but avoid sending potentially
+              gigabytes of information through the cdo-gateway service
+              unnecessarily.
+          * "uploadedBy" username that is uploading the file or files
+          * "tools" is an array of tool links plus metatdata for each tool
+            - "description" is a short, user provided, description of the tool
+            - "link" is the URL if the tool is a web link, otherwise null
+            - "fileName" is the name of the file if the tool is a file, otherwise null
+        content:
+          multipart/form-data:
+            schema:
+              anyOf:
+                - type: object
+                  properties:
+                    uploadedBy:
+                      type: string
+                      description: Name of user uploading tools
+                      example: Xavier Baker
+                    linkage:
+                      type: array
+                      description: Array of 0 or more tool URLs
+                      items:
+                        type: object
+                        required:
+                          - description
+                          - link
+                        properties:
+                          description:
+                            type: string
+                            example: 'Diabetes care guide'
+                          link:
+                            type: string
+                            example: 'http://www.google.com'
+                          fileName:
+                            type: string
+                            example: 'BME_Analysis.pdf'
+                    files:
+                      type: array
+                      description: Array of 0 or more files
+                      items:
+                        type: object
+                        required:
+                          - description
+                          - filename
+                        properties:
+                          description:
+                            type: string
+                            example: 'Chronic program report'
+                          filename:
+                            type: string
+                            format: binary
+                            example: '<file>'
+            examples:
+              linkExample:
+                summary: Example of a link upload
+                value:
+                  uploadedBy: Yvette Alpha
+                  tools:
+                    - description: Diabetes care guide
+                      link: 'http://www.google.com'
+                      fileName: null
+                    - description: Different tool
+                      link: null
+                      fileName: 'BMI_Analysis.pdf'
+      responses:
+        '201':
+          description: Tool saved successfully
+  '/tools/file':
+    put:
+      tags:
+        - Tools Storage
+      summary: Add a file to shared directory
+      requestBody:
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '201':
+          description: New file tool saved successfully
+        '501':
+          description: if content is other than application/octet-stream
+  '/tools/delete':
+    put:
+      tags:
+        - Tools Storage
+      summary: Mark a specific tool as deleted
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - deletedBy
+                - toolIds
+              properties:
+                deletedBy:
+                  type: string
+                  example: Xavier Baker
+                toolIds:
+                  type: array
+                  items:
+                    type: string
+                    example: '320923, 333333'
+      responses:
+        '200':
+          description: Tools were properly marked as deleted.
+        

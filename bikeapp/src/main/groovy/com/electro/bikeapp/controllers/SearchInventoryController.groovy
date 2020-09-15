@@ -1,5 +1,6 @@
 package com.electro.bikeapp.controllers
 
+import com.electro.bikeapp.domains.Bike
 import com.electro.bikeapp.services.SearchInventoryService
 import groovy.util.logging.Slf4j
 import org.springframework.beans.factory.annotation.Autowired

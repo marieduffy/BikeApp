@@ -1,0 +1,14 @@
+server:
+  port: 8080
+
+---
+spring:
+  datasource:
+    url: 'jdbc:mysql://192.168.7.176:3306/bikes'
+    username: 'root'
+    password: 'adiumDB'
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+

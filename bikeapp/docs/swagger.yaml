@@ -5,13 +5,13 @@ info:
   title: SoCal Electro Bike API
 tags:
   - name: Employee
-    description: functions that employees can perform
+    description: Functions that employees can perform
   - name: Manager
-    description: functions that managers can perform
+    description: Functions that managers can perform
   - name: Owner
-    description: functions that owners can perform
+    description: Functions that owners can perform
   - name: Bookkeeper
-    description: functions that bookkeepers can perform
+    description: Functions that bookkeepers can perform
 paths:
   '/login':
     post:
@@ -46,7 +46,7 @@ paths:
           description: |
             Unauthorized
             Incorrect username or password.
-  '/searchInventory':
+  '/inventory/search':
     post:
       tags:
         - Employee
@@ -101,12 +101,103 @@ paths:
                   description: bike description
                   condition: used
                 - bikeId: 89763288
-                  make: Suzuki
+                  make: Suzuccki
                   model: X613
                   color: pink
                   cost: 549
                   description: other description
                   condition: new
+  '/inventory/addProduct/{status}':
+    post:
+      tags:
+        - Employee
+        - Manager
+        - Owner
+      summary: Let the user add planned/actual product to database with their ID
+      parameters:
+        - name: status
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - addStatus
+                - userId
+              properties:
+                addStatus:
+                  type: string
+                  example: planned
+                userId:
+                  type: number
+                  example: 24
+      responses:
+        '201':
+          description: |
+            OK
+            Item has been added to database.
+  '/inventory/updateProduct/{productId}':
+    put:
+      tags:
+        - Employee
+        - Manager
+        - Owner
+      summary: Update a product's status attached with employee ID
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          schema:
+            type: number
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - status
+                - userId
+              properties:
+                status:
+                  type: string
+                  example: sold
+                userId:
+                  type: number
+                  example: 24
+      responses:
+        '201':
+          description: |
+            OK
+            Item's status has been updated
+  '/sales/{timePeriod}':
+    get:
+      tags:
+        - Employee
+        - Manager
+        - Owner
+      summary: Generates statistical summary report of inventory for a specified week, month or year
+      parameters:
+        - name: timePeriod
+          in: path
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - "DD/MM/YYYY"
+                - "DD/MM/YYYY"
+      responses:
+        '200':
+          description: |
+            OK
+            // TODO
   '/order/status/{orderId}':
     get:
       tags:
@@ -130,4 +221,32 @@ paths:
               example:
                 username: 'employee123'
                 password: 'eF#12tT$@%^Ywe'
+  '/order/setStatus/{orderId}':
+    post:
+      tags:
+        - Employee
+        - Manager
+        - Owner
+      summary: Change the status on specified order number
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: |
+            OK
+            Order status has been updated.
+  '/shiftChart':
+    get:
+      tags:
+        - Employee
+      summary: Let employee view shift chart.
+      responses:
+        '200':
+          description: |
+            OK
+            // TODO
 

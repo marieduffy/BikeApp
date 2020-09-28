@@ -20,7 +20,7 @@ paths:
         - Manager
         - Owner
         - Bookkeeper
-      summary: let user login
+      summary: Lets user login
       requestBody:
         required: true
         content:
@@ -33,10 +33,10 @@ paths:
               properties:
                 username:
                   type: string
-                  example: account2145
+                  example: 'account2145'
                 password:
                   type: string
-                  example: t$V#$Trtu4R#
+                  example: 't$V#$Trtu4R#'
       responses:
         '201':
           description: |
@@ -52,7 +52,7 @@ paths:
         - Employee
         - Manager
         - Owner
-      summary: allows user to search for an item in inventory
+      summary: Allows user to search for an item in inventory
       requestBody:
         required: false
         content:
@@ -113,7 +113,7 @@ paths:
         - Employee
         - Manager
         - Owner
-      summary: Let the user add planned/actual product to database with their ID
+      summary: Lets the user add planned/actual product to database with their ID
       parameters:
         - name: status
           in: path
@@ -128,26 +128,24 @@ paths:
               type: object
               required:
                 - addStatus
-                - userId
+                - GUID
               properties:
                 addStatus:
                   type: string
-                  example: planned
-                userId:
-                  type: number
-                  example: 24
+                  example: 'planned'
+                GUID:
+                  type: string
+                  example: 'c894jv72'
       responses:
         '201':
-          description: |
-            OK
-            Item has been added to database.
+          description: Item has been added to database.
   '/inventory/updateProduct/{productId}':
     put:
       tags:
         - Employee
         - Manager
         - Owner
-      summary: Update a product's status attached with employee ID
+      summary: Updates a product's status attached with employee ID
       parameters:
         - name: productId
           in: path
@@ -162,19 +160,17 @@ paths:
               type: object
               required:
                 - status
-                - userId
+                - GUID
               properties:
                 status:
                   type: string
-                  example: sold
-                userId:
-                  type: number
-                  example: 24
+                  example: 'sold'
+                GUID:
+                  type: string
+                  example: 'c894jv72'
       responses:
         '201':
-          description: |
-            OK
-            Item's status has been updated
+          description: Item's status has been updated
   '/sales/{timePeriod}':
     get:
       tags:
@@ -204,7 +200,7 @@ paths:
         - Employee
         - Manager
         - Owner
-      summary: Let the user search for item in inventory.
+      summary: Lets the user search for item in inventory.
       parameters:
         - name: orderId
           in: path
@@ -227,7 +223,7 @@ paths:
         - Employee
         - Manager
         - Owner
-      summary: Change the status on specified order number
+      summary: Changes the status on specified order number
       parameters:
         - name: orderId
           in: path
@@ -236,17 +232,127 @@ paths:
             type: number
       responses:
         '200':
-          description: |
-            OK
-            Order status has been updated.
+          description: Order status has been updated.
   '/shiftChart':
     get:
       tags:
         - Employee
-      summary: Let employee view shift chart.
+      summary: Lets employee view shift chart.
       responses:
         '200':
           description: |
             OK
             // TODO
-
+  '/account/{GUID}/changePassword':
+    patch:
+      tags:
+        - Employee
+      summary: Allows the user to enter current and new password
+      parameters:
+        - name: GUID
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/jason:
+            schema:
+              type: object
+              required:
+                - currentPassword
+                - newPassword
+              properties:
+                currentPassword:
+                  type: string
+                  example: 'gerth@67gg9tt'
+                newPassword:
+                  type: string
+                  example: 'c893g4j%^&v72'
+      responses:
+        '200':
+          description: Password has been updated.
+  '/account/{GUID}/changeEmail':
+    patch:
+      tags:
+        - Employee
+      summary: Allows the user to enter current and new email
+      parameters:
+        - name: GUID
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - currentEmail
+                - newEmail
+              properties:
+                currentEmail:
+                  type: string
+                  example: 'vevergarden2@sdsu.edu'
+                newEmail:
+                  type: string
+                  example: 'violet.evergarden@sdsu.edu'
+      responses:
+        '200':
+          description: Email has been updated.
+  '/account/{GUID}/timeSheet':
+    post:
+      tags:
+        - Employee
+      summary: Records time in and out of an employee.
+      parameters:
+        - name: GUID
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                timeIn:
+                  type: string #TODO
+                timeOut:
+                  type: string #TODO
+      responses:
+        '200':
+          description: Time is recorded.
+        '400':
+          description: Invalid input.
+  '/account/{GUID}/requests':
+    post:
+      tags:
+        - Employee
+      summary: Lets employee request for Sick Days/Holidays/PTO
+      parameters:
+        - name: GUID
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - requestMessage
+              properties:
+                requestMessage:
+                  type: string
+                  example: 'Dear Ms. Manager, ...'
+      responses:
+        '200':
+          description: Request message has been sent.

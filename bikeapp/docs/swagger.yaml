@@ -4,22 +4,23 @@ info:
   version: '1.0.0'
   title: SoCal Electro Bike API
 tags:
-  - name: Employee
+  - name: Account
     description: Functions that employees can perform
-  - name: Manager
+  - name: Inventory
     description: Functions that managers can perform
-  - name: Owner
+  - name: Sales Reports
     description: Functions that owners can perform
-  - name: Bookkeeper
+  - name: Retail Orders
+    description: Functions that bookkeepers can perform
+  - name: Repair Orders
+    description: Functions that bookkeepers can perform
+  - name: Employee Management
     description: Functions that bookkeepers can perform
 paths:
   '/login':
     post:
       tags:
-        - Employee
-        - Manager
-        - Owner
-        - Bookkeeper
+        - Account
       summary: Lets user login
       requestBody:
         required: true
@@ -49,9 +50,7 @@ paths:
   '/inventory/search':
     post:
       tags:
-        - Employee
-        - Manager
-        - Owner
+        - Inventory
       summary: Allows user to search for an item in inventory
       requestBody:
         required: false
@@ -110,9 +109,7 @@ paths:
   '/inventory/addProduct/{status}':
     post:
       tags:
-        - Employee
-        - Manager
-        - Owner
+        - Inventory
       summary: Lets the user add planned/actual product to database with their ID
       parameters:
         - name: status
@@ -142,9 +139,7 @@ paths:
   '/inventory/updateProduct/{productId}':
     put:
       tags:
-        - Employee
-        - Manager
-        - Owner
+        - Inventory
       summary: Updates a product's status attached with employee ID
       parameters:
         - name: productId
@@ -171,35 +166,44 @@ paths:
       responses:
         '201':
           description: Item's status has been updated
-  '/sales/{timePeriod}':
-    get:
+  '/salesReport':
+    post:
       tags:
-        - Employee
-        - Manager
-        - Owner
+        - Sales Reports
       summary: Generates statistical summary report of inventory for a specified week, month or year
-      parameters:
-        - name: timePeriod
-          in: path
-          required: true
-          schema:
-            type: array
-            items:
-              type: string
-              enum:
-                - "DD/MM/YYYY"
-                - "DD/MM/YYYY"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - companyId
+                - timePeriod
+              properties:
+                companyId:
+                  type: string
+                  example: '43567'
+                timePeriod:
+                  type: string
+                  example: 'DD/MM/YYYY-DD/MM/YYYY'
       responses:
         '200':
           description: |
             OK
-            // TODO
+          content:
+            application/json:
+              example:
+                numberOfItemsReturned: '4'
+                numberOfItemsReturnedDefective: '67'
+                numberOfItemsReturnedExcess: '440'
+                numberOfItemsSoldInStore: '12289'
+                numberOfItemsShipped: '56'
+                numberOfItemsRepaired: '87'
   '/order/status/{orderId}':
     get:
       tags:
-        - Employee
-        - Manager
-        - Owner
+        - Retail Orders
       summary: Lets the user search for item in inventory.
       parameters:
         - name: orderId
@@ -220,9 +224,7 @@ paths:
   '/order/setStatus/{orderId}':
     post:
       tags:
-        - Employee
-        - Manager
-        - Owner
+        - Retail Orders
       summary: Changes the status on specified order number
       parameters:
         - name: orderId
@@ -233,10 +235,47 @@ paths:
       responses:
         '200':
           description: Order status has been updated.
+  '/order/create':
+    post:
+      tags:
+        - Retail Orders
+      summary: Changes the status on specified order number
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - customerName
+                - customerAddress
+                - isPaid
+                - paymentMethod
+              properties:
+                customerName:
+                  type: string
+                  example: 'Gertrude Parker'
+                customerAddress:
+                  type: string
+                  example: '123 abc dr. San Diego, Ca 91009'
+                isPaid:
+                  type: boolean
+                  example: true
+                paymentMethod:
+                  type: string
+                  example: 'card'
+                itemIds:
+                  type: array
+                  items:
+                    type: integer
+                  example: [900033, 100020, 367289]
+      responses:
+        '200':
+          description: Order has been created.
   '/shiftChart':
     get:
       tags:
-        - Employee
+        - Employee Management
       summary: Lets employee view shift chart.
       responses:
         '200':
@@ -246,7 +285,7 @@ paths:
   '/account/{GUID}/changePassword':
     patch:
       tags:
-        - Employee
+        - Account
       summary: Allows the user to enter current and new password
       parameters:
         - name: GUID
@@ -276,7 +315,7 @@ paths:
   '/account/{GUID}/changeEmail':
     patch:
       tags:
-        - Employee
+        - Account
       summary: Allows the user to enter current and new email
       parameters:
         - name: GUID
@@ -306,7 +345,7 @@ paths:
   '/account/{GUID}/timeSheet':
     post:
       tags:
-        - Employee
+        - Account
       summary: Records time in and out of an employee.
       parameters:
         - name: GUID
@@ -333,7 +372,7 @@ paths:
   '/account/{GUID}/requests':
     post:
       tags:
-        - Employee
+        - Account
       summary: Lets employee request for Sick Days/Holidays/PTO
       parameters:
         - name: GUID

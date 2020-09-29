@@ -1,0 +1,66 @@
+databaseChangeLog:
+  - changeSet:
+      id: 3
+      author: jbyerline
+      comment: Creates third table
+      changes:
+        - createTable:
+            schemaName: bikes
+            tableName: employee_hours_and_payroll
+            columns:
+              - column:
+                  name: employee_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: hours_worked_current_week
+                  type: float
+                  constraints:
+                    nullable: false
+              - column:
+                  name: hours_worked_last_week
+                  type: float
+                  constraints:
+                    nullable: false
+              - column:
+                  name: hours_worked_total
+                  type: float
+                  constraints:
+                    nullable: false
+              - column:
+                  name: hourly_pay_rate
+                  type: float
+                  constraints:
+                    nullable: false
+              - column:
+                  name: next_pay_date
+                  type: datetime
+                  constraints:
+                    nullable: false
+              - column:
+                  name: amount_to_be_paid
+                  type: float
+                  constraints:
+                    nullable: false
+              - column:
+                  name: last_pay_date
+                  type: datetime
+                  constraints:
+                    nullable: true
+              - column:
+                  name: last_amount_paid
+                  type: float
+                  constraints:
+                    nullable: true
+        - addPrimaryKey:
+            clustered: true
+            columnNames: employee_id
+            tableName: employee_hours_and_payroll
+            schemaName: bikes

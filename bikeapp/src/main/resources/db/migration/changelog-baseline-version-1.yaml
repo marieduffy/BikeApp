@@ -45,11 +45,6 @@ databaseChangeLog:
                   type: varchar(255)
                   constraints:
                     nullable: true
-              - column:
-                  name: hours
-                  type: float
-                  constraints:
-                    nullable: true
         - addPrimaryKey:
             clustered: true
             columnNames: employee_id

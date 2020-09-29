@@ -1,4 +1,7 @@
 databaseChangeLog:
      - include:
          file: db/migration/changelog-baseline.yaml
+     - include:
          file: db/migration/changelog-baseline-version-1.yaml
+     - include:
+         file: db/migration/changelog-baseline-version-2.yaml

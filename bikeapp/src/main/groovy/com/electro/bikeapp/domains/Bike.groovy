@@ -1,12 +1,8 @@
 package com.electro.bikeapp.domains
 
-import com.electro.bikeapp.utils.OffsetDateTimePersistenceConverter
-import com.electro.bikeapp.utils.UtcDateSerializer
-import com.fasterxml.jackson.databind.annotation.JsonSerialize
 import org.hibernate.annotations.CreationTimestamp
 
 import javax.persistence.Column
-import javax.persistence.Convert
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
@@ -55,8 +51,4 @@ class Bike {
 
     @Column(name = 'is_sold')
     Boolean isSold
-
-
-
-
 }

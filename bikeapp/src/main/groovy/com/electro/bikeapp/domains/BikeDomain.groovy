@@ -1,7 +1,6 @@
 package com.electro.bikeapp.domains
 
 import org.hibernate.annotations.CreationTimestamp
-
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
@@ -12,11 +11,14 @@ import java.time.OffsetDateTime
 
 @Entity
 @Table(name = 'bike_inventory')
-class Bike {
+class BikeDomain {
     @Id
     @Column(name = 'bike_id')
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     Long bikeId
+
+    @Column(name = 'bike_display_name')
+    String bikeName
 
     @Column(name = 'added_by')
     String addedBy
@@ -38,7 +40,7 @@ class Bike {
     Float wholesaleCost
 
     @Column(name = 'retail_cost')
-    String retailCost
+    Float retailCost
 
     @Column(name = 'description')
     String description

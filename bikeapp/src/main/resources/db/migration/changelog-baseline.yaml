@@ -51,7 +51,7 @@ databaseChangeLog:
                     nullable: true
               - column:
                   name: retail_cost
-                  type: varchar(512)
+                  type: float
                   constraints:
                     nullable: true
               - column:

@@ -1,0 +1,41 @@
+package com.electro.bikeapp.controllers
+
+import com.electro.bikeapp.domains.BikeDomain
+import com.electro.bikeapp.dtos.SearchInventoryDTO
+import com.electro.bikeapp.services.InventoryService
+import groovy.util.logging.Slf4j
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.HttpStatus
+import org.springframework.http.MediaType
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.ResponseStatus
+import org.springframework.web.bind.annotation.RestController
+
+@RestController
+@Slf4j
+class InventoryController {
+
+    @Autowired
+    InventoryService searchInventoryService
+
+    /**
+     * POST - receive list of bikes with given parameters
+     * @requestBody JSON search inventory parameters
+     * @param none
+     * @return List of bikes with given parameters
+     */
+    // Declare API POST type. set URL endpoint, and set media type to JSON
+    @PostMapping(value = '/searchInventory', produces = MediaType.APPLICATION_JSON_VALUE)
+    // Set a HTTP response status by default
+    @ResponseStatus(HttpStatus.OK)
+    // Create method of given parameters and specify the return type.
+    // Note: the return value returns a JSON array of BikeDomain Objects, this is what will be sent to frontend
+    // The method accepts a JSON request body of type SearchInventoryDTO (and all of its members)
+    List<BikeDomain> searchInventory(@RequestBody SearchInventoryDTO searchParameters) {
+        // Helpful log statement to make sure call went through
+        log.info 'Getting bike inventory'
+        // Call the search inventory method from the service class, pass it the JSON request body sent in
+        searchInventoryService.searchInventory(searchParameters)
+    }
+}

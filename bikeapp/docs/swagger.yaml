@@ -47,6 +47,100 @@ paths:
           description: |
             Unauthorized
             Incorrect username or password.
+  '/account/changePassword':
+    patch:
+      tags:
+        - Account
+      summary: Allows the user to enter current and new password
+      requestBody:
+        required: true
+        content:
+          application/jason:
+            schema:
+              type: object
+              required:
+                - currentPassword
+                - newPassword
+              properties:
+                currentPassword:
+                  type: string
+                  example: 'gerth@67gg9tt'
+                newPassword:
+                  type: string
+                  example: 'c893g4j%^&v72'
+      responses:
+        '200':
+          description: Password has been updated.
+  '/account/changeEmail':
+    patch:
+      tags:
+        - Account
+      summary: Allows the user to enter current and new email
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - currentEmail
+                - newEmail
+              properties:
+                currentEmail:
+                  type: string
+                  example: 'vevergarden2@sdsu.edu'
+                newEmail:
+                  type: string
+                  example: 'violet.evergarden@sdsu.edu'
+      responses:
+        '200':
+          description: Email has been updated.
+  '/account/timeSheet':
+    post:
+      tags:
+        - Account
+      summary: Records time in and out of an employee.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                date:
+                  type: string
+                  example: 'MM/DD/YYYY'
+                timeIn:
+                  type: string
+                  example: 'HH/MM'
+                timeOut:
+                  type: string
+                  example: 'HH/MM'
+      responses:
+        '200':
+          description: Time is recorded.
+        '400':
+          description: Invalid input.
+  '/account/timeOffRequests':
+    post:
+      tags:
+        - Account
+      summary: Lets employee request for Sick Days/Holidays/PTO
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - requestMessage
+              properties:
+                requestMessage:
+                  type: string
+                  example: 'Dear Ms. Manager, ...'
+      responses:
+        '200':
+          description: Request message has been sent.
   '/inventory/search':
     post:
       tags:
@@ -106,17 +200,11 @@ paths:
                   cost: 549
                   description: other description
                   condition: new
-  '/inventory/addProduct/{status}':
+  '/inventory/addProduct':
     post:
       tags:
         - Inventory
       summary: Lets the user add planned/actual product to database with their ID
-      parameters:
-        - name: status
-          in: path
-          required: true
-          schema:
-            type: string
       requestBody:
         required: false
         content:
@@ -136,17 +224,11 @@ paths:
       responses:
         '201':
           description: Item has been added to database.
-  '/inventory/updateProduct/{productId}':
+  '/inventory/updateProduct':
     put:
       tags:
         - Inventory
       summary: Updates a product's status attached with employee ID
-      parameters:
-        - name: productId
-          in: path
-          required: true
-          schema:
-            type: number
       requestBody:
         required: true
         content:
@@ -166,75 +248,6 @@ paths:
       responses:
         '201':
           description: Item's status has been updated
-  '/salesReport':
-    post:
-      tags:
-        - Sales Reports
-      summary: Generates statistical summary report of inventory for a specified week, month or year
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - companyId
-                - timePeriod
-              properties:
-                companyId:
-                  type: string
-                  example: '43567'
-                timePeriod:
-                  type: string
-                  example: 'DD/MM/YYYY-DD/MM/YYYY'
-      responses:
-        '200':
-          description: |
-            OK
-          content:
-            application/json:
-              example:
-                numberOfItemsReturned: '4'
-                numberOfItemsReturnedDefective: '67'
-                numberOfItemsReturnedExcess: '440'
-                numberOfItemsSoldInStore: '12289'
-                numberOfItemsShipped: '56'
-                numberOfItemsRepaired: '87'
-  '/order/status/{orderId}':
-    get:
-      tags:
-        - Retail Orders
-      summary: Lets the user search for item in inventory.
-      parameters:
-        - name: orderId
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '201':
-          description: |
-            OK
-            Returns a list of CDO Analytics Tools or an empty list if none exist.
-          content:
-            application/json:
-              example:
-                username: 'employee123'
-                password: 'eF#12tT$@%^Ywe'
-  '/order/setStatus/{orderId}':
-    post:
-      tags:
-        - Retail Orders
-      summary: Changes the status on specified order number
-      parameters:
-        - name: orderId
-          in: path
-          required: true
-          schema:
-            type: number
-      responses:
-        '200':
-          description: Order status has been updated.
   '/order/create':
     post:
       tags:
@@ -272,6 +285,93 @@ paths:
       responses:
         '200':
           description: Order has been created.
+  '/order/status/{orderId}':
+    get:
+      tags:
+        - Retail Orders
+      summary: Lets the user search for an order.
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: |
+            OK
+            Returns an order's information and status.
+          content:
+            application/json:
+              example:
+                status: 'processing'
+                customerName: 'Alex Ha'
+                customerAddress: '123 jonbdf drive, san diego, ca 92123'
+                totalCost: '$519'
+                deliveryMethod: 'express'
+                estimatedArrival: '10/28/2020'
+        '404':
+          description: 'Order not found.'
+  '/order/status/set/{orderId}':
+    post:
+      tags:
+        - Retail Orders
+      summary: Changes the status on specified order number
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: number
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - orderStatus
+              properties:
+                orderStatus:
+                  type: string
+                  example: 'shipped'
+      responses:
+        '200':
+          description: Order status has been updated.
+  '/salesReport':
+    post:
+      tags:
+        - Sales Reports
+      summary: Generates statistical summary report of inventory for a specified week, month or year
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - companyId
+                - timePeriod
+              properties:
+                companyId:
+                  type: string
+                  example: '43567'
+                timePeriod:
+                  type: string
+                  example: 'DD/MM/YYYY-DD/MM/YYYY'
+      responses:
+        '200':
+          description: |
+            OK
+          content:
+            application/json:
+              example:
+                numberOfItemsReturned: '4'
+                numberOfItemsReturnedDefective: '67'
+                numberOfItemsReturnedExcess: '440'
+                numberOfItemsSoldInStore: '12289'
+                numberOfItemsShipped: '56'
+                numberOfItemsRepaired: '87'
   '/shiftChart':
     get:
       tags:
@@ -282,116 +382,3 @@ paths:
           description: |
             OK
             // TODO
-  '/account/{GUID}/changePassword':
-    patch:
-      tags:
-        - Account
-      summary: Allows the user to enter current and new password
-      parameters:
-        - name: GUID
-          in: path
-          required: true
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/jason:
-            schema:
-              type: object
-              required:
-                - currentPassword
-                - newPassword
-              properties:
-                currentPassword:
-                  type: string
-                  example: 'gerth@67gg9tt'
-                newPassword:
-                  type: string
-                  example: 'c893g4j%^&v72'
-      responses:
-        '200':
-          description: Password has been updated.
-  '/account/{GUID}/changeEmail':
-    patch:
-      tags:
-        - Account
-      summary: Allows the user to enter current and new email
-      parameters:
-        - name: GUID
-          in: path
-          required: true
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - currentEmail
-                - newEmail
-              properties:
-                currentEmail:
-                  type: string
-                  example: 'vevergarden2@sdsu.edu'
-                newEmail:
-                  type: string
-                  example: 'violet.evergarden@sdsu.edu'
-      responses:
-        '200':
-          description: Email has been updated.
-  '/account/{GUID}/timeSheet':
-    post:
-      tags:
-        - Account
-      summary: Records time in and out of an employee.
-      parameters:
-        - name: GUID
-          in: path
-          required: true
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                timeIn:
-                  type: string #TODO
-                timeOut:
-                  type: string #TODO
-      responses:
-        '200':
-          description: Time is recorded.
-        '400':
-          description: Invalid input.
-  '/account/{GUID}/requests':
-    post:
-      tags:
-        - Account
-      summary: Lets employee request for Sick Days/Holidays/PTO
-      parameters:
-        - name: GUID
-          in: path
-          required: true
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - requestMessage
-              properties:
-                requestMessage:
-                  type: string
-                  example: 'Dear Ms. Manager, ...'
-      responses:
-        '200':
-          description: Request message has been sent.

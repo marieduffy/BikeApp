@@ -5,17 +5,17 @@ info:
   title: SoCal Electro Bike API
 tags:
   - name: Account
-    description: Functions that employees can perform
+    description: Functions related to account
   - name: Inventory
-    description: Functions that managers can perform
+    description: Functions related inventory management
   - name: Sales Reports
-    description: Functions that owners can perform
+    description: Functions related to sakes reports
   - name: Retail Orders
-    description: Functions that bookkeepers can perform
+    description: Functions related retail orders management
   - name: Repair Orders
-    description: Functions that bookkeepers can perform
+    description: Functions related repair ticket system
   - name: Employee Management
-    description: Functions that bookkeepers can perform
+    description: Functions related employee management
 paths:
   '/login':
     post:
@@ -55,7 +55,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/jason:
+          application/json:
             schema:
               type: object
               required:
@@ -99,7 +99,7 @@ paths:
     post:
       tags:
         - Account
-      summary: Records time in and out of an employee.
+      summary: Records time in and out of an employee
       requestBody:
         required: true
         content:
@@ -121,6 +121,24 @@ paths:
           description: Time is recorded.
         '400':
           description: Invalid input.
+  '/account/shiftChart':
+    get:
+      tags:
+        - Account
+      summary: Display an employee's shift chart
+      responses:
+        '200':
+          description: |
+            OK
+            Returns the employee's work schedule
+          content:
+            application/json:
+              example:
+                daysOfWork: '1,2,3,4,5,6,7' #1:Mon,2:Tue...7:Sun
+                startWorkHours: '8,8,8,8,8,NULL,NULL'
+                endWorkHours: '4,3,4,3,4,NULL,NULL'
+                totalWeeklyHours: '38'
+
   '/account/timeOffRequests':
     post:
       tags:
@@ -223,7 +241,7 @@ paths:
                   example: 'c894jv72'
       responses:
         '201':
-          description: Item has been added to database.
+          description: Item has been added to database
   '/inventory/updateProduct':
     put:
       tags:
@@ -372,13 +390,94 @@ paths:
                 numberOfItemsSoldInStore: '12289'
                 numberOfItemsShipped: '56'
                 numberOfItemsRepaired: '87'
-  '/shiftChart':
-    get:
+  '/manager/addEmployee':
+    post:
       tags:
         - Employee Management
-      summary: Lets employee view shift chart.
+      summary: Lets a manager add a new employee account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - username
+                - password
+                - id
+                - firstName
+                - lastName
+                - address
+                - phone
+                - ssn
+                - positionTitle
+              properties:
+                username:
+                  type: string
+                  example: 'seb5149028'
+                password:
+                  type: string
+                  example: 'b4w5h67BW$%Y'
+                id:
+                  type: string
+                  example: '5149028'
+                firstName:
+                  type: string
+                  example: 'Spring'
+                lastName:
+                  type: string
+                  example: 'Coldd'
+                address:
+                  type: string
+                  example: '3589 lolow street, chula vista, ca 92471'
+                phone:
+                  type: number
+                  example: '5149028'
+                ssn:
+                  type: number
+                  example: '597284623'
+                positionTitle:
+                  type: string
+                  example: 'cashier'
       responses:
         '200':
-          description: |
-            OK
-            // TODO
+          description: 'New employee account created.'
+  '/manager/updateEmployee':
+    patch:
+      tags:
+        - Employee Management
+      summary: Lets the manager to update an employee's account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - positionTitle
+              properties:
+                positionTitle:
+                  type: string
+                  example: 'technician'
+      responses:
+        '200':
+          description: Employee's account has been updated
+  '/manager/removeEmployee':
+    delete:
+      tags:
+        - Employee Management
+      summary: Lets a manager remove an employee account
+      # CANNOT HAVE REQUESTBODY
+      # requestBody:
+      #   required: true
+      #   content:
+      #     application/json:
+      #       schema:
+      #         type: object
+      #         required:
+      #           - id
+      responses:
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "User not found"

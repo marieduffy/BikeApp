@@ -33,6 +33,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3fa97abd-80a5-4780-89bc-46f3dbf63d32" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/swagger.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docs/swagger.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -108,7 +109,7 @@
       <workItem from="1601334191376" duration="1570000" />
       <workItem from="1601344360032" duration="1196000" />
       <workItem from="1601592781884" duration="630000" />
-      <workItem from="1601851635133" duration="2731000" />
+      <workItem from="1601851635133" duration="3487000" />
     </task>
     <servers />
   </component>

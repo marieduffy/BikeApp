@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+<<<<<<< HEAD
     <data-source source="LOCAL" name="@192.168.7.176" uuid="1484ee50-5e7b-4d58-babb-038ef0e06d9a">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
@@ -8,6 +9,9 @@
       <jdbc-url>jdbc:mysql://192.168.7.176:3306</jdbc-url>
     </data-source>
     <data-source source="LOCAL" name="@70.179.50.42" uuid="85258238-6db8-49df-ba3d-51b6f8a1dfdf">
+=======
+    <data-source source="LOCAL" name="jacobsdb" uuid="16def0b5-640b-4bb5-a44c-97ee1b0055f8">
+>>>>>>> 1a9146f7040a11088e4709b8d5d1bdcf1b6e1c17
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>

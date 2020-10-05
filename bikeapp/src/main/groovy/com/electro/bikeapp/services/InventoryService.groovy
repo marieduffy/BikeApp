@@ -13,14 +13,22 @@ import org.springframework.stereotype.Service
 @Service
 class InventoryService {
 
+    // The repository must be autowired. The repository is the class that queried the database
     @Autowired
     InventoryRepository bikeInventoryRepository
 
+    // This method returns a list of bikes with the given search parameters
     List<BikeDomain> searchInventory(SearchInventoryDTO searchParams){
 
-        List<BikeDomain> modelList = bikeInventoryRepository.findByAllParam(searchParams.bikeDisplayName, searchParams.color)
+        // We call the bikeInventoryRepository and return it's result
+        List<BikeDomain> searchedBikeList = bikeInventoryRepository.allParamSearch(
+                searchParams.bikeDisplayName,
+                searchParams.make,
+                searchParams.color,
+                searchParams.lessThanCost,
+                searchParams.greaterThanCost)
 
-        modelList
+        return searchedBikeList
     }
 }
 

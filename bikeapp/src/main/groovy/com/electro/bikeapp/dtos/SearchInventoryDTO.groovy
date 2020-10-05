@@ -7,7 +7,7 @@ package com.electro.bikeapp.dtos
  */
 class SearchInventoryDTO {
 
-    String bikeName
+    String bikeDisplayName
 
     String make
 

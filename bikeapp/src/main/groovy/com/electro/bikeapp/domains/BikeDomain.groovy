@@ -18,7 +18,7 @@ class BikeDomain {
     Long bikeId
 
     @Column(name = 'bike_display_name')
-    String bikeName
+    String bikeDisplayName
 
     @Column(name = 'added_by')
     String addedBy

@@ -1,7 +1,7 @@
 databaseChangeLog:
   - changeSet:
       id: 3
-      author: jbyerline
+      author: Thong
       comment: Creates fourth table
       changes:
         - createTable:
@@ -22,7 +22,7 @@ databaseChangeLog:
                     unique: true
               - column:
                   name: order_date
-                  type: timedate
+                  type: datetime
                   constraints:
                     nullable: false
               - column:
@@ -57,6 +57,6 @@ databaseChangeLog:
                     nullable: true
         - addPrimaryKey:
             clustered: true
-            columnNames: employee_id
+            columnNames: customer_id
             tableName: order_retails
             schemaName: bikes

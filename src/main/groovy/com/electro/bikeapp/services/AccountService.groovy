@@ -22,9 +22,10 @@ class AccountService {
     }
 
     void changePassword(ChangePasswordDTO changePasswordDTO){
-        EmployeeDomain currentEmployee = accountRepository.FindByUsername(changePasswordDTO.userName)
+        EmployeeDomain currentEmployee = accountRepository.findByUsername(changePasswordDTO.userName)
         if(changePasswordDTO.currentPassword == currentEmployee.passWord){
             currentEmployee.passWord = changePasswordDTO.newPassword
+            accountRepository.save(currentEmployee)
         }
         else{
             log.error("Wrong password entered")

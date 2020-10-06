@@ -45,6 +45,16 @@ databaseChangeLog:
                   type: varchar(255)
                   constraints:
                     nullable: true
+              - column:
+                  name: username
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: encrypted_password
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
         - addPrimaryKey:
             clustered: true
             columnNames: employee_id

@@ -1,0 +1,33 @@
+package com.electro.bikeapp.services
+
+import com.electro.bikeapp.domains.EmployeeDomain
+import com.electro.bikeapp.dtos.ChangePasswordDTO
+import com.electro.bikeapp.dtos.LoginCredentialsDTO
+import com.electro.bikeapp.repositories.AccountRepository
+import groovy.util.logging.Slf4j
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Service
+
+@Slf4j
+@Service
+class AccountService {
+
+    @Autowired
+    AccountRepository accountRepository
+
+    boolean verifyCredentials(LoginCredentialsDTO loginCredentialsDTO){
+
+        loginCredentialsDTO.username
+
+    }
+
+    void changePassword(ChangePasswordDTO changePasswordDTO){
+        EmployeeDomain currentEmployee = accountRepository.FindByUsername(changePasswordDTO.userName)
+        if(changePasswordDTO.currentPassword == currentEmployee.passWord){
+            currentEmployee.passWord = changePasswordDTO.newPassword
+        }
+        else{
+            log.error("Wrong password entered")
+        }
+    }
+}

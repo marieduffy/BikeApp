@@ -1,6 +1,7 @@
 package com.electro.bikeapp.controllers
 
 import com.electro.bikeapp.domains.BikeDomain
+import com.electro.bikeapp.dtos.AddProductDTO
 import com.electro.bikeapp.dtos.SearchInventoryDTO
 import com.electro.bikeapp.services.InventoryService
 import groovy.util.logging.Slf4j
@@ -17,12 +18,12 @@ import org.springframework.web.bind.annotation.RestController
 class InventoryController {
 
     @Autowired
-    InventoryService searchInventoryService
+    InventoryService inventoryService
 
     /**
      * POST - receive list of bikes with given parameters
      * @requestBody JSON search inventory parameters
-     * @param none
+     * @param SearchInventoryDTO
      * @return List of bikes with given parameters
      */
     // Declare API POST type. set URL endpoint, and set media type to JSON
@@ -36,6 +37,23 @@ class InventoryController {
         // Helpful log statement to make sure call went through
         log.info 'Getting bike inventory'
         // Call the search inventory method from the service class, pass it the JSON request body sent in
-        searchInventoryService.searchInventory(searchParameters)
+        inventoryService.searchInventory(searchParameters)
     }
+
+    /**
+     * POST - add a new bike to the inventory
+     * @requestBody JSON array of new bike parameters
+     * @param AddProductDTO[]
+     * @return void
+     */
+    @PostMapping(value = '/inventory/addProduct', produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    void addProduct(@RequestBody AddProductDTO[] newProductParameters) {
+        log.info 'Adding new bike to inventory'
+        inventoryService.addProduct(newProductParameters)
+    }
+
+    // TODO: PATCH - /inventory/updateProduct
+    // - Request Body is a type updateProductDTO
+    // - Return void
 }

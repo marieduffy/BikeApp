@@ -11,6 +11,7 @@ databaseChangeLog:
               - column:
                   name: bike_id
                   type: BIGINT
+                  autoIncrement: true
                   constraints:
                     nullable: false
                     unique: true

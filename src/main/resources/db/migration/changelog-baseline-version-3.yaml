@@ -17,6 +17,7 @@ databaseChangeLog:
               - column:
                   name: order_id
                   type: BIGINT
+                  autoIncrement: true
                   constraints:
                     nullable: false
                     unique: true
@@ -27,36 +28,21 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: shipping_method
-                  type: varchar(40)
+                  type: varchar(255)
                   constraints:
                     nullable: false
               - column:
-                  name: price_amount
+                  name: sales_price
                   type: float
                   constraints:
                     nullable: false
               - column:
-                  name: shipping_street
-                  type: varchar(40)
+                  name: shipping_address
+                  type: varchar(500)
                   constraints:
                     nullable: false
-              - column:
-                  name: shipping_city
-                  type: varchar(30)
-                  constraints:
-                    nullable: false
-              - column:
-                  name: shipping_state
-                  type: varchar(30)
-                  constraints:
-                    nullable: true
-              - column:
-                  name: shipping_zipcode
-                  type: varchar(40)
-                  constraints:
-                    nullable: true
         - addPrimaryKey:
             clustered: true
-            columnNames: customer_id
+            columnNames: order_id
             tableName: order_retails
             schemaName: bikes

@@ -31,20 +31,22 @@ class EmployeeService {
             employee.salary = employeeInfoParams[i].salary
             employee.username = employeeInfoParams[i].username
             employee.passWord = employeeInfoParams[i].passWord
+            //save employee to the database
+            employeeAccountRepository.save(employee)
         }
-
-        //save employee to the database
-        employeeAccountRepository.save(employee)
     }
 
     /**
-     * Updata employee in system
+     * Update employee in system
      * @param AddEmployeeDTO[]
      * @return void
      */
     void updateEmployee(AddEmployeeDTO[] employeeUpdateParams){
         //get employee by their ID number
         //how to choose the field that we want to update?
+        if(employeeUpdateParams[0].passWord != null){
+
+        }
     }
 
     /**
@@ -52,9 +54,12 @@ class EmployeeService {
      * @param AddEmployeeDTO[]
      * @return void
      */
-    void deleteEmployee(AddEmployeeDTO[] employeeDeleteParams){
+    void deleteEmployee(String username){
         //get employee by ID number
         //remove their entry into the array of employees
         // or remove their EmployeeDomain() object???
+        EmployeeDomain employee = employeeAccountRepository.findByUsername(username)
+        employee.isDeleted = true
+        //employeeAccountRepository.delete(employee)
     }
 }

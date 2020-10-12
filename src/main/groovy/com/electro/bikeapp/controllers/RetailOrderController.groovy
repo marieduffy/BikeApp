@@ -1,11 +1,14 @@
 package com.electro.bikeapp.controllers
 
+import com.electro.bikeapp.domains.RetailOrderDomain
 import com.electro.bikeapp.dtos.CreateRetailOrderDTO
 import com.electro.bikeapp.services.RetailOrderService
 import groovy.util.logging.Slf4j
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.ResponseStatus
@@ -18,21 +21,40 @@ class RetailOrderController {
     @Autowired
     RetailOrderService retailOrderService
 
-    // TODO Thong /order/create
     /**
-     * POST - create order
+     * POST - create retail order
      * @requestBody JSON order details
      * @param CreateOrderDTO
      * @return boolean
      */
     @PostMapping(value = '/order/create', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    void createOrder(@RequestBody CreateRetailOrderDTO newOrderParameters) {
-        log.info 'Creating Order'
-        retailOrderService.createOrder(newOrderParameters)
+    void createRetailOrder(@RequestBody CreateRetailOrderDTO newOrderParameters) {
+        log.info 'Creating Retail Order'
+        retailOrderService.createRetailOrder(newOrderParameters)
     }
 
-    // TODO Thong /order/status/{orderId}
+    /**
+     * GET - get retail order
+     * @param orderId
+     * @return RetailOrderDomain
+     */
+    @GetMapping(value = '/order/status/{orderId}', produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    RetailOrderDomain getRetailOrder(@PathVariable Long orderId) {
+        log.info 'Getting Retail Order'
+        retailOrderService.getRetailOrder(orderId)
+    }
 
-    // TODO Thong /order/status/set/{orderId}
+    /**
+     * POST - update retail order
+     * @param orderId
+     * @return void
+     */
+    @PostMapping(value = '/order/status/set/{orderId}', produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    void setRetailOrder(@PathVariable Long orderId) {
+        log.info 'Updating Retail Order'
+        retailOrderService.setRetailOrder(orderId)
+    }
 }

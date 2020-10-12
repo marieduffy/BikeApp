@@ -12,12 +12,15 @@ import java.time.OffsetDateTime
 @Table(name = 'order_retails')
 class RetailOrderDomain {
     @Id
-    @Column(name = 'customer_id')
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    Long bikeId
-
     @Column(name = 'order_id')
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     Long orderId
+
+    @Column(name = 'order_status')
+    String orderStatus
+
+    @Column(name = 'customer_id')
+    Long customerId
 
     @Column(name = 'order_date')
     OffsetDateTime orderDate

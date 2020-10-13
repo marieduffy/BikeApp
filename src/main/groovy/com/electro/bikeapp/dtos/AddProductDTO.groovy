@@ -18,5 +18,4 @@ class AddProductDTO {
     Float retailCost
 
     String description
-
 }

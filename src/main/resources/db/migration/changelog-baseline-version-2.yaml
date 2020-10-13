@@ -10,6 +10,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: employee_id
+                  autoIncrement: true
                   type: BIGINT
                   constraints:
                     nullable: false

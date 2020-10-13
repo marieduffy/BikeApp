@@ -10,6 +10,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: employee_id
+                  autoIncrement: true
                   type: BIGINT
                   constraints:
                     nullable: false
@@ -47,6 +48,12 @@ databaseChangeLog:
                     nullable: true
               - column:
                   name: username
+                  type: varchar(255)
+                  constraints:
+                    unique: true
+                    nullable: true
+              - column:
+                  name: email
                   type: varchar(255)
                   constraints:
                     nullable: true

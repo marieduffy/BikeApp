@@ -36,12 +36,12 @@ class EmployeeManagementController {
     /**
      * PATCH - update employee
      * @requestBody
-     * @param AddEmployeeDTO[]
+     * @param AddEmployeeDTO[], String username
      * @return void
      */
-    void updateEmployee(@RequestBody AddEmployeeDTO[] employeeParameters){
+    void updateEmployee(@RequestBody AddEmployeeDTO[] employeeParameters, username){
         log.info('Updating an existing employee in the system')
-        employeeService.updateEmployee(employeeParameters)
+        employeeService.updateEmployee(employeeParameters, username)
     }
 
     //TODO: Marie /manager/removeEmployee

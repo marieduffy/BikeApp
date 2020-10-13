@@ -32,7 +32,7 @@ class EmployeeDomain {
     String username
 
     @Column(name = 'email')
-    Float email
+    String email
 
     @Column(name = 'encrypted_password')
     String passWord

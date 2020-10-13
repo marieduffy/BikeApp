@@ -28,9 +28,6 @@ class EmployeeDomain {
     @Column(name = 'payroll_type')
     String payrollType
 
-    @Column(name = 'hours')
-    Float hours
-
     @Column(name = 'username')
     String username
 

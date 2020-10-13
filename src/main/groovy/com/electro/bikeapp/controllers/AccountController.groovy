@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 
+
 @RestController
 @Slf4j
 class AccountController {
@@ -26,10 +27,11 @@ class AccountController {
      * @param LoginCredentialsDTO
      * @return boolean
      */
-    @PostMapping(value = '/login', produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = '/userLogin', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     boolean login(@RequestBody LoginCredentialsDTO loginCredentials) {
         log.info 'Verifying Login Credentials'
+        log.info(loginCredentials.password)
         accountService.verifyCredentials(loginCredentials)
     }
 

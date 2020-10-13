@@ -21,7 +21,7 @@ class RetailOrderService {
             // make a new instance of type retail order
             RetailOrderDomain retailOrder = new RetailOrderDomain()
 
-            retailOrder.orderId = newRetailOrderParametersArray[i].orderId
+
             retailOrder.orderStatus = newRetailOrderParametersArray[i].orderStatus
             retailOrder.customerId = newRetailOrderParametersArray[i].customerId
             retailOrder.orderDate = newRetailOrderParametersArray[i].orderDate

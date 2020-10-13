@@ -23,7 +23,7 @@ class EmployeeService {
         //Loop through JSON array of new employees
         for(int i = 0; i< employeeInfoParams.size(); i++){
             EmployeeDomain employee = new EmployeeDomain()
-            employee.employeeId = employeeInfoParams[i].employeeId
+            employee.payrollType = employeeInfoParams[i].payrollType
             employee.employeeName = employeeInfoParams[i].employeeName
             employee.address = employeeInfoParams[i].address
             employee.social = employeeInfoParams[i].social

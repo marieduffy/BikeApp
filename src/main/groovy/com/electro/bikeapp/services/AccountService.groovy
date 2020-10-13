@@ -2,6 +2,7 @@ package com.electro.bikeapp.services
 
 import com.electro.bikeapp.domains.EmployeeDomain
 import com.electro.bikeapp.dtos.ChangePasswordDTO
+import com.electro.bikeapp.dtos.ChangeEmailDTO
 import com.electro.bikeapp.dtos.LoginCredentialsDTO
 import com.electro.bikeapp.repositories.AccountRepository
 import groovy.util.logging.Slf4j
@@ -29,6 +30,17 @@ class AccountService {
         }
         else{
             log.error("Wrong password entered")
+        }
+    }
+
+    void changeEmail(ChangeEmailDTO changeEmailDTO){
+        EmployeeDomain currentEmployee = accountRepository.findByUsername(changeEmailDTO.userName)
+        if(changeEmailDTO.currentEmail == currentEmployee.email){
+            currentEmployee.email = changeEmailDTO.newEmail
+            accountRepository.save(currentEmployee)
+        }
+        else{
+            log.error("You have already used this email")
         }
     }
 }

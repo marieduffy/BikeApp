@@ -28,11 +28,12 @@ class EmployeeDomain {
     @Column(name = 'payroll_type')
     String payrollType
 
-    @Column(name = 'hours')
-    Float hours
-
     @Column(name = 'username')
     String username
+
+
+    @Column(name = 'email')
+    Float email
 
     @Column(name = 'encrypted_password')
     String passWord

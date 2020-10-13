@@ -51,6 +51,11 @@ databaseChangeLog:
                   constraints:
                     nullable: true
               - column:
+                  name: email
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
                   name: encrypted_password
                   type: varchar(255)
                   constraints:

@@ -9,5 +9,9 @@ class AddEmployeeDTO {
     Float salary
     String username
     String passWord
+<<<<<<< HEAD
     String email
+=======
+
+>>>>>>> b235789740ff711ded81f7a882fb0db9c6560751
 }

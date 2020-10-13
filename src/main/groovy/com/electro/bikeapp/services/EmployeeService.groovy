@@ -31,6 +31,7 @@ class EmployeeService {
             employee.salary = employeeInfoParams[i].salary
             employee.username = employeeInfoParams[i].username
             employee.passWord = employeeInfoParams[i].passWord
+            employee.isDeleted = false
             //save employee to the database
             employeeAccountRepository.save(employee)
         }
@@ -41,11 +42,27 @@ class EmployeeService {
      * @param AddEmployeeDTO[]
      * @return void
      */
-    void updateEmployee(AddEmployeeDTO[] employeeUpdateParams){
-        //get employee by their ID number
-        //how to choose the field that we want to update?
-        if(employeeUpdateParams[0].passWord != null){
+    void updateEmployee(AddEmployeeDTO[] employeeUpdateParams, String username){
 
+        //get employee by their username
+        EmployeeDomain employee = employeeAccountRepository.findByUsername(username)
+        if(employeeUpdateParams[0].passWord != null){
+            //might not change password here
+        }
+        if(employeeUpdateParams[0].employeeName != null){
+            employee.employeeName = employeeUpdateParams[0].employeeName
+        }
+        if(employeeUpdateParams[0].address != null){
+            employee.address = employeeUpdateParams[0].address
+        }
+        if(employeeUpdateParams[0].position != null){
+            employee.position = employeeUpdateParams[0].position
+        }
+        if(employeeUpdateParams[0].salary != null){
+            employee.salary = employeeUpdateParams[0].salary
+        }
+        if(employeeUpdateParams[0].username != null){
+            employee.username = employeeUpdateParams[0].username
         }
     }
 
@@ -55,9 +72,8 @@ class EmployeeService {
      * @return void
      */
     void deleteEmployee(String username){
-        //get employee by ID number
-        //remove their entry into the array of employees
-        // or remove their EmployeeDomain() object???
+        //get employee by their username
+        //we do not want to permanently delete them, just archive them somehow
         EmployeeDomain employee = employeeAccountRepository.findByUsername(username)
         employee.isDeleted = true
         //employeeAccountRepository.delete(employee)

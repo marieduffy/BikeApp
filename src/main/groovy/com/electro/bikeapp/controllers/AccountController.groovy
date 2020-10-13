@@ -4,6 +4,7 @@ import com.electro.bikeapp.dtos.ChangePasswordDTO
 import com.electro.bikeapp.dtos.ChangeEmailDTO
 import com.electro.bikeapp.dtos.LoginCredentialsDTO
 import com.electro.bikeapp.services.AccountService
+import com.electro.bikeapp.services.EmployeeService
 import groovy.util.logging.Slf4j
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
@@ -22,6 +23,9 @@ class AccountController {
 
     @Autowired
     AccountService accountService
+
+    @Autowired
+    EmployeeService employeeService
 
     /**
      * POST - login user
@@ -62,16 +66,16 @@ class AccountController {
 
     @PostMapping(value = '/account/timeSheet', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    boolean login(@RequestBody LoginCredentialsDTO loginCredentials) {
+    boolean getTimesheet(@RequestBody LoginCredentialsDTO loginCredentials) {
         log.info 'Verifying Login Credentials'
-        accountService.verifyCredentials(loginCredentials)
+        employeeService.getTimesheet(loginCredentials)
     }
 
     //TODO: Lili /account/shiftChart
     @GetMapping(value = '/account/shiftChart', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    boolean login(@RequestBody LoginCredentialsDTO loginCredentials) {
+    boolean getShiftChart(@RequestBody LoginCredentialsDTO loginCredentials) {
         log.info 'Verifying Login Credentials'
-        accountService.verifyCredentials(loginCredentials)
+        employeeService.getShiftChart(loginCredentials)
     }
 }

@@ -31,7 +31,6 @@ class EmployeeDomain {
     @Column(name = 'username')
     String username
 
-
     @Column(name = 'email')
     Float email
 

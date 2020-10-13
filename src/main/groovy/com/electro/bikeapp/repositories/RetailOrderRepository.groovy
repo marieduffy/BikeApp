@@ -11,4 +11,6 @@ interface RetailOrderRepository extends JpaRepository<RetailOrderDomain, Long> {
     // getRetailOrder(long id)
     // updateRetailOrder(long id)
     // deleteRetailOrder(long id)
+
+    RetailOrderDomain findByOrderId(long id)
 }

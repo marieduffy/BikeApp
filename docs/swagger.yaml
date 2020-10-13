@@ -330,8 +330,8 @@ paths:
                 estimatedArrival: '10/28/2020'
         '404':
           description: 'Order not found.'
-  '/order/status/set/{orderId}':
-    post:
+  '/order/status/set/{orderId}/{status}':
+    get:
       tags:
         - Retail Orders
       summary: Changes the status on specified order number
@@ -341,18 +341,11 @@ paths:
           required: true
           schema:
             type: number
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - orderStatus
-              properties:
-                orderStatus:
-                  type: string
-                  example: 'shipped'
+        - name: status
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
         '200':
           description: Order status has been updated.

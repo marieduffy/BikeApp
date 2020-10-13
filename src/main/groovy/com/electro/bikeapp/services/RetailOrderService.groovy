@@ -21,7 +21,6 @@ class RetailOrderService {
             // make a new instance of type retail order
             RetailOrderDomain retailOrder = new RetailOrderDomain()
 
-            retailOrder.orderId = newRetailOrderParametersArray[i].orderId
             retailOrder.orderStatus = newRetailOrderParametersArray[i].orderStatus
             retailOrder.customerId = newRetailOrderParametersArray[i].customerId
             retailOrder.orderDate = newRetailOrderParametersArray[i].orderDate
@@ -35,10 +34,12 @@ class RetailOrderService {
     }
 
     RetailOrderDomain getRetailOrder(long id) {
-        return retailOrderRepository.findById(id) as RetailOrderDomain
+        return retailOrderRepository.findByOrderId(id)
     }
 
-    void setRetailOrder(long id) {
-        // retailOrderRepository
+    void updateRetailOrderStatus(long id, String status) {
+        RetailOrderDomain retailOrder = retailOrderRepository.findByOrderId(id)
+        retailOrder.orderStatus = status
+        retailOrderRepository.save(retailOrder)
     }
 }

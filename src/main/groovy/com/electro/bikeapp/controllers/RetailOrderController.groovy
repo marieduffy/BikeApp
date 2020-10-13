@@ -47,14 +47,14 @@ class RetailOrderController {
     }
 
     /**
-     * POST - update retail order
+     * GET - update retail order
      * @param orderId
      * @return void
      */
-    @PostMapping(value = '/order/status/set/{orderId}', produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = '/order/status/set/{orderId}/{status}', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    void setRetailOrder(@PathVariable Long orderId) {
+    void updateRetailOrderStatus(@PathVariable Long orderId, @PathVariable String status) {
         log.info 'Updating Retail Order'
-        retailOrderService.setRetailOrder(orderId)
+        retailOrderService.updateRetailOrderStatus(orderId, status)
     }
 }

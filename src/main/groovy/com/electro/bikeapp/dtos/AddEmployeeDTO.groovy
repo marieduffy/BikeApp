@@ -9,5 +9,5 @@ class AddEmployeeDTO {
     Float salary
     String username
     String passWord
-    Boolean isDeleted
+
 }

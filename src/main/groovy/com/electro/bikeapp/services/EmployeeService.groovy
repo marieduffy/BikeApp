@@ -31,7 +31,7 @@ class EmployeeService {
             employee.salary = employeeInfoParams[i].salary
             employee.username = employeeInfoParams[i].username
             employee.passWord = employeeInfoParams[i].passWord
-            employee.isDeleted = false
+            //employee.isDeleted = false
             //save employee to the database
             employeeAccountRepository.save(employee)
         }
@@ -75,7 +75,7 @@ class EmployeeService {
         //get employee by their username
         //we do not want to permanently delete them, just archive them somehow
         EmployeeDomain employee = employeeAccountRepository.findByUsername(username)
-        employee.isDeleted = true
+        //employee.isDeleted = true
         //employeeAccountRepository.delete(employee)
     }
 }

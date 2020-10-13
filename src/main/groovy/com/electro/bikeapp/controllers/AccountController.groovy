@@ -1,12 +1,14 @@
 package com.electro.bikeapp.controllers
 
 import com.electro.bikeapp.dtos.ChangePasswordDTO
+import com.electro.bikeapp.dtos.ChangeEmailDTO
 import com.electro.bikeapp.dtos.LoginCredentialsDTO
 import com.electro.bikeapp.services.AccountService
 import groovy.util.logging.Slf4j
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PatchMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -49,8 +51,27 @@ class AccountController {
     }
 
     //TODO: Lili /account/changeEmail
+    @PatchMapping(value = '/account/changeEmail', produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    void changeEmail(@RequestBody ChangeEmailDTO changeToNewEmail) {
+        log.info 'Changing email'
+        accountService.changeEmail(changeToNewEmail)
+    }
 
     //TODO: Lili /account/timeSheet
 
+    @PostMapping(value = '/account/timeSheet', produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    boolean login(@RequestBody LoginCredentialsDTO loginCredentials) {
+        log.info 'Verifying Login Credentials'
+        accountService.verifyCredentials(loginCredentials)
+    }
+
     //TODO: Lili /account/shiftChart
+    @GetMapping(value = '/account/shiftChart', produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    boolean login(@RequestBody LoginCredentialsDTO loginCredentials) {
+        log.info 'Verifying Login Credentials'
+        accountService.verifyCredentials(loginCredentials)
+    }
 }

@@ -31,6 +31,10 @@ class EmployeeDomain {
     @Column(name = 'username')
     String username
 
+
+    @Column(name = 'email')
+    Float email
+
     @Column(name = 'encrypted_password')
     String passWord
 

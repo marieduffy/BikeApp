@@ -27,19 +27,19 @@ class ShiftsAndSchedules {
     OffsetDateTime addedBy
 
     @Column(name = 'time_in')
-    Timestamp timeIn
+    OffsetDateTime timeIn
 
     @Column(name = 'time_out')
-    Timestamp timeOut
+    OffsetDateTime timeOut
 
     @Column(name = 'days_off_work')
-    Array daysOffWork
+    String daysOffWork
 
     @Column(name = 'start_work_hours')
-    Array startWorkHours
+    String startWorkHours
 
     @Column(name = 'end_work_hours')
-    Array endWorkHours
+    String endWorkHours
 
     @Column(name = 'total_weekly_hours')
     Float totalWeeklyHours

@@ -25,7 +25,7 @@ class EmployeeManagementController {
      * @param AddEmployeeDTO[]
      * @return void
      */
-    @PostMapping(value = 'employees/create', produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = 'manager/addEmployee', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     void addEmployee(@RequestBody AddEmployeeDTO[] employeeParameters){
         log.info('Adding a new employee to the system')
@@ -39,6 +39,8 @@ class EmployeeManagementController {
      * @param AddEmployeeDTO[], String username
      * @return void
      */
+    @PostMapping(value = 'manager/updateEmployee', produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
     void updateEmployee(@RequestBody AddEmployeeDTO[] employeeParameters, username){
         log.info('Updating an existing employee in the system')
         employeeService.updateEmployee(employeeParameters, username)
@@ -51,6 +53,8 @@ class EmployeeManagementController {
      * @param AddEmployeeDTO[]
      * @return void
      */
+    @PostMapping(value = 'manager/removeEmployee', produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
     void deleteEmployee(@RequestBody AddEmployeeDTO[] employeeParameters){
         log.info('Deleting an employee from the system')
         employeeService.deleteEmployee(employeeParameters)

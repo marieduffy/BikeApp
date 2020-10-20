@@ -1,0 +1,83 @@
+databaseChangeLog:
+  - changeSet:
+      id: 5
+      author: Thong
+      comment: Creates sixth table, repair ticket
+      changes:
+        - createTable:
+            schemaName: bikes
+            tableName: ticket_repairs
+            columns:
+              - column:
+                  name: ticket_id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: date_created
+                  type: DATETIME
+                  constraints:
+                    nullable: false
+              - column:
+                  name: first_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+                    unique: false
+              - column:
+                  name: last_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: address
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: phone
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: customer_description
+                  type: varchar(1000)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: estimated_cost
+                  type: float
+                  constraints:
+                    nullable: false
+              - column:
+                  name: service_type
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: service_status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: repair_resolution
+                  type: varchar(1000)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: components_to_replace
+                  type: varchar(1000)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: vendor_of_failed_component
+                  type: varchar(1000)
+                  constraints:
+                    nullable: true
+        - addPrimaryKey:
+            clustered: true
+            columnNames: ticket_id
+            tableName: ticket_repairs
+            schemaName: bikes

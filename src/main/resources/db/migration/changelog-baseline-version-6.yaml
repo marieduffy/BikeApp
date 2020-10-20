@@ -1,53 +1,62 @@
 databaseChangeLog:
   - changeSet:
-      id: 4
+      id: 6
       author: Thong
-      comment: Creates fourth table, retail order
+      comment: Creates seventh table, vendor order
       changes:
         - createTable:
             schemaName: bikes
-            tableName: order_retails
+            tableName: order_vendors
             columns:
               - column:
-                  name: order_id
+                  name: vendor_order_id
                   type: BIGINT
                   autoIncrement: true
                   constraints:
                     nullable: false
                     unique: true
               - column:
-                  name: order_status
+                  name: vendor_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: vendor_name
                   type: varchar(255)
                   constraints:
                     nullable: false
               - column:
-                  name: customer_id
-                  type: BIGINT
+                  name: vendor_order_status
+                  type: varchar(255)
                   constraints:
                     nullable: false
-                    unique: false
               - column:
-                  name: order_date
+                  name: vendor_order_date
                   type: DATETIME
                   constraints:
                     nullable: false
               - column:
-                  name: shipping_method
-                  type: varchar(255)
+                  name: vendor_receive_date
+                  type: DATETIME
                   constraints:
                     nullable: false
               - column:
-                  name: sales_price
+                  name: quantity_ordered
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: quantity_received
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: purchase_price
                   type: float
-                  constraints:
-                    nullable: false
-              - column:
-                  name: shipping_address
-                  type: varchar(500)
                   constraints:
                     nullable: false
         - addPrimaryKey:
             clustered: true
-            columnNames: order_id
-            tableName: order_retails
+            columnNames: vendor_order_id
+            tableName: order_vendors
             schemaName: bikes

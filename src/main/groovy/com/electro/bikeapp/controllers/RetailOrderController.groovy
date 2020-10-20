@@ -24,7 +24,7 @@ class RetailOrderController {
     /**
      * POST - create retail order
      * @requestBody JSON order details
-     * @param CreateOrderDTO
+     * @param CreateRetailOrderDTO
      * @return boolean
      */
     @PostMapping(value = '/order/create', produces = MediaType.APPLICATION_JSON_VALUE)

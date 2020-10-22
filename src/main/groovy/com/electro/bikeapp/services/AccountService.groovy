@@ -26,8 +26,8 @@ class AccountService {
         // Find employee by username
         EmployeeDomain currentEmployee = accountRepository.findByUsername(changePasswordDTO.userName)
         // If given password matches
-        if(changePasswordDTO.currentPassword == currentEmployee.passWord){
-            currentEmployee.passWord = changePasswordDTO.newPassword
+        if(changePasswordDTO.currentPassword == currentEmployee.password){
+            currentEmployee.password = changePasswordDTO.newPassword
             accountRepository.save(currentEmployee)
         }
         // Else log error

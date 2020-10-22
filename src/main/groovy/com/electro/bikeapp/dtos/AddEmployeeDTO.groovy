@@ -14,7 +14,7 @@ class AddEmployeeDTO {
 
     String username
 
-    String passWord
+    String password
 
     String email
 

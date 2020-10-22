@@ -62,6 +62,10 @@ databaseChangeLog:
                   type: varchar(255)
                   constraints:
                     nullable: true
+              - column:
+                  name: is_deleted
+                  type: bit
+                  defaultValueBoolean: false
         - addPrimaryKey:
             clustered: true
             columnNames: employee_id

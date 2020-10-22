@@ -21,7 +21,6 @@ class EmployeeManagementController {
     @Autowired
     EmployeeService employeeService
 
-    //TODO: Marie /manager/addEmployee
     /**
      * POST - create employee
      * @requestBody JSON user login credentials???
@@ -35,7 +34,6 @@ class EmployeeManagementController {
         employeeService.addEmployee(employeeParameters)
     }
 
-    //TODO: Marie /manager/updateEmployee
     /**
      * PATCH - update employee
      * @requestBody
@@ -49,7 +47,6 @@ class EmployeeManagementController {
         employeeService.updateEmployee(employeeParameters, username)
     }
 
-    //TODO: Marie /manager/removeEmployee
     /**
      * DELETE - delete employee
      * @requestBody

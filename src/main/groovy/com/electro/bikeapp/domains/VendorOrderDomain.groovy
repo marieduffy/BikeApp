@@ -20,6 +20,12 @@ class VendorOrderDomain {
     @Column(name = 'vendor_name')
     String vendorName
 
+    @Column(name = 'vendor_address')
+    String vendorAddress
+
+    @Column(name = 'vendor_preference_status')
+    String vendorPreference
+
     @Column(name = 'vendor_order_status')
     String vendorOrderStatus
 

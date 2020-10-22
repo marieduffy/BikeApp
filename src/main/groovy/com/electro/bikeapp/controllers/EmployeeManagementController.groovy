@@ -23,7 +23,7 @@ class EmployeeManagementController {
 
     /**
      * POST - create employee
-     * @requestBody JSON user login credentials???
+     * @requestBody JSON user info
      * @param AddEmployeeDTO[]
      * @return void
      */

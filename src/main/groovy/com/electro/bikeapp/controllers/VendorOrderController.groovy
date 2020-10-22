@@ -1,5 +1,6 @@
 package com.electro.bikeapp.controllers
 
+import com.electro.bikeapp.dtos.VendorOrderDTO
 import com.electro.bikeapp.services.VendorOrderService
 import groovy.util.logging.Slf4j
 import org.springframework.http.HttpStatus
@@ -18,4 +19,27 @@ import org.springframework.beans.factory.annotation.Autowired
 
 class VendorOrderController {
 
+    @Autowired
+    VendorOrderService vendorOrderService
+
+    /**
+     * POST - create an order to a vendor
+     * @requestBody JSON order info
+     * @param VendorOrderDTO[]
+     * @return void
+     */
+    @PostMapping(value = 'vendorOrder/create', produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    void createVendorOrder(@RequestBody VendorOrderDTO[] vendorOrderParameters){
+        log.info('Creating a new order from a vendor')
+        vendorOrderService.createVendorOrder(vendorOrderParameters)
+    }
+
+    //TODO: update vendor preference status: i.e. preferred, okay, not preferred
+    /**
+     * PATCH - update vendor preference status
+     * @requestBody JSON VendorOrderDTO[]
+     * @param
+     * @return void
+     */
 }

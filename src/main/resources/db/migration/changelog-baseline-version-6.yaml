@@ -26,6 +26,16 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
+                  name: vendor_address
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: vendor_preference_status
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
                   name: vendor_order_status
                   type: varchar(255)
                   constraints:

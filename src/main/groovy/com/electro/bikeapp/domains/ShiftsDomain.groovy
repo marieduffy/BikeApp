@@ -7,13 +7,12 @@ import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.Table
-import java.lang.reflect.Array
 import java.sql.Timestamp
 import java.time.OffsetDateTime
 
 @Entity
 @Table(name = 'shifts_and_schedules')
-class ShiftsAndSchedules {
+class ShiftsDomain {
     @Id
     @Column(name = 'employee_id')
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -24,13 +23,16 @@ class ShiftsAndSchedules {
 
     @CreationTimestamp
     @Column(name = 'todays_date')
-    OffsetDateTime addedBy
+    OffsetDateTime todaysDate
 
     @Column(name = 'time_in')
-    OffsetDateTime timeIn
+    Timestamp timeIn
 
     @Column(name = 'time_out')
-    OffsetDateTime timeOut
+    Timestamp timeOut
+
+    @Column(name = 'total_day_hours')
+    Double totalDayHours
 
     @Column(name = 'days_off_work')
     String daysOffWork

@@ -3,8 +3,10 @@ package com.electro.bikeapp.controllers
 import com.electro.bikeapp.dtos.ChangePasswordDTO
 import com.electro.bikeapp.dtos.ChangeEmailDTO
 import com.electro.bikeapp.dtos.LoginCredentialsDTO
+import com.electro.bikeapp.dtos.TimesDTO
 import com.electro.bikeapp.services.AccountService
 import com.electro.bikeapp.services.EmployeeService
+import com.electro.bikeapp.services.ShiftsService
 import groovy.util.logging.Slf4j
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
@@ -63,12 +65,12 @@ class AccountController {
     }
 
     //TODO: Lili /account/timeSheet
-
+    //nothing here has been chanaged yet.
     @PostMapping(value = '/account/timeSheet', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    boolean getTimesheet(@RequestBody LoginCredentialsDTO loginCredentials) {
-        log.info 'Verifying Login Credentials'
-        employeeService.getTimesheet(loginCredentials)
+    boolean getTimesheet(@RequestBody TimesDTO timesDTO) {
+        log.info 'Clock in / out times are recorded'
+        ShiftsService.getTimesheet(timesDTO)
     }
 
     //TODO: Lili /account/shiftChart

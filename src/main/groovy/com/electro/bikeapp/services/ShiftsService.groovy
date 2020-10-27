@@ -17,7 +17,7 @@ class ShiftsService {
     ShiftsRepository shiftsRepository
 
 //if this does what I think it does or what I'm trying to get it do then it should set that employees clock in time and save it
-    OffsetDateTime clockInTime (Long employeeId){
+    OffsetDateTime clockIn (Long employeeId){
         try {
             ShiftsDomain currentEmployee = shiftsRepository.findByEmployeeId(employeeId)
             OffsetDateTime currentTime = OffsetDateTime.now() //current time is being set to the current time

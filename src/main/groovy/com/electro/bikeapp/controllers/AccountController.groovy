@@ -33,6 +33,9 @@ class AccountController {
     @Autowired
     EmployeeService employeeService
 
+    @Autowired
+    ShiftsService shiftsService
+
     /**
      * POST - login user
      * @requestBody JSON user login credentials
@@ -74,21 +77,21 @@ class AccountController {
     @ResponseStatus(HttpStatus.OK)
     OffsetDateTime clockIn(@PathVariable Long employeeId) {
         log.info 'Clock in / out times are recorded'
-        ShiftsService.clockInTime(employeeId)
+        shiftsService.clockIn(employeeId)
     }
 
     @PostMapping(value = '/account/timeOut', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     OffsetDateTime clockOut(@RequestBody TimesDTO timesDTO) {
         log.info 'Clock in / out times are recorded'
-        ShiftsService.clockOutTime(timesDTO)
+        shiftsService.clockOutTime(timesDTO)
     }
 
     @PostMapping(value = '/account/totalTime', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     void getTotalTime(@RequestBody TimesDTO timesDTO) {
         log.info 'Clock in / out times are recorded'
-        ShiftsService.totalDayTime(timesDTO)
+        shiftsService.totalDayTime(timesDTO)
     }
 
     //TODO: Lili /account/shiftChart

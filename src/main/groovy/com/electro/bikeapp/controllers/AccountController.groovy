@@ -13,8 +13,10 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PatchMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 
@@ -68,11 +70,11 @@ class AccountController {
 
     //TODO: Lili /account/timeSheet
     //time in
-    @PostMapping(value = '/account/timeIn', produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = '/account/timeIn/{employeeId}', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    OffsetDateTime clockIn(@RequestBody TimesDTO timesDTO) {
+    OffsetDateTime clockIn(@PathVariable Long employeeId) {
         log.info 'Clock in / out times are recorded'
-        ShiftsService.clockInTime(timesDTO)
+        ShiftsService.clockInTime(employeeId)
     }
 
     @PostMapping(value = '/account/timeOut', produces = MediaType.APPLICATION_JSON_VALUE)

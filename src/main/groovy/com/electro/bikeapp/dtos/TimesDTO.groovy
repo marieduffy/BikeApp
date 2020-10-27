@@ -1,16 +1,12 @@
 package com.electro.bikeapp.dtos
 
-import java.sql.Time
+import java.time.OffsetDateTime
 
 class TimesDTO {
 
     Long employeeId
 
-    Time clockIn
+    OffsetDateTime clockIn
 
-    Time clockOut
-
-    Double todaysHours
-
-    Date todaysDate
+    OffsetDateTime clockOut
 }

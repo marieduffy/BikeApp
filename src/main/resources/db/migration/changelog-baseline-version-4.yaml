@@ -22,17 +22,17 @@ databaseChangeLog:
                     nullable: true
               - column:
                   name: todays_date
-                  type: date
+                  type: datetime
                   constraints:
                     nullable: true
               - column:
                   name: time_in
-                  type: time
+                  type: datetime
                   constraints:
                     nullable: true
               - column:
                   name: time_out
-                  type: time
+                  type: datetime
                   constraints:
                     nullable: true
               - column:

@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 
+import java.time.OffsetDateTime
+
 
 @RestController
 @Slf4j
@@ -65,19 +67,33 @@ class AccountController {
     }
 
     //TODO: Lili /account/timeSheet
-    //nothing here has been chanaged yet.
-    @PostMapping(value = '/account/timeSheet', produces = MediaType.APPLICATION_JSON_VALUE)
+    //time in
+    @PostMapping(value = '/account/timeIn', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    boolean getTimesheet(@RequestBody TimesDTO timesDTO) {
+    OffsetDateTime clockIn(@RequestBody TimesDTO timesDTO) {
         log.info 'Clock in / out times are recorded'
-        ShiftsService.getTimesheet(timesDTO)
+        ShiftsService.clockInTime(timesDTO)
+    }
+
+    @PostMapping(value = '/account/timeOut', produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    OffsetDateTime clockOut(@RequestBody TimesDTO timesDTO) {
+        log.info 'Clock in / out times are recorded'
+        ShiftsService.clockOutTime(timesDTO)
+    }
+
+    @PostMapping(value = '/account/totalTime', produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    void getTotalTime(@RequestBody TimesDTO timesDTO) {
+        log.info 'Clock in / out times are recorded'
+        ShiftsService.totalDayTime(timesDTO)
     }
 
     //TODO: Lili /account/shiftChart
-    @GetMapping(value = '/account/shiftChart', produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(HttpStatus.OK)
-    boolean getShiftChart(@RequestBody LoginCredentialsDTO loginCredentials) {
-        log.info 'Verifying Login Credentials'
-        employeeService.getShiftChart(loginCredentials)
-    }
+//    @GetMapping(value = '/account/shiftChart', produces = MediaType.APPLICATION_JSON_VALUE)
+//    @ResponseStatus(HttpStatus.OK)
+//    boolean getShiftChart(@RequestBody LoginCredentialsDTO loginCredentials) {
+//        log.info 'Verifying Login Credentials'
+//        employeeService.getShiftChart(loginCredentials)
+//    }
 }

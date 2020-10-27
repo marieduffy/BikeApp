@@ -1,6 +1,5 @@
 package com.electro.bikeapp.domains
 
-import org.hibernate.annotations.CreationTimestamp
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
@@ -44,6 +43,6 @@ class ShiftsDomain {
     @Column(name = 'total_weekly_hours')
     Float totalWeeklyHours
 
-    @Column(name = 'request_message')
+    @Column(name = 'request_days_off')
     String requestMessage
 }

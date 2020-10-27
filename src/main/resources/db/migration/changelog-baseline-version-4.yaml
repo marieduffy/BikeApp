@@ -19,7 +19,7 @@ databaseChangeLog:
                   name: name
                   type: varchar(255)
                   constraints:
-                    nullable: true
+                    nullable: false
               - column:
                   name: todays_date
                   type: datetime
@@ -58,6 +58,11 @@ databaseChangeLog:
               - column:
                   name: total_weekly_hours
                   type: float
+                  constraints:
+                    nullable: true
+              - column:
+                  name: request_days_off
+                  type: varchar(512)
                   constraints:
                     nullable: true
         - addPrimaryKey:

@@ -3,7 +3,6 @@ package com.electro.bikeapp.controllers
 import com.electro.bikeapp.dtos.ChangePasswordDTO
 import com.electro.bikeapp.dtos.ChangeEmailDTO
 import com.electro.bikeapp.dtos.LoginCredentialsDTO
-import com.electro.bikeapp.dtos.TimesDTO
 import com.electro.bikeapp.services.AccountService
 import com.electro.bikeapp.services.EmployeeService
 import com.electro.bikeapp.services.ShiftsService
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.PatchMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 
@@ -75,24 +73,24 @@ class AccountController {
     //time in
     @GetMapping(value = '/account/timeIn/{employeeId}', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    OffsetDateTime clockIn(@PathVariable Long employeeId) {
+    OffsetDateTime clockIn(@PathVariable long employeeId) {
         log.info 'Clock in / out times are recorded'
         shiftsService.clockIn(employeeId)
     }
-
-    @PostMapping(value = '/account/timeOut', produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(HttpStatus.OK)
-    OffsetDateTime clockOut(@RequestBody TimesDTO timesDTO) {
-        log.info 'Clock in / out times are recorded'
-        shiftsService.clockOutTime(timesDTO)
-    }
-
-    @PostMapping(value = '/account/totalTime', produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(HttpStatus.OK)
-    void getTotalTime(@RequestBody TimesDTO timesDTO) {
-        log.info 'Clock in / out times are recorded'
-        shiftsService.totalDayTime(timesDTO)
-    }
+//
+//    @PostMapping(value = '/account/timeOut', produces = MediaType.APPLICATION_JSON_VALUE)
+//    @ResponseStatus(HttpStatus.OK)
+//    OffsetDateTime clockOut(@RequestBody TimesDTO timesDTO) {
+//        log.info 'Clock in / out times are recorded'
+//        shiftsService.clockOutTime(timesDTO)
+//    }
+//
+//    @PostMapping(value = '/account/totalTime', produces = MediaType.APPLICATION_JSON_VALUE)
+//    @ResponseStatus(HttpStatus.OK)
+//    void getTotalTime(@RequestBody TimesDTO timesDTO) {
+//        log.info 'Clock in / out times are recorded'
+//        shiftsService.totalDayTime(timesDTO)
+//    }
 
     //TODO: Lili /account/shiftChart
 //    @GetMapping(value = '/account/shiftChart', produces = MediaType.APPLICATION_JSON_VALUE)

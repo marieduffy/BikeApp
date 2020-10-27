@@ -16,37 +16,36 @@ class ShiftsService {
     @Autowired
     ShiftsRepository shiftsRepository
 
-//if this does what I think it does or what I'm trying to get it do then it should set that employees clock in time and save it
-    OffsetDateTime clockIn (Long employeeId){
+    OffsetDateTime clockIn (long employeeId){
         try {
             ShiftsDomain currentEmployee = shiftsRepository.findByEmployeeId(employeeId)
             OffsetDateTime currentTime = OffsetDateTime.now() //current time is being set to the current time
             currentEmployee.timeIn = currentTime
             shiftsRepository.save(currentEmployee)
-            log.info("the employee has clocked in")
+            log.info('the employee has clocked in')
             return currentTime
-        } catch(NullPointerException exception){
+        } catch(NullPointerException exception){ //if that employeeId doesn't exist then print to console
             log.error("there is no employee with that id $employeeId")
         }
 
     }
 
     //this should save their clock out time
-    OffsetDateTime clockOutTime (TimesDTO timesDTO){
-        ShiftsDomain currentEmployee = shiftsRepository.findByEmployeeId(timesDTO.employeeId)
-        currentEmployee.timeOut = timesDTO.clockOut
-        shiftsRepository.save(currentEmployee)
-        log.info("the employee has clocked out")
-        return timesDTO.clockOut
-    }
+//    OffsetDateTime clockOutTime (TimesDTO timesDTO){
+//        ShiftsDomain currentEmployee = shiftsRepository.findByEmployeeId(timesDTO.employeeId)
+//        currentEmployee.timeOut = timesDTO.clockOut
+//        shiftsRepository.save(currentEmployee)
+//        log.info('the employee has clocked out')
+//        return timesDTO.clockOut
+//    }
 
     //this should return how much they worked in a day
-    void totalDayTime (TimesDTO timesDTO){ //still needs working on
-        ShiftsDomain currentEmployee = shiftsRepository.findByEmployeeId(timesDTO.employeeId)
-        OffsetDateTime timeIN = currentEmployee.timeIn
-        OffsetDateTime timeOUT = currentEmployee.timeOut
-        OffsetDateTime totalTime = timeOUT.minusHours(timeIN.getHour())
-        log.info("total time $totalTime")
-    }
+//    void totalDayTime (TimesDTO timesDTO){ //still needs working on
+//        ShiftsDomain currentEmployee = shiftsRepository.findByEmployeeId(timesDTO.employeeId)
+//        OffsetDateTime timeIN = currentEmployee.timeIn
+//        OffsetDateTime timeOUT = currentEmployee.timeOut
+//        OffsetDateTime totalTime = timeOUT.minusHours(timeIN.getHour())
+//        log.info('total time $totalTime')
+//    }
 
 }

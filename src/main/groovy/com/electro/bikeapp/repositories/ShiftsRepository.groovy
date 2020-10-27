@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface ShiftsRepository extends JpaRepository <ShiftsDomain, Long> {
-    ShiftsDomain findById(long employeeId)
+    ShiftsDomain findByEmployeeId(long employeeId)
 }

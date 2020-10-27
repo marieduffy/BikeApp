@@ -7,7 +7,6 @@ import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.Table
-import java.sql.Timestamp
 import java.time.OffsetDateTime
 
 @Entity
@@ -21,15 +20,14 @@ class ShiftsDomain {
     @Column(name = 'name')
     String employeeName
 
-    @CreationTimestamp
     @Column(name = 'todays_date')
     OffsetDateTime todaysDate
 
     @Column(name = 'time_in')
-    Timestamp timeIn
+    OffsetDateTime timeIn
 
     @Column(name = 'time_out')
-    Timestamp timeOut
+    OffsetDateTime timeOut
 
     @Column(name = 'total_day_hours')
     Double totalDayHours

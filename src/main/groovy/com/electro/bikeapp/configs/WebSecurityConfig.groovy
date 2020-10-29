@@ -39,7 +39,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     UserDetailsService userDetailsService() {
         List<EmployeeDomain> employeeList = accountRepository.findAll()
-        employeeList.get(0).username
+        //employeeList.get(0).username
         UserDetails user = User.withDefaultPasswordEncoder()
                         .username("user")
                         .password("password")

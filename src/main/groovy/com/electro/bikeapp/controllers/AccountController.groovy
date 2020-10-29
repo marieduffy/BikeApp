@@ -44,7 +44,8 @@ class AccountController {
     @ResponseStatus(HttpStatus.OK)
     boolean login(@RequestBody LoginCredentialsDTO loginCredentials) {
         log.info 'Verifying Login Credentials'
-        accountService.verifyCredentials(loginCredentials)
+        log.info(loginCredentials.username)
+        //accountService.verifyCredentials(loginCredentials)
     }
 
     /**

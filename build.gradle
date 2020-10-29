@@ -20,6 +20,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.codehaus.groovy:groovy:2.5.12'
 	implementation("org.liquibase:liquibase-core:3.8.2")
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.security:spring-security-test'
 	compile "org.springframework.boot:spring-boot-starter-data-jpa"
 	compileOnly 'com.github.ukman:kolobok:0.1.5'
 	runtime("mysql:mysql-connector-java:8.0.17")

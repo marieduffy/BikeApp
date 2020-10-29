@@ -2,6 +2,7 @@ package com.electro.bikeapp.services
 
 import com.electro.bikeapp.domains.VendorOrderDomain
 import com.electro.bikeapp.dtos.VendorOrderDTO
+import com.electro.bikeapp.repositories.AccountRepository
 import com.electro.bikeapp.repositories.VendorOrderRepository
 import groovy.util.logging.Slf4j
 import net.bytebuddy.asm.MemberSubstitution.Substitution.ForFieldAccess.OfGivenField
@@ -14,6 +15,7 @@ class VendorOrderService {
 
     @Autowired
     VendorOrderRepository vendorOrderRepository
+    AccountRepository employeeAccountRepository
 
     /**
      * Create an order to send to a vendor

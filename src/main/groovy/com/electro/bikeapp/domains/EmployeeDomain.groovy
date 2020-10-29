@@ -35,7 +35,7 @@ class EmployeeDomain {
     String email
 
     @Column(name = 'encrypted_password')
-    String password
+    String encrypted_password
 
     @Column(name = 'is_deleted')
     Boolean isDeleted

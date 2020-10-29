@@ -19,7 +19,7 @@ databaseChangeLog:
                   name: name
                   type: varchar(255)
                   constraints:
-                    nullable: true
+                    nullable: false
               - column:
                   name: address
                   type: varchar(255)
@@ -35,37 +35,39 @@ databaseChangeLog:
                   name: position
                   type: varchar(512)
                   constraints:
-                    nullable: true
+                    nullable: false
               - column:
                   name: salary
                   type: float
                   constraints:
-                    nullable: true
+                    nullable: false
               - column:
                   name: payroll_type
                   type: varchar(255)
                   constraints:
-                    nullable: true
+                    nullable: false
               - column:
                   name: username
                   type: varchar(255)
                   constraints:
                     unique: true
-                    nullable: true
+                    nullable: false
               - column:
                   name: email
                   type: varchar(255)
                   constraints:
-                    nullable: true
+                    nullable: false
               - column:
                   name: encrypted_password
                   type: varchar(255)
                   constraints:
-                    nullable: true
+                    nullable: false
               - column:
                   name: is_deleted
                   type: bit
                   defaultValueBoolean: false
+                  constraints:
+                    nullable: false
         - addPrimaryKey:
             clustered: true
             columnNames: employee_id

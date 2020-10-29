@@ -3,6 +3,7 @@ package com.electro.bikeapp.services
 import com.electro.bikeapp.domains.EmployeeDomain
 import com.electro.bikeapp.dtos.AddEmployeeDTO
 import com.electro.bikeapp.repositories.AccountRepository
+import com.electro.bikeapp.utils.StringEncryption
 import groovy.util.logging.Slf4j
 import javassist.NotFoundException
 import org.springframework.beans.factory.annotation.Autowired
@@ -13,6 +14,9 @@ import org.springframework.stereotype.Service
 class EmployeeService {
     @Autowired
     AccountRepository employeeAccountRepository
+
+    StringEncryption stringEncryption = new StringEncryption()
+
 
     /**
      * Add employee to system
@@ -43,8 +47,9 @@ class EmployeeService {
                 employee.position = employeeInfoParams[i].position
                 employee.salary = employeeInfoParams[i].salary
                 employee.username = employeeInfoParams[i].username
-                employee.password = employeeInfoParams[i].password
+                employee.encrypted_password = stringEncryption.encrypt(employeeInfoParams[i].password)
                 employee.email = employeeInfoParams[i].email
+                employee.isDeleted = false
 
                 //save employee to the database
                 employeeAccountRepository.save(employee)

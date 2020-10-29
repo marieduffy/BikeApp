@@ -5,6 +5,7 @@ import com.electro.bikeapp.dtos.ChangePasswordDTO
 import com.electro.bikeapp.dtos.ChangeEmailDTO
 import com.electro.bikeapp.dtos.LoginCredentialsDTO
 import com.electro.bikeapp.repositories.AccountRepository
+import com.electro.bikeapp.utils.StringEncryption
 import groovy.util.logging.Slf4j
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -16,10 +17,26 @@ class AccountService {
     @Autowired
     AccountRepository accountRepository
 
+    StringEncryption stringEncryption = new StringEncryption()
+
     boolean verifyCredentials(LoginCredentialsDTO loginCredentialsDTO){
 
-        loginCredentialsDTO.username
-
+        EmployeeDomain employeeDomain = accountRepository.findByUsername(loginCredentialsDTO.username)
+        if(employeeDomain != null){
+            String encrypted_password = stringEncryption.encrypt(loginCredentialsDTO.password)
+            if(encrypted_password == employeeDomain.encrypted_password){
+                log.info("Login successful")
+                return true
+            }
+            else{
+                log.info("Wrong password")
+                return false
+            }
+        }
+        else{
+            log.info("Invalid username")
+            return false
+        }
     }
 
     void changePassword(ChangePasswordDTO changePasswordDTO){

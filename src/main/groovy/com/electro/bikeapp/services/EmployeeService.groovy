@@ -54,7 +54,6 @@ class EmployeeService {
                 //save employee to the database
                 employeeAccountRepository.save(employee)
             }
-
         }
     }
 

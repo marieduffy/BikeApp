@@ -10,10 +10,6 @@ class VendorOrderDTO {
 
     String vendorName
 
-    String vendorAddress
-
-    String vendorPreference
-
     String vendorOrderStatus
 
     OffsetDateTime vendorOrderDate

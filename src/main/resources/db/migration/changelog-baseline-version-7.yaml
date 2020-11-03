@@ -1,0 +1,62 @@
+databaseChangeLog:
+  - changeSet:
+      id: 7
+      author: Thong
+      comment: Creates eight table, vendor info
+      changes:
+        - createTable:
+            schemaName: bikes
+            tableName: vendor_info
+            columns:
+              - column:
+                  name: vendor_id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: supply_type
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: vendor_preference
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: vendor_note
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: num_of_orders
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: vendor_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: vendor_address
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: vendor_phone
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: vendor_email
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+        - addPrimaryKey:
+            clustered: true
+            columnNames: vendor_id
+            tableName: vendor_info
+            schemaName: bikes

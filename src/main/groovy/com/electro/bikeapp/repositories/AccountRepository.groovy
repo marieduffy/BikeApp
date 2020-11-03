@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository
 @Repository
 interface AccountRepository extends JpaRepository<EmployeeDomain, Long> {
 
-    EmployeeDomain findByUsername(String username)
+    Optional<EmployeeDomain> findByUsername(String username)
 
     EmployeeDomain findByPosition(String position)
 }

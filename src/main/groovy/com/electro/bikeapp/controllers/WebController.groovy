@@ -8,7 +8,7 @@ class WebController {
 
     @GetMapping("/")
     String home() {
-        return ("<h1>Welcome</h1>");
+        return "/BikeShopHome.html"
     }
 
     @GetMapping("/user")

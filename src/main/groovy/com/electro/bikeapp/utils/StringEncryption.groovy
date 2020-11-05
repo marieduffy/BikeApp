@@ -104,6 +104,14 @@ class StringEncryption implements PasswordEncoder{
 
     @Override
     boolean matches(CharSequence rawPassword, String encodedPassword) {
-        return false
+        boolean matches = false
+
+        String checkPassword = encode(rawPassword)
+
+        if(checkPassword == encodedPassword){
+            matches = true
+        }
+
+        return matches
     }
 }

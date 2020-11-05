@@ -8,6 +8,8 @@ class StringEncryption implements PasswordEncoder{
 
     @Override
     String encode(CharSequence inputString) {
+
+        //log.info(inputString.toString())
         int inputStringLen
         int sqrtoflen
         int twoDimensionalArraySize
@@ -26,13 +28,13 @@ class StringEncryption implements PasswordEncoder{
         else twoDimensionalArraySize = sqrtoflen + 1
 
         // Make string length a perfect square by appending "_" to the end
-        for (int i = 0; i < twoDimensionalArraySize * 2; i++)
+        for (int i = 0; i < twoDimensionalArraySize * twoDimensionalArraySize - inputStringLen; i++)
         {
             inputString += "_"
         }
 
         // Initialize the 1D arrays, copy string into 1D tempArr
-        char[] tempArr = inputString.toCharArray()
+        char[] tempArr = inputString
         char[] OneDimensionalArray = new char[twoDimensionalArraySize * twoDimensionalArraySize]
 
         // Replace (space) with _
@@ -79,27 +81,57 @@ class StringEncryption implements PasswordEncoder{
             }
         }
 
-        // If string contains _, its been encrypted. So remove the _
-        if (inputString.contains("_"))
-        {
-            // Replace _ with (space)
-            for (int i = 0; i < OneDimensionalArray.length; i++)
-            {
-                if (OneDimensionalArray[i] == '_' as char)
-                {
-                    OneDimensionalArray[i] = ' '
-                }
-                //log.info(OneDimensionalArray[i] as String)
-            }
-        }
-
         // Concatenates the 1D array back into a string
         String answer = new String(OneDimensionalArray)
 
+        // Answer has been encrypted by one stage at this point
+
+        // Cast string to char array
+        char[] rot13 = answer.toCharArray()
+        char[] asciiArray = new char[answer.length()]
+
+        // Convert char array to array of ascii values
+        for(int i = 0; i < rot13.length; i++){
+            asciiArray[i] = (int)rot13[i]
+        }
+
+        // Shift each ascii value by 13 (symmetrical)
+        for(int i = 0; i < rot13.length; i++){
+            // Char a .. z
+            if(asciiArray[i] > 96 && asciiArray[i] < 123){
+                // Add 13
+                asciiArray[i] = asciiArray[i] + 13
+                // After we added, if you are no longer between a and z
+                if(asciiArray[i] > 122){
+                    // Wrap char back around to a
+                    asciiArray[i] = asciiArray[i] - 26
+                }
+            }
+            // Char A .. Z
+            else if(asciiArray[i] > 64 && asciiArray[i] < 91){
+                // Add 13
+                asciiArray[i] = asciiArray[i] + 13
+                // After we added, if you are no longer between A and Z
+                if(asciiArray[i] > 90){
+                    // Wrap char back around to A
+                    asciiArray[i] = asciiArray[i] - 26
+                }
+            }
+        }
+        // Make new string array
+        char[] stringArray = new char[answer.length()]
+        // Convert ascii values back to character values
+        for(int i = 0; i < rot13.length; i++){
+            stringArray[i] = (char)asciiArray[i]
+        }
+        // Convert char array to string
+        String fullyEncryptedPass = stringArray.toString()
 
         // Prints out encrypted string
-        //log.info(answer)
-        return answer
+        //log.info(fullyEncryptedPass)
+
+        // Return twice encrypted string
+        return fullyEncryptedPass
     }
 
     @Override
@@ -107,6 +139,10 @@ class StringEncryption implements PasswordEncoder{
         boolean matches = false
 
         String checkPassword = encode(rawPassword)
+
+        //log.info("RAW: " + rawPassword.toString())
+        //log.info("ENCODED: " + encodedPassword)
+        //log.info("CHECK: " + checkPassword)
 
         if(checkPassword == encodedPassword){
             matches = true

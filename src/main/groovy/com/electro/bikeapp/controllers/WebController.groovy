@@ -1,14 +1,19 @@
 package com.electro.bikeapp.controllers
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
 
-@RestController
+@Controller
 class WebController {
 
     @GetMapping("/")
     String home() {
-        return "/BikeShopHome.html"
+        return "/home"
+    }
+
+    @GetMapping("/login")
+    String login() {
+        return "/login";
     }
 
     @GetMapping("/user")
@@ -18,6 +23,11 @@ class WebController {
 
     @GetMapping("/admin")
     String admin() {
-        return ("<h1>Welcome Admin</h1>");
+        return "/contact"
+    }
+
+    @GetMapping("/contact")
+    String contact() {
+        return "/contact"
     }
 }

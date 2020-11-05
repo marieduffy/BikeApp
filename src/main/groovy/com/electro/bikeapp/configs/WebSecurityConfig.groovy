@@ -30,14 +30,20 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin").hasAuthority("ADMIN")
                 .antMatchers("/user").authenticated()
                 .antMatchers("/").permitAll()
+                .antMatchers("/contact").permitAll()
                 .and()
                 .formLogin()
+                .loginPage("/login")
+                .permitAll()
+                .and()
+                .logout()
+                .permitAll()
         // TODO: Make logout functionality
         // TODO: Add pages and set privileges
 
 
 //                .logout()
-//                .logoutSuccessUrl("/hello.html")
+//                .logoutSuccessUrl("/contact.html")
 
     }
 

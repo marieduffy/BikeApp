@@ -18,7 +18,7 @@ class WebController {
 
     @GetMapping("/user")
     String user() {
-        return ("<h1>Welcome User</h1>");
+        return ("/user");
     }
 
     @GetMapping("/admin")
@@ -39,5 +39,10 @@ class WebController {
     @GetMapping("/owner")
     String owner() {
         return "/owner"
+    }
+
+    @GetMapping("/manager")
+    String manager() {
+        return "/manager"
     }
 }

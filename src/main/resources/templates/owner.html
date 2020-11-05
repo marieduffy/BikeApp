@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Bike Shop - Home</title>
+    <title>Bike Shop - Owner</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
@@ -13,19 +13,16 @@
 <body>
 
 <div class="topnav">
-    <a class="active" href="/">Home</a>
+    <a href="/">Home</a>
     <a href="/login">Login</a>
     <a href="/contact">Contact</a>
-    <a href="/about">About</a>
-    <form th:action="@{/logout}" method="post">
-        <input class="logoutButton" type="submit">LOGOUT</input>
-    </form>
+    <a class="active" href="/about">About</a>
 </div>
 
 
 <div class="limiter">
     <div class="container-login100" style="background-image: url('images/bikeBackground.jpg');">
-        <h1>HOME PAGE</h1>
+        <h1>OWNER PAGE</h1>
     </div>
 </div>
 

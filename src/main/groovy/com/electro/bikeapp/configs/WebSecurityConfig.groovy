@@ -9,7 +9,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -27,25 +28,23 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/admin").hasAuthority("ADMIN")
-                .antMatchers("/user").authenticated()
-                .antMatchers("/").permitAll()
-                .antMatchers("/contact").permitAll()
+                    .antMatchers("/manager").hasAnyAuthority("MANAGER", "OWNER")
+                    .antMatchers("/owner").hasAuthority("OWNER")
+                    .antMatchers("/user").authenticated()
+                    .antMatchers("/").permitAll()
+                    .antMatchers("/contact").permitAll()
+                    .antMatchers("/about").permitAll()
                 .and()
                 .formLogin()
-                .loginPage("/login")
-                .defaultSuccessUrl("/about", true)
-                .permitAll()
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/", true)
+                        .permitAll()
                 .and()
                 .logout()
-                .permitAll()
+                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                    .logoutSuccessUrl("/login");
         // TODO: Make logout functionality
         // TODO: Add pages and set privileges
-
-
-//                .logout()
-//                .logoutSuccessUrl("/contact.html")
-
     }
 
     @Bean

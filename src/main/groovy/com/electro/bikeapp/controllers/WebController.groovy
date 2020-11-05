@@ -35,4 +35,9 @@ class WebController {
     String contact() {
         return "/contact"
     }
+
+    @GetMapping("/owner")
+    String owner() {
+        return "/owner"
+    }
 }

@@ -7,7 +7,13 @@ import groovy.util.logging.Slf4j
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
+import java.time.Instant
+import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.OffsetDateTime
+import java.time.ZoneId
+import java.time.ZoneOffset
+import java.time.ZonedDateTime
 
 @Slf4j
 @Service
@@ -19,13 +25,27 @@ class ShiftsService {
     OffsetDateTime clockIn (long employeeId){
         try {
             ShiftsDomain currentEmployee = shiftsRepository.findByEmployeeId(employeeId)
-            OffsetDateTime currentTime = OffsetDateTime.now() //current time is being set to the current time
+            OffsetDateTime currentTime = OffsetDateTime.now()
             currentEmployee.timeIn = currentTime
             shiftsRepository.save(currentEmployee)
-            log.info('the employee has clocked in')
+            log.info("Employee $employeeId has clocked in")
             return currentTime
         } catch(NullPointerException exception){ //if that employeeId doesn't exist then print to console
-            log.error("there is no employee with that id $employeeId")
+            log.error("There is no employee with that id $employeeId")
+        }
+
+    }
+
+    OffsetDateTime clockOut (long employeeId){
+        try {
+            ShiftsDomain currentEmployee = shiftsRepository.findByEmployeeId(employeeId)
+            OffsetDateTime currentTime = OffsetDateTime.now() //current time is being set to the current time
+            currentEmployee.timeOut = currentTime
+            shiftsRepository.save(currentEmployee)
+            log.info("Employee $employeeId has clocked in")
+            return currentTime
+        } catch(NullPointerException exception){ //if that employeeId doesn't exist then print to console
+            log.error("There is no employee with that id $employeeId")
         }
 
     }

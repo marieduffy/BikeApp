@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 
+import java.nio.file.Path
+import java.time.LocalDateTime
 import java.time.OffsetDateTime
 
 
@@ -74,16 +76,16 @@ class AccountController {
     @GetMapping(value = '/account/timeIn/{employeeId}', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     OffsetDateTime clockIn(@PathVariable long employeeId) {
-        log.info 'Clock in / out times are recorded'
+        log.info 'Clock in time has been recorded'
         shiftsService.clockIn(employeeId)
     }
-//
-//    @PostMapping(value = '/account/timeOut', produces = MediaType.APPLICATION_JSON_VALUE)
-//    @ResponseStatus(HttpStatus.OK)
-//    OffsetDateTime clockOut(@RequestBody TimesDTO timesDTO) {
-//        log.info 'Clock in / out times are recorded'
-//        shiftsService.clockOutTime(timesDTO)
-//    }
+
+    @GetMapping(value = '/account/timeOut/{employeeId}', produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    OffsetDateTime clockOut(@PathVariable long employeeId) {
+        log.info 'Clock out time has been recorded'
+        shiftsService.clockOut(employeeId)
+    }
 //
 //    @PostMapping(value = '/account/totalTime', produces = MediaType.APPLICATION_JSON_VALUE)
 //    @ResponseStatus(HttpStatus.OK)

@@ -1,7 +1,7 @@
 package com.electro.bikeapp.controllers
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.stereotype.Controller
 
 @Controller
 class WebController {
@@ -13,7 +13,7 @@ class WebController {
 
     @GetMapping("/login")
     String login() {
-        return "/login";
+        return "/login"
     }
 
     @GetMapping("/user")
@@ -24,6 +24,11 @@ class WebController {
     @GetMapping("/admin")
     String admin() {
         return "/contact"
+    }
+
+    @GetMapping("/about")
+    String about() {
+        return "/about"
     }
 
     @GetMapping("/contact")

@@ -37,7 +37,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  name: salary
+                  name: pay_rate
                   type: float
                   constraints:
                     nullable: false
@@ -60,6 +60,11 @@ databaseChangeLog:
               - column:
                   name: encrypted_password
                   type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: privilege_level
+                  type: varchar(10)
                   constraints:
                     nullable: false
               - column:

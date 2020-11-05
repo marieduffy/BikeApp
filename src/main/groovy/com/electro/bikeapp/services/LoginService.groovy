@@ -28,7 +28,7 @@ class LoginService implements UserDetailsService{
         LoginDTO loginDTO = new LoginDTO()
 
         List<SimpleGrantedAuthority> authorities = new ArrayList<>()
-        authorities.add(new SimpleGrantedAuthority(user.get().position))
+        authorities.add(new SimpleGrantedAuthority(user.get().privilegeLevel))
 
 
         loginDTO.userName = user.get().username

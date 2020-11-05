@@ -18,6 +18,9 @@
     <a class="active" href="/login">Login</a>
     <a href="/contact">Contact</a>
     <a href="/about">About</a>
+    <form th:action="@{/logout}" method="post">
+        <input class="logoutButton" type="submit" value="Logout"></input>
+    </form>
 </div>
 
 

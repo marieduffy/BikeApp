@@ -22,8 +22,8 @@ class EmployeeDomain {
     @Column(name = 'position')
     String position
 
-    @Column(name = 'salary')
-    Float salary
+    @Column(name = 'pay_rate')
+    Float payRate
 
     @Column(name = 'payroll_type')
     String payrollType
@@ -36,6 +36,9 @@ class EmployeeDomain {
 
     @Column(name = 'encrypted_password')
     String encrypted_password
+
+    @Column(name = 'privilege_level')
+    String privilegeLevel
 
     @Column(name = 'is_deleted')
     Boolean isDeleted

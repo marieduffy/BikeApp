@@ -1,16 +1,17 @@
 package com.electro.bikeapp.utils
 
 import groovy.util.logging.Slf4j
+import org.springframework.security.crypto.password.PasswordEncoder
 
 @Slf4j
-class StringEncryption {
+class StringEncryption implements PasswordEncoder{
 
-    String encrypt(String inputString){
-
-        int inputStringLen;
-        int sqrtoflen;
-        int twoDimensionalArraySize;
-        int index = 0;
+    @Override
+    String encode(CharSequence inputString) {
+        int inputStringLen
+        int sqrtoflen
+        int twoDimensionalArraySize
+        int index = 0
 
         inputStringLen = inputString.length()
 
@@ -20,41 +21,41 @@ class StringEncryption {
         // Find the closest perfect square to the size of the input string
         if (sqrtoflen * sqrtoflen == inputStringLen)
 
-        twoDimensionalArraySize = sqrtoflen;
+            twoDimensionalArraySize = sqrtoflen
 
-        else twoDimensionalArraySize = sqrtoflen + 1;
+        else twoDimensionalArraySize = sqrtoflen + 1
 
         // Make string length a perfect square by appending "_" to the end
         for (int i = 0; i < twoDimensionalArraySize * 2; i++)
         {
-            inputString += "_";
+            inputString += "_"
         }
 
         // Initialize the 1D arrays, copy string into 1D tempArr
-        char[] tempArr = inputString.toCharArray();
-        char[] OneDimensionalArray = new char[twoDimensionalArraySize * twoDimensionalArraySize];
+        char[] tempArr = inputString.toCharArray()
+        char[] OneDimensionalArray = new char[twoDimensionalArraySize * twoDimensionalArraySize]
 
         // Replace (space) with _
         for (int i = 0; i < inputString.length(); i++)
         {
             if (tempArr[i] == ' ' as char)
             {
-                tempArr[i] = '_';
+                tempArr[i] = '_'
             }
-            //log.info(tempArr[i] as String);
+            //log.info(tempArr[i] as String)
         }
 
         // Initializes both 2D arrays
-        char[][] initialArr = new char[twoDimensionalArraySize][twoDimensionalArraySize];
-        char[][] finalArr = new char[twoDimensionalArraySize][twoDimensionalArraySize];
+        char[][] initialArr = new char[twoDimensionalArraySize][twoDimensionalArraySize]
+        char[][] finalArr = new char[twoDimensionalArraySize][twoDimensionalArraySize]
 
         // Stores 1D tempArr into the 2D initialArr
         for (int i = 0; i < twoDimensionalArraySize; i++)
         {
             for (int j = 0; j < twoDimensionalArraySize; j++)
             {
-                initialArr[i][j] = tempArr[i * twoDimensionalArraySize + j];
-                //log.info("2D Array[" + i + "][" + j + "] = " + initialArr[i][j] + "\n");
+                initialArr[i][j] = tempArr[i * twoDimensionalArraySize + j]
+                //log.info("2D Array[" + i + "][" + j + "] = " + initialArr[i][j] + "\n")
             }
         }
 
@@ -63,8 +64,8 @@ class StringEncryption {
         {
             for (int j = 0; j < twoDimensionalArraySize; j++)
             {
-                finalArr[i][j] = initialArr[j][i];
-                //log.info("2D Array[" + i + "][" + j + "] = " + finalArr[i][j] + "\n");
+                finalArr[i][j] = initialArr[j][i]
+                //log.info("2D Array[" + i + "][" + j + "] = " + finalArr[i][j] + "\n")
             }
         }
 
@@ -73,7 +74,7 @@ class StringEncryption {
         {
             for (int x = 0; x < twoDimensionalArraySize; x++)
             {
-                OneDimensionalArray[index] = finalArr[y][x];
+                OneDimensionalArray[index] = finalArr[y][x]
                 index++;
             }
         }
@@ -86,18 +87,23 @@ class StringEncryption {
             {
                 if (OneDimensionalArray[i] == '_' as char)
                 {
-                    OneDimensionalArray[i] = ' ';
+                    OneDimensionalArray[i] = ' '
                 }
-                //log.info(OneDimensionalArray[i] as String);
+                //log.info(OneDimensionalArray[i] as String)
             }
         }
 
         // Concatenates the 1D array back into a string
-        String answer = new String(OneDimensionalArray);
+        String answer = new String(OneDimensionalArray)
 
 
         // Prints out encrypted string
-        //log.info(answer);
+        //log.info(answer)
         return answer
+    }
+
+    @Override
+    boolean matches(CharSequence rawPassword, String encodedPassword) {
+        return false
     }
 }

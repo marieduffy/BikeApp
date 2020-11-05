@@ -42,13 +42,13 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                     .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                    .logoutSuccessUrl("/login");
+                    .logoutSuccessUrl("/login")
         // TODO: Make logout functionality
         // TODO: Add pages and set privileges
     }
 
     @Bean
-    public PasswordEncoder getPasswordEncoder() {
-        return NoOpPasswordEncoder.getInstance();
+    PasswordEncoder getPasswordEncoder() {
+        return NoOpPasswordEncoder.getInstance()
     }
 }

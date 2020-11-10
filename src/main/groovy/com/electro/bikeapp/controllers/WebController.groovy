@@ -45,4 +45,14 @@ class WebController {
     String manager() {
         return "/manager"
     }
+
+    @GetMapping("/vendorOrder")
+    String vendorOrder() {
+        return "/vendorOrder"
+    }
+
+    @GetMapping("/vendorHomePage")
+    String vendorHomePage() {
+        return "/vendorHomePage"
+    }
 }

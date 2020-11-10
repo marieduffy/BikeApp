@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Vendor Order Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/vendorOrder.css">
+    <!--===============================================================================================-->
+</head>
+<body>
+
+<div class="topnav">
+    <a href="/">Home</a>
+    <a href="/login">Login</a>
+    <a href="/contact">Contact</a>
+    <a class="active" href="/about">About</a>
+    <form th:action="@{/logout}" method="post">
+        <input class="logoutButton" type="submit" value="Logout"></input>
+    </form>
+</div>
+
+    <form>
+        <label for="vendorName">Search by Vendor Name:</label><br>
+        <input type="text" id="vendorName" name="vendorName"><br>
+        <label for="quantityOrdered">Quantity of Items:</label><br>
+        <input type="text" id="quantityOrdered" name="quantityOrdered"><br>
+        <label for="purchasePrice">Price per Item:</label><br>
+        <input type="text" id="PurchasePrice" name="PurchasePrice"><br>
+
+    </form>
+
+<!--    <div class="limiter">-->
+<!--        <div class="container-login100" style="background-image: url('images/bikeBackground.jpg');">-->
+<!--        </div>-->
+<!--    </div>-->
+</body>
+</html>

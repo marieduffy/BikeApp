@@ -55,4 +55,9 @@ class WebController {
     String vendorHomePage() {
         return "/vendorHomePage"
     }
+
+    @GetMapping("/inventory")
+    String inventory() {
+        return "/inventory"
+    }
 }

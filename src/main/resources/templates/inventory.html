@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<script language="javascript">
+    function callAPI() {
+
+        var bikeColor = document.getElementById("bikeColor").value;
+        var priceMin = document.getElementById("priceMin").value;
+        var priceMax = document.getElementById("priceMax").value;
+        var inStock = document.getElementById("inStock").value;
+        var condition = document.getElementById("condition").value;
+        var make = document.getElementById("make").value;
+
+        console.log(make);
+
+    }
+</script>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <form onsubmit="return callAPI()">
+        <label for="bikeColor">Bike Color:</label><br>
+        <input type="text" id="bikeColor" name="bikeColor"><br>
+        <label for="priceMin">Minimum Price:</label><br>
+        <input type="text" id="priceMin" name="priceMin"><br>
+        <label for="priceMax">Maximum Price:</label><br>
+        <input type="text" id="priceMax" name="priceMax"><br>
+        <label for="inStock">In Stock:</label><br>
+        <input type="text" id="inStock" name="inStock"><br>
+        <label for="condition">Condition:</label><br>
+        <input type="text" id="condition" name="condition"><br>
+        <label for="make">Make:</label><br>
+        <input type="text" id="make" name="make"><br>
+        <input type="submit" value="Submit">
+    </form>
+</head>
+<body>
+
+</body>
+</html>

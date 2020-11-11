@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<script language="javascript">
+    function callAPI(form) {
+
+        var obj = { bikeColor: form.bikeColor.value, priceMin: parseFloat(form.priceMin.value), priceMax: parseFloat(form.priceMax.value), inStock: Boolean(form.inStock.value), condition: form.condition.value, make: form.make.value};
+        var json = JSON.stringify(obj);
+        alert(json)
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("POST", "localhost:8080/inventory/search");
+        xhttp.send(json);
+
+    }
+</script>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <form NAME="myform" ACTION="" METHOD="GET">
+        <label for="bikeColor">Bike Color:</label><br>
+        <input type="text" id="bikeColor" name="bikeColor"><br>
+        <label for="priceMin">Minimum Price:</label><br>
+        <input type="text" id="priceMin" name="priceMin"><br>
+        <label for="priceMax">Maximum Price:</label><br>
+        <input type="text" id="priceMax" name="priceMax"><br>
+        <label for="inStock">In Stock:</label><br>
+        <input type="text" id="inStock" name="inStock"><br>
+        <label for="condition">Condition:</label><br>
+        <input type="text" id="condition" name="condition"><br>
+        <label for="make">Make:</label><br>
+        <input type="text" id="make" name="make"><br>
+        <input type="submit" value="Submit" onclick="return callAPI(this.form)">
+    </form>
+
+</head>
+<body>
+
+</body>
+</html>

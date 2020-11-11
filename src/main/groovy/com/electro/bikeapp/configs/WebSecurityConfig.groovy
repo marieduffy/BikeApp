@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher
+import org.springframework.web.servlet.config.annotation.CorsRegistry
 
 @Configuration
 @EnableWebSecurity
@@ -49,6 +50,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/").permitAll()
                     .antMatchers("/contact").permitAll()
                     .antMatchers("/about").permitAll()
+                    .antMatchers("/inventory").authenticated()
                 .and()
                 .formLogin()
                         .loginPage("/login")
@@ -58,12 +60,10 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                     .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                     .logoutSuccessUrl("/login")
+                .and()
+                .cors()
         // TODO: Make logout functionality
         // TODO: Add pages and set privileges
     }
 
-//    @Bean
-//    PasswordEncoder getPasswordEncoder() {
-//        return NoOpPasswordEncoder.getInstance()
-//    }
 }

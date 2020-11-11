@@ -56,8 +56,8 @@ class WebController {
         return "/vendorHomePage"
     }
 
-    @GetMapping("/vendorOrdersCurrent")
-    String vendorOrdersCurrent() {
-        return "/vendorOrdersCurrent"
+    @GetMapping("/inventory")
+    String inventory() {
+        return "/inventory"
     }
 }

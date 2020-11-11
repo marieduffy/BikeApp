@@ -5,12 +5,17 @@
     <title>Vendor Home Page</title>
     <link rel="stylesheet" type="text/css" href="css/util.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
-    <link rel="stylesheet" type="text/css" href="css/vendorOrder.css">
 
     <style>
+        body {
+            background-color: #666666;
+        }
         .button {
+            margin-left: 20px;
+            width: 300px;
             display: inline-block;
             padding: 10px 20px;
+            margin-top: 15px;
             text-align: center;
             text-decoration: none;
             color: #ffffff;
@@ -19,10 +24,9 @@
             outline: none;
         }
         .button:hover {
-            background-color:rgba(0, 0, 0, 0.1);
+            background-color:rgba(0,0,0, 0.1);
         }
     </style>
-
 </head>
 <body>
     <div class="topnav">
@@ -36,10 +40,12 @@
     </div>
 
     <div id = "buttons-container">
-        <a class="button" href="/vendorOrder">Create a new Order</a>
-        <a class="button" href="/vendorOrder">Current Orders</a>
-        <a class="button" href="/vendorOrder">Change the status of an Order</a>
-        <a class="button" href="/vendorOrder">Open the list of vendors</a>
+        <a class="button" href="/vendorOrder">Create a New Order</a><br>
+        <a class="button" href="/vendorOrder">Current Orders</a><br>
+        <a class="button" href="/vendorOrder">Change the Status of an Order</a><br>
+        <a class="button" title="Current Vendor Orders"
+           onClick=window.open("/vendorOrdersCurrent","Ratting","width=550,height=170,left=150,top=200,toolbar=0,status=0,");>
+            View the current vendor orders</a><br>
     </div>
 
 

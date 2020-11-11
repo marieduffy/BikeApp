@@ -6,6 +6,7 @@ import groovy.util.logging.Slf4j
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.DeleteMapping
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PatchMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
@@ -28,7 +29,7 @@ class VendorOrderController {
      * @param VendorOrderDTO[]
      * @return void
      */
-    @PostMapping(value = 'vendorOrder/create', produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = '/vendorOrder/create', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     void createVendorOrder(@RequestBody VendorOrderDTO[] vendorOrderParameters){
         log.info('Creating a new order from a vendor')
@@ -42,4 +43,17 @@ class VendorOrderController {
      * @param
      * @return void
      */
+
+    /**
+     * GET - update vendor preference status
+     * @requestBody JSON VendorOrderDTO[]
+     * @param
+     * @return List of Vendor Orders
+     */
+    @GetMapping(value = '/vendorOrdersCurrent', produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    List<VendorOrderDTO> getCurrentVendorOrders(){
+        log.info('Getting list of current orders from vendors')
+        vendorOrderService.getCurrentVendorOrders()
+    }
 }

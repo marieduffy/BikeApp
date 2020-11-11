@@ -38,8 +38,6 @@ databaseChangeLog:
               - column:
                   name: vendor_receive_date
                   type: DATETIME
-                  constraints:
-                    nullable: false
               - column:
                   name: quantity_ordered
                   type: BIGINT

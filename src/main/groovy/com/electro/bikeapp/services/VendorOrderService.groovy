@@ -7,6 +7,7 @@ import com.electro.bikeapp.repositories.VendorOrderRepository
 import groovy.util.logging.Slf4j
 import net.bytebuddy.asm.MemberSubstitution.Substitution.ForFieldAccess.OfGivenField
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.jpa.repository.Query
 import org.springframework.stereotype.Service
 
 @Slf4j
@@ -53,6 +54,9 @@ class VendorOrderService {
         }
     }
 
+    List<VendorOrderDomain> getCurrentVendorOrders(){
+        List<VendorOrderDomain> allCurrentOrders;
+    }
 
 
 

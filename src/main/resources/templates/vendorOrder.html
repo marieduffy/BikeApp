@@ -9,22 +9,35 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/util.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
-    <link rel="stylesheet" type="text/css" href="css/vendorOrder.css">
     <!--===============================================================================================-->
+    <style>
+        body {
+            background-color: #666666;
+        }
+        input {
+            height: 30px;
+            font-size: 26px;
+        }
+
+
+    </style>
 </head>
 <body>
 
 <div class="topnav">
     <a href="/">Home</a>
-    <a href="/login">Login</a>
+    <a href="/">Employee Home Page</a>
+    <a href="/">Inventory</a>
+    <a href="/vendorHomePage">Vendor Orders</a>
+    <a href="/">Repair Tickets</a>
     <a href="/contact">Contact</a>
-    <a class="active" href="/about">About</a>
     <form th:action="@{/logout}" method="post">
         <input class="logoutButton" type="submit" value="Logout"></input>
     </form>
 </div>
 
-
+<<<<<<< HEAD
+<form style="margin-left: 15px">
 
     <div class="limiter">
         <div class="container-login100" style="background-image: url('images/bikeBackground.jpg');">

@@ -29,6 +29,7 @@ class InventoryController {
      * @return List of bikes with given parameters
      */
     // Declare API POST type. set URL endpoint, and set media type to JSON
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping(value = '/inventory/search', produces = MediaType.APPLICATION_JSON_VALUE)
     // Set a HTTP response status by default
     @ResponseStatus(HttpStatus.OK)

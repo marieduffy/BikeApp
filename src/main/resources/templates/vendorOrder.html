@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head >
     <title>Vendor Order Page</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--===============================================================================================-->
     <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/util.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
-    <!--===============================================================================================-->
     <style>
         body {
             background-color: #666666;
@@ -32,15 +30,15 @@
     <a href="/">Repair Tickets</a>
     <a href="/contact">Contact</a>
     <form th:action="@{/logout}" method="post">
-        <input class="logoutButton" type="submit" value="Logout"></input>
+        <input class="logoutButton" type="submit" value="Logout">
     </form>
 </div>
 
-<<<<<<< HEAD
+
 <form style="margin-left: 15px">
 
     <div class="limiter">
-        <div class="container-login100" style="background-image: url('images/bikeBackground.jpg');">
+        <div class="container-login100" style="background-image: url('static/images/bikeBackground.jpg');">
             <form>
                 <label for="vendorName">Search by Vendor Name:</label><br>
                 <input type="text" id="vendorName" name="vendorName"><br>
@@ -52,5 +50,6 @@
             </form>
         </div>
     </div>
+</form>
 </body>
 </html>

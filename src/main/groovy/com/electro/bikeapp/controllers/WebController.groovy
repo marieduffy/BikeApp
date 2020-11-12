@@ -60,4 +60,7 @@ class WebController {
     String inventory() {
         return "/inventory"
     }
+
+
+
 }

@@ -11,7 +11,7 @@ xmlhttp.onreadystatechange = function() {
             txt += "<option>" + myObj[x].name;
         }
         txt += "</select>"
-        document.getElementById("demo").innerHTML = txt;
+        document.getElementById("demo").innerHTML = "goodbye";
     }
 }
 xmlhttp.open("GET", "/vendorOrdersCurrent", true);

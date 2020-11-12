@@ -8,11 +8,12 @@
         alert(json)
 
         var xhttp = new XMLHttpRequest();
-        xhttp.open("POST", "localhost:8080/inventory/search");
+        xhttp.open("POST", "http://localhost:8080/inventory/search");
         // xhttp.setRequestHeader("Access-Control-Request-Method", "POST")
         // xhttp.setRequestHeader("Access-Control-Allow-Origin", "POST")
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send(json);
+        alert(xhttp.responseText);
 
     }
 </script>

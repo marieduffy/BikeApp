@@ -16,8 +16,12 @@ interface InventoryRepository extends JpaRepository<BikeDomain, Long> {
 
     // SQL Query to say, if a JSON parameter is NULL, ignore it, otherwise, return the items from the database
     // that meet the given parameters. Normally, you won't need to hardcode a query like this
-    @Query("SELECT b FROM BikeDomain b WHERE (:name is null or b.bikeDisplayName = :name) and (:make is null or b.make = :make) and (:color is null or b.color = :color) and (:lessThanCost is null or b.retailCost <= :lessThanCost) and (:greaterThanCost is null or b.retailCost >= :greaterThanCost)")
+    @Query("SELECT b FROM BikeDomain b WHERE (:name is null or b.color = :bikeColor) and (:priceMin is null or b.retailCost >= :priceMin) and (:priceMax is null or b.retailCost <= :priceMax) and (:inStock is null or b.isSold == :inStock) and (:condition is null or b.condition == :condition)")
     // This method returns a list of bikes. It accepts the name, make, color, lessThanCost, and greaterThanCost
-    List<BikeDomain> allParamSearch(@Param("name") String name, @Param("make") String make, @Param("color") String color, @Param("lessThanCost") Float lessThanCost, @Param("greaterThanCost") Float greaterThanCost);
+    List<BikeDomain> allParamSearch(@Param("bikeColor") String bikeColor,
+                                    @Param("priceMin") Float priceMin,
+                                    @Param("priceMax") Float priceMax,
+                                    @Param("inStock") Boolean inStock,
+                                    @Param("condition") String condition);
 
 }

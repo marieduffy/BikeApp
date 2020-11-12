@@ -7,13 +7,15 @@ package com.electro.bikeapp.dtos
  */
 class SearchInventoryDTO {
 
-    String bikeDisplayName
+    String bikeColor
+
+    Float priceMin
+
+    Float priceMax
+
+    Boolean inStock
+
+    String condition
 
     String make
-
-    String color
-
-    Float lessThanCost
-
-    Float greaterThanCost
 }

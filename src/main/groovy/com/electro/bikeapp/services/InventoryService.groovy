@@ -25,11 +25,13 @@ class InventoryService {
 
         // We call the bikeInventoryRepository and return it's result
         List<BikeDomain> searchedBikeList = bikeInventoryRepository.allParamSearch(
-                searchParams.bikeDisplayName,
-                searchParams.make,
-                searchParams.color,
-                searchParams.lessThanCost,
-                searchParams.greaterThanCost)
+                searchParams.bikeColor,
+                searchParams.priceMin,
+                searchParams.priceMax,
+                searchParams.inStock,
+                searchParams.condition,
+                searchParams.make
+        )
 
         return searchedBikeList
     }

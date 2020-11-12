@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 
-@CrossOrigin("http://localhost:8080")
 @RestController
 @Slf4j
 class InventoryController {
@@ -29,7 +28,6 @@ class InventoryController {
      * @return List of bikes with given parameters
      */
     // Declare API POST type. set URL endpoint, and set media type to JSON
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping(value = '/inventory/search', produces = MediaType.APPLICATION_JSON_VALUE)
     // Set a HTTP response status by default
     @ResponseStatus(HttpStatus.OK)
@@ -39,6 +37,7 @@ class InventoryController {
     List<BikeDomain> searchInventory(@RequestBody SearchInventoryDTO searchParameters) {
         // Helpful log statement to make sure call went through
         log.info 'Getting bike inventory'
+        log.info (searchParameters.bikeColor)
         // Call the search inventory method from the service class, pass it the JSON request body sent in
         inventoryService.searchInventory(searchParameters)
     }

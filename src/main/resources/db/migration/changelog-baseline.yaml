@@ -71,8 +71,18 @@ databaseChangeLog:
                   constraints:
                     nullable: true
               - column:
-                  name: is_sold
+                  name: in_stock
                   type: bit
+                  constraints:
+                    nullable: false
+              - column:
+                  name: condition
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: quantity
+                  type: int
                   constraints:
                     nullable: false
         - addPrimaryKey:

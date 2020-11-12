@@ -51,6 +51,12 @@ class BikeDomain {
     @Column(name = 'sold_date')
     OffsetDateTime soldDate
 
-    @Column(name = 'is_sold')
-    Boolean isSold
+    @Column(name = 'in_stock')
+    Boolean inStock
+
+    @Column(name = 'condition')
+    String condition
+
+    @Column(name = 'quantity')
+    Integer quantity
 }

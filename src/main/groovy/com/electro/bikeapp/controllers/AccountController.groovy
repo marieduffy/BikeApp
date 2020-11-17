@@ -76,23 +76,23 @@ class AccountController {
     @GetMapping(value = '/account/timeIn/{employeeId}', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     OffsetDateTime clockIn(@PathVariable long employeeId) {
-        log.info 'Clock in time has been recorded'
+        log.info "Clock in time has been recorded for $employeeId"
         shiftsService.clockIn(employeeId)
     }
 
     @GetMapping(value = '/account/timeOut/{employeeId}', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     OffsetDateTime clockOut(@PathVariable long employeeId) {
-        log.info 'Clock out time has been recorded'
+        log.info "Clock out time has been recorded for $employeeId"
         shiftsService.clockOut(employeeId)
     }
 //
-//    @PostMapping(value = '/account/totalTime', produces = MediaType.APPLICATION_JSON_VALUE)
-//    @ResponseStatus(HttpStatus.OK)
-//    void getTotalTime(@RequestBody TimesDTO timesDTO) {
-//        log.info 'Clock in / out times are recorded'
-//        shiftsService.totalDayTime(timesDTO)
-//    }
+    @PostMapping(value = '/account/totalTime/{employeeId}', produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    void totalDayTime(@PathVariable long employeeId) {
+        log.info "The total time worked has been recorded for $employeeId"
+        shiftsService.totalDayTime(employeeId)
+    }
 
     //TODO: Lili /account/shiftChart
 //    @GetMapping(value = '/account/shiftChart', produces = MediaType.APPLICATION_JSON_VALUE)

@@ -37,7 +37,7 @@ databaseChangeLog:
                     nullable: true
               - column:
                   name: total_day_hours
-                  type: double
+                  type: time
                   constraints:
                     nullable: true
               - column:

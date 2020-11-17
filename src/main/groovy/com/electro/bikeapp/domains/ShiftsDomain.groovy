@@ -6,8 +6,9 @@ import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.Table
-import java.time.LocalDateTime
+import java.sql.Time
 import java.time.OffsetDateTime
+import java.time.OffsetTime
 
 @Entity
 @Table(name = 'shifts_and_schedules')
@@ -30,7 +31,7 @@ class ShiftsDomain {
     OffsetDateTime timeOut
 
     @Column(name = 'total_day_hours')
-    Double totalDayHours
+    Time totalDayHours
 
     @Column(name = 'days_off_work')
     String daysOffWork

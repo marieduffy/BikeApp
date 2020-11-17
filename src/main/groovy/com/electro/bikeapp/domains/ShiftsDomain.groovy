@@ -31,7 +31,7 @@ class ShiftsDomain {
     OffsetDateTime timeOut
 
     @Column(name = 'total_day_hours')
-    Time totalDayHours
+    OffsetTime totalDayHours
 
     @Column(name = 'days_off_work')
     String daysOffWork

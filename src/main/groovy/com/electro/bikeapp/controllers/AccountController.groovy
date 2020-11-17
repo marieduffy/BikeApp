@@ -19,9 +19,9 @@ import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 
 import java.nio.file.Path
-import java.sql.Time
 import java.time.LocalDateTime
 import java.time.OffsetDateTime
+import java.time.OffsetTime
 
 
 @RestController
@@ -88,9 +88,9 @@ class AccountController {
         shiftsService.clockOut(employeeId)
     }
 //
-    @PostMapping(value = '/account/totalTime/{employeeId}', produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = '/account/totalTime/{employeeId}', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    Time totalDayTime(@PathVariable long employeeId) {
+    OffsetTime totalDayTime(@PathVariable long employeeId) {
         log.info "The total time worked has been recorded for $employeeId"
         shiftsService.totalDayTime(employeeId)
     }

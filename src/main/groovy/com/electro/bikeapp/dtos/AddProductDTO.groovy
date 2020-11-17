@@ -18,4 +18,8 @@ class AddProductDTO {
     Float retailCost
 
     String description
+
+    String condition
+
+    Integer quantity
 }

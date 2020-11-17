@@ -57,7 +57,9 @@ class InventoryService {
             bike.wholesaleCost = newProductParametersArray[i].wholesaleCost
             bike.description = newProductParametersArray[i].description
             bike.addedBy = newProductParametersArray[i].addedBy
-            bike.isSold = false
+            bike.condition = newProductParametersArray[i].condition
+            bike.quantity = newProductParametersArray[i].quantity
+            bike.inStock = true
             // Save the bike to the database
             bikeInventoryRepository.save(bike)
         }

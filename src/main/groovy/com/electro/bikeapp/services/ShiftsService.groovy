@@ -55,7 +55,7 @@ class ShiftsService {
     }
 
 //    this should return how much they worked in a day
-    void totalDayTime (long employeeId){ //still needs working on
+    Time totalDayTime (long employeeId){ //still needs working on
         ShiftsDomain currentEmployee = shiftsRepository.findByEmployeeId(employeeId)
         OffsetDateTime tIN = currentEmployee.timeIn
         long timeIn = tIN.getLong(ChronoField.SECOND_OF_DAY)
@@ -64,14 +64,15 @@ class ShiftsService {
         long totalHour = timeOut - timeIn
         System.out.println(totalHour)
         int seconds = totalHour
-        int p1 = seconds % 60;
-        int p2 = seconds / 60;
-        int p3 = p2 % 60;
-        p2 = p2 / 60;
+        int p1 = seconds % 60
+        int p2 = seconds / 60
+        int p3 = p2 % 60
+        p2 = p2 / 60
         Time time = new Time(p2, p3, p1)
         System.out.print(time)
         currentEmployee.totalDayHours = time
         shiftsRepository.save(currentEmployee)
+        time
 
     }
 

@@ -10,7 +10,7 @@ class AddEmployeeDTO {
 
     String position
 
-    Float salary
+    Float payRate
 
     String username
 

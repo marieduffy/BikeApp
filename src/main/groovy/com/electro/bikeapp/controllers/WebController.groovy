@@ -66,6 +66,11 @@ class WebController {
         return "/inventory"
     }
 
+    @GetMapping("/createEmployee")
+    String createEmployee() {
+        return "/createEmployee"
+    }
+
 
 
 }

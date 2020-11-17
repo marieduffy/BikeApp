@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<script language="javascript">
+    function callAPI(form) {
+
+        var obj = { employeeName: form.employeeName.value,
+            address: form.priceMin.value,
+            social: form.social.value,
+            position: form.position.value,
+            payRate: parseFloat(form.payRate.value),
+            payrollType: form.payrollType.value,
+            username: form.username.value,
+            password: form.password.value,
+            email: form.email.value };
+        var json = JSON.stringify(obj);
+        alert(json)
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("POST", "http://localhost:8080/manager/addEmployee");
+        // xhttp.setRequestHeader("Access-Control-Request-Method", "POST")
+        // xhttp.setRequestHeader("Access-Control-Allow-Origin", "POST")
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.send(json);
+        alert(xhttp.responseText);
+
+    }
+</script>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Add a New Employee</title>
+</head>
+<body>
+<form NAME="myform" ACTION="" METHOD="POST">
+    <label for="employeeName">Employee Name:</label><br>
+    <input type="text" id="employeeName" name="employeeName"><br>
+    <label for="address">Address:</label><br>
+    <input type="text" id="address" name="address"><br>
+    <label for="social">Social Security Number:</label><br>
+    <input type="text" id="social" name="social"><br>
+    <label for="position">Company Position:</label><br>
+    <input type="text" id="position" name="position"><br>
+    <label for="payRate">Pay Rate:</label><br>
+    <input type="text" id="payRate" name="payRate"><br>
+    <label for="payrollType">Payroll Type (Salary or Hourly):</label><br>
+    <input type="text" id="payrollType" name="payrollType"><br>
+    <label for="email">Email:</label><br>
+    <input type="text" id="email" name="email"><br>
+    <label for="username">Username:</label><br>
+    <input type="text" id="username" name="username"><br>
+    <label for="password">Password:</label><br>
+    <input type="text" id="password" name="password"><br>
+    <label for="verifyPassword">Password:</label><br>
+    <input type="text" id="verifyPassword" name="verifyPassword"><br>
+    <input type="submit" value="Submit" onclick="return callAPI(this.form)">
+</form>
+</body>
+</html>

@@ -15,6 +15,6 @@ xmlhttp.onreadystatechange = function() {
         document.getElementById("demo").innerHTML = txt;
     }
 }
-xmlhttp.open("GET", "/vendorOrdersCurrent", true);
+xmlhttp.open("GET", "http://localhost:8080/vendorOrdersCurrent", true);
 xmlhttp.setRequestHeader("Content-type", "application/json");
 xmlhttp.send();

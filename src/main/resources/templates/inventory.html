@@ -3,7 +3,9 @@
 <script language="javascript">
     function callAPI(form) {
 
-        var obj = { bikeColor: form.bikeColor.value, priceMin: parseFloat(form.priceMin.value), priceMax: parseFloat(form.priceMax.value), inStock: Boolean(form.inStock.value), condition: form.condition.value, make: form.make.value};
+        // TODO: REMEMBER to convert all strings to lower case
+
+        var obj = { bikeColor: form.bikeColor.value, priceMin: parseFloat(form.priceMin.value), priceMax: parseFloat(form.priceMax.value), inStock: Boolean(form.inStock.value), condition: form.condition.value.toLowerCase(), make: form.make.value.toLowerCase()};
         var json = JSON.stringify(obj);
         alert(json)
 

@@ -47,6 +47,8 @@ class InventoryService {
         for(int i = 0; i < newProductParametersArray.size(); i++){
             // For each bike:
             // Make a new instance of type bike
+
+            //
             BikeDomain bike = new BikeDomain()
             // Set in all the parameters
             bike.bikeDisplayName = newProductParametersArray[i].bikeDisplayName

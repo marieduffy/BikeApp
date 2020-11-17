@@ -28,8 +28,26 @@ class EmployeeService {
             EmployeeDomain employee = new EmployeeDomain()
             Optional<EmployeeDomain> e = employeeAccountRepository.findByUsername(employeeInfoParams[i].username)
             // If employee already exists, throw error
-            if(e.isPresent()){
-                throw new NotFoundException("Username: " + e.get().username + " already exists")
+            if(e.isPresent()) {
+                // if its the same person
+                if (e.get().social == employeeInfoParams[i].social) {
+                    e.get().isDeleted = false
+                    e.get().payrollType = employeeInfoParams[i].payrollType
+                    e.get().employeeName = employeeInfoParams[i].employeeName
+                    e.get().address = employeeInfoParams[i].address
+                    e.get().social = employeeInfoParams[i].social
+                    e.get().position = employeeInfoParams[i].position
+                    e.get().payRate = employeeInfoParams[i].payRate
+                    e.get().payrollType = employeeInfoParams[i].payrollType
+                    e.get().username = employeeInfoParams[i].username
+                    e.get().encrypted_password = stringEncryption.encode(employeeInfoParams[i].password)
+                    e.get().email = employeeInfoParams[i].email
+                    e.get().privilegeLevel = employeeInfoParams[i].privilegeLevel
+                    employeeAccountRepository.save(e.get())
+                }
+                else{
+                    throw new NotFoundException("Username: " + e.get().username + " is already taken ")
+                }
             }
             // else add employee
             else if(!e.isPresent()){
@@ -94,13 +112,12 @@ class EmployeeService {
     void deleteEmployee(String username){
         //get employee by their username
         //we do not want to permanently delete them, just archive them somehow
-        EmployeeDomain employee = employeeAccountRepository.findByUsername(username)
-        if(employee == null){
-            throw new NotFoundException(username + "not found")
+        Optional<EmployeeDomain> employee = employeeAccountRepository.findByUsername(username)
+        if(!employee.isPresent()){
+            throw new NotFoundException("Username: " + username + "not found")
         }
-        employee.isDeleted = true
-        //employeeAccountRepository.delete(employee)
+        employee.get().isDeleted = true
         //save changes instead of delete
-        employeeAccountRepository.save(employee)
+        employeeAccountRepository.save(employee.get())
     }
 }

@@ -77,21 +77,21 @@ class AccountController {
     @GetMapping(value = '/account/timeIn/{employeeId}', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     OffsetDateTime clockIn(@PathVariable long employeeId) {
-        log.info "Clock in time has been recorded for $employeeId"
+        log.info "Clock in time has been recorded for employee $employeeId"
         shiftsService.clockIn(employeeId)
     }
 
     @GetMapping(value = '/account/timeOut/{employeeId}', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     OffsetDateTime clockOut(@PathVariable long employeeId) {
-        log.info "Clock out time has been recorded for $employeeId"
+        log.info "Clock out time has been recorded for employee $employeeId"
         shiftsService.clockOut(employeeId)
     }
 //
     @GetMapping(value = '/account/totalTime/{employeeId}', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     OffsetTime totalDayTime(@PathVariable long employeeId) {
-        log.info "The total time worked has been recorded for $employeeId"
+        log.info "The total time worked has been recorded for employee $employeeId"
         shiftsService.totalDayTime(employeeId)
     }
 

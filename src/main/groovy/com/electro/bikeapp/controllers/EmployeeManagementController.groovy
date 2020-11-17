@@ -29,7 +29,7 @@ class EmployeeManagementController {
      */
     @PostMapping(value = '/manager/addEmployee', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    void addEmployee(@RequestBody AddEmployeeDTO[] employeeParameters){
+    void addEmployee (@RequestBody AddEmployeeDTO[] employeeParameters) {
         log.info('Adding a new employee to the system')
         employeeService.addEmployee(employeeParameters)
     }
@@ -42,7 +42,7 @@ class EmployeeManagementController {
      */
     @PatchMapping(value = 'manager/updateEmployee/{username}', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    void updateEmployee(@RequestBody AddEmployeeDTO[] employeeParameters, @PathVariable String username){
+    void updateEmployee (@RequestBody AddEmployeeDTO[] employeeParameters, @PathVariable String username) {
         log.info('Updating an existing employee in the system')
         employeeService.updateEmployee(employeeParameters, username)
     }
@@ -60,5 +60,5 @@ class EmployeeManagementController {
         log.info('Deleting an employee from the system')
         employeeService.deleteEmployee(username)
     }
-}
 
+}

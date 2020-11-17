@@ -32,7 +32,7 @@ class OffsetDateTimePersistenceConverter implements AttributeConverter<OffsetDat
         if (entityValue == null) {
             return null
         }
-        entityValue.format(FORMATTER_FROM_TO_DB)
+        entityValue.format(FORMATTER_FROM_TO_DB).toString()
     }
 
     /**
@@ -47,4 +47,5 @@ class OffsetDateTimePersistenceConverter implements AttributeConverter<OffsetDat
         log.info("Date returned from DB: $databaseValue")
         OffsetDateTime.parse(databaseValue, FORMATTER_FROM_TO_DB)
     }
+
 }

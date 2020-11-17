@@ -6,10 +6,10 @@ import javax.persistence.Id
 import javax.persistence.Table
 import java.time.OffsetDateTime
 
-
 @Entity
 @Table(name = 'order_vendors')
 class VendorOrderDomain {
+
     @Id
     @Column(name = 'vendor_order_id')
     Integer vendorOrderId
@@ -42,5 +42,6 @@ class VendorOrderDomain {
     Integer quantityReceived
 
     @Column(name = 'purchase_price')
-    Float purchasePrice
+    BigDecimal purchasePrice
+
 }

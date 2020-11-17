@@ -6,71 +6,69 @@ import org.springframework.stereotype.Controller
 @Controller
 class WebController {
 
-    @GetMapping("/")
+    @GetMapping('/')
     String home() {
-        return "/home"
+        return '/home'
     }
 
-    @GetMapping("/login")
+    @GetMapping('/login')
     String login() {
-        return "/login"
+        return '/login'
     }
 
-    @GetMapping("/user")
+    @GetMapping('/user')
     String user() {
-        return ("/user");
+        return '/user'
     }
 
-    @GetMapping("/admin")
+    @GetMapping('/admin')
     String admin() {
-        return "/contact"
+        return '/contact'
     }
 
-    @GetMapping("/about")
+    @GetMapping('/about')
     String about() {
-        return "/about"
+        return '/about'
     }
 
-    @GetMapping("/contact")
+    @GetMapping('/contact')
     String contact() {
-        return "/contact"
+        return '/contact'
     }
 
-    @GetMapping("/owner")
+    @GetMapping('/owner')
     String owner() {
-        return "/owner"
+        return '/owner'
     }
 
-    @GetMapping("/manager")
+    @GetMapping('/manager')
     String manager() {
-        return "/manager"
+        return '/manager'
     }
 
-    @GetMapping("/vendorOrder")
+    @GetMapping('/vendorOrder')
     String vendorOrder() {
-        return "/vendorOrder"
+        return '/vendorOrder'
     }
 
-    @GetMapping("/vendorHomePage")
+    @GetMapping('/vendorHomePage')
     String vendorHomePage() {
-        return "/vendorHomePage"
+        return '/vendorHomePage'
     }
 
-    @GetMapping("/vendorOrdersCurrent")
+    @GetMapping('/vendorOrdersCurrent')
     String vendorOrdersCurrent() {
-        return "/vendorOrdersCurrent"
+        return '/vendorOrdersCurrent'
     }
 
-    @GetMapping("/inventory")
+    @GetMapping('/inventory')
     String inventory() {
-        return "/inventory"
+        return '/inventory'
     }
 
-    @GetMapping("/createEmployee")
+    @GetMapping('/createEmployee')
     String createEmployee() {
-        return "/createEmployee"
+        return '/createEmployee'
     }
-
-
 
 }

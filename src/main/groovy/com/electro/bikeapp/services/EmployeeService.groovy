@@ -12,23 +12,23 @@ import org.springframework.stereotype.Service
 @Slf4j
 @Service
 class EmployeeService {
+
     @Autowired
     AccountRepository employeeAccountRepository
 
     StringEncryption stringEncryption = new StringEncryption()
-
-
+    String user = 'Username: '
     /**
      * Add employee to system
      * @param AddEmployeeDTO[]
      * @return void
      */
-    void addEmployee(AddEmployeeDTO[] employeeInfoParams){
-        for(int i = 0; i< employeeInfoParams.size(); i++){
+    void addEmployee (AddEmployeeDTO[] employeeInfoParams) {
+        for (int i = 0; i < employeeInfoParams.size(); i++) {
             EmployeeDomain employee = new EmployeeDomain()
             Optional<EmployeeDomain> e = employeeAccountRepository.findByUsername(employeeInfoParams[i].username)
             // If employee already exists, throw error
-            if(e.isPresent()) {
+            if (e.isPresent()) {
                 // if its the same person
                 if (e.get().social == employeeInfoParams[i].social) {
                     e.get().isDeleted = false
@@ -45,13 +45,12 @@ class EmployeeService {
                     e.get().privilegeLevel = employeeInfoParams[i].privilegeLevel
                     employeeAccountRepository.save(e.get())
                 }
-                else{
-                    throw new NotFoundException("Username: " + e.get().username + " is already taken ")
+                else {
+                    throw new NotFoundException(user + e.get().username + ' is already taken ')
                 }
             }
             // else add employee
-            else if(!e.isPresent()){
-
+            else if (!e.isPresent()) {
                 employee.payrollType = employeeInfoParams[i].payrollType
                 employee.employeeName = employeeInfoParams[i].employeeName
                 employee.address = employeeInfoParams[i].address
@@ -76,29 +75,29 @@ class EmployeeService {
      * @param AddEmployeeDTO[]
      * @return void
      */
-    void updateEmployee(AddEmployeeDTO[] employeeUpdateParams, String username){
-        //add isDeleted and findbyUsername call in repository 
+    void updateEmployee (AddEmployeeDTO[] employeeUpdateParams, String username) {
+        //add isDeleted and findbyUsername call in repository
         //get employee by their username
         EmployeeDomain employee = employeeAccountRepository.findByUsername(username)
 //        if(employeeUpdateParams[0].password != null){
 //            //might not change password here
 //        }
-        if(employeeUpdateParams[0].employeeName != null){
+        if (employeeUpdateParams[0].employeeName != null) {
             employee.employeeName = employeeUpdateParams[0].employeeName
         }
-        if(employeeUpdateParams[0].address != null){
+        if (employeeUpdateParams[0].address != null) {
             employee.address = employeeUpdateParams[0].address
         }
-        if(employeeUpdateParams[0].position != null){
+        if (employeeUpdateParams[0].position != null) {
             employee.position = employeeUpdateParams[0].position
         }
-        if(employeeUpdateParams[0].salary != null){
+        if (employeeUpdateParams[0].salary != null) {
             employee.salary = employeeUpdateParams[0].salary
         }
-        if(employeeUpdateParams[0].username != null){
+        if (employeeUpdateParams[0].username != null) {
             employee.username = employeeUpdateParams[0].username
         }
-        if(employeeUpdateParams[0].payrollType != null){
+        if (employeeUpdateParams[0].payrollType != null) {
             employee.payrollType = employeeUpdateParams[0].payrollType
         }
         employeeAccountRepository.save(employee)
@@ -109,15 +108,16 @@ class EmployeeService {
      * @param username
      * @return void
      */
-    void deleteEmployee(String username){
+    void deleteEmployee (String username) {
         //get employee by their username
         //we do not want to permanently delete them, just archive them somehow
         Optional<EmployeeDomain> employee = employeeAccountRepository.findByUsername(username)
-        if(!employee.isPresent()){
-            throw new NotFoundException("Username: " + username + "not found")
+        if (!employee.isPresent()) {
+            throw new NotFoundException(user + username + 'not found')
         }
         employee.get().isDeleted = true
         //save changes instead of delete
         employeeAccountRepository.save(employee.get())
     }
+
 }

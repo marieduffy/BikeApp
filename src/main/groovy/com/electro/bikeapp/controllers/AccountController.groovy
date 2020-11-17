@@ -17,12 +17,8 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
-
-import java.nio.file.Path
-import java.time.LocalDateTime
 import java.time.OffsetDateTime
 import java.time.OffsetTime
-
 
 @RestController
 @Slf4j
@@ -45,7 +41,7 @@ class AccountController {
      */
     @PostMapping(value = '/userLogin', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    boolean login(@RequestBody LoginCredentialsDTO loginCredentials) {
+    boolean login (@RequestBody LoginCredentialsDTO loginCredentials) {
         log.info 'Verifying Login Credentials'
         log.info(loginCredentials.username)
         //accountService.verifyCredentials(loginCredentials)
@@ -59,7 +55,7 @@ class AccountController {
      */
     @PatchMapping(value = '/account/changePassword', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    void changePassword(@RequestBody ChangePasswordDTO changePassCredentials) {
+    void changePassword (@RequestBody ChangePasswordDTO changePassCredentials) {
         log.info 'Changing Password'
         accountService.changePassword(changePassCredentials)
     }
@@ -67,32 +63,41 @@ class AccountController {
     //TODO: Lili /account/changeEmail
     @PatchMapping(value = '/account/changeEmail', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    void changeEmail(@RequestBody ChangeEmailDTO changeToNewEmail) {
+    void changeEmail (@RequestBody ChangeEmailDTO changeToNewEmail) {
         log.info 'Changing email'
         accountService.changeEmail(changeToNewEmail)
     }
 
     //TODO: Lili /account/timeSheet
+
     //time in
     @GetMapping(value = '/account/timeIn/{employeeId}', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    OffsetDateTime clockIn(@PathVariable long employeeId) {
+    OffsetDateTime clockIn (@PathVariable long employeeId) {
         log.info "Clock in time has been recorded for employee $employeeId"
         shiftsService.clockIn(employeeId)
     }
 
+    //time out
     @GetMapping(value = '/account/timeOut/{employeeId}', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    OffsetDateTime clockOut(@PathVariable long employeeId) {
+    OffsetDateTime clockOut (@PathVariable long employeeId) {
         log.info "Clock out time has been recorded for employee $employeeId"
         shiftsService.clockOut(employeeId)
     }
 //
     @GetMapping(value = '/account/totalTime/{employeeId}', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    OffsetTime totalDayTime(@PathVariable long employeeId) {
+    OffsetTime totalDayTime (@PathVariable long employeeId) {
         log.info "The total time worked has been recorded for employee $employeeId"
         shiftsService.totalDayTime(employeeId)
+    }
+
+    @GetMapping(value = '/account/timeSheet/{employeeId}', produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    OffsetDateTime timeSheet (@PathVariable long employeeId) {
+        log.info "This is employee $employeeId's time sheet for their shift"
+        shiftsService.timeSheet(employeeId)
     }
 
     //TODO: Lili /account/shiftChart
@@ -102,4 +107,5 @@ class AccountController {
 //        log.info 'Verifying Login Credentials'
 //        employeeService.getShiftChart(loginCredentials)
 //    }
+
 }

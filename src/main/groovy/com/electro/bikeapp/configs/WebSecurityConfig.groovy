@@ -27,16 +27,16 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         final CorsConfiguration configuration = new CorsConfiguration()
-        configuration.setAllowedOrigins(ImmutableList.of("*"))
-        configuration.setAllowedMethods(ImmutableList.of("HEAD", "GET", "POST", "PUT", "DELETE", "PATCH"))
+        configuration.setAllowedOrigins(ImmutableList.of('*'))
+        configuration.setAllowedMethods(ImmutableList.of('HEAD', 'GET', 'POST', 'PUT', 'DELETE', 'PATCH'))
         // setAllowCredentials(true) is important, otherwise:
         // The value of the 'Access-Control-Allow-Origin' header in the response must not be the wildcard '*' when the request's credentials mode is 'include'.
         configuration.setAllowCredentials(true)
         // setAllowedHeaders is important! Without it, OPTIONS preflight request
         // will fail with 403 Invalid CORS request
-        configuration.setAllowedHeaders(ImmutableList.of("Authorization", "Cache-Control", "Content-Type"))
+        configuration.setAllowedHeaders(ImmutableList.of('Authorization', 'Cache-Control', 'Content-Type'))
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource()
-        source.registerCorsConfiguration("/**", configuration)
+        source.registerCorsConfiguration('/**', configuration)
         return source
     }
 
@@ -66,22 +66,22 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf()
                     .disable()
                 .authorizeRequests()
-                    .antMatchers("/manager").hasAnyAuthority("MANAGER", "OWNER")
-                    .antMatchers("/owner").hasAuthority("OWNER")
-                    .antMatchers("/user").authenticated()
-                    .antMatchers("/").permitAll()
-                    .antMatchers("/contact").permitAll()
-                    .antMatchers("/about").permitAll()
-                    .antMatchers("/inventory").authenticated()
+                    .antMatchers('/manager').hasAnyAuthority('MANAGER', 'OWNER')
+                    .antMatchers('/owner').hasAuthority('OWNER')
+                    .antMatchers('/user').authenticated()
+                    .antMatchers('/').permitAll()
+                    .antMatchers('/contact').permitAll()
+                    .antMatchers('/about').permitAll()
+                    .antMatchers('/inventory').authenticated()
                 .and()
                 .formLogin()
-                        .loginPage("/login")
-                        .defaultSuccessUrl("/", true)
+                        .loginPage('/login')
+                        .defaultSuccessUrl('/', true)
                         .permitAll()
                 .and()
                 .logout()
-                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                    .logoutSuccessUrl("/login")
+                    .logoutRequestMatcher(new AntPathRequestMatcher('/logout'))
+                    .logoutSuccessUrl('/login')
 
         // TODO: Make logout functionality
         // TODO: Add pages and set privileges

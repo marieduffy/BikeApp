@@ -1,10 +1,16 @@
 package com.electro.bikeapp.domains
 
-import javax.persistence.*
+import javax.persistence.Column
+import javax.persistence.Entity
+import javax.persistence.GeneratedValue
+import javax.persistence.GenerationType
+import javax.persistence.Id
+import javax.persistence.Table
 
 @Entity
 @Table(name = 'employee_accounts')
 class EmployeeDomain {
+
     @Id
     @Column(name = 'employee_id')
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -23,7 +29,7 @@ class EmployeeDomain {
     String position
 
     @Column(name = 'pay_rate')
-    Float payRate
+    BigDecimal payRate
 
     @Column(name = 'payroll_type')
     String payrollType
@@ -42,6 +48,5 @@ class EmployeeDomain {
 
     @Column(name = 'is_deleted')
     Boolean isDeleted
-
 
 }

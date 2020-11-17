@@ -7,6 +7,4 @@ import org.springframework.stereotype.Repository
 @Repository
 interface RepairTicketRepository extends JpaRepository<RepairTicketDomain, Long> {
 
-
-
 }

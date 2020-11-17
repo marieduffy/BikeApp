@@ -1,13 +1,9 @@
 package com.electro.bikeapp.dtos
 
-import com.electro.bikeapp.domains.EmployeeDomain
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import java.util.stream.Collectors;
+import org.springframework.security.core.GrantedAuthority
+import org.springframework.security.core.userdetails.UserDetails
 
-
-class LoginDTO implements UserDetails{
+class LoginDTO implements UserDetails {
 
     String userName
     String password
@@ -16,36 +12,37 @@ class LoginDTO implements UserDetails{
 
     @Override
     Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
+        return authorities
     }
 
     @Override
     String getPassword() {
-        return password;
+        return password
     }
 
     @Override
     String getUsername() {
-        return userName;
+        return userName
     }
 
     @Override
     boolean isAccountNonExpired() {
-        return true;
+       return true
     }
 
     @Override
     boolean isAccountNonLocked() {
-        return true;
+        return true
     }
 
     @Override
     boolean isCredentialsNonExpired() {
-        return true;
+        return true
     }
 
     @Override
     boolean isEnabled() {
-        return active;
+        return active
     }
+
 }

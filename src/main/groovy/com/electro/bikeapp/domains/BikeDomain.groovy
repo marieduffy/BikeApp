@@ -12,6 +12,7 @@ import java.time.OffsetDateTime
 @Entity
 @Table(name = 'bike_inventory')
 class BikeDomain {
+
     @Id
     @Column(name = 'bike_id')
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -37,10 +38,10 @@ class BikeDomain {
     String color
 
     @Column(name = 'wholesale_cost')
-    Float wholesaleCost
+    BigDecimal wholesaleCost
 
     @Column(name = 'retail_cost')
-    Float retailCost
+    BigDecimal retailCost
 
     @Column(name = 'description')
     String description
@@ -59,4 +60,5 @@ class BikeDomain {
 
     @Column(name = 'quantity')
     Integer quantity
+
 }

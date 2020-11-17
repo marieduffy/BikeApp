@@ -1,6 +1,5 @@
 package com.electro.bikeapp.dtos
 
-
 class AddProductDTO {
 
     String bikeDisplayName
@@ -13,13 +12,14 @@ class AddProductDTO {
 
     String color
 
-    Float wholesaleCost
+    BigDecimal wholesaleCost
 
-    Float retailCost
+    BigDecimal retailCost
 
     String description
 
     String condition
 
     Integer quantity
+
 }

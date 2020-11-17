@@ -11,6 +11,7 @@ import java.time.OffsetDateTime
 @Entity
 @Table(name = 'ticket_repairs')
 class RepairTicketDomain {
+
     @Id
     @Column(name = 'ticket_id')
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -35,7 +36,7 @@ class RepairTicketDomain {
     String customerDescription
 
     @Column(name = 'estimated_cost')
-    Float estimatedCost
+    BigDecimal estimatedCost
 
     @Column(name = 'service_type')
     String serviceType
@@ -51,4 +52,5 @@ class RepairTicketDomain {
 
     @Column(name = 'vendor_of_failed_component')
     String vendorOfFailedComponent
+
 }

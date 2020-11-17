@@ -9,13 +9,14 @@ class SearchInventoryDTO {
 
     String bikeColor
 
-    Float priceMin
+    BigDecimal priceMin
 
-    Float priceMax
+    BigDecimal priceMax
 
     Boolean inStock
 
     String condition
 
     String make
+
 }

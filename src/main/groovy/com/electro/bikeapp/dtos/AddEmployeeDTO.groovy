@@ -10,7 +10,7 @@ class AddEmployeeDTO {
 
     String position
 
-    Float payRate
+    BigDecimal payRate
 
     String username
 
@@ -21,4 +21,5 @@ class AddEmployeeDTO {
     String payrollType
 
     String privilegeLevel
+
 }

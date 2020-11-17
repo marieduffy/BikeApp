@@ -16,6 +16,7 @@ import java.time.format.DateTimeFormatter
  * 2019-03-30T23:13:06.121Z
  */
 class UtcDateSerializer extends JsonSerializer<OffsetDateTime> {
+
     @Override
     void serialize(OffsetDateTime givenOffsetDateTime, JsonGenerator gen, SerializerProvider serializers)
             throws IOException {
@@ -25,4 +26,5 @@ class UtcDateSerializer extends JsonSerializer<OffsetDateTime> {
             gen.writeString(formattedDateTime)
         }
     }
+
 }

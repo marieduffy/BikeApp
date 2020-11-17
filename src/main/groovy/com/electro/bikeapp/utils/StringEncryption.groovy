@@ -4,16 +4,16 @@ import groovy.util.logging.Slf4j
 import org.springframework.security.crypto.password.PasswordEncoder
 
 @Slf4j
-class StringEncryption implements PasswordEncoder{
+class StringEncryption implements PasswordEncoder {
 
     @Override
     String encode(CharSequence inputString) {
-
         //log.info(inputString.toString())
         int inputStringLen
         int sqrtoflen
         int twoDimensionalArraySize
         int index = 0
+        char underscore = '_'
 
         inputStringLen = inputString.length()
 
@@ -21,16 +21,16 @@ class StringEncryption implements PasswordEncoder{
         sqrtoflen = (int)Math.sqrt(inputStringLen)
 
         // Find the closest perfect square to the size of the input string
-        if (sqrtoflen * sqrtoflen == inputStringLen)
-
+        if (sqrtoflen * sqrtoflen == inputStringLen) {
             twoDimensionalArraySize = sqrtoflen
-
-        else twoDimensionalArraySize = sqrtoflen + 1
+        }
+        else {
+            twoDimensionalArraySize = sqrtoflen + 1
+        }
 
         // Make string length a perfect square by appending "_" to the end
-        for (int i = 0; i < twoDimensionalArraySize * twoDimensionalArraySize - inputStringLen; i++)
-        {
-            inputString += "_"
+        for (int i = 0; i < twoDimensionalArraySize * twoDimensionalArraySize - inputStringLen; i++) {
+            inputString += underscore
         }
 
         // Initialize the 1D arrays, copy string into 1D tempArr
@@ -38,11 +38,9 @@ class StringEncryption implements PasswordEncoder{
         char[] OneDimensionalArray = new char[twoDimensionalArraySize * twoDimensionalArraySize]
 
         // Replace (space) with _
-        for (int i = 0; i < inputString.length(); i++)
-        {
-            if (tempArr[i] == ' ' as char)
-            {
-                tempArr[i] = '_'
+        for (int i = 0; i < inputString.length(); i++) {
+            if (tempArr[i] == ' ' as char) {
+                tempArr[i] = underscore
             }
             //log.info(tempArr[i] as String)
         }
@@ -52,32 +50,26 @@ class StringEncryption implements PasswordEncoder{
         char[][] finalArr = new char[twoDimensionalArraySize][twoDimensionalArraySize]
 
         // Stores 1D tempArr into the 2D initialArr
-        for (int i = 0; i < twoDimensionalArraySize; i++)
-        {
-            for (int j = 0; j < twoDimensionalArraySize; j++)
-            {
+        for (int i = 0; i < twoDimensionalArraySize; i++) {
+            for (int j = 0; j < twoDimensionalArraySize; j++) {
                 initialArr[i][j] = tempArr[i * twoDimensionalArraySize + j]
                 //log.info("2D Array[" + i + "][" + j + "] = " + initialArr[i][j] + "\n")
             }
         }
 
         // Swaps the rows and Cols of the initialArr into the finalArr
-        for (int i = 0; i < twoDimensionalArraySize; i++)
-        {
-            for (int j = 0; j < twoDimensionalArraySize; j++)
-            {
+        for (int i = 0; i < twoDimensionalArraySize; i++) {
+            for (int j = 0; j < twoDimensionalArraySize; j++) {
                 finalArr[i][j] = initialArr[j][i]
                 //log.info("2D Array[" + i + "][" + j + "] = " + finalArr[i][j] + "\n")
             }
         }
 
         // Converts the 2D finalArr back into a 1D array
-        for (int y = 0; y < twoDimensionalArraySize; y++)
-        {
-            for (int x = 0; x < twoDimensionalArraySize; x++)
-            {
+        for (int y = 0; y < twoDimensionalArraySize; y++) {
+            for (int x = 0; x < twoDimensionalArraySize; x++) {
                 OneDimensionalArray[index] = finalArr[y][x]
-                index++;
+                index++
             }
         }
 
@@ -91,37 +83,39 @@ class StringEncryption implements PasswordEncoder{
         char[] asciiArray = new char[answer.length()]
 
         // Convert char array to array of ascii values
-        for(int i = 0; i < rot13.length; i++){
+        for (int i = 0; i < rot13.length; i++) {
             asciiArray[i] = (int)rot13[i]
         }
 
         // Shift each ascii value by 13 (symmetrical)
-        for(int i = 0; i < rot13.length; i++){
+        int thirteen = 13
+        int twentysix = 26
+        for (int i = 0; i < rot13.length; i++) {
             // Char a .. z
-            if(asciiArray[i] > 96 && asciiArray[i] < 123){
+            if (asciiArray[i] > 96 && asciiArray[i] < 123) {
                 // Add 13
-                asciiArray[i] = asciiArray[i] + 13
+                asciiArray[i] = asciiArray[i] + thirteen
                 // After we added, if you are no longer between a and z
-                if(asciiArray[i] > 122){
+                if (asciiArray[i] > 122) {
                     // Wrap char back around to a
-                    asciiArray[i] = asciiArray[i] - 26
+                    asciiArray[i] = asciiArray[i] - twentysix
                 }
             }
             // Char A .. Z
-            else if(asciiArray[i] > 64 && asciiArray[i] < 91){
+            else if (asciiArray[i] > 64 && asciiArray[i] < 91) {
                 // Add 13
-                asciiArray[i] = asciiArray[i] + 13
+                asciiArray[i] = asciiArray[i] + thirteen
                 // After we added, if you are no longer between A and Z
-                if(asciiArray[i] > 90){
+                if (asciiArray[i] > 90) {
                     // Wrap char back around to A
-                    asciiArray[i] = asciiArray[i] - 26
+                    asciiArray[i] = asciiArray[i] - twentysix
                 }
             }
         }
         // Make new string array
         char[] stringArray = new char[answer.length()]
         // Convert ascii values back to character values
-        for(int i = 0; i < rot13.length; i++){
+        for (int i = 0; i < rot13.length; i++) {
             stringArray[i] = (char)asciiArray[i]
         }
         // Convert char array to string
@@ -144,10 +138,11 @@ class StringEncryption implements PasswordEncoder{
         //log.info("ENCODED: " + encodedPassword)
         //log.info("CHECK: " + checkPassword)
 
-        if(checkPassword == encodedPassword){
+        if (checkPassword == encodedPassword) {
             matches = true
         }
 
         return matches
     }
+
 }

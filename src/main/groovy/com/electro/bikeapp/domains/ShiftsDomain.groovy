@@ -6,13 +6,13 @@ import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.Table
-import java.sql.Time
 import java.time.OffsetDateTime
 import java.time.OffsetTime
 
 @Entity
 @Table(name = 'shifts_and_schedules')
 class ShiftsDomain {
+
     @Id
     @Column(name = 'employee_id')
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -43,8 +43,9 @@ class ShiftsDomain {
     String endWorkHours
 
     @Column(name = 'total_weekly_hours')
-    Float totalWeeklyHours
+    BigDecimal totalWeeklyHours
 
     @Column(name = 'request_days_off')
     String requestMessage
+
 }

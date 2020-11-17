@@ -11,6 +11,7 @@ import java.time.OffsetDateTime
 @Entity
 @Table(name = 'order_retails')
 class RetailOrderDomain {
+
     @Id
     @Column(name = 'order_id')
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -29,8 +30,9 @@ class RetailOrderDomain {
     String shipMethod
 
     @Column(name = 'sales_price')
-    Float priceAmount
+    BigDecimal priceAmount
 
     @Column(name = 'shipping_address')
     String shippingAddress
+
 }

@@ -5,4 +5,5 @@ class LoginCredentialsDTO {
     String username
 
     String password
+
 }

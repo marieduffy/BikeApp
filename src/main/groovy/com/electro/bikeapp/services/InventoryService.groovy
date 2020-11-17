@@ -6,11 +6,7 @@ import com.electro.bikeapp.dtos.SearchInventoryDTO
 import com.electro.bikeapp.repositories.InventoryRepository
 import groovy.util.logging.Slf4j
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.data.jpa.repository.Query
-import org.springframework.data.repository.query.Param
 import org.springframework.stereotype.Service
-
-import java.time.OffsetDateTime
 
 @Slf4j
 @Service
@@ -21,8 +17,7 @@ class InventoryService {
     InventoryRepository bikeInventoryRepository
 
     // This method returns a list of bikes with the given search parameters
-    List<BikeDomain> searchInventory(SearchInventoryDTO searchParams){
-
+    List<BikeDomain> searchInventory (SearchInventoryDTO searchParams) {
         // We call the bikeInventoryRepository and return it's result
         List<BikeDomain> searchedBikeList = bikeInventoryRepository.allParamSearch(
                 searchParams.bikeColor,
@@ -41,10 +36,9 @@ class InventoryService {
      * @param AddProductDTO[]
      * @return void
      */
-    void addProduct(AddProductDTO[] newProductParametersArray){
-
+    void addProduct (AddProductDTO[] newProductParametersArray) {
         // Loop through JSON array of new bikes
-        for(int i = 0; i < newProductParametersArray.size(); i++){
+        for (int i = 0; i < newProductParametersArray.size(); i++) {
             // For each bike:
             // Make a new instance of type bike
 
@@ -66,6 +60,5 @@ class InventoryService {
             bikeInventoryRepository.save(bike)
         }
     }
+
 }
-
-

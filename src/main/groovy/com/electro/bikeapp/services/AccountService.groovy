@@ -19,48 +19,48 @@ class AccountService {
 
     StringEncryption stringEncryption = new StringEncryption()
 
-    boolean verifyCredentials(LoginCredentialsDTO loginCredentialsDTO){
-
+    boolean verifyCredentials (LoginCredentialsDTO loginCredentialsDTO) {
         EmployeeDomain employeeDomain = accountRepository.findByUsername(loginCredentialsDTO.username)
-        if(employeeDomain != null){
+        if (employeeDomain != null) {
             String encrypted_password = stringEncryption.encrypt(loginCredentialsDTO.password)
-            if(encrypted_password == employeeDomain.encrypted_password){
-                log.info("Login successful")
+            if (encrypted_password == employeeDomain.encrypted_password) {
+                log.info('Login successful')
                 return true
             }
-            else{
-                log.info("Wrong password")
+            else {
+                log.info('Wrong password')
                 return false
             }
         }
-        else{
-            log.info("Invalid username")
+        else {
+            log.info('Invalid username')
             return false
         }
     }
 
-    void changePassword(ChangePasswordDTO changePasswordDTO){
+    void changePassword (ChangePasswordDTO changePasswordDTO) {
         // Find employee by username
         EmployeeDomain currentEmployee = accountRepository.findByUsername(changePasswordDTO.userName)
         // If given password matches
-        if(changePasswordDTO.currentPassword == currentEmployee.password){
+        if (changePasswordDTO.currentPassword == currentEmployee.password) {
             currentEmployee.password = changePasswordDTO.newPassword
             accountRepository.save(currentEmployee)
         }
         // Else log error
-        else{
-            log.error("Wrong password entered")
+        else {
+            log.error('Wrong password entered')
         }
     }
 
-    void changeEmail(ChangeEmailDTO changeEmailDTO){
+    void changeEmail (ChangeEmailDTO changeEmailDTO) {
         EmployeeDomain currentEmployee = accountRepository.findByUsername(changeEmailDTO.userName)
-        if(changeEmailDTO.currentEmail == currentEmployee.email){
+        if (changeEmailDTO.currentEmail == currentEmployee.email) {
             currentEmployee.email = changeEmailDTO.newEmail
             accountRepository.save(currentEmployee)
         }
-        else{
-            log.error("You have already used this email")
+        else {
+            log.error('You have already used this email')
         }
     }
+
 }

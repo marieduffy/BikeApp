@@ -57,4 +57,5 @@ class RetailOrderController {
         log.info 'Updating Retail Order'
         retailOrderService.updateRetailOrderStatus(orderId, status)
     }
+
 }

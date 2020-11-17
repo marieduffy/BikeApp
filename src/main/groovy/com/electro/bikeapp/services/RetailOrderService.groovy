@@ -10,11 +10,11 @@ import org.springframework.stereotype.Service
 @Slf4j
 @Service
 class RetailOrderService {
+
     @Autowired
     RetailOrderRepository retailOrderRepository
 
     void createRetailOrder(CreateRetailOrderDTO[] newRetailOrderParametersArray) {
-
         // loop through JSON array of new retail orders
         for (int i = 0; i < newRetailOrderParametersArray.size(); i++) {
             // For each retail order,
@@ -42,4 +42,5 @@ class RetailOrderService {
         retailOrder.orderStatus = status
         retailOrderRepository.save(retailOrder)
     }
+
 }

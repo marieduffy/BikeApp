@@ -9,4 +9,5 @@ class TimesDTO {
     OffsetDateTime clockIn
 
     OffsetDateTime clockOut
+
 }

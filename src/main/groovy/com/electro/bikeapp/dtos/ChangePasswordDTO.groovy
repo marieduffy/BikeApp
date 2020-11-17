@@ -7,4 +7,5 @@ class ChangePasswordDTO {
     String currentPassword
 
     String newPassword
+
 }

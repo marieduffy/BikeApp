@@ -9,11 +9,11 @@ import org.springframework.stereotype.Service
 @Slf4j
 @Service
 class RepairTicketService {
+
     @Autowired
     RepairTicketRepository repairTicketRepository
 
     void createRepairTicket(RepairTicketDomain[] newRepairTicketParametersArray) {
-
         // loop through JSON array of new retail orders
         for (int i = 0; i < newRepairTicketParametersArray.size(); i++) {
             // For each repair ticket,
@@ -37,4 +37,5 @@ class RepairTicketService {
             repairTicketRepository.save(repairTicket)
         }
     }
+
 }

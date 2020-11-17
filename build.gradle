@@ -5,6 +5,9 @@ plugins {
 	id 'org.liquibase.gradle' version '2.0.1'
 }
 
+apply from: "gradle/codenarc.gradle"
+
+
 group = 'com.electro'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '14'
@@ -41,3 +44,4 @@ test {
 bootRun {
 	systemProperty "spring.profiles.active", "encodedcustompassword"
 }
+

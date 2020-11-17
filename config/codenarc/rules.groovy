@@ -11,6 +11,9 @@ ruleset {
         'CompileStatic' {
             enabled = false
         }
+        'NoTabCharacter' {
+            enabled = false
+        }
     }
     ruleset('rulesets/design.xml')
     ruleset('rulesets/dry.xml')

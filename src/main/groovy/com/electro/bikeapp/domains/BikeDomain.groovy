@@ -54,7 +54,7 @@ class BikeDomain {
     @Column(name = 'in_stock')
     Boolean inStock
 
-    @Column(name = 'condition')
+    @Column(name = 'bike_condition')
     String condition
 
     @Column(name = 'quantity')

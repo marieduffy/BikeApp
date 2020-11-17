@@ -76,7 +76,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  name: condition
+                  name: bike_condition
                   type: varchar(20)
                   constraints:
                     nullable: false

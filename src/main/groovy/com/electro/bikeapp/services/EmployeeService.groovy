@@ -45,7 +45,8 @@ class EmployeeService {
                 employee.address = employeeInfoParams[i].address
                 employee.social = employeeInfoParams[i].social
                 employee.position = employeeInfoParams[i].position
-                employee.salary = employeeInfoParams[i].salary
+                employee.payRate = employeeInfoParams[i].salary
+                employee.
                 employee.username = employeeInfoParams[i].username
                 employee.encrypted_password = stringEncryption.encrypt(employeeInfoParams[i].password)
                 employee.email = employeeInfoParams[i].email

@@ -19,4 +19,6 @@ class AddEmployeeDTO {
     String email
 
     String payrollType
+
+    String privilegeLevel
 }

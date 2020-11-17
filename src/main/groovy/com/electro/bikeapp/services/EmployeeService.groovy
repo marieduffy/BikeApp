@@ -26,20 +26,14 @@ class EmployeeService {
     void addEmployee(AddEmployeeDTO[] employeeInfoParams){
         for(int i = 0; i< employeeInfoParams.size(); i++){
             EmployeeDomain employee = new EmployeeDomain()
-            EmployeeDomain e;
-            try{
-                e = employeeAccountRepository.findByUsername(employeeInfoParams[i].username)
+            Optional<EmployeeDomain> e = employeeAccountRepository.findByUsername(employeeInfoParams[i].username)
+            // If employee already exists, throw error
+            if(e.isPresent()){
+                throw new NotFoundException("Username: " + e.get().username + " already exists")
             }
-            catch (NullPointerException exception){
-                log.info("No employee exists yet for this username")
-            }
+            // else add employee
+            else if(!e.isPresent()){
 
-            if(e != null && employeeInfoParams[i].username == e.username){
-                log.info('Changing the employee status to isDeleted = false')
-                e.isDeleted = false
-                employeeAccountRepository.save(e)
-            }
-            else {
                 employee.payrollType = employeeInfoParams[i].payrollType
                 employee.employeeName = employeeInfoParams[i].employeeName
                 employee.address = employeeInfoParams[i].address
@@ -48,8 +42,9 @@ class EmployeeService {
                 employee.payRate = employeeInfoParams[i].payRate
                 employee.payrollType = employeeInfoParams[i].payrollType
                 employee.username = employeeInfoParams[i].username
-                employee.encrypted_password = stringEncryption.encrypt(employeeInfoParams[i].password)
+                employee.encrypted_password = stringEncryption.encode(employeeInfoParams[i].password)
                 employee.email = employeeInfoParams[i].email
+                employee.privilegeLevel = employeeInfoParams[i].privilegeLevel
                 employee.isDeleted = false
 
                 //save employee to the database

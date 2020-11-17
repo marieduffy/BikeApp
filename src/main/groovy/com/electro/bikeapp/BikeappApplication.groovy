@@ -9,8 +9,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 @EnableJpaRepositories(basePackageClasses = AccountRepository)
 class BikeappApplication {
 
-	static void main(String[] args) {
-		SpringApplication.run(BikeappApplication, args)
-	}
+static void main(String[] args) {
+	SpringApplication.run(BikeappApplication, args)
+}
 
 }

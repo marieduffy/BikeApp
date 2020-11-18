@@ -74,7 +74,7 @@ class AccountController {
     @GetMapping(value = '/account/timeIn/{employeeId}', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     OffsetDateTime clockIn (@PathVariable long employeeId) {
-        log.info "Clock in time has been recorded for employee $employeeId"
+//        log.info "Clock in time has been recorded for employee $employeeId"
         shiftsService.clockIn(employeeId)
     }
 
@@ -82,20 +82,21 @@ class AccountController {
     @GetMapping(value = '/account/timeOut/{employeeId}', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     OffsetDateTime clockOut (@PathVariable long employeeId) {
-        log.info "Clock out time has been recorded for employee $employeeId"
+//        log.info "Clock out time has been recorded for employee $employeeId"
         shiftsService.clockOut(employeeId)
     }
 //
     @GetMapping(value = '/account/totalTime/{employeeId}', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     OffsetTime totalDayTime (@PathVariable long employeeId) {
-        log.info "The total time worked has been recorded for employee $employeeId"
+//        log.info "The total time worked has been recorded for employee $employeeId"
         shiftsService.totalDayTime(employeeId)
     }
 
     @GetMapping(value = '/account/timeSheet/{employeeId}', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    OffsetDateTime timeSheet (@PathVariable long employeeId) {
+
+    void timeSheet (@PathVariable long employeeId) {
         log.info "This is employee $employeeId's time sheet for their shift"
         shiftsService.timeSheet(employeeId)
     }

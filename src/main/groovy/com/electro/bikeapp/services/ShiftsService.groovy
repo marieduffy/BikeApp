@@ -6,6 +6,7 @@ import groovy.util.logging.Slf4j
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.sql.Time
+import java.time.LocalDate
 import java.time.OffsetDateTime
 import java.time.temporal.ChronoField
 import java.time.OffsetTime
@@ -24,7 +25,6 @@ class ShiftsService {
             OffsetDateTime currentTime = OffsetDateTime.now()
             currentEmployee.timeIn = currentTime
             shiftsRepository.save(currentEmployee)
-            log.info("Employee $employeeId has clocked in")
             return currentTime
         } catch (NullPointerException nullPointerException) { //if that employeeId doesn't exist then print to console
             log.error("There is no employee with that id $employeeId")
@@ -37,7 +37,6 @@ class ShiftsService {
             OffsetDateTime currentTime = OffsetDateTime.now() //current time is being set to the current time
             currentEmployee.timeOut = currentTime
             shiftsRepository.save(currentEmployee)
-            log.info("Employee $employeeId has clocked in")
             return currentTime
         } catch (NullPointerException nullPointerException) { //if that employeeId doesn't exist then print to console
             log.error("There is no employee with that id $employeeId")
@@ -63,12 +62,17 @@ class ShiftsService {
         total
     }
 
-//    OffsetDateTime timeSheet (long employeeId) {
-//        ShiftsDomain currentEmployee = shiftsRepository.findByEmployeeId(employeeId)
-//        OffsetDateTime date = OffsetDateTime.now()
-//
-//        LocalDate today = LocalDate.now()
-//        System.out.println(today)
-//    }
+    void timeSheet (long employeeId) {
+        ShiftsDomain currentEmployee = shiftsRepository.findByEmployeeId(employeeId)
+        LocalDate today = LocalDate.now()
+        java.util.Date date = java.sql.Date.valueOf(today)
+        currentEmployee.todaysDate = date
+        log.info("Today is: $date")
+        log.info("Employee $employeeId clocked in at: " + currentEmployee.timeIn)
+        log.info("They clocked out at: " + currentEmployee.timeOut)
+        log.info("Working a total time of: " + currentEmployee.totalDayHours)
+        shiftsRepository.save(currentEmployee)
+
+    }
 
 }

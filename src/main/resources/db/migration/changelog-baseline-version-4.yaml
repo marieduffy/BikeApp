@@ -22,7 +22,7 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: todays_date
-                  type: datetime
+                  type: date
                   constraints:
                     nullable: true
               - column:

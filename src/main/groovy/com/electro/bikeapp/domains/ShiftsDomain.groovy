@@ -22,7 +22,7 @@ class ShiftsDomain {
     String employeeName
 
     @Column(name = 'todays_date')
-    OffsetDateTime todaysDate
+    Date todaysDate
 
     @Column(name = 'time_in')
     OffsetDateTime timeIn

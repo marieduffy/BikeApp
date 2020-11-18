@@ -33,14 +33,8 @@ class ShiftsDomain {
     @Column(name = 'total_day_hours')
     OffsetTime totalDayHours
 
-    @Column(name = 'days_off_work')
-    String daysOffWork
-
-    @Column(name = 'start_work_hours')
-    String startWorkHours
-
-    @Column(name = 'end_work_hours')
-    String endWorkHours
+    @Column(name = 'days_worked')
+    BigDecimal daysWorked
 
     @Column(name = 'total_weekly_hours')
     BigDecimal totalWeeklyHours

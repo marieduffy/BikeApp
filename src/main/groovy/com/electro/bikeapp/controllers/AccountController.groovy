@@ -3,6 +3,7 @@ package com.electro.bikeapp.controllers
 import com.electro.bikeapp.dtos.ChangePasswordDTO
 import com.electro.bikeapp.dtos.ChangeEmailDTO
 import com.electro.bikeapp.dtos.LoginCredentialsDTO
+import com.electro.bikeapp.dtos.RequestsDTO
 import com.electro.bikeapp.services.AccountService
 import com.electro.bikeapp.services.EmployeeService
 import com.electro.bikeapp.services.ShiftsService
@@ -93,7 +94,7 @@ class AccountController {
         shiftsService.totalDayTime(employeeId)
     }
 
-    @GetMapping(value = '/account/timeSheet/{employeeId}', produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = '/account/timeSheet/{employeeId}', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
 
     void timeSheet (@PathVariable long employeeId) {
@@ -109,4 +110,9 @@ class AccountController {
 //        employeeService.getShiftChart(loginCredentials)
 //    }
 
+    @PostMapping(value = '/account/timeOffRequests', produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    void requestTimeOff (@RequestBody RequestsDTO requestsDTO) {
+        shiftsService.requestTimeOff(requestsDTO)
+    }
 }

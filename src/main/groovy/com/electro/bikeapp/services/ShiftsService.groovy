@@ -1,6 +1,8 @@
 package com.electro.bikeapp.services
 
+import com.electro.bikeapp.domains.EmployeeDomain
 import com.electro.bikeapp.domains.ShiftsDomain
+import com.electro.bikeapp.dtos.RequestsDTO
 import com.electro.bikeapp.repositories.ShiftsRepository
 import groovy.util.logging.Slf4j
 import org.springframework.beans.factory.annotation.Autowired
@@ -72,7 +74,12 @@ class ShiftsService {
         log.info("They clocked out at: " + currentEmployee.timeOut)
         log.info("Working a total time of: " + currentEmployee.totalDayHours)
         shiftsRepository.save(currentEmployee)
+    }
 
+    void requestTimeOff (RequestsDTO requestsDTO){
+        ShiftsDomain currentEmployee = shiftsRepository.findByEmployeeId(requestsDTO.employeeId)
+        currentEmployee.requestMessage = requestsDTO.requestMessage
+        shiftsRepository.save(currentEmployee)
     }
 
 }

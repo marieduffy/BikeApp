@@ -80,6 +80,7 @@ class ShiftsService {
 
     }
 
+    //actually this is not done because I need to add one more things
     void getShiftChart (ShiftsDTO shiftsDTO) {
         ShiftsDomain currentEmployee = shiftsRepository.findByEmployeeId(shiftsDTO.employeeId)
         currentEmployee.daysWorking = shiftsDTO.daysWorking

@@ -41,8 +41,18 @@ databaseChangeLog:
                   constraints:
                     nullable: true
               - column:
-                  name: days_worked
-                  type: float
+                  name: days_working
+                  type: varchar(512)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: enter_times
+                  type: varchar(512)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: exit_times
+                  type: varchar(512)
                   constraints:
                     nullable: true
               - column:

@@ -4,6 +4,7 @@ import com.electro.bikeapp.dtos.ChangePasswordDTO
 import com.electro.bikeapp.dtos.ChangeEmailDTO
 import com.electro.bikeapp.dtos.LoginCredentialsDTO
 import com.electro.bikeapp.dtos.RequestsDTO
+import com.electro.bikeapp.dtos.ShiftsDTO
 import com.electro.bikeapp.services.AccountService
 import com.electro.bikeapp.services.EmployeeService
 import com.electro.bikeapp.services.ShiftsService
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
+
+import java.nio.file.Path
 import java.time.OffsetDateTime
 import java.time.OffsetTime
 
@@ -103,12 +106,12 @@ class AccountController {
     }
 
     //TODO: Lili /account/shiftChart
-//    @GetMapping(value = '/account/shiftChart', produces = MediaType.APPLICATION_JSON_VALUE)
-//    @ResponseStatus(HttpStatus.OK)
-//    boolean getShiftChart(@RequestBody LoginCredentialsDTO loginCredentials) {
-//        log.info 'Verifying Login Credentials'
-//        employeeService.getShiftChart(loginCredentials)
-//    }
+    @PostMapping(value = '/account/shiftChart', produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    void getShiftChart(@RequestBody ShiftsDTO shiftsDTO) {
+        log.info "This is the shift chart"
+        shiftsService.getShiftChart(shiftsDTO)
+    }
 
     @PostMapping(value = '/account/timeOffRequests', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)

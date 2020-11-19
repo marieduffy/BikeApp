@@ -72,4 +72,8 @@ class WebController {
         return '/createEmployee'
     }
 
+    @GetMapping('/createRetailOrder')
+    String createRetailOrder() {
+        return '/createRetailOrder'
+    }
 }

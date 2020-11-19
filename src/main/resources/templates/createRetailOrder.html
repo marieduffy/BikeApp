@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Creat a Retail Order</title>
+    <script language="javascript">
+        var limit = 10; // Max items
+        var count = 1; // There is 1 item already
+        function appendItem() {
+            // Get the item div element
+            var item = document.getElementById('itemDiv');
+
+            // Good to do error checking, make sure we managed to get something
+            if (item) {
+                if (count < limit) {
+                    // Create a new <p> element
+                    var newP = document.createElement('p');
+                    newP.innerHTML = 'Item ' + (count + 1);
+
+                    // Create the new text box
+                    var newInput = document.createElement('input');
+                    newInput.type = 'text';
+                    newInput.name = 'items[]';
+
+                    // Good practice to do error checking
+                    if (newInput && newP) {
+                        // Add the new elements to the form
+                        item.appendChild(newP);
+                        item.appendChild(newInput);
+                        // Increment the count
+                        count++;
+                    }
+                }
+                else {
+                    alert('Item limit reached');
+                }
+            }
+        }
+
+        function callAPI(form) {
+            const obj = {
+                orderStatus: form.orderStatus.value,
+                customerId: form.customerId.value,
+                customerName: form.customerName.value,
+                orderDate: form.orderDate.value,
+                shipMethod: form.shipMethod.value,
+                priceAmount: parseFloat(form.priceAmount.value),
+                shippingAddress: form.shippingAddress.value
+            };
+            const json = JSON.stringify(obj);
+            const xhttp = new XMLHttpRequest();
+            xhttp.open("POST", "http://localhost:8080/createRetailOrder");
+            xhttp.setRequestHeader("Content-type", "application/json");
+            xhttp.send(json);
+            alert(xhttp.responseText);
+        }
+    </script>
+</head>
+<body>
+    <form method="post">
+        <label for="orderStatus">Order Status:</label><br>
+        <select name="orderStatus" id="orderStatus">
+            <option value="awaiting payment">Awaiting Payment</option>
+            <option value="processing">Processing</option>
+            <option value="partial shipped">Partially shipped</option>
+            <option value="shipped">Shipped</option>
+        </select><br><br>
+        <label>Customer ID:<br><input type="text" name="customerId"></label><br><br>
+        <label>Customer Name:<br><input type="text" name="customerName"></label><br><br>
+        <label>Order Date:<br><input type="date" name="orderDate"></label><br><br>
+        <label for="shipMethod">Shipping Method:</label><br>
+        <select name="shipMethod" id="shipMethod">
+            <option value="regular">Regular</option>
+            <option value="express">Express</option>
+        </select><br><br>
+        <label>Grand Total:<br><input type="number" name="priceAmount"></label><br><br>
+        <label>Shipping Address:<br><input type="text" name="shippingAddress"></label><br>
+
+        <div id="itemDiv" >
+            <p><b>Item List:</b></p>
+            <p>Item 1</p>
+            <input type="text" name="items[]"/>
+            <br>
+        </div>
+        <br>
+        <input type="button" onclick="javascript: appendItem();" value="Add item">
+        <br><br>
+        <input type="submit" value="Create Order" onclick="return callAPI(this.form)">
+    </form>
+</body>
+</html>

@@ -8,6 +8,8 @@ class CreateRetailOrderDTO {
 
     Long customerId
 
+    String customerName
+
     OffsetDateTime orderDate
 
     String shipMethod

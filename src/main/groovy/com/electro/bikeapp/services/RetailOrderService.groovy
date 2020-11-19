@@ -23,6 +23,7 @@ class RetailOrderService {
 
             retailOrder.orderStatus = newRetailOrderParametersArray[i].orderStatus
             retailOrder.customerId = newRetailOrderParametersArray[i].customerId
+            retailOrder.customerName = newRetailOrderParametersArray[i].customerName
             retailOrder.orderDate = newRetailOrderParametersArray[i].orderDate
             retailOrder.shipMethod = newRetailOrderParametersArray[i].shipMethod
             retailOrder.priceAmount = newRetailOrderParametersArray[i].priceAmount
@@ -34,7 +35,7 @@ class RetailOrderService {
     }
 
     RetailOrderDomain getRetailOrder(long id) {
-        return retailOrderRepository.findByOrderId(id)
+        return retailOrderRepository.findByOrderId(id).getOrderStatus()
     }
 
     void updateRetailOrderStatus(long id, String status) {

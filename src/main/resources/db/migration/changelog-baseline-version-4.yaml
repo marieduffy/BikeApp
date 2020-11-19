@@ -22,7 +22,7 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: todays_date
-                  type: datetime
+                  type: date
                   constraints:
                     nullable: true
               - column:
@@ -41,17 +41,17 @@ databaseChangeLog:
                   constraints:
                     nullable: true
               - column:
-                  name: days_off_work
+                  name: days_working
                   type: varchar(512)
                   constraints:
                     nullable: true
               - column:
-                  name: start_work_hours
+                  name: enter_times
                   type: varchar(512)
                   constraints:
                     nullable: true
               - column:
-                  name: end_work_hours
+                  name: exit_times
                   type: varchar(512)
                   constraints:
                     nullable: true

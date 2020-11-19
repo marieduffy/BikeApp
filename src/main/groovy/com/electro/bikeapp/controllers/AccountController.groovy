@@ -3,6 +3,8 @@ package com.electro.bikeapp.controllers
 import com.electro.bikeapp.dtos.ChangePasswordDTO
 import com.electro.bikeapp.dtos.ChangeEmailDTO
 import com.electro.bikeapp.dtos.LoginCredentialsDTO
+import com.electro.bikeapp.dtos.RequestsDTO
+import com.electro.bikeapp.dtos.ShiftsDTO
 import com.electro.bikeapp.services.AccountService
 import com.electro.bikeapp.services.EmployeeService
 import com.electro.bikeapp.services.ShiftsService
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
+
+import java.nio.file.Path
 import java.time.OffsetDateTime
 import java.time.OffsetTime
 
@@ -74,7 +78,7 @@ class AccountController {
     @GetMapping(value = '/account/timeIn/{employeeId}', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     OffsetDateTime clockIn (@PathVariable long employeeId) {
-        log.info "Clock in time has been recorded for employee $employeeId"
+//        log.info "Clock in time has been recorded for employee $employeeId"
         shiftsService.clockIn(employeeId)
     }
 
@@ -82,30 +86,36 @@ class AccountController {
     @GetMapping(value = '/account/timeOut/{employeeId}', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     OffsetDateTime clockOut (@PathVariable long employeeId) {
-        log.info "Clock out time has been recorded for employee $employeeId"
+//        log.info "Clock out time has been recorded for employee $employeeId"
         shiftsService.clockOut(employeeId)
     }
 //
     @GetMapping(value = '/account/totalTime/{employeeId}', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     OffsetTime totalDayTime (@PathVariable long employeeId) {
-        log.info "The total time worked has been recorded for employee $employeeId"
+//        log.info "The total time worked has been recorded for employee $employeeId"
         shiftsService.totalDayTime(employeeId)
     }
 
-    @GetMapping(value = '/account/timeSheet/{employeeId}', produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = '/account/timeSheet/{employeeId}', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    OffsetDateTime timeSheet (@PathVariable long employeeId) {
+
+    void timeSheet (@PathVariable long employeeId) {
         log.info "This is employee $employeeId's time sheet for their shift"
         shiftsService.timeSheet(employeeId)
     }
 
     //TODO: Lili /account/shiftChart
-//    @GetMapping(value = '/account/shiftChart', produces = MediaType.APPLICATION_JSON_VALUE)
-//    @ResponseStatus(HttpStatus.OK)
-//    boolean getShiftChart(@RequestBody LoginCredentialsDTO loginCredentials) {
-//        log.info 'Verifying Login Credentials'
-//        employeeService.getShiftChart(loginCredentials)
-//    }
+    @PostMapping(value = '/account/shiftChart', produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    void getShiftChart(@RequestBody ShiftsDTO shiftsDTO) {
+        log.info "This is the shift chart"
+        shiftsService.getShiftChart(shiftsDTO)
+    }
 
+    @PostMapping(value = '/account/timeOffRequests', produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    void requestTimeOff (@RequestBody RequestsDTO requestsDTO) {
+        shiftsService.requestTimeOff(requestsDTO)
+    }
 }

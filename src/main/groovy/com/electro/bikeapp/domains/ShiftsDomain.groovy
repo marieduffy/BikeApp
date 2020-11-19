@@ -22,7 +22,7 @@ class ShiftsDomain {
     String employeeName
 
     @Column(name = 'todays_date')
-    OffsetDateTime todaysDate
+    Date todaysDate
 
     @Column(name = 'time_in')
     OffsetDateTime timeIn
@@ -33,14 +33,14 @@ class ShiftsDomain {
     @Column(name = 'total_day_hours')
     OffsetTime totalDayHours
 
-    @Column(name = 'days_off_work')
-    String daysOffWork
+    @Column(name = 'days_working')
+    String daysWorking
 
-    @Column(name = 'start_work_hours')
-    String startWorkHours
+    @Column(name = 'enter_times')
+    String enterTimes
 
-    @Column(name = 'end_work_hours')
-    String endWorkHours
+    @Column(name = 'exit_times')
+    String exitTimes
 
     @Column(name = 'total_weekly_hours')
     BigDecimal totalWeeklyHours

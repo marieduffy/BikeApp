@@ -18,8 +18,6 @@
 
         var xhttp = new XMLHttpRequest();
         xhttp.open("POST", "http://localhost:8080/manager/addEmployee");
-        // xhttp.setRequestHeader("Access-Control-Request-Method", "POST")
-        // xhttp.setRequestHeader("Access-Control-Allow-Origin", "POST")
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send(json);
         alert(xhttp.responseText);
@@ -32,7 +30,7 @@
     <title>Add a New Employee</title>
 </head>
 <body>
-<form NAME="myform" ACTION="" METHOD="POST">
+<form NAME="myform" ACTION="http://localhost:8080/" METHOD="POST">
     <label for="employeeName">Employee Name:</label><br>
     <input type="text" id="employeeName" name="employeeName"><br>
     <label for="address">Address:</label><br>

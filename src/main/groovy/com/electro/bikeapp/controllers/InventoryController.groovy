@@ -3,13 +3,11 @@ package com.electro.bikeapp.controllers
 import com.electro.bikeapp.domains.BikeDomain
 import com.electro.bikeapp.dtos.AddProductDTO
 import com.electro.bikeapp.dtos.SearchInventoryDTO
-import com.electro.bikeapp.dtos.UpdateProductDTO
 import com.electro.bikeapp.services.InventoryService
 import groovy.util.logging.Slf4j
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
-import org.springframework.web.bind.annotation.PatchMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.ResponseStatus
@@ -65,7 +63,8 @@ class InventoryController {
     @PostMapping(value = '/inventory/removeProduct', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     void addProduct(@RequestBody String[] hashList) {
-        log.info 'Adding new bike to inventory'
+        log.info 'Removing bike from inventory'
         inventoryService.removeProduct(hashList)
     }
+
 }

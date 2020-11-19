@@ -29,7 +29,7 @@ class LoginService implements UserDetailsService {
         authorities.add(new SimpleGrantedAuthority(user.get().privilegeLevel))
 
         loginDTO.userName = user.get().username
-        loginDTO.password = user.get().encrypted_password
+        loginDTO.password = user.get().encryptedPassword
         loginDTO.active = true
         loginDTO.authorities = authorities
         return loginDTO

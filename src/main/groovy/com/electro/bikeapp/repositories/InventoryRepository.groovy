@@ -1,7 +1,6 @@
 package com.electro.bikeapp.repositories
 
 import com.electro.bikeapp.domains.BikeDomain
-import com.electro.bikeapp.domains.EmployeeDomain
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.query.Param
@@ -12,6 +11,7 @@ import org.springframework.stereotype.Repository
  * @creationDate 09/12/2020
  * This Repository interfaces with the bike_inventory Table
  */
+@SuppressWarnings(['LineLength'])
 @Repository
 interface InventoryRepository extends JpaRepository<BikeDomain, Long> {
 

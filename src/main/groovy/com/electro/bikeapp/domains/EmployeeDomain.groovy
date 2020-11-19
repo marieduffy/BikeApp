@@ -41,7 +41,7 @@ class EmployeeDomain {
     String email
 
     @Column(name = 'encrypted_password')
-    String encrypted_password
+    String encryptedPassword
 
     @Column(name = 'privilege_level')
     String privilegeLevel

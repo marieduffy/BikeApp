@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 
-import java.nio.file.Path
 import java.time.OffsetDateTime
 import java.time.OffsetTime
 
@@ -109,7 +108,7 @@ class AccountController {
     @PostMapping(value = '/account/shiftChart', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     void getShiftChart(@RequestBody ShiftsDTO shiftsDTO) {
-        log.info "This is the shift chart"
+        log.info 'This is the shift chart'
         shiftsService.getShiftChart(shiftsDTO)
     }
 
@@ -118,4 +117,5 @@ class AccountController {
     void requestTimeOff (@RequestBody RequestsDTO requestsDTO) {
         shiftsService.requestTimeOff(requestsDTO)
     }
+
 }

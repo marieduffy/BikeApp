@@ -9,6 +9,7 @@ import javassist.NotFoundException
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
+@SuppressWarnings([''])
 @Slf4j
 @Service
 class EmployeeService {
@@ -23,49 +24,48 @@ class EmployeeService {
      * @param AddEmployeeDTO[]
      * @return void
      */
-    void addEmployee (AddEmployeeDTO employeeInfoParams) {
+    void addEmployee(AddEmployeeDTO employeeInfoParams) {
         //for (int i = 0; i < employeeInfoParams.size(); i++) {
-            EmployeeDomain employee = new EmployeeDomain()
-            Optional<EmployeeDomain> e = employeeAccountRepository.findByUsername(employeeInfoParams.username)
-            // If employee already exists, throw error
-            if (e.isPresent()) {
-                // if its the same person
-                if (e.get().social == employeeInfoParams.social) {
-                    e.get().isDeleted = false
-                    e.get().payrollType = employeeInfoParams.payrollType
-                    e.get().employeeName = employeeInfoParams.employeeName
-                    e.get().address = employeeInfoParams.address
-                    e.get().social = employeeInfoParams.social
-                    e.get().position = employeeInfoParams.position
-                    e.get().payRate = employeeInfoParams.payRate
-                    e.get().payrollType = employeeInfoParams.payrollType
-                    e.get().username = employeeInfoParams.username
-                    e.get().encrypted_password = stringEncryption.encode(employeeInfoParams.password)
-                    e.get().email = employeeInfoParams.email
-                    e.get().privilegeLevel = employeeInfoParams.privilegeLevel
-                    employeeAccountRepository.save(e.get())
-                }
-                else {
-                    throw new NotFoundException(user + e.get().username + ' is already taken ')
-                }
+        EmployeeDomain employee = new EmployeeDomain()
+        Optional<EmployeeDomain> e = employeeAccountRepository.findByUsername(employeeInfoParams.username)
+        // If employee already exists, throw error
+        if (e.isPresent()) {
+            // if its the same person
+            if (e.get().social == employeeInfoParams.social) {
+                e.get().isDeleted = false
+                e.get().payrollType = employeeInfoParams.payrollType
+                e.get().employeeName = employeeInfoParams.employeeName
+                e.get().address = employeeInfoParams.address
+                e.get().social = employeeInfoParams.social
+                e.get().position = employeeInfoParams.position
+                e.get().payRate = employeeInfoParams.payRate
+                e.get().payrollType = employeeInfoParams.payrollType
+                e.get().username = employeeInfoParams.username
+                e.get().encryptedPassword = stringEncryption.encode(employeeInfoParams.password)
+                e.get().email = employeeInfoParams.email
+                e.get().privilegeLevel = employeeInfoParams.privilegeLevel
+                employeeAccountRepository.save(e.get())
+            } else {
+                throw new NotFoundException(user + e.get().username + ' is already taken ')
             }
-            // else add employee
-            else if (!e.isPresent()) {
-                employee.employeeName = employeeInfoParams.employeeName
-                employee.address = employeeInfoParams.address
-                employee.social = employeeInfoParams.social
-                employee.position = employeeInfoParams.position
-                employee.payRate = employeeInfoParams.payRate
-                employee.payrollType = employeeInfoParams.payrollType
-                employee.username = employeeInfoParams.username
-                employee.encrypted_password = stringEncryption.encode(employeeInfoParams.password)
-                employee.email = employeeInfoParams.email
-                employee.privilegeLevel = employeeInfoParams.position
-                employee.isDeleted = false
+        }
+        // else add employee
+        else if (!e.isPresent()) {
+            employee.employeeName = employeeInfoParams.employeeName
+            employee.address = employeeInfoParams.address
+            employee.social = employeeInfoParams.social
+            employee.position = employeeInfoParams.position
+            employee.payRate = employeeInfoParams.payRate
+            employee.payrollType = employeeInfoParams.payrollType
+            employee.username = employeeInfoParams.username
+            employee.encryptedPassword = stringEncryption.encode(employeeInfoParams.password)
+            employee.email = employeeInfoParams.email
+            employee.privilegeLevel = employeeInfoParams.position
+            employee.isDeleted = false
 
-                //save employee to the database
-                employeeAccountRepository.save(employee)
-            }
+            //save employee to the database
+            employeeAccountRepository.save(employee)
+        }
         //}
     }
 
@@ -74,7 +74,7 @@ class EmployeeService {
      * @param AddEmployeeDTO[]
      * @return void
      */
-    void updateEmployee (AddEmployeeDTO[] employeeUpdateParams, String username) {
+    void updateEmployee(AddEmployeeDTO[] employeeUpdateParams, String username) {
         //add isDeleted and findbyUsername call in repository
         //get employee by their username
         EmployeeDomain employee = employeeAccountRepository.findByUsername(username)
@@ -107,7 +107,7 @@ class EmployeeService {
      * @param username
      * @return void
      */
-    void deleteEmployee (String username) {
+    void deleteEmployee(String username) {
         //get employee by their username
         //we do not want to permanently delete them, just archive them somehow
         Optional<EmployeeDomain> employee = employeeAccountRepository.findByUsername(username)

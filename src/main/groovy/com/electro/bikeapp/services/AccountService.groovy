@@ -10,6 +10,7 @@ import groovy.util.logging.Slf4j
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
+@SuppressWarnings(['UnnecessaryElseStatement'])
 @Slf4j
 @Service
 class AccountService {
@@ -19,32 +20,32 @@ class AccountService {
 
     StringEncryption stringEncryption = new StringEncryption()
 
-//    boolean verifyCredentials (LoginCredentialsDTO loginCredentialsDTO) {
-//        EmployeeDomain employeeDomain = accountRepository.findByUsername(loginCredentialsDTO.username)
-//        if (employeeDomain != null) {
-//            String encrypted_password = stringEncryption.encode(loginCredentialsDTO.password)
-//            if (encrypted_password == employeeDomain.encrypted_password) {
-//                log.info('Login successful')
-//                return true
-//            }
-//            else {
-//                log.info('Wrong password')
-//                return false
-//            }
-//        }
-//        else {
-//            log.info('Invalid username')
-//            return false
-//        }
-//    }
+    boolean verifyCredentials (LoginCredentialsDTO loginCredentialsDTO) {
+        EmployeeDomain employeeDomain = accountRepository.findByUsername(loginCredentialsDTO.username)
+        if (employeeDomain != null) {
+            String testEncryptedPassword = stringEncryption.encode(loginCredentialsDTO.password)
+            if (testEncryptedPassword == employeeDomain.encryptedPassword) {
+                log.info('Login successful')
+                return true
+            }
+            else {
+                log.info('Wrong password')
+                return false
+            }
+        }
+        else {
+            log.info('Invalid username')
+            return false
+        }
+    }
 
     void changePassword (ChangePasswordDTO changePasswordDTO) {
         // Find employee by username
         Optional<EmployeeDomain> currentEmployee = accountRepository.findByUsername(changePasswordDTO.username)
         // If given password matches
-        if(currentEmployee.isPresent()){
-            if (stringEncryption.encode(changePasswordDTO.currentPassword) == currentEmployee.get().encrypted_password) {
-                currentEmployee.get().encrypted_password = stringEncryption.encode(changePasswordDTO.newPassword)
+        if (currentEmployee.isPresent()) {
+            if (stringEncryption.encode(changePasswordDTO.currentPassword) == currentEmployee.get().encryptedPassword) {
+                currentEmployee.get().encryptedPassword = stringEncryption.encode(changePasswordDTO.newPassword)
                 accountRepository.save(currentEmployee.get())
             }
             // Else log error
@@ -52,16 +53,15 @@ class AccountService {
                 log.error('Wrong password entered')
             }
         }
-        else{
+        else {
             log.error('User not found :(')
         }
-
     }
 
     void changeEmail (ChangeEmailDTO changeEmailDTO) {
         Optional<EmployeeDomain> currentEmployee = accountRepository.findByUsername(changeEmailDTO.username)
        // println (currentEmployee.get().email)
-        if(currentEmployee.isPresent()){
+        if (currentEmployee.isPresent()) {
             if (changeEmailDTO.currentEmail == currentEmployee.get().email) {
                 currentEmployee.get().email = changeEmailDTO.newEmail
                 accountRepository.save(currentEmployee.get())
@@ -70,10 +70,9 @@ class AccountService {
                 log.error('Invalid current email')
             }
         }
-        else{
-            log.error('User not found :(')
+        else {
+            log.error('User not found :/')
         }
-
     }
 
 }

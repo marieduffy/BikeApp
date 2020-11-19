@@ -1,7 +1,5 @@
 package com.electro.bikeapp.dtos
 
-import java.time.OffsetTime
-
 class ShiftsDTO {
 
     Long employeeId

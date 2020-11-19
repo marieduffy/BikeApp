@@ -1,10 +1,8 @@
 package com.electro.bikeapp.services
 
 import com.electro.bikeapp.domains.BikeDomain
-import com.electro.bikeapp.domains.EmployeeDomain
 import com.electro.bikeapp.dtos.AddProductDTO
 import com.electro.bikeapp.dtos.SearchInventoryDTO
-import com.electro.bikeapp.dtos.UpdateProductDTO
 import com.electro.bikeapp.repositories.InventoryRepository
 import com.electro.bikeapp.utils.ByteToHexString
 import groovy.util.logging.Slf4j
@@ -13,6 +11,7 @@ import org.springframework.stereotype.Service
 import java.nio.charset.StandardCharsets
 import java.security.MessageDigest
 
+@SuppressWarnings([''])
 @Slf4j
 @Service
 class InventoryService {
@@ -59,7 +58,7 @@ class InventoryService {
                     newProductParametersArray[i].condition
 
             // Hash bike data
-            MessageDigest digest = MessageDigest.getInstance("SHA-256")
+            MessageDigest digest = MessageDigest.getInstance('SHA-256')
             byte[] hash = digest.digest(bikeData.getBytes(StandardCharsets.UTF_8))
 
             // Convert hash to hex
@@ -69,13 +68,13 @@ class InventoryService {
             Optional<BikeDomain> existingBike = bikeInventoryRepository.findByHashValue(hexHash)
 
             // If bike exists in DB, simply update quantity
-            if(existingBike.isPresent()){
+            if (existingBike.isPresent()) {
                 existingBike.get().quantity = existingBike.get().quantity + newProductParametersArray[i].quantity
                 bikeInventoryRepository.save(existingBike.get())
             }
 
             // Else, make a new bike entry
-            else{
+            else {
                 BikeDomain bike = new BikeDomain()
                 // Set in all the parameters
                 bike.bikeDisplayName = newProductParametersArray[i].bikeDisplayName
@@ -110,15 +109,16 @@ class InventoryService {
             Optional<BikeDomain> bike = bikeInventoryRepository.findByHashValue(productHash)
 
             // If bike exists in DB, decrement quantity
-            if(bike.isPresent()){
+            if (bike.isPresent()) {
                 bike.get().quantity = bike.get().quantity - 1
                 bikeInventoryRepository.save(bike.get())
             }
 
             // Else, make a new bike entry
-            else{
-                log.error("Bike not found")
+            else {
+                log.error('Bike not found')
             }
         }
     }
+
 }

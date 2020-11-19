@@ -1,9 +1,9 @@
 package com.electro.bikeapp.utils
 
+@SuppressWarnings(['DuplicateStringLiteral'])
 class ByteToHexString {
 
-    String toHexString(byte[] hash)
-    {
+    String toHexString(byte[] hash) {
         // Convert byte array into signum representation
         BigInteger number = new BigInteger(1, hash)
 

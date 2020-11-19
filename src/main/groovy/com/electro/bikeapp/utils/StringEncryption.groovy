@@ -3,6 +3,7 @@ package com.electro.bikeapp.utils
 import groovy.util.logging.Slf4j
 import org.springframework.security.crypto.password.PasswordEncoder
 
+@SuppressWarnings(['UnnecessaryToString', 'NestedForLoop'])
 @Slf4j
 class StringEncryption implements PasswordEncoder {
 
@@ -35,7 +36,7 @@ class StringEncryption implements PasswordEncoder {
 
         // Initialize the 1D arrays, copy string into 1D tempArr
         char[] tempArr = inputString
-        char[] OneDimensionalArray = new char[twoDimensionalArraySize * twoDimensionalArraySize]
+        char[] oneDimensionalArray = new char[twoDimensionalArraySize * twoDimensionalArraySize]
 
         // Replace (space) with _
         for (int i = 0; i < inputString.length(); i++) {
@@ -68,13 +69,13 @@ class StringEncryption implements PasswordEncoder {
         // Converts the 2D finalArr back into a 1D array
         for (int y = 0; y < twoDimensionalArraySize; y++) {
             for (int x = 0; x < twoDimensionalArraySize; x++) {
-                OneDimensionalArray[index] = finalArr[y][x]
+                oneDimensionalArray[index] = finalArr[y][x]
                 index++
             }
         }
 
         // Concatenates the 1D array back into a string
-        String answer = new String(OneDimensionalArray)
+        String answer = new String(oneDimensionalArray)
 
         // Answer has been encrypted by one stage at this point
 

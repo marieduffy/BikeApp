@@ -54,8 +54,4 @@ class VendorOrderService {
         }
     }
 
-    List<VendorOrderDomain> getCurrentVendorOrders() {
-        List<VendorOrderDomain> allCurrentOrders
-    }
-
 }

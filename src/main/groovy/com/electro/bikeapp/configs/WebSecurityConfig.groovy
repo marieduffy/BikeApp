@@ -19,6 +19,7 @@ import com.google.common.collect.ImmutableList
 
 @Configuration
 @EnableWebSecurity
+@SuppressWarnings(['VariableName', 'DuplicateStringLiteral', 'UnnecessarySetter'])
 class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -30,7 +31,8 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         configuration.setAllowedOrigins(ImmutableList.of('*'))
         configuration.setAllowedMethods(ImmutableList.of('HEAD', 'GET', 'POST', 'PUT', 'DELETE', 'PATCH'))
         // setAllowCredentials(true) is important, otherwise:
-        // The value of the 'Access-Control-Allow-Origin' header in the response must not be the wildcard '*' when the request's credentials mode is 'include'.
+        // The value of the 'Access-Control-Allow-Origin' header in the response must not be the wildcard '*'
+        // when the request's credentials mode is 'include'.
         configuration.setAllowCredentials(true)
         // setAllowedHeaders is important! Without it, OPTIONS preflight request
         // will fail with 403 Invalid CORS request

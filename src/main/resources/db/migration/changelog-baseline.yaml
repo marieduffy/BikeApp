@@ -85,6 +85,11 @@ databaseChangeLog:
                   type: int
                   constraints:
                     nullable: false
+              - column:
+                  name: sha_256
+                  type: varchar(257)
+                  constraints:
+                    nullable: false
         - addPrimaryKey:
             clustered: true
             columnNames: bike_id

@@ -277,57 +277,6 @@ paths:
       responses:
         '201':
           description: Item has been added to database
-  '/inventory/updateProduct':
-    patch:
-      tags:
-        - Inventory
-      summary: Updates a product's status attached with employee ID
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - status
-                - GUID
-              properties:
-                bikeId:
-                  type: integer
-                  example: 27
-                bikeDisplayName:
-                  type: string
-                  example: Coolbike3000
-                addedBy:
-                  type: string
-                  example: Jacob
-                make:
-                  type: string
-                  example: Trek
-                model:
-                  type: string
-                  example: Fast
-                color:
-                  type: string
-                  example: Blue
-                wholesaleCost:
-                  type: number
-                  example: 120.03
-                retailCost:
-                  type: number
-                  example: 175.99
-                description:
-                  type: string
-                  example: This bike goes fast
-                condition:
-                  type: string
-                  example: New
-                quantity:
-                  type: integer
-                  example: 47
-      responses:
-        '201':
-          description: Item's status has been updated
   '/order/create':
     post:
       tags:

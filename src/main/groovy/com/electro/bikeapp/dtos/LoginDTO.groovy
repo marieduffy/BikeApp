@@ -27,7 +27,7 @@ class LoginDTO implements UserDetails {
 
     @Override
     boolean isAccountNonExpired() {
-       return true
+        return true
     }
 
     @Override

@@ -54,8 +54,17 @@ class InventoryController {
         inventoryService.addProduct(newProductParameters)
     }
 
-    // TODO: PATCH - /inventory/updateProduct
-    // - Request Body is a type updateProductDTO
-    // - Return void
+    /**
+     * POST - remove a list of bikes from the inventory
+     * @requestBody JSON array of bike hashs
+     * @param String[]
+     * @return void
+     */
+    @PostMapping(value = '/inventory/removeProduct', produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    void addProduct(@RequestBody String[] hashList) {
+        log.info 'Removing bike from inventory'
+        inventoryService.removeProduct(hashList)
+    }
 
 }

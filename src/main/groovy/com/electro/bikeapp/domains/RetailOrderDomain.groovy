@@ -23,6 +23,9 @@ class RetailOrderDomain {
     @Column(name = 'customer_id')
     Long customerId
 
+    @Column(name = 'customer_name')
+    String customerName
+
     @Column(name = 'order_date')
     OffsetDateTime orderDate
 

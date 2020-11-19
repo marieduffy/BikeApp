@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.stereotype.Controller
 
 @Controller
-@SuppressWarnings(['UnnecessaryReturnKeyword'])
+@SuppressWarnings(['UnnecessaryReturnKeyword', 'DuplicateStringLiteral'])
 class WebController {
 
     @GetMapping('/')
@@ -70,6 +70,11 @@ class WebController {
     @GetMapping('/createEmployee')
     String createEmployee() {
         return '/createEmployee'
+    }
+
+    @GetMapping('/createRetailOrder')
+    String createRetailOrder() {
+        return '/createRetailOrder'
     }
 
 }

@@ -14,14 +14,35 @@ ruleset {
         'NoTabCharacter' {
             enabled = false
         }
+        'ImplicitReturnStatement' {
+            enabled = false
+        }
     }
-    ruleset('rulesets/design.xml')
+    ruleset('rulesets/design.xml'){
+        'BuilderMethodWithSideEffects'{
+            enabled = false
+        }
+    }
     ruleset('rulesets/dry.xml')
     ruleset('rulesets/exceptions.xml')
     ruleset('rulesets/formatting.xml')
     ruleset('rulesets/generic.xml')
     ruleset('rulesets/imports.xml')
-    ruleset('rulesets/naming.xml')
-    ruleset('rulesets/unnecessary.xml')
+    ruleset('rulesets/naming.xml'){
+        'FactoryMethodName' {
+            enabled = false
+        }
+    }
+    ruleset('rulesets/unnecessary.xml'){
+        'UnnecessaryReturnKeyword' {
+            enabled = false
+        }
+        'UnnecessaryGetter' {
+            enabled = false
+        }
+        'UnnecessaryObjectReferences' {
+            enabled = false
+        }
+    }
     ruleset('rulesets/unused.xml')
 }

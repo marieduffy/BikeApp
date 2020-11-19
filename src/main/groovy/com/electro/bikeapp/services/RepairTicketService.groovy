@@ -6,6 +6,7 @@ import groovy.util.logging.Slf4j
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
+@SuppressWarnings([''])
 @Slf4j
 @Service
 class RepairTicketService {

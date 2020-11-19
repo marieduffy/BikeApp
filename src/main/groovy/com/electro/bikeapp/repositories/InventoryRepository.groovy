@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository
  * @creationDate 09/12/2020
  * This Repository interfaces with the bike_inventory Table
  */
+@SuppressWarnings(['LineLength'])
 @Repository
 interface InventoryRepository extends JpaRepository<BikeDomain, Long> {
 
@@ -24,5 +25,7 @@ interface InventoryRepository extends JpaRepository<BikeDomain, Long> {
                                     @Param('inStock') Boolean inStock,
                                     @Param('condition') String condition,
                                     @Param('make') String make);
+
+    Optional<BikeDomain> findByHashValue(String hash)
 
 }

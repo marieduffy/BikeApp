@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PatchMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.beans.factory.annotation.Autowired
@@ -27,9 +29,9 @@ class EmployeeManagementController {
      * @param AddEmployeeDTO[]
      * @return void
      */
-    @PostMapping(value = '/manager/addEmployee', produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = '/manager/addEmployee', method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    void addEmployee (@RequestBody AddEmployeeDTO[] employeeParameters) {
+    void addEmployee (@RequestBody AddEmployeeDTO employeeParameters) {
         log.info('Adding a new employee to the system')
         employeeService.addEmployee(employeeParameters)
     }

@@ -76,9 +76,7 @@ class ShiftsService {
         shiftsRepository.save(currentEmployee)
     }
 
-    int[] parseString (ShiftsDTO shiftsDTO){
 
-    }
 
     //actually this is not done because I need to add one more things
     void getShiftChart (ShiftsDTO shiftsDTO) {

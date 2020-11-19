@@ -2,7 +2,7 @@ package com.electro.bikeapp.dtos
 
 class ChangeEmailDTO {
 
-    String userName
+    String username
 
     String currentEmail
 

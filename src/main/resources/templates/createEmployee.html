@@ -3,13 +3,13 @@
 
 <script language="javascript">
     function callAPI(form) {
-
         var obj = { employeeName: form.employeeName.value,
-            address: form.priceMin.value,
+            address: form.address.value,
             social: form.social.value,
             position: form.position.value,
             payRate: parseFloat(form.payRate.value),
             payrollType: form.payrollType.value,
+            privilegeLevel: form.position.value,
             username: form.username.value,
             password: form.password.value,
             email: form.email.value };
@@ -49,7 +49,7 @@
     <input type="text" id="username" name="username"><br>
     <label for="password">Password:</label><br>
     <input type="text" id="password" name="password"><br>
-    <label for="verifyPassword">Password:</label><br>
+    <label for="verifyPassword">Verify Password:</label><br>
     <input type="text" id="verifyPassword" name="verifyPassword"><br>
     <input type="submit" value="Submit" onclick="return callAPI(this.form)">
 </form>

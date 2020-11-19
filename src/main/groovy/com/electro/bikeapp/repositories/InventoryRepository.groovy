@@ -1,6 +1,7 @@
 package com.electro.bikeapp.repositories
 
 import com.electro.bikeapp.domains.BikeDomain
+import com.electro.bikeapp.domains.EmployeeDomain
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.query.Param
@@ -24,5 +25,7 @@ interface InventoryRepository extends JpaRepository<BikeDomain, Long> {
                                     @Param('inStock') Boolean inStock,
                                     @Param('condition') String condition,
                                     @Param('make') String make);
+
+    Optional<BikeDomain> findByHashValue(String hash)
 
 }

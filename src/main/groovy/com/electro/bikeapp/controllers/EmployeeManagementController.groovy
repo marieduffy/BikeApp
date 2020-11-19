@@ -29,7 +29,7 @@ class EmployeeManagementController {
      */
     @PostMapping(value = '/manager/addEmployee', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    void addEmployee (@RequestBody AddEmployeeDTO employeeParameters) {
+    void addEmployee (@RequestBody AddEmployeeDTO[] employeeParameters) {
         log.info('Adding a new employee to the system')
         employeeService.addEmployee(employeeParameters)
     }

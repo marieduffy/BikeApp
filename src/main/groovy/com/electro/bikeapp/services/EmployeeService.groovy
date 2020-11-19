@@ -24,49 +24,49 @@ class EmployeeService {
      * @param AddEmployeeDTO[]
      * @return void
      */
-    void addEmployee(AddEmployeeDTO employeeInfoParams) {
-        //for (int i = 0; i < employeeInfoParams.size(); i++) {
-        EmployeeDomain employee = new EmployeeDomain()
-        Optional<EmployeeDomain> e = employeeAccountRepository.findByUsername(employeeInfoParams.username)
-        // If employee already exists, throw error
-        if (e.isPresent()) {
-            // if its the same person
-            if (e.get().social == employeeInfoParams.social) {
-                e.get().isDeleted = false
-                e.get().payrollType = employeeInfoParams.payrollType
-                e.get().employeeName = employeeInfoParams.employeeName
-                e.get().address = employeeInfoParams.address
-                e.get().social = employeeInfoParams.social
-                e.get().position = employeeInfoParams.position
-                e.get().payRate = employeeInfoParams.payRate
-                e.get().payrollType = employeeInfoParams.payrollType
-                e.get().username = employeeInfoParams.username
-                e.get().encryptedPassword = stringEncryption.encode(employeeInfoParams.password)
-                e.get().email = employeeInfoParams.email
-                e.get().privilegeLevel = employeeInfoParams.privilegeLevel
-                employeeAccountRepository.save(e.get())
-            } else {
-                throw new NotFoundException(user + e.get().username + ' is already taken ')
+    void addEmployee(AddEmployeeDTO[] employeeInfoParams) {
+        for (int i = 0; i < employeeInfoParams.size(); i++) {
+            EmployeeDomain employee = new EmployeeDomain()
+            Optional<EmployeeDomain> e = employeeAccountRepository.findByUsername(employeeInfoParams[i].username)
+            // If employee already exists, throw error
+            if (e.isPresent()) {
+                // if its the same person
+                if (e.get().social == employeeInfoParams[i].social) {
+                    e.get().isDeleted = false
+                    e.get().payrollType = employeeInfoParams[i].payrollType
+                    e.get().employeeName = employeeInfoParams[i].employeeName
+                    e.get().address = employeeInfoParams[i].address
+                    e.get().social = employeeInfoParams[i].social
+                    e.get().position = employeeInfoParams[i].position
+                    e.get().payRate = employeeInfoParams[i].payRate
+                    e.get().payrollType = employeeInfoParams[i].payrollType
+                    e.get().username = employeeInfoParams[i].username
+                    e.get().encryptedPassword = stringEncryption.encode(employeeInfoParams[i].password)
+                    e.get().email = employeeInfoParams[i].email
+                    e.get().privilegeLevel = employeeInfoParams[i].privilegeLevel
+                    employeeAccountRepository.save(e.get())
+                } else {
+                    throw new NotFoundException(user + e.get().username + ' is already taken ')
+                }
+            }
+            // else add employee
+            else if (!e.isPresent()) {
+                employee.employeeName = employeeInfoParams[i].employeeName
+                employee.address = employeeInfoParams[i].address
+                employee.social = employeeInfoParams[i].social
+                employee.position = employeeInfoParams[i].position
+                employee.payRate = employeeInfoParams[i].payRate
+                employee.payrollType = employeeInfoParams[i].payrollType
+                employee.username = employeeInfoParams[i].username
+                employee.encryptedPassword = stringEncryption.encode(employeeInfoParams[i].password)
+                employee.email = employeeInfoParams[i].email
+                employee.privilegeLevel = employeeInfoParams[i].position
+                employee.isDeleted = false
+
+                //save employee to the database
+                employeeAccountRepository.save(employee)
             }
         }
-        // else add employee
-        else if (!e.isPresent()) {
-            employee.employeeName = employeeInfoParams.employeeName
-            employee.address = employeeInfoParams.address
-            employee.social = employeeInfoParams.social
-            employee.position = employeeInfoParams.position
-            employee.payRate = employeeInfoParams.payRate
-            employee.payrollType = employeeInfoParams.payrollType
-            employee.username = employeeInfoParams.username
-            employee.encryptedPassword = stringEncryption.encode(employeeInfoParams.password)
-            employee.email = employeeInfoParams.email
-            employee.privilegeLevel = employeeInfoParams.position
-            employee.isDeleted = false
-
-            //save employee to the database
-            employeeAccountRepository.save(employee)
-        }
-        //}
     }
 
     /**

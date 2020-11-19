@@ -4,6 +4,7 @@ import com.electro.bikeapp.domains.BikeDomain
 import com.electro.bikeapp.domains.EmployeeDomain
 import com.electro.bikeapp.dtos.AddProductDTO
 import com.electro.bikeapp.dtos.SearchInventoryDTO
+import com.electro.bikeapp.dtos.UpdateProductDTO
 import com.electro.bikeapp.repositories.InventoryRepository
 import com.electro.bikeapp.utils.ByteToHexString
 import groovy.util.logging.Slf4j
@@ -91,6 +92,32 @@ class InventoryService {
                 bike.hashValue = hexHash
                 // Save the bike to the database
                 bikeInventoryRepository.save(bike)
+            }
+        }
+    }
+
+    /**
+     * Remove bike from inventory
+     * @param AddProductDTO[]
+     * @return void
+     */
+    void removeProduct (String[] productHash) {
+        // Loop through String array of hashs
+        for (int i = 0; i < productHash.size(); i++) {
+            // For each bike:
+
+            // Look if that hash exists in DB
+            Optional<BikeDomain> bike = bikeInventoryRepository.findByHashValue(productHash)
+
+            // If bike exists in DB, decrement quantity
+            if(bike.isPresent()){
+                bike.get().quantity = bike.get().quantity - 1
+                bikeInventoryRepository.save(bike.get())
+            }
+
+            // Else, make a new bike entry
+            else{
+                log.error("Bike not found")
             }
         }
     }

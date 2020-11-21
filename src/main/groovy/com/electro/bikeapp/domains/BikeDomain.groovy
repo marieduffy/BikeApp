@@ -38,10 +38,10 @@ class BikeDomain {
     String color
 
     @Column(name = 'wholesale_cost')
-    BigDecimal wholesaleCost
+    Float wholesaleCost
 
     @Column(name = 'retail_cost')
-    BigDecimal retailCost
+    Float retailCost
 
     @Column(name = 'description')
     String description

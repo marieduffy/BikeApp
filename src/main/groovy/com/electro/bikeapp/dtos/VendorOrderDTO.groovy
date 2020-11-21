@@ -20,6 +20,6 @@ class VendorOrderDTO {
 
     Integer quantityReceived
 
-    BigDecimal purchasePrice
+    Float purchasePrice
 
 }

@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository
 @Repository
 interface RetailOrderRepository extends JpaRepository<RetailOrderDomain, Long> {
 
-    RetailOrderDomain findByOrderId(long id)
+    Optional<RetailOrderDomain> findByOrderId(long id)
 
 }

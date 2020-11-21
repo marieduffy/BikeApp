@@ -22,6 +22,11 @@ class InventoryService {
 
     ByteToHexString converter = new ByteToHexString()
 
+    /**
+     * Search inventory for specific bikes
+     * @param AddProductDTO[]
+     * @return void
+     */
     // This method returns a list of bikes with the given search parameters
     List<BikeDomain> searchInventory (SearchInventoryDTO searchParams) {
         // We call the bikeInventoryRepository and return it's result
@@ -33,7 +38,6 @@ class InventoryService {
                 searchParams.condition,
                 searchParams.make
         )
-
         return searchedBikeList
     }
 

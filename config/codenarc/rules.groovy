@@ -17,6 +17,9 @@ ruleset {
         'ImplicitReturnStatement' {
             enabled = false
         }
+        'NoFloat' {
+            enabled = false
+        }
     }
     ruleset('rulesets/design.xml'){
         'BuilderMethodWithSideEffects'{

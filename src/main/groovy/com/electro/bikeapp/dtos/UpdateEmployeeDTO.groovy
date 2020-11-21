@@ -1,16 +1,14 @@
 package com.electro.bikeapp.dtos
 
-class AddEmployeeDTO {
+class UpdateEmployeeDTO {
 
     String employeeName
 
     String address
 
-    String social
-
     String position
 
-    Float payRate
+    BigDecimal payRate
 
     String username
 

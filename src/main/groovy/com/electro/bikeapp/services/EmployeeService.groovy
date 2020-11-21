@@ -2,6 +2,7 @@ package com.electro.bikeapp.services
 
 import com.electro.bikeapp.domains.EmployeeDomain
 import com.electro.bikeapp.dtos.AddEmployeeDTO
+import com.electro.bikeapp.dtos.UpdateEmployeeDTO
 import com.electro.bikeapp.repositories.AccountRepository
 import com.electro.bikeapp.utils.StringEncryption
 import groovy.util.logging.Slf4j
@@ -69,38 +70,48 @@ class EmployeeService {
         }
     }
 
-    // TODO: Below method does not look complete...
     /**
      * Update employee in system
      * @param AddEmployeeDTO[]
      * @return void
      */
-    void updateEmployee(AddEmployeeDTO[] employeeUpdateParams, String username) {
-        //add isDeleted and findbyUsername call in repository
+    void updateEmployee(UpdateEmployeeDTO employeeUpdateParams, String currentUsername) {
         //get employee by their username
-        EmployeeDomain employee = employeeAccountRepository.findByUsername(username)
-//        if(employeeUpdateParams[0].password != null){
-//            //might not change password here
-//        }
-        if (employeeUpdateParams[0].employeeName != null) {
-            employee.employeeName = employeeUpdateParams[0].employeeName
+        Optional<EmployeeDomain> employee = employeeAccountRepository.findByUsername(currentUsername)
+        if (employee.isPresent()) {
+            // Manager's ability to reset password
+            if (employeeUpdateParams.password != null) {
+                employee.get().encryptedPassword = stringEncryption.encode(employeeUpdateParams.password)
+            }
+            if (employeeUpdateParams.employeeName != null) {
+                employee.get().employeeName = employeeUpdateParams.employeeName
+            }
+            if (employeeUpdateParams.address != null) {
+                employee.get().address = employeeUpdateParams.address
+            }
+            if (employeeUpdateParams.position != null) {
+                employee.get().position = employeeUpdateParams.position
+            }
+            if (employeeUpdateParams.payRate != null) {
+                employee.get().payRate = employeeUpdateParams.payRate
+            }
+            if (employeeUpdateParams.payrollType != null) {
+                employee.get().payrollType = employeeUpdateParams.payrollType
+            }
+            if (employeeUpdateParams.username != null) {
+                employee.get().username = employeeUpdateParams.username
+            }
+            if (employeeUpdateParams.email != null) {
+                employee.get().email = employeeUpdateParams.email
+            }
+            if (employeeUpdateParams.privilegeLevel != null) {
+                employee.get().privilegeLevel = employeeUpdateParams.privilegeLevel
+            }
+            employeeAccountRepository.save(employee.get())
         }
-        if (employeeUpdateParams[0].address != null) {
-            employee.address = employeeUpdateParams[0].address
+        else {
+            log.error("No employee found with Username: $currentUsername")
         }
-        if (employeeUpdateParams[0].position != null) {
-            employee.position = employeeUpdateParams[0].position
-        }
-        if (employeeUpdateParams[0].salary != null) {
-            employee.salary = employeeUpdateParams[0].salary
-        }
-        if (employeeUpdateParams[0].username != null) {
-            employee.username = employeeUpdateParams[0].username
-        }
-        if (employeeUpdateParams[0].payrollType != null) {
-            employee.payrollType = employeeUpdateParams[0].payrollType
-        }
-        employeeAccountRepository.save(employee)
     }
 
     /**

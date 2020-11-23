@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<script>
+function callAPI(form){}
+
+
+</script>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Update Employee Information</title>
+</head>
+<body>
+<form NAME="updateEmployeeForm" ACTION="" METHOD="patch">
+    <label for="employeeName">Employee Name:</label><br>
+    <input type="text" id="employeeName" name="employeeName"><br>
+    <label for="address">Address:</label><br>
+    <input type="text" id="address" name="address"><br>
+    <label for="position">Company Position:</label><br>
+    <input type="text" id="position" name="position"><br>
+    <label for="payRate">Pay Rate:</label><br>
+    <input type="text" id="payRate" name="payRate"><br>
+    <label for="payrollType">Payroll Type (Salary or Hourly):</label><br>
+    <input type="text" id="payrollType" name="payrollType"><br>
+    <label for="username">Username:</label><br>
+    <input type="text" id="username" name="username"><br>
+    <input type="submit" value="Submit" onclick="return callAPI(this.form)">
+</form>
+</body>
+</html>

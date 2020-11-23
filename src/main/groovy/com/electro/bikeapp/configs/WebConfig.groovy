@@ -11,8 +11,7 @@ class WebConfig implements WebMvcConfigurer {
     void addCorsMappings(CorsRegistry registry) {
         registry.addMapping('/**')
                 .allowedMethods('HEAD', 'GET', 'PUT', 'POST', 'DELETE', 'PATCH')
-        registry.addMapping('/createEmployee')
-                .allowedMethods('HEAD', 'GET', 'PUT', 'POST', 'DELETE', 'PATCH')
+                .allowedHeaders('HEAD', 'GET', 'PUT', 'POST', 'DELETE', 'PATCH')
     }
 
 }

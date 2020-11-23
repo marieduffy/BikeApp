@@ -3,7 +3,7 @@
 
 <script language="javascript">
     function callAPI(form) {
-        var obj = { employeeName: form.employeeName.value,
+        var obj = [{ employeeName: form.employeeName.value,
             address: form.address.value,
             social: form.social.value,
             position: form.position.value,
@@ -12,7 +12,7 @@
             privilegeLevel: form.position.value,
             username: form.username.value,
             password: form.password.value,
-            email: form.email.value };
+            email: form.email.value }];
         var json = JSON.stringify(obj);
         alert(json)
 
@@ -21,7 +21,6 @@
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send(json);
         alert(xhttp.responseText);
-
     }
 </script>
 
@@ -30,7 +29,7 @@
     <title>Add a New Employee</title>
 </head>
 <body>
-<form NAME="myform" ACTION="http://localhost:8080/" METHOD="POST">
+<form NAME="createEmployeeForm" ACTION="" METHOD="post">
     <label for="employeeName">Employee Name:</label><br>
     <input type="text" id="employeeName" name="employeeName"><br>
     <label for="address">Address:</label><br>
@@ -53,5 +52,6 @@
     <input type="text" id="verifyPassword" name="verifyPassword"><br>
     <input type="submit" value="Submit" onclick="return callAPI(this.form)">
 </form>
+
 </body>
 </html>

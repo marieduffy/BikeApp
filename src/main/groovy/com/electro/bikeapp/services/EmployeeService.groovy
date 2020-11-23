@@ -8,6 +8,8 @@ import groovy.util.logging.Slf4j
 import javassist.NotFoundException
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import org.springframework.web.HttpRequestMethodNotSupportedException
+import org.springframework.web.bind.annotation.ExceptionHandler
 
 @SuppressWarnings([''])
 @Slf4j
@@ -19,6 +21,12 @@ class EmployeeService {
 
     StringEncryption stringEncryption = new StringEncryption()
     String user = 'Username: '
+
+    @ExceptionHandler(HttpRequestMethodNotSupportedException)
+    void handleException(HttpRequestMethodNotSupportedException e) {
+        e.println()
+    }
+
     /**
      * Add employee to system
      * @param AddEmployeeDTO[]
@@ -78,29 +86,33 @@ class EmployeeService {
     void updateEmployee(AddEmployeeDTO[] employeeUpdateParams, String username) {
         //add isDeleted and findbyUsername call in repository
         //get employee by their username
-        EmployeeDomain employee = employeeAccountRepository.findByUsername(username)
-//        if(employeeUpdateParams[0].password != null){
-//            //might not change password here
-//        }
-        if (employeeUpdateParams[0].employeeName != null) {
-            employee.employeeName = employeeUpdateParams[0].employeeName
+        for (int i = 0; i < employeeUpdateParams.size(); i++) {
+            Optional<EmployeeDomain> employee = employeeAccountRepository.findByUsername(username)
+            if (employee.isPresent()) {
+                if (employeeUpdateParams[i].employeeName != null) {
+                    employee.get().employeeName = employeeUpdateParams[i].employeeName
+                }
+                if (employeeUpdateParams[i].address != null) {
+                    employee.get().address = employeeUpdateParams[i].address
+                }
+                if (employeeUpdateParams[i].position != null) {
+                    employee.get().position = employeeUpdateParams[i].position
+                }
+                if (employeeUpdateParams[i].payRate != null) {
+                    employee.get().payRate = employeeUpdateParams[i].payRate
+                }
+                if (employeeUpdateParams[i].username != null) {
+                    employee.get().username = employeeUpdateParams[i].username
+                }
+                if (employeeUpdateParams[i].payrollType != null) {
+                    employee.get().payrollType = employeeUpdateParams[i].payrollType
+                }
+                employeeAccountRepository.save(employee.get())
+            }
+            else {
+                log.info('There is no employee with the username you entered.')
+            }
         }
-        if (employeeUpdateParams[0].address != null) {
-            employee.address = employeeUpdateParams[0].address
-        }
-        if (employeeUpdateParams[0].position != null) {
-            employee.position = employeeUpdateParams[0].position
-        }
-        if (employeeUpdateParams[0].salary != null) {
-            employee.salary = employeeUpdateParams[0].salary
-        }
-        if (employeeUpdateParams[0].username != null) {
-            employee.username = employeeUpdateParams[0].username
-        }
-        if (employeeUpdateParams[0].payrollType != null) {
-            employee.payrollType = employeeUpdateParams[0].payrollType
-        }
-        employeeAccountRepository.save(employee)
     }
 
     /**

@@ -21,20 +21,20 @@ class AccountService {
     StringEncryption stringEncryption = new StringEncryption()
 
     boolean verifyCredentials (LoginCredentialsDTO loginCredentialsDTO) {
-        EmployeeDomain employeeDomain = accountRepository.findByUsername(loginCredentialsDTO.username)
-        if (employeeDomain != null) {
+        Optional<EmployeeDomain> employeeDomain = accountRepository.findByUsername(loginCredentialsDTO.username)
+        if (employeeDomain.isPresent()) {
             String testEncryptedPassword = stringEncryption.encode(loginCredentialsDTO.password)
-            if (testEncryptedPassword == employeeDomain.encryptedPassword) {
+            if (testEncryptedPassword == employeeDomain.get().encryptedPassword) {
                 log.info('Login successful')
                 return true
             }
             else {
-                log.info('Wrong password')
+                log.error('Password verification failed')
                 return false
             }
         }
         else {
-            log.info('Invalid username')
+            log.error("Username: $loginCredentialsDTO.username is invalid.")
             return false
         }
     }
@@ -60,7 +60,6 @@ class AccountService {
 
     void changeEmail (ChangeEmailDTO changeEmailDTO) {
         Optional<EmployeeDomain> currentEmployee = accountRepository.findByUsername(changeEmailDTO.username)
-       // println (currentEmployee.get().email)
         if (currentEmployee.isPresent()) {
             if (changeEmailDTO.currentEmail == currentEmployee.get().email) {
                 currentEmployee.get().email = changeEmailDTO.newEmail

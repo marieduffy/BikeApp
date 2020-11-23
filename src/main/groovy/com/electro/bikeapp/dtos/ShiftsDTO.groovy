@@ -10,6 +10,6 @@ class ShiftsDTO {
 
     String exitTimes
 
-    BigDecimal totalWeeklyHours
+    Float totalWeeklyHours
 
 }

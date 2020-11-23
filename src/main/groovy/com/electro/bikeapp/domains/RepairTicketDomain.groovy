@@ -36,7 +36,7 @@ class RepairTicketDomain {
     String customerDescription
 
     @Column(name = 'estimated_cost')
-    BigDecimal estimatedCost
+    Float estimatedCost
 
     @Column(name = 'service_type')
     String serviceType

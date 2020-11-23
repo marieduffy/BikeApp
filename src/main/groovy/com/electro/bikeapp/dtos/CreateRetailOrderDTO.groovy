@@ -14,7 +14,7 @@ class CreateRetailOrderDTO {
 
     String shipMethod
 
-    BigDecimal priceAmount
+    Float priceAmount
 
     String shippingAddress
 

@@ -14,9 +14,9 @@ class UpdateProductDTO {
 
     String color
 
-    BigDecimal wholesaleCost
+    Float wholesaleCost
 
-    BigDecimal retailCost
+    Float retailCost
 
     String description
 

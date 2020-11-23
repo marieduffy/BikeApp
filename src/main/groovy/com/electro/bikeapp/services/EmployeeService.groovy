@@ -2,14 +2,13 @@ package com.electro.bikeapp.services
 
 import com.electro.bikeapp.domains.EmployeeDomain
 import com.electro.bikeapp.dtos.AddEmployeeDTO
+import com.electro.bikeapp.dtos.UpdateEmployeeDTO
 import com.electro.bikeapp.repositories.AccountRepository
 import com.electro.bikeapp.utils.StringEncryption
 import groovy.util.logging.Slf4j
 import javassist.NotFoundException
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import org.springframework.web.HttpRequestMethodNotSupportedException
-import org.springframework.web.bind.annotation.ExceptionHandler
 
 @SuppressWarnings([''])
 @Slf4j
@@ -21,12 +20,6 @@ class EmployeeService {
 
     StringEncryption stringEncryption = new StringEncryption()
     String user = 'Username: '
-
-    @ExceptionHandler(HttpRequestMethodNotSupportedException)
-    void handleException(HttpRequestMethodNotSupportedException e) {
-        e.println()
-    }
-
     /**
      * Add employee to system
      * @param AddEmployeeDTO[]
@@ -77,41 +70,47 @@ class EmployeeService {
         }
     }
 
-    // TODO: Below method does not look complete...
     /**
      * Update employee in system
      * @param AddEmployeeDTO[]
      * @return void
      */
-    void updateEmployee(AddEmployeeDTO[] employeeUpdateParams, String username) {
-        //add isDeleted and findbyUsername call in repository
+    void updateEmployee(UpdateEmployeeDTO employeeUpdateParams, String currentUsername) {
         //get employee by their username
-        for (int i = 0; i < employeeUpdateParams.size(); i++) {
-            Optional<EmployeeDomain> employee = employeeAccountRepository.findByUsername(username)
-            if (employee.isPresent()) {
-                if (employeeUpdateParams[i].employeeName != null) {
-                    employee.get().employeeName = employeeUpdateParams[i].employeeName
-                }
-                if (employeeUpdateParams[i].address != null) {
-                    employee.get().address = employeeUpdateParams[i].address
-                }
-                if (employeeUpdateParams[i].position != null) {
-                    employee.get().position = employeeUpdateParams[i].position
-                }
-                if (employeeUpdateParams[i].payRate != null) {
-                    employee.get().payRate = employeeUpdateParams[i].payRate
-                }
-                if (employeeUpdateParams[i].username != null) {
-                    employee.get().username = employeeUpdateParams[i].username
-                }
-                if (employeeUpdateParams[i].payrollType != null) {
-                    employee.get().payrollType = employeeUpdateParams[i].payrollType
-                }
-                employeeAccountRepository.save(employee.get())
+        Optional<EmployeeDomain> employee = employeeAccountRepository.findByUsername(currentUsername)
+        if (employee.isPresent()) {
+            // Manager's ability to reset password
+            if (employeeUpdateParams.password != null) {
+                employee.get().encryptedPassword = stringEncryption.encode(employeeUpdateParams.password)
             }
-            else {
-                log.info('There is no employee with the username you entered.')
+            if (employeeUpdateParams.employeeName != null) {
+                employee.get().employeeName = employeeUpdateParams.employeeName
             }
+            if (employeeUpdateParams.address != null) {
+                employee.get().address = employeeUpdateParams.address
+            }
+            if (employeeUpdateParams.position != null) {
+                employee.get().position = employeeUpdateParams.position
+            }
+            if (employeeUpdateParams.payRate != null) {
+                employee.get().payRate = employeeUpdateParams.payRate
+            }
+            if (employeeUpdateParams.payrollType != null) {
+                employee.get().payrollType = employeeUpdateParams.payrollType
+            }
+            if (employeeUpdateParams.username != null) {
+                employee.get().username = employeeUpdateParams.username
+            }
+            if (employeeUpdateParams.email != null) {
+                employee.get().email = employeeUpdateParams.email
+            }
+            if (employeeUpdateParams.privilegeLevel != null) {
+                employee.get().privilegeLevel = employeeUpdateParams.privilegeLevel
+            }
+            employeeAccountRepository.save(employee.get())
+        }
+        else {
+            log.error("No employee found with Username: $currentUsername")
         }
     }
 

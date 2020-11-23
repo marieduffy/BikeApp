@@ -43,7 +43,7 @@ class ShiftsDomain {
     String exitTimes
 
     @Column(name = 'total_weekly_hours')
-    BigDecimal totalWeeklyHours
+    Float totalWeeklyHours
 
     @Column(name = 'request_days_off')
     String requestMessage

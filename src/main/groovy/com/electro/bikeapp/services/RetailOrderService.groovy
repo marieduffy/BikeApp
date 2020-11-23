@@ -34,14 +34,19 @@ class RetailOrderService {
         }
     }
 
-    RetailOrderDomain getRetailOrder(long id) {
-        return retailOrderRepository.findByOrderId(id).getOrderStatus()
+    String getRetailOrder(long id) {
+        return retailOrderRepository.findByOrderId(id).get().orderStatus
     }
 
     void updateRetailOrderStatus(long id, String status) {
-        RetailOrderDomain retailOrder = retailOrderRepository.findByOrderId(id)
-        retailOrder.orderStatus = status
-        retailOrderRepository.save(retailOrder)
+        Optional<RetailOrderDomain> retailOrder = retailOrderRepository.findByOrderId(id)
+        if (retailOrder.isPresent()) {
+            retailOrder.get().orderStatus = status
+            retailOrderRepository.save(retailOrder.get())
+        }
+        else {
+            log.error("ID: $id is invalid")
+        }
     }
 
 }

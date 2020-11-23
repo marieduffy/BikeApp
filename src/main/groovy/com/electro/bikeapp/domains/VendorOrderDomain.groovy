@@ -42,6 +42,6 @@ class VendorOrderDomain {
     Integer quantityReceived
 
     @Column(name = 'purchase_price')
-    BigDecimal purchasePrice
+    Float purchasePrice
 
 }

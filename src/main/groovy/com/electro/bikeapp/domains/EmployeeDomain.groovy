@@ -29,7 +29,7 @@ class EmployeeDomain {
     String position
 
     @Column(name = 'pay_rate')
-    BigDecimal payRate
+    Float payRate
 
     @Column(name = 'payroll_type')
     String payrollType

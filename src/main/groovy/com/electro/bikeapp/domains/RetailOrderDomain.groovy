@@ -33,7 +33,7 @@ class RetailOrderDomain {
     String shipMethod
 
     @Column(name = 'sales_price')
-    BigDecimal priceAmount
+    Float priceAmount
 
     @Column(name = 'shipping_address')
     String shippingAddress

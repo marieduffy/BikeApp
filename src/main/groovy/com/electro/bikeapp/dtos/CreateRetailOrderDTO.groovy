@@ -6,15 +6,13 @@ class CreateRetailOrderDTO {
 
     String orderStatus
 
-    Long customerId
-
     String customerName
 
-    OffsetDateTime orderDate
+    String paymentMethod
 
-    String shipMethod
+    Float paymentAmount
 
-    Float priceAmount
+    String shippingMethod
 
     String shippingAddress
 

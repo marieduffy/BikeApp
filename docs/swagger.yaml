@@ -289,9 +289,10 @@ paths:
             schema:
               type: object
               required:
+                - orderStatus
                 - customerName
-                - customerAddress
-                - isPaid
+                - shippingAddress
+                - shippingMethod
                 - paymentMethod
               properties:
                 customerName:

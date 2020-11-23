@@ -29,9 +29,9 @@ class RetailOrderController {
      */
     @PostMapping(value = '/order/create', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    void createRetailOrder(@RequestBody CreateRetailOrderDTO newOrderParameters) {
+    void createRetailOrder(@RequestBody CreateRetailOrderDTO[] newRetailOrderParameters) {
         log.info 'Creating Retail Order'
-        retailOrderService.createRetailOrder(newOrderParameters)
+        retailOrderService.createRetailOrder(newRetailOrderParameters)
     }
 
     /**

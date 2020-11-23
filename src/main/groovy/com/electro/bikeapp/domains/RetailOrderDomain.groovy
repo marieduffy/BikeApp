@@ -20,20 +20,20 @@ class RetailOrderDomain {
     @Column(name = 'order_status')
     String orderStatus
 
-    @Column(name = 'customer_id')
-    Long customerId
-
     @Column(name = 'customer_name')
     String customerName
 
     @Column(name = 'order_date')
     OffsetDateTime orderDate
 
+    @Column(name = 'payment_method')
+    String paymentMethod
+
+    @Column(name = 'payment_amount')
+    Float paymentAmount
+
     @Column(name = 'shipping_method')
     String shipMethod
-
-    @Column(name = 'sales_price')
-    Float priceAmount
 
     @Column(name = 'shipping_address')
     String shippingAddress

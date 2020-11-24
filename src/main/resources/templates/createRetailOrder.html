@@ -38,18 +38,18 @@
         }
 
         function callAPI(form) {
-            const obj = {
+            const obj = [{
                 orderStatus: form.orderStatus.value,
-                customerId: form.customerId.value,
                 customerName: form.customerName.value,
-                orderDate: form.orderDate.value,
-                shipMethod: form.shipMethod.value,
+                paymentMethod: form.paymentMethod.value,
                 priceAmount: parseFloat(form.priceAmount.value),
-                shippingAddress: form.shippingAddress.value
-            };
+                shippingMethod: form.shippingMethod.value,
+                shippingAddress: form.shippingAddress.value,
+                itemIds: ["a","b","c"]
+            }];
             const json = JSON.stringify(obj);
             const xhttp = new XMLHttpRequest();
-            xhttp.open("POST", "http://localhost:8080/createRetailOrder");
+            xhttp.open("POST", "http://localhost:8080/order/create");
             xhttp.setRequestHeader("Content-type", "application/json");
             xhttp.send(json);
             alert(xhttp.responseText);
@@ -67,7 +67,7 @@
             <option value="shipped">Shipped</option>
         </select><br><br>
         <label>Customer Name:<br><input type="text" name="customerName"></label><br><br>
-        <label>Payment Method:<br><input type="number" name="paymentMethod"></label><br><br>
+        <label>Payment Method:<br><input type="text" name="paymentMethod"></label><br><br>
         <label>Grand Total:<br><input type="number" name="paymentAmount"></label><br><br>
         <label for="shippingMethod">Shipping Method:</label><br>
         <select name="shippingMethod" id="shippingMethod">

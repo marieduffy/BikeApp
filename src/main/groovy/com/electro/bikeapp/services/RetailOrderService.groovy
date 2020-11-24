@@ -22,12 +22,13 @@ class RetailOrderService {
             RetailOrderDomain retailOrder = new RetailOrderDomain()
 
             retailOrder.orderStatus = newRetailOrderParametersArray[i].orderStatus
-            retailOrder.customerId = newRetailOrderParametersArray[i].customerId
             retailOrder.customerName = newRetailOrderParametersArray[i].customerName
-            retailOrder.orderDate = newRetailOrderParametersArray[i].orderDate
-            retailOrder.shipMethod = newRetailOrderParametersArray[i].shipMethod
-            retailOrder.priceAmount = newRetailOrderParametersArray[i].priceAmount
+            retailOrder.paymentMethod = newRetailOrderParametersArray[i].paymentMethod
+            retailOrder.paymentAmount = newRetailOrderParametersArray[i].paymentAmount
+            retailOrder.shipMethod = newRetailOrderParametersArray[i].shippingMethod
             retailOrder.shippingAddress = newRetailOrderParametersArray[i].shippingAddress
+            retailOrder.itemIds = newRetailOrderParametersArray[i].itemIds
+
 
             // save the retail order to database
             retailOrderRepository.save(retailOrder)

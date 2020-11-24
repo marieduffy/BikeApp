@@ -58,6 +58,7 @@
 </head>
 <body>
     <form method="post">
+        <h2>Creating a Retail Order</h2>
         <label for="orderStatus">Order Status:</label><br>
         <select name="orderStatus" id="orderStatus">
             <option value="awaiting payment">Awaiting Payment</option>
@@ -65,15 +66,14 @@
             <option value="partial shipped">Partially shipped</option>
             <option value="shipped">Shipped</option>
         </select><br><br>
-        <label>Customer ID:<br><input type="text" name="customerId"></label><br><br>
         <label>Customer Name:<br><input type="text" name="customerName"></label><br><br>
-        <label>Order Date:<br><input type="date" name="orderDate"></label><br><br>
-        <label for="shipMethod">Shipping Method:</label><br>
-        <select name="shipMethod" id="shipMethod">
+        <label>Payment Method:<br><input type="number" name="paymentMethod"></label><br><br>
+        <label>Grand Total:<br><input type="number" name="paymentAmount"></label><br><br>
+        <label for="shippingMethod">Shipping Method:</label><br>
+        <select name="shippingMethod" id="shippingMethod">
             <option value="regular">Regular</option>
             <option value="express">Express</option>
         </select><br><br>
-        <label>Grand Total:<br><input type="number" name="priceAmount"></label><br><br>
         <label>Shipping Address:<br><input type="text" name="shippingAddress"></label><br>
 
         <div id="itemDiv" >

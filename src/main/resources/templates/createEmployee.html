@@ -1,5 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Add a New Employee</title>
+</head>
+<body>
 
 <script language="javascript">
     function callAPI(form) {
@@ -24,11 +30,18 @@
     }
 </script>
 
-<head>
-    <meta charset="UTF-8">
-    <title>Add a New Employee</title>
-</head>
-<body>
+<div class="topnav">
+    <a href="/">Home</a>
+    <a href="/">Employee Home Page</a>
+    <a href="/">Inventory</a>
+    <a href="/vendorHomePage">Vendor Orders</a>
+    <a href="/">Repair Tickets</a>
+    <a href="/contact">Contact</a>
+    <form th:action="@{/logout}" method="post">
+        <input class="logoutButton" type="submit" value="Logout">
+    </form>
+</div>
+
 <form NAME="createEmployeeForm" ACTION="" METHOD="post">
     <label for="employeeName">Employee Name:</label><br>
     <input type="text" id="employeeName" name="employeeName"><br>

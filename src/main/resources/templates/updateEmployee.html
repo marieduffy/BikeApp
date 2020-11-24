@@ -2,7 +2,24 @@
 <html lang="en">
 
 <script>
-function callAPI(form){}
+function callAPI(form){
+
+    var obj = { employeeName: form.employeeName.value,
+        address: form.address.value,
+        position: form.position.value,
+        payRate: parseFloat(form.payRate.value),
+        payrollType: form.payrollType.value,
+        username: form.username.value
+    }
+    var json = JSON.stringify(obj);
+    alert(json)
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("PATCH", "http://localhost:8080/manager/updateEmployee/{username}");
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send(json);
+
+}
 
 
 </script>

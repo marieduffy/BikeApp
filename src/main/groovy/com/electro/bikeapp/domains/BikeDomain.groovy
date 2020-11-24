@@ -61,7 +61,7 @@ class BikeDomain {
     @Column(name = 'quantity')
     Integer quantity
 
-    @Column(name = 'sha_256')
+    @Column(name = 'hash')
     String hashValue
 
 }

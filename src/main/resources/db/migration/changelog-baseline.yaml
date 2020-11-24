@@ -86,8 +86,8 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  name: sha_256
-                  type: varchar(257)
+                  name: hash
+                  type: varchar(41)
                   constraints:
                     nullable: false
         - addPrimaryKey:

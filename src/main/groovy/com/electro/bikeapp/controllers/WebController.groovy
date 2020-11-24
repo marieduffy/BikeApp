@@ -2,6 +2,8 @@ package com.electro.bikeapp.controllers
 
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.stereotype.Controller
+import org.springframework.web.bind.annotation.PatchMapping
+import org.springframework.web.bind.annotation.PostMapping
 
 @Controller
 @SuppressWarnings(['UnnecessaryReturnKeyword', 'DuplicateStringLiteral'])
@@ -67,7 +69,7 @@ class WebController {
         return '/inventory'
     }
 
-    @GetMapping('/createEmployee')
+    @PostMapping('/manager/addEmployee')
     String createEmployee() {
         return '/createEmployee'
     }
@@ -75,6 +77,11 @@ class WebController {
     @GetMapping('/createRetailOrder')
     String createRetailOrder() {
         return '/createRetailOrder'
+    }
+
+    @PatchMapping('/updateEmployee')
+    String updateEmployee() {
+        return '/updateEmployee'
     }
 
 }

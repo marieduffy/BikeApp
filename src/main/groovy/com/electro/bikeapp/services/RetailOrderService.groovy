@@ -27,8 +27,7 @@ class RetailOrderService {
             retailOrder.paymentAmount = newRetailOrderParametersArray[i].paymentAmount
             retailOrder.shipMethod = newRetailOrderParametersArray[i].shippingMethod
             retailOrder.shippingAddress = newRetailOrderParametersArray[i].shippingAddress
-            retailOrder.itemIds = newRetailOrderParametersArray[i].itemIds
-
+            retailOrder.itemIds = newRetailOrderParametersArray[i].itemIds.toString()
 
             // save the retail order to database
             retailOrderRepository.save(retailOrder)

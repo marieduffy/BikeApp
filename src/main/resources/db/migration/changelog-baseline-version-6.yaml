@@ -29,7 +29,7 @@ databaseChangeLog:
                   name: vendor_order_status
                   type: varchar(255)
                   constraints:
-                    nullable: false
+                    nullable: true
               - column:
                   name: vendor_order_date
                   type: DATETIME
@@ -38,6 +38,8 @@ databaseChangeLog:
               - column:
                   name: vendor_receive_date
                   type: DATETIME
+                  constraints:
+                    nullable: true
               - column:
                   name: quantity_ordered
                   type: BIGINT
@@ -47,10 +49,15 @@ databaseChangeLog:
                   name: quantity_received
                   type: BIGINT
                   constraints:
-                    nullable: false
+                    nullable: true
               - column:
                   name: purchase_price
                   type: float
+                  constraints:
+                    nullable: false
+              - column:
+                  name: order_breakdown
+                  type: nvarchar(10000)
                   constraints:
                     nullable: false
         - addPrimaryKey:

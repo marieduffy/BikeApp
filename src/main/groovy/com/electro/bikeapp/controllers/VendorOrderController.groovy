@@ -6,6 +6,7 @@ import groovy.util.logging.Slf4j
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PatchMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.ResponseStatus
@@ -36,13 +37,19 @@ class VendorOrderController {
     //TODO: update vendor preference status: i.e. preferred, okay, not preferred
     /**
      * PATCH - update vendor preference status
-     * @requestBody JSON VendorOrderDTO[]
+     * @requestBody Integer vendorOrderId, String status
      * @param
      * @return void
      */
+    @PatchMapping(value = '/vendorOrder/update')
+    @ResponseStatus(HttpStatus.OK)
+    void updateVendorOrderStatus (@RequestBody Integer vendorOrderId, String status) {
+        log.info('Updating Vendor Order Status')
+        vendorOrderService.updateVendorOrderStatus(vendorOrderId, status)
+    }
 
     /**
-     * GET - update vendor preference status
+     * GET - get current vendor order
      * @requestBody JSON VendorOrderDTO[]
      * @param
      * @return List of Vendor Orders

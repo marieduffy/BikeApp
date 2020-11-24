@@ -2,11 +2,12 @@ package com.electro.bikeapp.services
 
 import com.electro.bikeapp.domains.VendorOrderDomain
 import com.electro.bikeapp.dtos.VendorOrderDTO
-import com.electro.bikeapp.repositories.AccountRepository
 import com.electro.bikeapp.repositories.VendorOrderRepository
 import groovy.util.logging.Slf4j
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+
+import java.time.OffsetDateTime
 
 @Slf4j
 @Service
@@ -14,11 +15,12 @@ class VendorOrderService {
 
     @Autowired
     VendorOrderRepository vendorOrderRepository
-    AccountRepository employeeAccountRepository
+    float MANAGER_REQ_AMOUNT = 500
+    float OWNER_REQ_AMOUNT = 10000
 
     /**
      * Create an order to send to a vendor
-     * @param VendorOrderDTO[] ??
+     * @param VendorOrderDTO[]
      * @return void
      */
     void createVendorOrder(VendorOrderDTO[] vendorOrderParameters) {
@@ -32,26 +34,36 @@ class VendorOrderService {
 
         vendorOrder.vendorId = vendorOrderParameters[0].vendorId
         vendorOrder.vendorName = vendorOrderParameters[0].vendorName
-        vendorOrder.vendorOrderStatus = 'Confirmed'
-        vendorOrder.vendorOrderDate = vendorOrderParameters[0].vendorOrderDate
-        vendorOrder.vendorReceiveDate = null
+        vendorOrder.vendorOrderStatus = 'Received'
         vendorOrder.quantityOrdered = vendorOrderParameters[0].quantityOrdered
-        vendorOrder.quantityReceived = null
         vendorOrder.purchasePrice = vendorOrderParameters[0].purchasePrice
+        vendorOrder.orderBreakdown = vendorOrderParameters[0].orderBreakdown.toString()
 
-        int fiveHund = 500
-        int tenThou = 10000
-        if (vendorOrder.purchasePrice < fiveHund) {
+
+        if (vendorOrder.purchasePrice < MANAGER_REQ_AMOUNT) {
             vendorOrderRepository.save(vendorOrder)
         }
-        else if (vendorOrder.purchasePrice >= fiveHund && vendorOrder.purchasePrice < tenThou) {
+        else if (vendorOrder.purchasePrice >= MANAGER_REQ_AMOUNT && vendorOrder.purchasePrice < OWNER_REQ_AMOUNT) {
             log.info('This order requires manager or owner approval')
             //verify login credentials for a manager or owner
         }
-        else if (vendorOrder.purchasePrice >= tenThou) {
+        else if (vendorOrder.purchasePrice >= OWNER_REQ_AMOUNT) {
             log.info('This order requires SCEB owner approval')
             //verify login credentials for the owner
         }
     }
 
+    void updateVendorOrderStatus (Integer vendorOrderId, String status) {
+        Optional<VendorOrderDomain> vendorOrder = vendorOrderRepository.findByVendorOrderId(vendorOrderId)
+        OffsetDateTime offsetDateTime = OffsetDateTime.now();
+        if (vendorOrder.isPresent()) {
+            vendorOrder.get().vendorOrderStatus = status
+            if (status == "received") {
+                vendorOrder.get().vendorReceiveDate = offsetDateTime
+            }
+        }
+        else {
+            log.error("No vendor order found")
+        }
+    }
 }

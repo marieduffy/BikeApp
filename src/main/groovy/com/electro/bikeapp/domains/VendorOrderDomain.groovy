@@ -1,5 +1,7 @@
 package com.electro.bikeapp.domains
 
+import org.hibernate.annotations.CreationTimestamp
+
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.Id
@@ -29,6 +31,7 @@ class VendorOrderDomain {
     @Column(name = 'vendor_order_status')
     String vendorOrderStatus
 
+    @CreationTimestamp
     @Column(name = 'vendor_order_date')
     OffsetDateTime vendorOrderDate
 

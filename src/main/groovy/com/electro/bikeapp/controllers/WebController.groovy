@@ -4,82 +4,83 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.PatchMapping
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestMapping
 
 @Controller
 @SuppressWarnings(['UnnecessaryReturnKeyword', 'DuplicateStringLiteral'])
 class WebController {
 
-    @GetMapping('/')
+    @RequestMapping('/')
     String home() {
         return '/home'
     }
 
-    @GetMapping('/login')
+    @RequestMapping('/login')
     String login() {
         return '/login'
     }
 
-    @GetMapping('/user')
+    @RequestMapping('/user')
     String user() {
         return '/user'
     }
 
-    @GetMapping('/admin')
+    @RequestMapping('/admin')
     String admin() {
         return '/contact'
     }
 
-    @GetMapping('/about')
+    @RequestMapping('/about')
     String about() {
         return '/about'
     }
 
-    @GetMapping('/contact')
+    @RequestMapping('/contact')
     String contact() {
         return '/contact'
     }
 
-    @GetMapping('/owner')
+    @RequestMapping('/owner')
     String owner() {
         return '/owner'
     }
 
-    @GetMapping('/manager')
+    @RequestMapping('/manager')
     String manager() {
         return '/manager'
     }
 
-    @GetMapping('/vendorOrder')
+    @RequestMapping('/vendorOrder')
     String vendorOrder() {
         return '/vendorOrder'
     }
 
-    @GetMapping('/vendorHomePage')
+    @RequestMapping('/vendorHomePage')
     String vendorHomePage() {
         return '/vendorHomePage'
     }
 
-    @GetMapping('/vendorOrdersCurrent')
+    @RequestMapping('/vendorOrdersCurrent')
     String vendorOrdersCurrent() {
         return '/vendorOrdersCurrent'
     }
 
-    @GetMapping('/inventory')
+    @RequestMapping('/inventory')
     String inventory() {
         return '/inventory'
     }
 
-    @PostMapping('/manager/addEmployee')
+    @RequestMapping('/createEmployee')
     String createEmployee() {
         return '/createEmployee'
     }
 
-    @GetMapping('/createRetailOrder')
+    @RequestMapping('/createRetailOrder')
     String createRetailOrder() {
         return '/createRetailOrder'
     }
 
-    @PatchMapping('/updateEmployee')
+    @RequestMapping('/updateEmployee')
     String updateEmployee() {
         return '/updateEmployee'
     }

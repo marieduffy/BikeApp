@@ -62,7 +62,7 @@ class InventoryService {
                     newProductParametersArray[i].condition
 
             // Hash bike data
-            MessageDigest digest = MessageDigest.getInstance('SHA-256')
+            MessageDigest digest = MessageDigest.getInstance('SHA-1')
             byte[] hash = digest.digest(bikeData.getBytes(StandardCharsets.UTF_8))
 
             // Convert hash to hex

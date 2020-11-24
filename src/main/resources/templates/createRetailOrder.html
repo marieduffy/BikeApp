@@ -42,7 +42,7 @@
                 orderStatus: form.orderStatus.value,
                 customerName: form.customerName.value,
                 paymentMethod: form.paymentMethod.value,
-                priceAmount: parseFloat(form.priceAmount.value),
+                paymentAmount: parseFloat(form.paymentAmount.value),
                 shippingMethod: form.shippingMethod.value,
                 shippingAddress: form.shippingAddress.value,
                 itemIds: ["a","b","c"]
@@ -52,7 +52,6 @@
             xhttp.open("POST", "http://localhost:8080/order/create");
             xhttp.setRequestHeader("Content-type", "application/json");
             xhttp.send(json);
-            alert(xhttp.responseText);
         }
     </script>
 </head>

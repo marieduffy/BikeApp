@@ -47,4 +47,6 @@ class VendorOrderDomain {
     @Column(name = 'purchase_price')
     Float purchasePrice
 
+    @Column(name = 'order_breakdown')
+    String orderBreakdown
 }

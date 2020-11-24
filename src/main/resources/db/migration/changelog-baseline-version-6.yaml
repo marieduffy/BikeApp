@@ -10,14 +10,14 @@ databaseChangeLog:
             columns:
               - column:
                   name: vendor_order_id
-                  type: BIGINT
+                  type: INT
                   autoIncrement: true
                   constraints:
                     nullable: false
                     unique: true
               - column:
                   name: vendor_id
-                  type: BIGINT
+                  type: INT
                   constraints:
                     nullable: false
               - column:
@@ -27,9 +27,9 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: vendor_order_status
-                  type: varchar(255)
+                  type: varchar(50)
                   constraints:
-                    nullable: false
+                    nullable: true
               - column:
                   name: vendor_order_date
                   type: DATETIME
@@ -38,19 +38,26 @@ databaseChangeLog:
               - column:
                   name: vendor_receive_date
                   type: DATETIME
+                  constraints:
+                    nullable: true
               - column:
                   name: quantity_ordered
-                  type: BIGINT
+                  type: INT
                   constraints:
                     nullable: false
               - column:
                   name: quantity_received
-                  type: BIGINT
+                  type: INT
                   constraints:
-                    nullable: false
+                    nullable: true
               - column:
                   name: purchase_price
                   type: float
+                  constraints:
+                    nullable: false
+              - column:
+                  name: order_breakdown
+                  type: varchar(10000)
                   constraints:
                     nullable: false
         - addPrimaryKey:

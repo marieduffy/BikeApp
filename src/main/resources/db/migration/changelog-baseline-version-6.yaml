@@ -10,14 +10,14 @@ databaseChangeLog:
             columns:
               - column:
                   name: vendor_order_id
-                  type: BIGINT
+                  type: INT
                   autoIncrement: true
                   constraints:
                     nullable: false
                     unique: true
               - column:
                   name: vendor_id
-                  type: BIGINT
+                  type: INT
                   constraints:
                     nullable: false
               - column:
@@ -27,7 +27,7 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: vendor_order_status
-                  type: varchar(255)
+                  type: varchar(50)
                   constraints:
                     nullable: true
               - column:
@@ -42,12 +42,12 @@ databaseChangeLog:
                     nullable: true
               - column:
                   name: quantity_ordered
-                  type: BIGINT
+                  type: INT
                   constraints:
                     nullable: false
               - column:
                   name: quantity_received
-                  type: BIGINT
+                  type: INT
                   constraints:
                     nullable: true
               - column:
@@ -57,7 +57,7 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: order_breakdown
-                  type: nvarchar(10000)
+                  type: varchar(10000)
                   constraints:
                     nullable: false
         - addPrimaryKey:

@@ -1,5 +1,7 @@
 package com.electro.bikeapp.domains
 
+import org.hibernate.annotations.CreationTimestamp
+
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
@@ -23,6 +25,7 @@ class RetailOrderDomain {
     @Column(name = 'customer_name')
     String customerName
 
+    @CreationTimestamp
     @Column(name = 'order_date')
     OffsetDateTime orderDate
 
@@ -38,4 +41,6 @@ class RetailOrderDomain {
     @Column(name = 'shipping_address')
     String shippingAddress
 
+    @Column(name = 'item_ids')
+    String itemIds
 }

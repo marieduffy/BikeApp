@@ -16,4 +16,6 @@ class CreateRetailOrderDTO {
 
     String shippingAddress
 
+    String itemIds
+
 }

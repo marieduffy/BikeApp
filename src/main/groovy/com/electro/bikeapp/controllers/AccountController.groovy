@@ -121,6 +121,7 @@ class AccountController {
     @PostMapping(value = '/account/getPrivilege', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     String getPrivilege (@RequestBody String username) {
+        log.info(username)
         accountService.getPrivilege(username)
     }
 

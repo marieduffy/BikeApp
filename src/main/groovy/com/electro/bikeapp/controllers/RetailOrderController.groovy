@@ -1,6 +1,5 @@
 package com.electro.bikeapp.controllers
 
-import com.electro.bikeapp.domains.RetailOrderDomain
 import com.electro.bikeapp.dtos.CreateRetailOrderDTO
 import com.electro.bikeapp.services.RetailOrderService
 import groovy.util.logging.Slf4j
@@ -41,7 +40,7 @@ class RetailOrderController {
      */
     @GetMapping(value = '/order/status/{orderId}', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    RetailOrderDomain getRetailOrder(@PathVariable Long orderId) {
+    String getRetailOrder(@PathVariable Long orderId) {
         log.info 'Getting Retail Order'
         retailOrderService.getRetailOrder(orderId)
     }

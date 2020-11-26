@@ -15,8 +15,8 @@ class VendorOrderService {
 
     @Autowired
     VendorOrderRepository vendorOrderRepository
-    float MANAGER_REQ_AMOUNT = 500
-    float OWNER_REQ_AMOUNT = 10000
+    float MANAGER_REQ_AMOUNT = 500.00
+    float OWNER_REQ_AMOUNT = 10000.00
 
     /**
      * Create an order to send to a vendor

@@ -70,6 +70,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                     .antMatchers('/manager').hasAnyAuthority('MANAGER', 'OWNER')
                     .antMatchers('/owner').hasAuthority('OWNER')
+                    .antMatchers('/bookkeeper').hasAnyAuthority('BOOKKEEPER', 'MANAGER', 'OWNER')
                     .antMatchers('/user').authenticated()
                     .antMatchers('/').permitAll()
                     .antMatchers('/contact').permitAll()
@@ -78,15 +79,11 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                         .loginPage('/login')
-                        .defaultSuccessUrl('/', true)
                         .permitAll()
                 .and()
                 .logout()
                     .logoutRequestMatcher(new AntPathRequestMatcher('/logout'))
                     .logoutSuccessUrl('/login')
-
-        // TODO: Make logout functionality
-        // TODO: Add pages and set privileges
     }
 
 }

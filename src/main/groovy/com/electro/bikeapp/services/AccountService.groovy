@@ -74,4 +74,8 @@ class AccountService {
         }
     }
 
+    String getPrivilege (String username) {
+        Optional<EmployeeDomain> employeeDomain = accountRepository.findByUsername(username)
+        employeeDomain.get().privilegeLevel
+    }
 }

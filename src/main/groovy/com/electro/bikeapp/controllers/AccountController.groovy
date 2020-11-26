@@ -118,4 +118,10 @@ class AccountController {
         shiftsService.requestTimeOff(requestsDTO)
     }
 
+    @PostMapping(value = '/account/getPrivilege', produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    String getPrivilege (@RequestBody String username) {
+        accountService.getPrivilege(username)
+    }
+
 }

@@ -82,8 +82,8 @@ class WebController {
         return '/updateEmployee'
     }
 
-    @RequestMapping('/help')
-    String help() {
-        return '/help'
+    @RequestMapping('/bookkeeper')
+    String bookkeeper() {
+        return '/bookkeeper'
     }
 }

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Bookkeeper</title>
+    <link rel="stylesheet" type="text/css" href="css/pages.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/topnav.css">
+</head>
+<nav class="topnav">
+    <a href="/">Home</a>
+    <a href="#">Employee Info</a>
+    <a href="#">Payroll</a>
+    <a href="/contact">Contact</a>
+    <form th:action="@{/logout}" method="post">
+        <input class="logoutButton" type="submit" value="Logout"></input>
+    </form>
+</nav>
+<body>
+<h1><strong>Quick Functions</strong></h1>
+<div class = "quickFunctions">
+    <a href="/createEmployee">Add a New employee to the system</a><br>
+    <a href="/updateEmployee">Update An Existing Employee's Information</a><br>
+    <a href="/inventory">Search for an item in SCEB inventory</a><br>
+    <a href="/vendorOrder">Start a new order with a Vendor</a><br>
+</div>
+</body>
+</html>

@@ -1,5 +1,4 @@
 .topnav {
-    font-family: Ubuntu-Regular;
     overflow: hidden;
     background-color: #333;
 }
@@ -13,20 +12,19 @@
     font-size: 17px;
 }
 
-.topnav a:hover, .logoutButton[type="submit"] input.hover {
-    background-color: #ddd;
+.topnav a:hover, .logoutButton[type="submit"].hover input.hover {
+    background-color: #6D97A4;
     color: black;
 }
 
-.topnav a.active, .logoutButton[type="submit"] input.active{
-    background-color: #a82e3f;
+.topnav a.active, input.active{
+    background-color: #7aa8b7;
     color: white;
 }
 
 .logoutButton[type="submit"]{
-    font-family: Ubuntu-Regular;
     float: right;
-    color: #f2f2f2;
+    color: white;
     text-align: center;
     padding: 20px 16px;
     text-decoration: none;

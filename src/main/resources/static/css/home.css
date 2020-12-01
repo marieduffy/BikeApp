@@ -1,0 +1,18 @@
+.centeredImage {
+    display: block;
+    margin-top: 10%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 25%;
+    width: 40%;
+    animation: rotation 20s infinite linear;
+}
+
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(359deg);
+    }
+}

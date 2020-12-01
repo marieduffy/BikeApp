@@ -82,4 +82,8 @@ class WebController {
         return '/updateEmployee'
     }
 
+    @RequestMapping('/help')
+    String help() {
+        return '/help'
+    }
 }

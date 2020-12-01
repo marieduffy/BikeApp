@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Help Center</title>
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/topnav.css">
+    <link rel="stylesheet" type="text/css" href="css/help.css">
+</head>
+
+<body>
+
+<div class="topnav">
+    <a href="/">Home</a>
+    <a href="/login">Login</a>
+    <a href="/vendorHomePage">Vendor Order Home</a>
+    <a href="/inventory">Inventory</a>
+    <a href="/contact">Contact</a>
+    <a class="active" href="/about">About</a>
+    <form th:action="@{/logout}" method="post">
+        <input class="logoutButton" type="submit" value="Logout"></input>
+    </form>
+</div>
+
+    <div id = "all-collapsibles">
+        <button type="button" class="collapsible">How can I reset my username and password?</button>
+        <div class="content">
+            <p>Lorem ipsum...</p>
+        </div>
+        <button type="button" class="collapsible">How can I change my other information?</button>
+        <div class="content">
+            <p>Lorem ipsum...</p>
+        </div>
+        <button type="button" class="collapsible">Why can't I made an order with a vendor over $500?</button>
+        <div class="content">
+            <p>Lorem ipsum...</p>
+        </div>
+        <button type="button" class="collapsible">How do I update the status of an order?</button>
+        <div class="content">
+            <p>Lorem ipsum...</p>
+        </div>
+        <button type="button" class="collapsible">How can I request days off?</button>
+        <div class="content">
+            <p>Lorem ipsum...</p>
+        </div>
+    </div>
+
+
+    <script>
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                } else {
+                    content.style.display = "block";
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>

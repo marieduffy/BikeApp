@@ -1,10 +1,3 @@
-
-
-
-
-/*//////////////////////////////////////////////////////////////////
-[ FONT ]*/
-
 @font-face {
   font-family: Ubuntu-Regular;
   src: url('/fonts/SF-Pro.otf');
@@ -14,12 +7,6 @@
   font-family: Ubuntu-Bold;
   src: url('/fonts/SFProDisplay-Bold.ttf');
 }
-
-
-
-
-/*//////////////////////////////////////////////////////////////////
-[ RESTYLE TAG ]*/
 
 * {
 	margin: 0px; 

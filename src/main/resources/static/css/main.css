@@ -8,6 +8,10 @@
     src: url('/fonts/SFProDisplay-Bold.ttf');
 }
 
+* {
+    font-family: SF-Pro, serif;
+}
+
 .quickFunctions {
     width: 320px;
     padding: 10px;

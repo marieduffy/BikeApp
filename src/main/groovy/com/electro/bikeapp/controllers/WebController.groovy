@@ -86,4 +86,9 @@ class WebController {
     String bookkeeper() {
         return '/bookkeeper'
     }
+
+    @RequestMapping('/help')
+    String help() {
+        return '/help'
+    }
 }

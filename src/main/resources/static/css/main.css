@@ -12,9 +12,22 @@
     font-family: SF-Pro, serif;
 }
 
-.quickFunctions {
-    width: 320px;
-    padding: 10px;
-    border: 5px solid gray;
-    margin: 0;
+body {
+    background-color: #778899;
+}
+.button {
+    margin-left: 20px;
+    width: 300px;
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 15px;
+    text-align: center;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #7aa8b7;
+    border-radius: 6px;
+    outline: none;
+}
+.button:hover {
+    background-color: #6D97A4;
 }

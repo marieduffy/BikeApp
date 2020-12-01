@@ -20,7 +20,6 @@ class LoginService implements UserDetailsService {
 
     UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
         Optional<EmployeeDomain> user = accountRepository.findByUsername(userName)
-        log.info("I got here")
 
         user.orElseThrow({ -> new UsernameNotFoundException('Not found: ' + userName) })
 

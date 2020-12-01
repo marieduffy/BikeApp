@@ -7,7 +7,7 @@
     float: left;
     color: #f2f2f2;
     text-align: center;
-    padding: 14px 16px;
+    padding: 20px 16px;
     text-decoration: none;
     font-size: 17px;
 }
@@ -15,11 +15,13 @@
 .topnav a:hover, .logoutButton[type="submit"].hover input.hover {
     background-color: #6D97A4;
     color: black;
+    height: 100%;
 }
 
 .topnav a.active, input.active{
     background-color: #7aa8b7;
     color: white;
+    height: 100%;
 }
 
 .logoutButton[type="submit"]{

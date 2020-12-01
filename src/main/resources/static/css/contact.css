@@ -1,0 +1,25 @@
+.container {
+    text-align: center;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+#ownerInfo {
+    background-color:white;
+    border:solid black;
+    padding: 5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#gmInfo {
+    background-color:white;
+    border:solid black;
+    padding: 5px;
+
+}
+#assisstManInfo {
+    background-color:white;
+    border:solid black;
+    padding: 5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

@@ -1,0 +1,15 @@
+#description{
+    margin-left: 5%;
+    margin-right: 5%;
+}
+#aboutUs {
+    float:left;
+    width: 50%;
+    background-color:white;
+    border:solid black;
+    padding: 5px;
+}
+#logo {
+    float: left;
+    width: 50%;
+}

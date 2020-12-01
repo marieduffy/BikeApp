@@ -8,15 +8,21 @@
     <link rel="stylesheet" type="text/css" href="css/util.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/topnav.css">
-    <style>
-        body {
-            background-color: #666666;
+    <script>
+        function callAPI(form) {
+            const obj = [{
+                vendorName: form.vendorName.value,
+                quantityOrdered: form.quantityOrdered.value,
+                purchasePrice: parseFloat(form.purchasePrice.value),
+                orderBreakdown: form.orderBreakdown.value
+            }];
+            const json = JSON.stringify(obj);
+            const xhttp = new XMLHttpRequest();
+            xhttp.open("POST", "http://localhost:8080/order/create");
+            xhttp.setRequestHeader("Content-type", "application/json");
+            xhttp.send(json);
         }
-        input {
-            height: 30px;
-            font-size: 26px;
-        }
-    </style>
+    </script>
 </head>
 <body>
 
@@ -40,11 +46,18 @@
             <form>
                 <label for="vendorName">Search by Vendor Name:</label><br>
                 <input type="text" id="vendorName" name="vendorName"><br>
+
                 <label for="quantityOrdered">Quantity of Items:</label><br>
                 <input type="text" id="quantityOrdered" name="quantityOrdered"><br>
-                <label for="purchasePrice">Price per Item:</label><br>
-                <input type="text" id="PurchasePrice" name="PurchasePrice"><br>
 
+                <label for="purchasePrice">Order Grand Total:</label><br>
+                <input type="text" id="PurchasePrice" name="purchasePrice"><br>
+
+                <label for="orderBreakdown">Item Breakdown:</label><br>
+                <textarea id="orderBreakdown" name="orderBreakdown" placeholder="SKU#1,SKU#2,..." rows="4" cols="50"></textarea>
+
+                <br>
+                <input type="submit" value="Create Order" onclick="return callAPI(this.form)">
             </form>
         </div>
     </div>

@@ -11,19 +11,19 @@
 
 <body>
 
-<div class="topnav">
-    <a href="/">Home</a>
-    <a href="/login">Login</a>
-    <a href="/vendorHomePage">Vendor Order Home</a>
-    <a href="/inventory">Inventory</a>
-    <a href="/contact">Contact</a>
-    <a class="active" href="/about">About</a>
-    <form th:action="@{/logout}" method="post">
-        <input class="logoutButton" type="submit" value="Logout"></input>
-    </form>
-</div>
+    <div class="topnav">
+        <a href="/">Home</a>
+        <a href="/login">Login</a>
+        <a href="/vendorHomePage">Vendor Order Home</a>
+        <a href="/inventory">Inventory</a>
+        <a href="/contact">Contact</a>
+        <a class="active" href="/about">About</a>
+        <form th:action="@{/logout}" method="post">
+            <input class="logoutButton" type="submit" value="Logout"></input>
+        </form>
+    </div>
 
-    <div id = "all-collapsibles">
+    <div id="all-collapsibles">
         <button type="button" class="collapsible">How can I reset my username and password?</button>
         <div class="content">
             <p>Lorem ipsum...</p>

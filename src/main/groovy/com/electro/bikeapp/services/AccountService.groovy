@@ -67,6 +67,7 @@ class AccountService {
             }
             else {
                 log.error('Invalid current email')
+                throw new NoSuchElementException()
             }
         }
         else {

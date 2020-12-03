@@ -124,7 +124,7 @@ class EmployeeService {
         //we do not want to permanently delete them, just archive them somehow
         Optional<EmployeeDomain> employee = employeeAccountRepository.findByUsername(username)
         if (!employee.isPresent()) {
-            throw new NotFoundException(user + username + 'not found')
+            throw new NotFoundException('username: ' + username + ' not found')
         }
         employee.get().isDeleted = true
         //save changes instead of delete

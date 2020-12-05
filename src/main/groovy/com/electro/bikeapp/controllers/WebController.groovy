@@ -91,4 +91,10 @@ class WebController {
     String help() {
         return '/help'
     }
+
+    @RequestMapping('/changeVOStatus')
+    String changeVOStatus() {
+        return '/changeVOStatus'
+    }
+
 }

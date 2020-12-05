@@ -34,7 +34,7 @@ class VendorOrderService {
 
         vendorOrder.vendorId = vendorOrderParameters[0].vendorId
         vendorOrder.vendorName = vendorOrderParameters[0].vendorName
-        vendorOrder.vendorOrderStatus = 'Received'
+        vendorOrder.vendorOrderStatus = 'Confirmed'
         vendorOrder.quantityOrdered = vendorOrderParameters[0].quantityOrdered
         vendorOrder.purchasePrice = vendorOrderParameters[0].purchasePrice
         vendorOrder.orderBreakdown = vendorOrderParameters[0].orderBreakdown.toString()

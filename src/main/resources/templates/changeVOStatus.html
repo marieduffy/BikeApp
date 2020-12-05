@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Change Status of Vendor Order</title>
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/topnav.css">
+</head>
+<body>
+
+    <div class="topnav">
+        <a href="/">Home</a>
+        <a href="/login">Login</a>
+        <a href="/vendorHomePage">Vendor Order Home</a>
+        <a href="/inventory">Inventory</a>
+        <a href="/help">Help Center</a>
+        <a href="/contact">Contact</a>
+        <a class="active" href="/about">About</a>
+        <form th:action="@{/logout}" method="post">
+            <input class="logoutButton" type="submit" value="Logout"></input>
+        </form>
+    </div>
+
+    <div class="limiter">
+        <div class="container-login100">
+            <form>
+                <label for="vendorOrderId">Search by Vendor Order #:</label><br>
+                <input type="text" id="vendorOrderId" name="vendorOrderId"><br>
+
+                <label for="vendorOrderStatus">Order Status: (Confirmed, Shipped, Arrived, Cancelled)</label><br>
+                <input type="text" id="vendorOrderStatus" name="vendorOrderStatus"><br>
+
+                <br>
+                <input type="submit" value="Update Order" onclick="return callAPI(this.form)">
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

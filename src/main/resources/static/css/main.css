@@ -16,7 +16,7 @@
 }
 
 body {
-    background-color: white;
+    background-color: #DBE4E6;
 }
 .button {
     margin-left: 20px;
@@ -33,4 +33,9 @@ body {
 }
 .button:hover {
     background-color: #6D97A4;
+}
+
+.limiter {
+    padding-top: 10px;
+    padding-left: 15px;
 }

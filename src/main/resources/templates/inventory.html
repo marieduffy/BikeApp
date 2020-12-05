@@ -27,6 +27,20 @@
     <link rel="stylesheet" type="text/css" href="css/topnav.css">
 </head>
 <body>
+
+<div class="topnav">
+    <a href="/">Home</a>
+    <a href="/login">Login</a>
+    <a href="/vendorHomePage">Vendor Order Home</a>
+    <a href="/inventory">Inventory</a>
+    <a href="/help">Help Center</a>
+    <a href="/contact">Contact</a>
+    <a class="active" href="/about">About</a>
+    <form th:action="@{/logout}" method="post">
+        <input class="logoutButton" type="submit" value="Logout"></input>
+    </form>
+</div>
+
     <form NAME="myform" ACTION="" METHOD="GET">
         <label for="bikeColor">Bike Color:</label><br>
         <input type="text" id="bikeColor" name="bikeColor"><br>

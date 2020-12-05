@@ -76,6 +76,8 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers('/contact').permitAll()
                     .antMatchers('/about').permitAll()
                     .antMatchers('/inventory').authenticated()
+                    .antMatchers('/vendorHomePage').authenticated()
+
                 .and()
                 .formLogin()
                         .loginPage('/login')

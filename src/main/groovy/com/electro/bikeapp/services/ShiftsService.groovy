@@ -71,17 +71,19 @@ class ShiftsService {
         }
     }
 
-    void timeSheet (long employeeId) {
+    String timeSheet (long employeeId) {
         Optional<ShiftsDomain> currentEmployee = shiftsRepository.findByEmployeeId(employeeId)
         if (currentEmployee.isPresent()) {
+            String report = ""
             LocalDate today = LocalDate.now()
             Date date = java.sql.Date.valueOf(today)
             currentEmployee.get().todaysDate = date
-            log.info("Today is: $date")
-            log.info("Employee $employeeId clocked in at: " + currentEmployee.get().timeIn)
-            log.info('They clocked out at: ' + currentEmployee.get().timeOut)
-            log.info('Working a total time of: ' + currentEmployee.get().totalDayHours)
+            report = report + "Today is: $date"
+            report = report + "Clocked in at: " + currentEmployee.get().timeIn
+            report = report + "Clocked out at: " + currentEmployee.get().timeOut
+            report = report + "Working a total time of: " + currentEmployee.get().totalDayHours
             shiftsRepository.save(currentEmployee.get())
+            return report
         }
         else {
             log.error("Employee with ID: $employeeId does not exist")
@@ -89,7 +91,6 @@ class ShiftsService {
     }
 
     // TODO: LILI
-    //actually this is not done because I need to add one more things
     void getShiftChart (ShiftsDTO shiftsDTO) {
         Optional<ShiftsDomain> currentEmployee = shiftsRepository.findByEmployeeId(shiftsDTO.employeeId)
         if (currentEmployee.isPresent()) {

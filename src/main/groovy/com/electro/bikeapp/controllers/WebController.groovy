@@ -84,7 +84,7 @@ class WebController {
 
     @RequestMapping('/bookkeeper')
     String bookkeeper() {
-        return '/bookkeeper'
+        return '/bookkeeper/bookkeeper'
     }
 
     @RequestMapping('/help')
@@ -92,9 +92,25 @@ class WebController {
         return '/help'
     }
 
+
     @RequestMapping('/changeVOStatus')
     String changeVOStatus() {
         return '/changeVOStatus'
     }
 
+
+    @RequestMapping('/employeeInfo')
+    String employeeInfo() {
+        return '/bookkeeper/employeeInfo'
+    }
+
+    @RequestMapping('/payroll')
+    String payroll() {
+        return '/bookkeeper/payroll'
+    }
+
+    @RequestMapping('/bookkeeperContact')
+    String bookkeeperContact() {
+        return '/bookkeeper/bookkeeperContact'
+    }
 }

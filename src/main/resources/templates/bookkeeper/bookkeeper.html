@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Bookkeeper</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/topnav.css">
+    <link rel="stylesheet" href="css/bookkeeper.css">
+</head>
+<nav class="topnav">
+    <a class="active" href="/bookkeeper">Home</a>
+    <a href="/employeeInfo">Employee Info</a>
+    <a href="/payroll">Payroll</a>
+    <a href="/bookkeeperContact">Contact</a>
+    <form th:action="@{/logout}" method="post">
+        <input class="logoutButton" type="submit" value="Logout">
+    </form>
+</nav>
+<body>
+<table>
+    <caption>Weekly Schedule</caption>
+    <tr>
+        <th rowspan="2">Name</th>
+        <th rowspan="2">ID</th>
+        <th colspan="2">Monday</th>
+        <th colspan="2">Tuesday</th>
+        <th colspan="2">Wednesday</th>
+        <th colspan="2">Thursday</th>
+        <th colspan="2">Friday</th>
+        <th colspan="2">Saturday</th>
+        <th colspan="2">Sunday</th>
+    </tr>
+    <tr>
+        <td>12/07/2020</td>
+        <td>Total</td>
+        <td>12/08/2020</td>
+        <td>Total</td>
+        <td>12/09/2020</td>
+        <td>Total</td>
+        <td>12/10/2020</td>
+        <td>Total</td>
+        <td>12/11/2020</td>
+        <td>Total</td>
+        <td>12/12/2020</td>
+        <td>Total</td>
+        <td>12/13/2020</td>
+        <td>Total</td>
+    </tr>
+    <tr>
+        <td>Marie Duffy</td>
+        <td>1</td>
+        <td>08:00 AM - 04:00 PM</td>
+        <td>08:00</td>
+        <td>08:00 AM - 04:00 PM</td>
+        <td>08:00</td>
+        <td>08:00 AM - 04:00 PM</td>
+        <td>08:00</td>
+        <td>08:00 AM - 04:00 PM</td>
+        <td>08:00</td>
+        <td>08:00 AM - 04:00 PM</td>
+        <td>08:00</td>
+        <td>OFF</td>
+        <td>00:00</td>
+        <td>OFF</td>
+        <td>00:00</td>
+    </tr>
+
+</table>
+
+<br>
+<div id="buttons">
+    <button class="clockInAndOut" onclick="clockIn()" value="Clock In">Clock In</button>
+    <button class="clockInAndOut" onclick="clockOut()" value="Clock Out">Clock Out</button>
+</div>
+<div>
+    <p id="timeSheet"></p>
+</div>
+
+<script>
+    function clockIn() {
+        var employeeID = 1;
+        var xhttp = new XMLHttpRequest();
+        var request = "http://localhost:8080/account/timeIn/" + employeeID;
+        xhttp.open("GET", request);
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.send();
+    }
+    function clockOut() {
+        var employeeID = 1;
+        var xhttp = new XMLHttpRequest();
+        var request = "http://localhost:8080/account/timeOut/" + employeeID;
+        xhttp.open("GET", request);
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.send();
+        timeSheet();
+    }
+    function timeSheet(){
+        var employeeID = 1;
+        var xhttp = new XMLHttpRequest();
+        var request = "http://localhost:8080/account/totalTime/" + employeeID;
+        xhttp.open("GET", request);
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.send();
+
+        var xhttp = new XMLHttpRequest();
+        var request = "http://localhost:8080/account/timeSheet/" + employeeID;
+        xhttp.open("POST", request);
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.send();
+
+    }
+
+    console.log(sessionStorage.getItem("result"));
+    document.getElementById("timeSheet").innerHTML = sessionStorage.getItem("result");
+</script>
+</body>
+</html>

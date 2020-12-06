@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Bookkeeper</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/topnav.css">
+    <link rel="stylesheet" href="css/bookkeeper.css">
+    <link rel="stylesheet" href="css/contact.css">
+
+</head>
+<nav class="topnav">
+    <a href="/bookkeeper">Home</a>
+    <a href="/employeeInfo">Employee Info</a>
+    <a href="/payroll">Payroll</a>
+    <a class="active" href="/bookkeeperContact">Contact</a>
+    <form th:action="@{/logout}" method="post">
+        <input class="logoutButton" type="submit" value="Logout"></input>
+    </form>
+</nav>
+<body>
+<br>
+<h1 align="center">Contact Information</h1>
+
+
+<div class="container">
+    <div id="ownerInfo">
+        <h3>Owner's Information</h3>
+        <p><strong>Name:</strong> Raymond Madachy</p>
+        <p><strong>Working Hours:</strong> Mondays - Friday 9:00AM – 5:00PM</p>
+        <p><strong>Mailing Address:</strong> 5500 Campanile Dr, San Diego, CA 92182</p>
+        <p><strong>Phone Number:</strong> 619-594-6191</p>
+        <p><strong>Fax:</strong> 619-594-6746</p>
+        <p><strong>Email:</strong> rmadachy@sdsu.edu</p>
+    </div>
+
+    <div id="gmInfo">
+        <h3>General Manager's Information</h3>
+        <p><strong>Name:</strong> Jacob Byerline</p>
+        <p><strong>Working Hours:</strong> Mondays - Friday 9:00AM – 5:00PM</p>
+        <p><strong>Mailing Address:</strong> 5500 Campanile Dr, San Diego, CA 92182</p>
+        <p><strong>Phone Number:</strong> 619-555-6725</p>
+        <p><strong>Fax:</strong> 619-555-2723</p>
+        <p><strong>Email:</strong> jbyerline@sdsu.com</p>
+    </div>
+
+    <div id="assisstManInfo">
+        <h3>Assistant Manager's Information</h3>
+        <p><strong>Name:</strong> John Doe</p>
+        <p><strong>Working Hours:</strong> Wednesday - Sunday 9:00AM – 5:00PM</p>
+        <p><strong>Mailing Address:</strong> 5500 Campanile Dr, San Diego, CA 92182</p>
+        <p><strong>Phone Number:</strong> 619-555-1234</p>
+        <p><strong>Fax:</strong> 619-555-8254</p>
+        <p><strong>Email:</strong> jDoe@sdsu.edu</p>
+    </div>
+</div>
+
+</body>
+</html>

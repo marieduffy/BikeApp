@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Bookkeeper</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/topnav.css">
+    <link rel="stylesheet" href="css/bookkeeper.css">
+
+</head>
+<nav class="topnav">
+    <a href="/bookkeeper">Home</a>
+    <a href="/employeeInfo">Employee Info</a>
+    <a class="active" href="/payroll">Payroll</a>
+    <a href="/bookkeeperContact">Contact</a>
+    <form th:action="@{/logout}" method="post">
+        <input class="logoutButton" type="submit" value="Logout"></input>
+    </form>
+</nav>
+<body>
+<div align="center">
+<table id="payroll">
+    <caption>Payroll</caption>
+    <tr>
+        <th>Name</th>
+        <th>Employee ID</th>
+        <th>Type</th>
+        <th>Rate</th>
+        <th>Total Hours Worked November: 14-27</th>
+        <th>Amount</th>
+    </tr>
+    <tr>
+        <td>Marie Duffy</td>
+        <td>1</td>
+        <td>Hourly</td>
+        <td>$55,000.00</td>
+        <td>40</td>
+        <td>$4,400,000.00</td>
+    </tr>
+    <tr>
+        <td>Jacob Byerline</td>
+        <td>2</td>
+        <td>Hourly</td>
+        <td>$55,000.00</td>
+        <td>40</td>
+        <td>$4,400,000.00</td>
+    </tr>
+    <tr>
+        <td>Thong Le</td>
+        <td>3</td>
+        <td>Hourly</td>
+        <td>$55,000.00</td>
+        <td>40</td>
+        <td>$4,400,000.00</td>
+    </tr>
+    <tr>
+        <td>Liliana Guerrero</td>
+        <td>4</td>
+        <td>Hourly</td>
+        <td>$55,000.00</td>
+        <td>40</td>
+        <td>$4,400,000.00</td>
+    </tr>
+</table>
+</div>
+</body>
+</html>

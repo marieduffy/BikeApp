@@ -78,6 +78,9 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers('/inventory').authenticated()
                     .antMatchers('/vendorHomePage').authenticated()
 
+                    .antMatchers('/employeeInfo').hasAnyAuthority('BOOKKEEPER', 'MANAGER')
+                    .antMatchers('/bookkeeperContact').hasAnyAuthority('BOOKKEEPER', 'MANAGER')
+                    .antMatchers('/payroll').hasAnyAuthority('BOOKKEEPER', 'MANAGER')
                 .and()
                 .formLogin()
                         .loginPage('/login')

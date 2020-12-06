@@ -8,21 +8,23 @@
     <link rel="stylesheet" type="text/css" href="css/util.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/topnav.css">
-    <link rel="stylesheet" href="css/bookkeeper.css">
     <link rel="stylesheet" href="css/contact.css">
-
 </head>
 <nav class="topnav">
-    <a href="/bookkeeper">Home</a>
-    <a href="/employeeInfo">Employee Info</a>
-    <a href="/bookkeeperPayroll">Payroll</a>
-    <a class="active" href="/bookkeeperContact">Contact</a>
-    <a href="/bookkeeperHelp">Help</a>
+    <a href="/manager">Home</a>
+    <a href="/managerInventory">Inventory</a>
+    <a href="/managerVendorHomePage">Vendor Orders</a>
+    <a href="/managerBikeRepair">Bike Repair</a>
+    <a href="/managerSalesDiscounts">Sales/Discounts</a>
+    <a href="/managerEmployeeHome">Employees</a>
+    <a class="active" href="/managerContact">Contact</a>
+    <a href="/managerHelp">Help</a>
     <form th:action="@{/logout}" method="post">
-        <input class="logoutButton" type="submit" value="Logout"></input>
+        <input class="logoutButton" type="submit" value="Logout">
     </form>
 </nav>
 <body>
+
 <br>
 <h1 align="center">Contact Information</h1>
 

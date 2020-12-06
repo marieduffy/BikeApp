@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head >
-    <title>Vendor Order Page</title>
+    <title>Create Vendor Order</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
@@ -26,23 +26,10 @@
 </head>
 <body>
 
-<div class="topnav">
-    <a href="/">Home</a>
-    <a href="/">Employee Home Page</a>
-    <a href="/">Inventory</a>
-    <a href="/vendorHomePage">Vendor Orders</a>
-    <a href="/">Repair Tickets</a>
-    <a href="/contact">Contact</a>
-    <form th:action="@{/logout}" method="post">
-        <input class="logoutButton" type="submit" value="Logout">
-    </form>
-</div>
-
-
 <form style="margin-left: 15px">
 
     <div class="limiter">
-        <div class="container-login100" style="background-image: url('static/images/bikeBackground.jpg');">
+        <div class="container-login100" style="background-image: url('../../static/images/bikeBackground.jpg');">
             <form>
                 <label for="vendorName">Search by Vendor Name:</label><br>
                 <input type="text" id="vendorName" name="vendorName"><br>

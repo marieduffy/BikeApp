@@ -1,28 +1,29 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
     <title>Contact</title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
     <link rel="stylesheet" type="text/css" href="css/util.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/topnav.css">
-    <link rel="stylesheet" href="css/bookkeeper.css">
     <link rel="stylesheet" href="css/contact.css">
-
 </head>
+
 <nav class="topnav">
-    <a href="/bookkeeper">Home</a>
-    <a href="/employeeInfo">Employee Info</a>
-    <a href="/bookkeeperPayroll">Payroll</a>
-    <a class="active" href="/bookkeeperContact">Contact</a>
-    <a href="/bookkeeperHelp">Help</a>
+    <a href="/employee">Home</a>
+    <a href="/employeeInventory">Inventory</a>
+    <a href="/employeeVendorHomePage">Vendor Orders</a>
+    <a href="/employeeBikeRepair">Bike Repair</a>
+    <a class="active" href="/employeeContact">Contact</a>
+    <a href="/employeeHelp">Help</a>
     <form th:action="@{/logout}" method="post">
-        <input class="logoutButton" type="submit" value="Logout"></input>
+        <input class="logoutButton" type="submit" value="Logout">
     </form>
 </nav>
 <body>
+
 <br>
 <h1 align="center">Contact Information</h1>
 

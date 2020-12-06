@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Bookkeeper</title>
+    <title>Payroll</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
     <link rel="stylesheet" type="text/css" href="css/util.css">
@@ -14,8 +14,9 @@
 <nav class="topnav">
     <a href="/bookkeeper">Home</a>
     <a href="/employeeInfo">Employee Info</a>
-    <a class="active" href="/payroll">Payroll</a>
+    <a class="active" href="/bookkeeperPayroll">Payroll</a>
     <a href="/bookkeeperContact">Contact</a>
+    <a href="/bookkeeperHelp">Help</a>
     <form th:action="@{/logout}" method="post">
         <input class="logoutButton" type="submit" value="Logout"></input>
     </form>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Managers & Employees</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/topnav.css">
+</head>
+<nav class="topnav">
+    <a href="/owner">Home</a>
+    <a href="/inventory">Inventory</a>
+    <a href="/vendorHomePage">Vendor Orders</a>
+    <a href="/bikeRepair">Bike Repair</a>
+    <a href="/salesDiscounts">Sales/Discounts</a>
+    <a class="active" href="/employeeHome">Managers/Employees</a>
+    <a href="/payroll">Payroll</a>
+    <a href="/ownerContact">Contact</a>
+    <a href="/help">Help</a>
+    <form th:action="@{/logout}" method="post">
+        <input class="logoutButton" type="submit" value="Logout">
+    </form>
+</nav>
+
+<body>
+<div id = "buttons-container">
+    <a class="button" href="/createEmployee" target="_blank">Create a New Employee/Manager</a><br>
+    <a class="button" href="/updateEmployee" target="_blank">Update Employee/Manager</a><br>
+</div>
+
+
+</body>
+</html>

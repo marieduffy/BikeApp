@@ -7,26 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 @SuppressWarnings(['UnnecessaryReturnKeyword', 'DuplicateStringLiteral'])
 class WebController {
 
-    @RequestMapping('/')
-    String home() {
-        return '/home'
-    }
-
-    @RequestMapping('/login')
-    String login() {
-        return '/login'
-    }
-
-    @RequestMapping('/user')
-    String user() {
-        return '/user'
-    }
-
-    @RequestMapping('/admin')
-    String admin() {
-        return '/contact'
-    }
-
+    //NON-USERS PAGES
     @RequestMapping('/about')
     String about() {
         return '/about'
@@ -37,80 +18,194 @@ class WebController {
         return '/contact'
     }
 
-    @RequestMapping('/owner')
-    String owner() {
-        return '/owner'
+    @RequestMapping('/')
+    String home() {
+        return '/home'
     }
 
-    @RequestMapping('/manager')
-    String manager() {
-        return '/manager'
+    @RequestMapping('/login')
+    String login() {
+        return '/login'
     }
 
-    @RequestMapping('/vendorOrder')
-    String vendorOrder() {
-        return '/vendorOrder'
-    }
-
-    @RequestMapping('/vendorHomePage')
-    String vendorHomePage() {
-        return '/vendorHomePage'
-    }
-
-    @RequestMapping('/vendorOrdersCurrent')
-    String vendorOrdersCurrent() {
-        return '/vendorOrdersCurrent'
-    }
-
-    @RequestMapping('/inventory')
-    String inventory() {
-        return '/inventory'
+    //OTHER PAGES
+    @RequestMapping('/changeVOStatus')
+    String changeVOStatus() {
+        return '/other/changeVOStatus'
     }
 
     @RequestMapping('/createEmployee')
     String createEmployee() {
-        return '/createEmployee'
+        return '/other/createEmployee'
     }
 
     @RequestMapping('/createRetailOrder')
     String createRetailOrder() {
-        return '/createRetailOrder'
+        return '/other/createRetailOrder'
     }
 
     @RequestMapping('/updateEmployee')
     String updateEmployee() {
-        return '/updateEmployee'
+        return '/other/updateEmployee'
     }
 
-    @RequestMapping('/bookkeeper')
-    String bookkeeper() {
-        return '/bookkeeper/bookkeeper'
+    @RequestMapping('/vendorOrder')
+    String vendorOrder() {
+        return '/other/vendorOrder'
+    }
+
+    @RequestMapping('/vendorOrdersCurrent')
+    String vendorOrdersCurrent() {
+        return '/other/vendorOrdersCurrent'
+    }
+
+    //EMPLOYEE PAGES
+    @RequestMapping('/employee')
+    String employee() {
+        return '/employee/employee'
+    }
+
+    @RequestMapping('/employeeBikeRepair')
+    String employeeBikeRepair() {
+        return '/employee/employeeBikeRepair'
+    }
+
+    @RequestMapping('/employeeContact')
+    String employeeContact() {
+        return '/employee/employeeContact'
+    }
+
+    @RequestMapping('/employeeHelp')
+    String employeeHelp() {
+        return '/employee/employeeHelp'
+    }
+
+    @RequestMapping('/employeeInventory')
+    String employeeInventory() {
+        return '/employee/employeeInventory'
+    }
+
+    @RequestMapping('/employeeVendorHomePage')
+    String employeeVendorHomePage() {
+        return '/employee/employeeVendorHomePage'
+    }
+
+    //OWNER PAGES
+    @RequestMapping('/bikeRepair')
+    String bikeRepair() {
+        return '/owner/bikeRepair'
+    }
+
+    @RequestMapping('/employeeHome')
+    String employeeHome() {
+        return '/owner/employeeHome'
     }
 
     @RequestMapping('/help')
     String help() {
-        return '/help'
+        return '/owner/help'
     }
 
-
-    @RequestMapping('/changeVOStatus')
-    String changeVOStatus() {
-        return '/changeVOStatus'
+    @RequestMapping('/inventory')
+    String inventory() {
+        return '/owner/inventory'
     }
 
+    @RequestMapping('/managersAndEmployees')
+    String managersAndEmployees() {
+        return '/owner/managersAndEmployees'
+    }
 
-    @RequestMapping('/employeeInfo')
-    String employeeInfo() {
-        return '/bookkeeper/employeeInfo'
+    @RequestMapping('/owner')
+    String owner() {
+        return '/owner/owner'
+    }
+
+    @RequestMapping('/ownerContact')
+    String ownerContact() {
+        return '/owner/ownerContact'
     }
 
     @RequestMapping('/payroll')
     String payroll() {
-        return '/bookkeeper/payroll'
+        return '/owner/payroll'
+    }
+
+    @RequestMapping('/salesDiscounts')
+    String salesDiscounts() {
+        return '/owner/salesDiscounts'
+    }
+
+    @RequestMapping('/vendorHomePage')
+    String vendorHomePage() {
+        return '/owner/vendorHomePage'
+    }
+
+    //MANAGER PAGES
+    @RequestMapping('/manager')
+    String manager() {
+        return '/manager/manager'
+    }
+
+    @RequestMapping('/managerBikeRepair')
+    String managerBikeRepair() {
+        return '/manager/managerBikeRepair'
+    }
+
+    @RequestMapping('/managerContact')
+    String managerContact() {
+        return '/manager/managerContact'
+    }
+
+    @RequestMapping('/managerEmployeeHome')
+    String managerEmployeeHome() {
+        return '/manager/managerEmployeeHome'
+    }
+
+    @RequestMapping('/managerHelp')
+    String managerHelp() {
+        return '/manager/managerHelp'
+    }
+
+    @RequestMapping('/managerInventory')
+    String managerInventory() {
+        return '/manager/managerInventory'
+    }
+
+    @RequestMapping('/managerSalesDiscounts')
+    String managerSalesDiscounts() {
+        return '/manager/managerSalesDiscounts'
+    }
+
+    @RequestMapping('/managerVendorHomePage')
+    String managerVendorHomePage() {
+        return '/manager/managerVendorHomePage'
+    }
+
+    //BOOKKEEPER PAGES
+    @RequestMapping('/bookkeeper')
+    String bookkeeper() {
+        return '/bookkeeper/bookkeeper'
     }
 
     @RequestMapping('/bookkeeperContact')
     String bookkeeperContact() {
         return '/bookkeeper/bookkeeperContact'
     }
+
+    @RequestMapping('/bookkeeperHelp')
+    String bookkeeperHelp() {
+        return '/bookkeeper/bookkeeperHelp'
+    }
+
+    @RequestMapping('/employeeInfo')
+    String employeeInfo() {
+        return '/bookkeeper/employeeInfo'
+    }
+
+    @RequestMapping('/bookkeeperPayroll')
+    String bookkeeperPayroll() {
+        return '/bookkeeper/bookkeeperPayroll'
+    }
+
 }

@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
-<script language="javascript">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Inventory</title>
+    <script language="javascript">
     function callAPI(form) {
 
         // TODO: REMEMBER to convert all strings to lower case
@@ -26,21 +29,23 @@
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/topnav.css">
 </head>
-<body>
 
-<div class="topnav">
-    <a href="/">Home</a>
-    <a href="/login">Login</a>
-    <a href="/vendorHomePage">Vendor Order Home</a>
-    <a href="/inventory">Inventory</a>
-    <a href="/help">Help Center</a>
-    <a href="/contact">Contact</a>
-    <a class="active" href="/about">About</a>
+<nav class="topnav">
+    <a href="/manager">Home</a>
+    <a class="active" href="/managerInventory">Inventory</a>
+    <a href="/managerVendorHomePage">Vendor Orders</a>
+    <a href="/managerBikeRepair">Bike Repair</a>
+    <a href="/managerSalesDiscounts">Sales/Discounts</a>
+    <a href="/managerEmployeeHome">Employees</a>
+    <a href="/managerContact">Contact</a>
+    <a href="/managerHelp">Help</a>
     <form th:action="@{/logout}" method="post">
-        <input class="logoutButton" type="submit" value="Logout"></input>
+        <input class="logoutButton" type="submit" value="Logout">
     </form>
-</div>
+</nav>
 
+
+<body>
     <form NAME="myform" ACTION="" METHOD="GET">
         <label for="bikeColor">Bike Color:</label><br>
         <input type="text" id="bikeColor" name="bikeColor"><br>

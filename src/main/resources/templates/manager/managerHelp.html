@@ -1,29 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Help Center</title>
+    <title>Help</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
     <link rel="stylesheet" type="text/css" href="css/util.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/topnav.css">
-    <link rel="stylesheet" type="text/css" href="css/help.css">
+    <link rel="stylesheet" href="css/help.css">
 </head>
-
+<nav class="topnav">
+    <a href="/manager">Home</a>
+    <a href="/managerInventory">Inventory</a>
+    <a href="/managerVendorHomePage">Vendor Orders</a>
+    <a href="/managerBikeRepair">Bike Repair</a>
+    <a href="/managerSalesDiscounts">Sales/Discounts</a>
+    <a href="/managerEmployeeHome">Employees</a>
+    <a href="/managerContact">Contact</a>
+    <a class="active" href="/managerHelp">Help</a>
+    <form th:action="@{/logout}" method="post">
+        <input class="logoutButton" type="submit" value="Logout">
+    </form>
+</nav>
 <body>
-
-    <div class="topnav">
-        <a href="/">Home</a>
-        <a href="/login">Login</a>
-        <a href="/vendorHomePage">Vendor Order Home</a>
-        <a href="/inventory">Inventory</a>
-        <a href="/help">Help Center</a>
-        <a href="/contact">Contact</a>
-        <a class="active" href="/about">About</a>
-        <form th:action="@{/logout}" method="post">
-            <input class="logoutButton" type="submit" value="Logout"></input>
-        </form>
-    </div>
-
     <div id="all-collapsibles">
         <button type="button" class="collapsible">How can I reset my username and password?</button>
         <div class="content">

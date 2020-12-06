@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Bike Shop - Login</title>
+    <title>Login</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
@@ -38,7 +38,7 @@
                     } else if (privilegeLevel == "OWNER") {
                         window.location.replace("http://localhost:8080/owner");
                     } else if (privilegeLevel == "BOOKKEEPER") {
-                        window.location.replace("http://localhost:8080/bookeeper");
+                        window.location.replace("http://localhost:8080/bookkeeper");
                     } else if (privilegeLevel == "EMPLOYEE") {
                         window.location.replace("http://localhost:8080/employee");
                     }

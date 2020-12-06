@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Bike Shop - User</title>
+    <title>Bike Repairs</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
@@ -9,24 +9,20 @@
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/topnav.css">
 </head>
-<body>
 
-<div class="topnav">
-    <a href="/">Home</a>
-    <a href="/login">Login</a>
-    <a href="/contact">Contact</a>
-    <a class="active" href="/about">About</a>
+<nav class="topnav">
+    <a href="/employee">Home</a>
+    <a href="/employeeInventory">Inventory</a>
+    <a href="/employeeVendorHomePage">Vendor Orders</a>
+    <a class="active" href="/employeeBikeRepair">Bike Repair</a>
+    <a href="/employeeContact">Contact</a>
+    <a href="/employeeHelp">Help</a>
     <form th:action="@{/logout}" method="post">
-        <input class="logoutButton" type="submit" value="Logout"></input>
+        <input class="logoutButton" type="submit" value="Logout">
     </form>
-</div>
+</nav>
 
-
-<div class="limiter">
-    <div class="container-login100" style="background-image: url('images/bikeBackground.jpg');">
-        <h1>USER PAGE</h1>
-    </div>
-</div>
+<body>
 
 </body>
 </html>

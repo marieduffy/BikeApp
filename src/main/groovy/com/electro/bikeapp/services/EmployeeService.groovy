@@ -61,7 +61,7 @@ class EmployeeService {
                 employee.username = employeeInfoParams[i].username
                 employee.encryptedPassword = stringEncryption.encode(employeeInfoParams[i].password)
                 employee.email = employeeInfoParams[i].email
-                employee.privilegeLevel = employeeInfoParams[i].position
+                employee.privilegeLevel = employeeInfoParams[i].privilegeLevel
                 employee.isDeleted = false
 
                 //save employee to the database

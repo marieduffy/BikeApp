@@ -25,7 +25,7 @@
             email: form.email.value }];
         var json = JSON.stringify(obj);
 
-        alert(form.privilegeLevel.value);
+        alert(json);
 
         var xhttp = new XMLHttpRequest();
         xhttp.open("POST", "http://localhost:8080/manager/addEmployee");

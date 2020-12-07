@@ -13,16 +13,18 @@
 
 <script language="javascript">
     function callAPI(form) {
-        var obj = [{ employeeName: form.employeeName.value,
+        var obj = [{
+            payrollType: form.payrollType.value,
+            employeeName: form.employeeName.value,
             address: form.address.value,
             social: form.social.value,
             position: form.position.value,
             payRate: parseFloat(form.payRate.value),
-            payrollType: form.payrollType.value,
-            privilegeLevel: form.privilegeLevel.value,
             username: form.username.value,
             password: form.password.value,
-            email: form.email.value }];
+            email: form.email.value,
+            privilegeLevel: form.privilegeLevel.value
+        }];
         var json = JSON.stringify(obj);
 
         alert(form.privilegeLevel.value);

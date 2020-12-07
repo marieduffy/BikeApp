@@ -49,6 +49,7 @@ body {
 
 .quickFunctionBox {
     width: 50%;
+    margin: 50px 50px;
 }
 
 .quickFunctionBox h2 {
@@ -91,11 +92,12 @@ body {
 }
 
 /*Form*/
+
 .form {
     margin: 50px 40%;
 }
 
-/*Form inputs rounded corners*/
+/*Form text inputs rounded corners*/
 .form input[type=text]{
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
@@ -117,6 +119,8 @@ body {
 .buttons-container {
     margin: 50px 40%;
 }
+
+/*Sales Box*/
 
 .salesBox {
     width: 500px;
@@ -143,3 +147,5 @@ body {
     -ms-transition: font-size 0.3s ease, background-color 0.3s ease;
     transition: font-size 0.3s ease, background-color 0.3s ease;
 }
+
+/**/

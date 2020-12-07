@@ -26,7 +26,7 @@
 </head>
 <body>
 
-<form style="margin-left: 15px" class="form">
+<form class="form" method="post">
 
     <div class="limiter">
         <div class="container-login100" style="background-image: url('../../static/images/bikeBackground.jpg');">
@@ -41,9 +41,9 @@
                 <input type="text" id="PurchasePrice" name="purchasePrice"><br>
 
                 <label for="orderBreakdown">Item Breakdown:</label><br>
-                <textarea id="orderBreakdown" name="orderBreakdown" placeholder="SKU#1,SKU#2,..." rows="4" cols="50"></textarea>
+                <textarea id="orderBreakdown" name="orderBreakdown" placeholder="SKU#1,SKU#2,..." rows="4" cols="12"></textarea>
 
-                <br>
+                <br><br>
                 <input type="submit" value="Create Order" onclick="return callAPI(this.form)">
             </form>
         </div>

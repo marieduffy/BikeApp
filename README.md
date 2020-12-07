@@ -26,7 +26,7 @@ Click OK
 #### Build the project
 Wait for IntelliJ to index the files
 Click Green Run 'BikeappApplication'
- * If the Run bitton does not appear, navigate to the src->main->groovy->com.electro.bikeapp
+ * If the Run button does not appear, navigate to the src->main->groovy->com.electro.bikeapp
  * Open the BikeappApplication.groovy file and run the main class
 
 #### Run the website

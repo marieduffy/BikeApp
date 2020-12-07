@@ -71,8 +71,9 @@ class ShiftsService {
         }
     }
 
-    String timeSheet (long employeeId) {
-        Optional<ShiftsDomain> currentEmployee = shiftsRepository.findByEmployeeId(employeeId)
+    String timeSheet (String employeeId) {
+        long empID = Long.parseLong(employeeId)
+        Optional<ShiftsDomain> currentEmployee = shiftsRepository.findByEmployeeId(empID)
         if (currentEmployee.isPresent()) {
             String report = ""
             LocalDate today = LocalDate.now()

@@ -3,9 +3,9 @@
     background-color: #6D97A4;
     color: white;
     text-align: center;
-    font-size: 30px;
+    font-size: 20px;
     width: 200px;
-    height: 100px;
+    height: 50px;
     display:inline-block;
     margin-left: 3%;
 }
@@ -64,4 +64,14 @@ caption{
     margin: 0 auto;
     padding: 10px;
     position: relative;
+}
+#timeSheet {
+    display: none;
+    color: black;
+    width: 300px;
+    text-align: center;
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
+    border: 1px solid black;
 }

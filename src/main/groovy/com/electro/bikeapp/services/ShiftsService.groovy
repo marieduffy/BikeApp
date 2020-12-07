@@ -79,10 +79,10 @@ class ShiftsService {
             LocalDate today = LocalDate.now()
             Date date = java.sql.Date.valueOf(today)
             currentEmployee.get().todaysDate = date
-            report = report + "Today is: $date"
-            report = report + "Clocked in at: " + currentEmployee.get().timeIn
-            report = report + "Clocked out at: " + currentEmployee.get().timeOut
-            report = report + "Working a total time of: " + currentEmployee.get().totalDayHours
+            report = report + "$date\n"
+            report = report + currentEmployee.get().timeIn +"\n"
+            report = report + currentEmployee.get().timeOut + "\n"
+            report = report + currentEmployee.get().totalDayHours + "\n"
             shiftsRepository.save(currentEmployee.get())
             return report
         }

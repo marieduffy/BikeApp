@@ -71,14 +71,19 @@
     </tr>
 
 </table>
-
-<br>
 <div id="buttons">
+    <div id="timeSheet">
+        <p id="date"></p>
+        <p id="clockIn"></p>
+        <p id="clockOut"></p>
+        <p id="totalHours"></p>
+    </div>
+    <br>
     <button class="clockInAndOut" onclick="clockIn()" value="Clock In">Clock In</button>
     <button class="clockInAndOut" onclick="clockOut()" value="Clock Out">Clock Out</button>
-</div>
-<div>
-    <p id="timeSheet"></p>
+
+
+
 </div>
 
 <script>
@@ -97,27 +102,50 @@
         xhttp.open("GET", request);
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send();
-        //timeSheet();
+        xhttp.onreadystatechange = function (){
+            var out = xhttp.responseText.split("T");
+            sessionStorage.setItem("clockOut", out);
+        }
+        timeSheet();
     }
     function timeSheet(){
         String:
             employeeID = "1";
         var xhttp = new XMLHttpRequest();
-        var request = "http://localhost:8080/account/totalTime/" + employeeID;
+        var request = "http://localhost:8080/account/totalTime/1";
         xhttp.open("GET", request);
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send();
 
         var xhttp = new XMLHttpRequest();
-        var request = "http://localhost:8080/account/timeSheet/" + employeeID;
+        var request = "http://localhost:8080/account/timeSheet";
         xhttp.open("POST", request);
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send(employeeID);
+        xhttp.onreadystatechange = function () {
+            sessionStorage.setItem("result", xhttp.responseText);
+        };
+
+        var res = sessionStorage.getItem("result").split("\n");
+        document.getElementById("date").innerText = "Today is: " + res[0];
+
+        var clockIn = res[1].split("T");
+        clockIn = clockIn[1].split("-");
+        document.getElementById("clockIn").innerHTML = "Clocked in: " + clockIn[0];
+
+        var d = new Date(),
+            h = (d.getHours()<10?'0':'') + d.getHours(),
+            m = (d.getMinutes()<10?'0':'') + d.getMinutes(),
+            s = (d.getSeconds()<10?'0':'') + d.getSeconds();
+        var clockOut = h + ':' + m + ':' + s;
+        document.getElementById("clockOut").innerText = "Clocked out: " + clockOut;
+
+        var hours = res[3].split("-");
+        document.getElementById("totalHours").innerText = "Time worked: " + hours[0];
+
+        document.getElementById("timeSheet").style.display = "block";
 
     }
-
-    console.log(sessionStorage.getItem("result"));
-    document.getElementById("timeSheet").innerHTML = sessionStorage.getItem("result");
 </script>
 </body>
 </html>

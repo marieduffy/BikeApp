@@ -96,10 +96,10 @@ class AccountController {
         shiftsService.totalDayTime(employeeId)
     }
 
-    @PostMapping(value = '/account/timeSheet/{employeeId}', produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = '/account/timeSheet', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    String timeSheet (@PathVariable String employeeId) {
-//        log.info "This is employee $employeeId's time sheet for their shift"
+    String timeSheet (@RequestBody String employeeId) {
+        log.info "This is employee $employeeId's time sheet for their shift"
         shiftsService.timeSheet(employeeId)
     }
 

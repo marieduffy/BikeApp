@@ -83,6 +83,28 @@ body {
 
 /*Form*/
 .form {
-    margin-top: 50px;
-    margin-left: 50px;
+    margin: 50px 40%;
+}
+
+/*Form inputs rounded corners*/
+.form input[type=text]{
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    border: 1px solid #2d9fd9;
+    color: #a0d18c;
+    width: 250px;
+    height: 30px;
+    padding-left: 10px;
+    margin: 5px 0;
+}
+
+.form input[type=text]:focus {
+    outline: none;
+    border: 1px solid #a0d18c;
+}
+
+/*Buttons containers*/
+.buttons-container {
+    margin: 50px 40%;
 }

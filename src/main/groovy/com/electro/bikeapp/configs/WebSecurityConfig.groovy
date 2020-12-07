@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.password.PasswordEncoder
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher
 import org.springframework.web.cors.CorsConfiguration
 import org.springframework.web.cors.CorsConfigurationSource
@@ -53,6 +54,11 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         authProvider.setUserDetailsService(userDetailsService())
         authProvider.setPasswordEncoder(new StringEncryption())
         return authProvider
+    }
+
+    @Bean
+    AuthenticationSuccessHandler myAuthenticationSuccessHandler(){
+        return new UrlAuthenticationSuccessHandler()
     }
 
     @Override
@@ -114,6 +120,8 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                         .loginPage('/login')
                         .permitAll()
+                        .successHandler(myAuthenticationSuccessHandler())
+
                 .and()
                 .logout()
                     .logoutRequestMatcher(new AntPathRequestMatcher('/logout'))

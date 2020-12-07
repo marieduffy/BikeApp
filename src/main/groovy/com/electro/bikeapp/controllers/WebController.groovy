@@ -13,6 +13,11 @@ class WebController {
         return '/about'
     }
 
+    @RequestMapping('/contact')
+    String contact() {
+        return '/contact'
+    }
+
     @RequestMapping('/')
     String home() {
         return '/home'

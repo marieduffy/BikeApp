@@ -32,16 +32,15 @@
             xhttp.onreadystatechange = function () {
                 if (this.readyState === 4 && this.status === 200) {
                     var privilegeLevel = this.responseText;
-                    alert(privilegeLevel);
                     // Redirect to their specific home page
                     if (privilegeLevel === "MANAGER") {
-                        window.location.replace("http://localhost:8080/manager");
+                        window.location.href("http://localhost:8080/manager");
                     } else if (privilegeLevel === "OWNER") {
-                        window.location.replace("http://localhost:8080/owner");
+                        window.location.href("http://localhost:8080/owner");
                     } else if (privilegeLevel === "BOOKKEEPER") {
-                        window.location.replace("http://localhost:8080/bookkeeper");
+                        window.location.href("http://localhost:8080/bookkeeper");
                     } else if (privilegeLevel === "EMPLOYEE") {
-                        window.location.replace("http://localhost:8080/employee");
+                        window.location.href("http://localhost:8080/employee");
                     }
                 }
             };

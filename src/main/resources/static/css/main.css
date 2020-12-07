@@ -35,11 +35,20 @@ body {
     background-color: #6D97A4;
 }
 
+.homepage{
+    margin-bottom: 50px;
+    width: 100%;
+}
+
+.schedule{
+    margin-left: 50%;
+}
+
+
 /*Quick Function Box*/
 
 .quickFunctionBox {
-    width: 500px;
-    margin-top: 50px;margin-left: 50px;
+    width: 50%;
 }
 
 .quickFunctionBox h2 {

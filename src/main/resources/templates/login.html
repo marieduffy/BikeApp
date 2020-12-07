@@ -10,57 +10,6 @@
     <link rel="stylesheet" type="text/css" href="css/login.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/topnav.css">
-    <script>
-
-        function sleep(milliseconds) {
-            const date = Date.now();
-            let currentDate = null;
-            do {
-                currentDate = Date.now();
-            } while (currentDate - date < milliseconds);
-        }
-
-        function callAPI(form) {
-
-            var loginCredentialsObj = {
-                username: form.username.value,
-                password: form.password.value
-            }
-            var loginCredentialsJson = JSON.stringify(loginCredentialsObj);
-
-            // This is the login api call
-            var xhttp = new XMLHttpRequest();
-            xhttp.open("POST", "http://localhost:8080/login");
-            xhttp.setRequestHeader("Content-type", "application/json");
-            xhttp.send(loginCredentialsJson);
-
-            // Return the users privilege level
-            var xhttp1 = new XMLHttpRequest();
-            xhttp1.open("POST", "http://localhost:8080/account/getPrivilege");
-            xhttp1.setRequestHeader("Content-type", "application/json");
-            xhttp1.send(form.username.value);
-            xhttp1.onreadystatechange = function () {
-                if (this.readyState === 4 && this.status === 200) {
-                    var privilegeLevel = this.responseText;
-                    console.log("User Privilege Level: " + privilegeLevel);
-                    // Redirect to their specific home page
-                    sleep(2000);
-
-                    if (privilegeLevel === "MANAGER") {
-                        window.location.replace("http://localhost:8080/manager");
-                        console.log("I got here :(");
-                    } else if (privilegeLevel === "OWNER") {
-                        window.location.replace("http://localhost:8080/owner");
-                        console.log("I got here :(");
-                    } else if (privilegeLevel === "BOOKKEEPER") {
-                        window.location.replace("http://localhost:8080/bookkeeper");
-                    } else if (privilegeLevel === "EMPLOYEE") {
-                        window.location.replace("http://localhost:8080/employee");
-                    }
-                }
-            };
-        }
-    </script>
 </head>
 <body>
 
@@ -95,9 +44,7 @@
                 </div>
 
                 <div class="container-login100-form-btn m-t-32">
-                    <input type="submit" class="btn btn-lg btn-primary btn-block" value="Sign In"/>
-
-<!--                    <button class="login100-form-btn">Login</button>-->
+                    <input type="submit" class="login100-form-btn" value="Login"/>
                 </div>
 
             </form>

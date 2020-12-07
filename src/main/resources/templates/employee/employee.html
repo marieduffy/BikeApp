@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="css/util.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/topnav.css">
+    <link rel="stylesheet" type="text/css" href="css/bookkeeper.css">
 </head>
 
 <nav class="topnav">
@@ -23,12 +24,129 @@
 </nav>
 
 <body>
+<table>
+    <caption>Weekly Schedule</caption>
+    <br>
+    <tr>
+        <th rowspan="2">Name</th>
+        <th rowspan="2">ID</th>
+        <th colspan="2">Monday</th>
+        <th colspan="2">Tuesday</th>
+        <th colspan="2">Wednesday</th>
+        <th colspan="2">Thursday</th>
+        <th colspan="2">Friday</th>
+        <th colspan="2">Saturday</th>
+        <th colspan="2">Sunday</th>
+    </tr>
+    <tr>
+        <td>12/07/2020</td>
+        <td>Total</td>
+        <td>12/08/2020</td>
+        <td>Total</td>
+        <td>12/09/2020</td>
+        <td>Total</td>
+        <td>12/10/2020</td>
+        <td>Total</td>
+        <td>12/11/2020</td>
+        <td>Total</td>
+        <td>12/12/2020</td>
+        <td>Total</td>
+        <td>12/13/2020</td>
+        <td>Total</td>
+    </tr>
+    <tr>
+        <td>Liliana Guerrero</td>
+        <td>5</td>
+        <td>08:00 AM - 04:00 PM</td>
+        <td>08:00</td>
+        <td>08:00 AM - 04:00 PM</td>
+        <td>08:00</td>
+        <td>08:00 AM - 04:00 PM</td>
+        <td>08:00</td>
+        <td>08:00 AM - 04:00 PM</td>
+        <td>08:00</td>
+        <td>08:00 AM - 04:00 PM</td>
+        <td>08:00</td>
+        <td>OFF</td>
+        <td>00:00</td>
+        <td>OFF</td>
+        <td>00:00</td>
+    </tr>
 
-<div class="limiter">
-    <div class="container-login100" style="background-image: url('images/bikeBackground.jpg');">
-        <h1>USER PAGE</h1>
+</table>
+<div id="buttons">
+    <button class="clockInAndOut" onclick="clockIn()" value="Clock In">Clock In</button>
+    <button class="clockInAndOut" onclick="clockOut()" value="Clock Out">Clock Out</button>
+    <br>
+    <br>
+    <div id="timeSheet">
+        <p id="date"></p>
+        <p id="clockIn"></p>
+        <p id="clockOut"></p>
+        <p id="totalHours"></p>
     </div>
 </div>
+<script>
+    function clockIn() {
+        var employeeID = 1;
+        var xhttp = new XMLHttpRequest();
+        var request = "http://localhost:8080/account/timeIn/" + employeeID;
+        xhttp.open("GET", request);
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.send();
+    }
+    function clockOut() {
+        var employeeID = 1;
+        var xhttp = new XMLHttpRequest();
+        var request = "http://localhost:8080/account/timeOut/" + employeeID;
+        xhttp.open("GET", request);
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.send();
+        xhttp.onreadystatechange = function (){
+            var out = xhttp.responseText.split("T");
+            sessionStorage.setItem("clockOut", out);
+        }
+        timeSheet();
+    }
+    function timeSheet(){
+        String:
+            employeeID = "1";
+        var xhttp = new XMLHttpRequest();
+        var request = "http://localhost:8080/account/totalTime/1";
+        xhttp.open("GET", request);
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.send();
+
+        var xhttp = new XMLHttpRequest();
+        var request = "http://localhost:8080/account/timeSheet";
+        xhttp.open("POST", request);
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.send(employeeID);
+        xhttp.onreadystatechange = function () {
+            sessionStorage.setItem("result", xhttp.responseText);
+        };
+
+        var res = sessionStorage.getItem("result").split("\n");
+        document.getElementById("date").innerText = "Today is: " + res[0];
+
+        var clockIn = res[1].split("T");
+        clockIn = clockIn[1].split("-");
+        document.getElementById("clockIn").innerHTML = "Clocked in: " + clockIn[0];
+
+        var d = new Date(),
+            h = (d.getHours()<10?'0':'') + d.getHours(),
+            m = (d.getMinutes()<10?'0':'') + d.getMinutes(),
+            s = (d.getSeconds()<10?'0':'') + d.getSeconds();
+        var clockOut = h + ':' + m + ':' + s;
+        document.getElementById("clockOut").innerText = "Clocked out: " + clockOut;
+
+        var hours = res[3].split("-");
+        document.getElementById("totalHours").innerText = "Time worked: " + hours[0];
+
+        document.getElementById("timeSheet").style.display = "block";
+
+    }
+</script>
 
 </body>
 </html>

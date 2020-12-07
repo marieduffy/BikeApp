@@ -25,12 +25,10 @@
     </script>
 </head>
 <body>
-
 <form class="form" method="post">
-
     <div class="limiter">
         <div class="container-login100" style="background-image: url('../../static/images/bikeBackground.jpg');">
-            <form>
+            <form class="form">
                 <label for="vendorName">Search by Vendor Name:</label><br>
                 <input type="text" id="vendorName" name="vendorName"><br>
 
@@ -41,7 +39,7 @@
                 <input type="text" id="PurchasePrice" name="purchasePrice"><br>
 
                 <label for="orderBreakdown">Item Breakdown:</label><br>
-                <textarea id="orderBreakdown" name="orderBreakdown" placeholder="SKU#1,SKU#2,..." rows="4" cols="12"></textarea>
+                <textarea id="orderBreakdown" name="orderBreakdown" placeholder="SKU#1,SKU#2,..." rows="4" cols="50"></textarea>
 
                 <br><br>
                 <input type="submit" value="Create Order" onclick="return callAPI(this.form)">

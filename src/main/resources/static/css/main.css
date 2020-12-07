@@ -36,12 +36,17 @@ body {
 }
 
 .homepage{
-    margin-bottom: 50px;
-    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
 }
 
 .schedule{
-    margin-left: 50%;
+    flex-grow: 1;
+}
+
+.bar{
+    border: 1px solid black;
 }
 
 
@@ -49,7 +54,7 @@ body {
 
 .quickFunctionBox {
     width: 50%;
-    margin: 50px 50px;
+    margin-left: 50px;
 }
 
 .quickFunctionBox h2 {
@@ -98,6 +103,23 @@ body {
 }
 
 /*Form text inputs rounded corners*/
+.form textarea{
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    border: 1px solid #2d9fd9;
+    color: #a0d18c;
+    width: 250px;
+    height: 30px;
+    padding-left: 10px;
+    margin: 5px 0;
+}
+
+.form textarea:focus{
+    outline: none;
+    border: 1px solid #a0d18c;
+}
+
 .form input[type=text]{
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;

@@ -25,73 +25,79 @@
 </nav>
 
 <body>
-    <div>
-        <table>
-            <caption>Weekly Schedule</caption>
-            <br>
-            <tr>
-                <th rowspan="2">Name</th>
-                <th rowspan="2">ID</th>
-                <th colspan="2">Monday</th>
-                <th colspan="2">Tuesday</th>
-                <th colspan="2">Wednesday</th>
-                <th colspan="2">Thursday</th>
-                <th colspan="2">Friday</th>
-                <th colspan="2">Saturday</th>
-                <th colspan="2">Sunday</th>
-            </tr>
-            <tr>
-                <td>12/07/2020</td>
-                <td>Total</td>
-                <td>12/08/2020</td>
-                <td>Total</td>
-                <td>12/09/2020</td>
-                <td>Total</td>
-                <td>12/10/2020</td>
-                <td>Total</td>
-                <td>12/11/2020</td>
-                <td>Total</td>
-                <td>12/12/2020</td>
-                <td>Total</td>
-                <td>12/13/2020</td>
-                <td>Total</td>
-            </tr>
-            <tr>
-                <td>Marie Duffy</td>
-                <td>1</td>
-                <td>08:00 AM - 04:00 PM</td>
-                <td>08:00</td>
-                <td>08:00 AM - 04:00 PM</td>
-                <td>08:00</td>
-                <td>08:00 AM - 04:00 PM</td>
-                <td>08:00</td>
-                <td>08:00 AM - 04:00 PM</td>
-                <td>08:00</td>
-                <td>08:00 AM - 04:00 PM</td>
-                <td>08:00</td>
-                <td>OFF</td>
-                <td>00:00</td>
-                <td>OFF</td>
-                <td>00:00</td>
-            </tr>
 
-        </table>
-    </div>
+<div>
+    <table>
+        <caption>Weekly Schedule</caption>
+        <br>
+        <tr>
+            <th rowspan="2">Name</th>
+            <th rowspan="2">ID</th>
+            <th colspan="2">Monday</th>
+            <th colspan="2">Tuesday</th>
+            <th colspan="2">Wednesday</th>
+            <th colspan="2">Thursday</th>
+            <th colspan="2">Friday</th>
+            <th colspan="2">Saturday</th>
+            <th colspan="2">Sunday</th>
+        </tr>
+        <tr>
+            <td>12/07/2020</td>
+            <td>Total</td>
+            <td>12/08/2020</td>
+            <td>Total</td>
+            <td>12/09/2020</td>
+            <td>Total</td>
+            <td>12/10/2020</td>
+            <td>Total</td>
+            <td>12/11/2020</td>
+            <td>Total</td>
+            <td>12/12/2020</td>
+            <td>Total</td>
+            <td>12/13/2020</td>
+            <td>Total</td>
+        </tr>
+        <tr>
+            <td>Jacob ByerLine</td>
+            <td>3</td>
+            <td>08:00 AM - 04:00 PM</td>
+            <td>08:00</td>
+            <td>08:00 AM - 04:00 PM</td>
+            <td>08:00</td>
+            <td>08:00 AM - 04:00 PM</td>
+            <td>08:00</td>
+            <td>08:00 AM - 04:00 PM</td>
+            <td>08:00</td>
+            <td>08:00 AM - 04:00 PM</td>
+            <td>08:00</td>
+            <td>OFF</td>
+            <td>00:00</td>
+            <td>OFF</td>
+            <td>00:00</td>
+        </tr>
+        <tr>
+            <td>Thong</td>
+            <td>4</td>
+            <td>08:00 AM - 04:00 PM</td>
+            <td>08:00</td>
+            <td>08:00 AM - 04:00 PM</td>
+            <td>08:00</td>
+            <td>08:00 AM - 04:00 PM</td>
+            <td>08:00</td>
+            <td>08:00 AM - 04:00 PM</td>
+            <td>08:00</td>
+            <td>08:00 AM - 04:00 PM</td>
+            <td>08:00</td>
+            <td>OFF</td>
+            <td>00:00</td>
+            <td>OFF</td>
+            <td>00:00</td>
+        </tr>
 
-    <div class="homepage">
-        <div id="buttons">
-            <button class="clockInAndOut" onclick="clockIn()" value="Clock In">Clock In</button>
-            <button class="clockInAndOut" onclick="clockOut()" value="Clock Out">Clock Out</button>
-            <br>
-            <div id="timeSheet">
-                <p id="date"></p>
-                <p id="clockIn"></p>
-                <p id="clockOut"></p>
-                <p id="totalHours"></p>
-            </div>
-        </div>
-    </div>
-
+    </table>
+</div>
+<div class="bar"></div>
+<div class="homepage">
     <div class="quickFunctionBox">
         <h2>Quick Functions</h2>
         <ul>
@@ -102,6 +108,20 @@
             <li><a href="/vendorOrder" target="_blank">Start a new order with a Vendor</a></li>
         </ul>
     </div>
+    <div id="buttons" class="schedule">
+        <button class="clockInAndOut" onclick="clockIn()" value="Clock In">Clock In</button>
+        <button class="clockInAndOut" onclick="clockOut()" value="Clock Out">Clock Out</button>
+        <br>
+        <br>
+        <div id="timeSheet">
+            <p id="date"></p>
+            <p id="clockIn"></p>
+            <p id="clockOut"></p>
+            <p id="totalHours"></p>
+        </div>
+    </div>
+
+</div>
 
     <script>
         function clockIn() {

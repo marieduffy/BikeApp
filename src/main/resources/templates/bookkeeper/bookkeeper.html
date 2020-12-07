@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="css/util.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/topnav.css">
-    <link rel="stylesheet" href="css/bookkeeper.css">
+    <link rel="stylesheet" type="text/css" href="css/bookkeeper.css">
 </head>
 <nav class="topnav">
     <a class="active" href="/bookkeeper">Home</a>
@@ -53,7 +53,7 @@
     </tr>
     <tr>
         <td>Marie Duffy</td>
-        <td>1</td>
+        <td>2</td>
         <td>08:00 AM - 04:00 PM</td>
         <td>08:00</td>
         <td>08:00 AM - 04:00 PM</td>
@@ -72,20 +72,17 @@
 
 </table>
 <div id="buttons">
+    <button class="clockInAndOut" onclick="clockIn()" value="Clock In">Clock In</button>
+    <button class="clockInAndOut" onclick="clockOut()" value="Clock Out">Clock Out</button>
+    <br>
+    <br>
     <div id="timeSheet">
         <p id="date"></p>
         <p id="clockIn"></p>
         <p id="clockOut"></p>
         <p id="totalHours"></p>
     </div>
-    <br>
-    <button class="clockInAndOut" onclick="clockIn()" value="Clock In">Clock In</button>
-    <button class="clockInAndOut" onclick="clockOut()" value="Clock Out">Clock Out</button>
-
-
-
 </div>
-
 <script>
     function clockIn() {
         var employeeID = 1;

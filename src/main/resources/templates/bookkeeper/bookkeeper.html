@@ -97,10 +97,11 @@
         xhttp.open("GET", request);
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send();
-        timeSheet();
+        //timeSheet();
     }
     function timeSheet(){
-        var employeeID = 1;
+        String:
+            employeeID = "1";
         var xhttp = new XMLHttpRequest();
         var request = "http://localhost:8080/account/totalTime/" + employeeID;
         xhttp.open("GET", request);
@@ -111,7 +112,7 @@
         var request = "http://localhost:8080/account/timeSheet/" + employeeID;
         xhttp.open("POST", request);
         xhttp.setRequestHeader("Content-type", "application/json");
-        xhttp.send();
+        xhttp.send(employeeID);
 
     }
 

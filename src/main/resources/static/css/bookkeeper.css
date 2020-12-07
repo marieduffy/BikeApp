@@ -1,0 +1,67 @@
+.clockInAndOut{
+    padding: 3px;
+    background-color: #6D97A4;
+    color: white;
+    text-align: center;
+    font-size: 30px;
+    width: 200px;
+    height: 100px;
+    display:inline-block;
+    margin-left: 3%;
+}
+.empInfo{
+    padding: 3px;
+    background-color: #6D97A4;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    width: 100px;
+    height: 50px;
+    display:inline-block;
+    margin-left: 3%;
+}
+#buttons{
+    text-align: center;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    font-size: 15px;
+    margin: 3%;
+}
+#payroll{
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    font-size: 15px;
+}
+#payroll th{
+    width: 100px;
+    border: 1px solid ;
+    text-align: left;
+    padding: 8px;
+}
+td, th {
+    border: 1px solid ;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+caption{
+    font-size: 50px;
+}
+#getInfo{
+    margin: 3%;
+    text-align: center;
+}
+#displayInfo{
+    display: none;
+    border: 1px solid black;
+    width: 50%;
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
+}

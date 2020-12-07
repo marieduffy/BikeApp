@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Information</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/topnav.css">
+    <link rel="stylesheet" href="css/bookkeeper.css">
+</head>
+<nav class="topnav">
+    <a href="/bookkeeper">Home</a>
+    <a class="active" href="/employeeInfo">Employee Info</a>
+    <a href="/bookkeeperPayroll">Payroll</a>
+    <a href="/bookkeeperContact">Contact</a>
+    <a href="/bookkeeperHelp">Help</a>
+    <form th:action="@{/logout}" method="post">
+        <input class="logoutButton" type="submit" value="Logout">
+    </form>
+</nav>
+<body>
+<div id="getInfo">
+
+    <label>Employee Name: </label>
+    <input type="text" name="Employee Name" placeholder="e.g. Marie Duffy"><br> <br>
+    <label>Employee ID: </label>
+    <input type="text" name="Employee ID" placeholder="e.g. 1"><br> <br>
+    <button class="empInfo" onclick="callAPI()">Submit</button>
+
+    <br> <br>
+    <div id="displayInfo">
+        <p id="info">
+        <h1><u>Employee Information:</u></h1>
+            Name: Marie Duffy<br>
+            Address: 5200 Campanile Drive<br>
+            SSN: 87362617<br>
+            Position: Manager<br>
+            Pay Rate: $55,000.00<br>
+            Pay Type: Hourly<br>
+            Email: marie@gmail.com<br>
+        </p>
+    </div>
+</div>
+<script>
+    function callAPI() {
+        // var xhttp = new XMLHttpRequest();
+        // var request = "http://localhost:8080/account/timeSheet/" + obj;
+        // xhttp.open("POST", request);
+        // xhttp.setRequestHeader("Content-type", "application/json");
+        // xhttp.send(json);
+        //inner HTML for p tag
+        document.getElementById("displayInfo").style.display = "block";
+
+    }
+</script>
+</body>
+</html>

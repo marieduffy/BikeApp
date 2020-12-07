@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Employees</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/topnav.css">
+</head>
+<nav class="topnav">
+    <a href="/manager">Home</a>
+    <a href="/managerInventory">Inventory</a>
+    <a href="/managerVendorHomePage">Vendor Orders</a>
+    <a href="/managerBikeRepair">Bike Repair</a>
+    <a href="/managerSalesDiscounts">Sales/Discounts</a>
+    <a class="active" href="/managerEmployeeHome">Employees</a>
+    <a href="/managerContact">Contact</a>
+    <a href="/managerHelp">Help</a>
+    <form th:action="@{/logout}" method="post">
+        <input class="logoutButton" type="submit" value="Logout">
+    </form>
+</nav>
+<body>
+<div id = "buttons-container">
+    <a class="button" href="/createEmployee" target="_blank">Create a New Employee</a><br>
+    <a class="button" href="/updateEmployee" target="_blank">Update Employee</a><br>
+</div>
+
+
+</body>
+</html>

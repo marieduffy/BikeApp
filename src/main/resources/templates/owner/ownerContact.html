@@ -10,17 +10,22 @@
     <link rel="stylesheet" type="text/css" href="css/topnav.css">
     <link rel="stylesheet" href="css/contact.css">
 </head>
-<body>
-
-<div class="topnav">
-    <a href="/">Home</a>
-    <a href="/login">Login</a>
-    <a class="active" href="/contact">Contact</a>
-    <a href="/about">About</a>
+<nav class="topnav">
+    <a href="/owner">Home</a>
+    <a href="/inventory">Inventory</a>
+    <a href="/vendorHomePage">Vendor Orders</a>
+    <a href="/bikeRepair">Bike Repair</a>
+    <a href="/salesDiscounts">Sales/Discounts</a>
+    <a href="/employeeHome">Managers/Employees</a>
+    <a href="/payroll">Payroll</a>
+    <a class="active" href="/ownerContact">Contact</a>
+    <a href="/help">Help</a>
     <form th:action="@{/logout}" method="post">
         <input class="logoutButton" type="submit" value="Logout">
     </form>
-</div>
+</nav>
+
+<body>
 <br>
 <h1 align="center">Contact Information</h1>
 

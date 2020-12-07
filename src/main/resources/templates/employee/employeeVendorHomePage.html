@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Vendor Orders</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/topnav.css">
+</head>
+
+<nav class="topnav">
+    <a href="/employee">Home</a>
+    <a href="/employeeInventory">Inventory</a>
+    <a class="active" href="/employeeVendorHomePage">Vendor Orders</a>
+    <a href="/employeeBikeRepair">Bike Repair</a>
+    <a href="/employeeContact">Contact</a>
+    <a href="/employeeHelp">Help</a>
+    <form th:action="@{/logout}" method="post">
+        <input class="logoutButton" type="submit" value="Logout">
+    </form>
+</nav>
+<body>
+
+    <div id = "buttons-container">
+        <a class="button" href="/vendorOrder" target="_blank">Create a New Order</a><br>
+        <a class="button" href="/changeVOStatus" target="_blank">Change the Status of an Order</a><br>
+        <a class="button" href="/vendorOrdersCurrent" target="_blank">View the current vendor orders</a><br>
+    </div>
+
+
+</body>
+</html>

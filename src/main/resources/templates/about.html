@@ -1,37 +1,46 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Bike Shop - About Us</title>
+    <title>About Us</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="images/icons/favicon.png"/>
     <link rel="stylesheet" type="text/css" href="css/util.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/topnav.css">
-    <link rel="stylesheet" href="css/about.css">
+    <link rel="stylesheet" type="text/css" href="css/about.css">
+    <style>
+        .about-section {
+            padding: 50px;
+            text-align: center;
+            background-color: #474e5d;
+            color: white;
+        }
+    </style>
 </head>
 <body>
 
-<div class="topnav">
-    <a href="/">Home</a>
-    <a href="/login">Login</a>
-    <a href="/contact">Contact</a>
-    <a class="active" href="/about">About</a>
-    <form th:action="@{/logout}" method="post">
-        <input class="logoutButton" type="submit" value="Logout"></input>
-    </form>
-</div>
-
-<h1 align="center"><u>About Us</u></h1>
-<br>
-<div id="description">
-    <div id="logo">
-    <img src="images/logo.png" height="400" width="400"/>
+    <div class="topnav">
+        <a href="/">Home</a>
+        <a href="/login">Login</a>
+        <a href="/contact">Contact</a>
+        <a class="active" href="/about">About</a>
+        <form th:action="@{/logout}" method="post">
+            <input class="logoutButton" type="submit" value="Logout"></input>
+        </form>
     </div>
-<div id="aboutUs">
-    <p>Our goal is to get you the top quality for the best price. We care about your needs,and aim to put you first. qihriwh efuhwuehfiwqjeofihweuiph iujbsdjfhiuqwheoithqwuetu4htu34g u4hg  guerh gie heiughqighruh eru ghqeiorg hpqihg oiueh</p>
-</div>
-</div>
+
+    <div class="about-section">
+        <h1>About Us Page</h1>
+        <br>
+        <p>With an electric bike, no distance is too long, no terrain is too tough. Power your adventure with Electro bikes.</p>
+        <br>
+        <p>Our goal is to get you the top quality for the best price. We care about your needs, and aim to put you first.</p>
+    </div>
+
+    <div id="about-logo">
+        <img src="images/logo.png" height="400" width="400"/>
+    </div>
 
 </body>
 </html>

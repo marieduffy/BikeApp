@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Help Center</title>
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/topnav.css">
+    <link rel="stylesheet" type="text/css" href="css/help.css">
+</head>
+<nav class="topnav">
+    <a href="/owner">Home</a>
+    <a href="/inventory">Inventory</a>
+    <a href="/vendorHomePage">Vendor Orders</a>
+    <a href="/bikeRepair">Bike Repair</a>
+    <a href="/salesDiscounts">Sales/Discounts</a>
+    <a href="/employeeHome">Managers/Employees</a>
+    <a href="/payroll">Payroll</a>
+    <a href="/ownerContact">Contact</a>
+    <a class="active" href="/help">Help</a>
+    <form th:action="@{/logout}" method="post">
+        <input class="logoutButton" type="submit" value="Logout">
+    </form>
+</nav>
+
+
+<body>
+
+
+    <div id="all-collapsibles">
+        <button type="button" class="collapsible">How can I reset my username and password?</button>
+        <div class="content">
+            <p>Navigate to the employee page and go to user settings. </p>
+        </div>
+        <button type="button" class="collapsible">How can I change my other information?</button>
+        <div class="content">
+            <p>Other information may need to be changed by a manager or the owner.</p>
+        </div>
+        <button type="button" class="collapsible">Why can't I made an order with a vendor over $500?</button>
+        <div class="content">
+            <p>Order permissions are as follows: <br>
+                $500-9,999 needs manager approval <br>
+                $10,000+ needs owner approval
+            </p>
+        </div>
+        <button type="button" class="collapsible">How do I update the status of an order?</button>
+        <div class="content">
+            <p>Go <a href="/changeVOStatus">here!</a></p>
+        </div>
+        <button type="button" class="collapsible">How can I request days off?</button>
+        <div class="content">
+            <p>Go to this link!</p>
+        </div>
+    </div>
+
+
+    <script>
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                } else {
+                    content.style.display = "block";
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>

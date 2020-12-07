@@ -19,18 +19,18 @@
             position: form.position.value,
             payRate: parseFloat(form.payRate.value),
             payrollType: form.payrollType.value,
-            privilegeLevel: form.position.value,
+            privilegeLevel: form.privilegeLevel.value,
             username: form.username.value,
             password: form.password.value,
             email: form.email.value }];
         var json = JSON.stringify(obj);
-        alert(json)
+
+        alert(form.privilegeLevel.value);
 
         var xhttp = new XMLHttpRequest();
         xhttp.open("POST", "http://localhost:8080/manager/addEmployee");
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send(json);
-        alert(xhttp.responseText);
     }
 </script>
 
@@ -43,10 +43,20 @@
     <input type="text" id="social" name="social"><br>
     <label for="position">Company Position:</label><br>
     <input type="text" id="position" name="position"><br>
+    <label for="privilegeLevel">Company Privilege Level:</label><br>
+    <select id="privilegeLevel" name="privilegeLevel">
+        <option value="OWNER">Owner</option>
+        <option value="MANAGER">Manager</option>
+        <option value="EMPLOYEE">Employee</option>
+        <option value="BOOKKEEPER">Bookkeeper</option>
+    </select><br>
     <label for="payRate">Pay Rate:</label><br>
     <input type="text" id="payRate" name="payRate"><br>
     <label for="payrollType">Payroll Type (Salary or Hourly):</label><br>
-    <input type="text" id="payrollType" name="payrollType"><br>
+    <select id="payrollType" name="payrollType">
+        <option value="Salary">Salary</option>
+        <option value="Hourly">Hourly</option>
+    </select><br>
     <label for="email">Email:</label><br>
     <input type="text" id="email" name="email"><br>
     <label for="username">Username:</label><br>

@@ -1,3 +1,2 @@
 # CS-532-Team-Project
-Team Project: TBA
-Hello World
+Team Project: Electro Bike Manager

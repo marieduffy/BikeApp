@@ -9,4 +9,7 @@ interface ShiftsRepository extends JpaRepository <ShiftsDomain, Long> {
 
     Optional<ShiftsDomain> findByEmployeeId(long employeeId)
 
+    Optional<ShiftsDomain> findByEmployeeName(String EmployeeName)
+
+
 }

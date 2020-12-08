@@ -1,9 +1,12 @@
 package com.electro.bikeapp.services
 
 import com.electro.bikeapp.domains.EmployeeDomain
+import com.electro.bikeapp.domains.ShiftsDomain
 import com.electro.bikeapp.dtos.AddEmployeeDTO
+import com.electro.bikeapp.dtos.ShiftsDTO
 import com.electro.bikeapp.dtos.UpdateEmployeeDTO
 import com.electro.bikeapp.repositories.AccountRepository
+import com.electro.bikeapp.repositories.ShiftsRepository
 import com.electro.bikeapp.utils.StringEncryption
 import groovy.util.logging.Slf4j
 import javassist.NotFoundException
@@ -18,6 +21,9 @@ class EmployeeService {
     @Autowired
     AccountRepository employeeAccountRepository
 
+    @Autowired
+    ShiftsRepository shiftsRepository
+
     StringEncryption stringEncryption = new StringEncryption()
     String user = 'Username: '
     /**
@@ -29,6 +35,9 @@ class EmployeeService {
         for (int i = 0; i < employeeInfoParams.size(); i++) {
             EmployeeDomain employee = new EmployeeDomain()
             Optional<EmployeeDomain> e = employeeAccountRepository.findByUsername(employeeInfoParams[i].username)
+            //Lili's added code
+            Optional<ShiftsDomain> s = shiftsRepository.findByEmployeeName(employeeInfoParams[i].employeeName)
+
             // If employee already exists, throw error
             if (e.isPresent()) {
                 // if its the same person
@@ -66,6 +75,12 @@ class EmployeeService {
 
                 //save employee to the database
                 employeeAccountRepository.save(employee)
+            }
+            if(!s.isPresent()){
+                ShiftsDomain shiftsDomain = new ShiftsDomain()
+                shiftsDomain.employeeName = employeeInfoParams[i].employeeName
+
+                shiftsRepository.save(shiftsDomain)
             }
         }
     }

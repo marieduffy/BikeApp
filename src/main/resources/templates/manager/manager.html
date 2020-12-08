@@ -122,67 +122,62 @@
     </div>
 
 </div>
-
-    <script>
-        function clockIn() {
-            var employeeID = 1;
-            var xhttp = new XMLHttpRequest();
-            var request = "http://localhost:8080/account/timeIn/" + employeeID;
-            xhttp.open("GET", request);
-            xhttp.setRequestHeader("Content-type", "application/json");
-            xhttp.send();
+<script>
+    function clockIn() {
+        var xhttp = new XMLHttpRequest();
+        var request = "http://localhost:8080/account/timeIn/" + sessionStorage.getItem("getId");
+        xhttp.open("GET", request);
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.send();
+    }
+    function clockOut() {
+        var xhttp = new XMLHttpRequest();
+        var request = "http://localhost:8080/account/timeOut/" + sessionStorage.getItem("getId");
+        xhttp.open("GET", request);
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.send();
+        xhttp.onreadystatechange = function (){
+            var out = xhttp.responseText.split("T");
+            sessionStorage.setItem("clockOut", out);
         }
-        function clockOut() {
-            var employeeID = 1;
-            var xhttp = new XMLHttpRequest();
-            var request = "http://localhost:8080/account/timeOut/" + employeeID;
-            xhttp.open("GET", request);
-            xhttp.setRequestHeader("Content-type", "application/json");
-            xhttp.send();
-            xhttp.onreadystatechange = function (){
-                var out = xhttp.responseText.split("T");
-                sessionStorage.setItem("clockOut", out);
-            }
-            timeSheet();
-        }
-        function timeSheet(){
-            String:
-                employeeID = "1";
-            var xhttp = new XMLHttpRequest();
-            var request = "http://localhost:8080/account/totalTime/1";
-            xhttp.open("GET", request);
-            xhttp.setRequestHeader("Content-type", "application/json");
-            xhttp.send();
+        timeSheet();
+    }
+    function timeSheet(){
+        var xhttp = new XMLHttpRequest();
+        var request = "http://localhost:8080/account/totalTime/" + sessionStorage.getItem("getId");
+        xhttp.open("GET", request);
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.send();
 
-            var xhttp = new XMLHttpRequest();
-            var request = "http://localhost:8080/account/timeSheet";
-            xhttp.open("POST", request);
-            xhttp.setRequestHeader("Content-type", "application/json");
-            xhttp.send(employeeID);
-            xhttp.onreadystatechange = function () {
-                sessionStorage.setItem("result", xhttp.responseText);
-            };
+        var xhttp = new XMLHttpRequest();
+        var request = "http://localhost:8080/account/timeSheet";
+        xhttp.open("POST", request);
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.send(sessionStorage.getItem("getId"));
+        xhttp.onreadystatechange = function () {
+            sessionStorage.setItem("result", xhttp.responseText);
+        };
 
-            var res = sessionStorage.getItem("result").split("\n");
-            document.getElementById("date").innerText = "Today is: " + res[0];
+        var res = sessionStorage.getItem("result").split("\n");
+        document.getElementById("date").innerText = "Today is: " + res[0];
 
-            var clockIn = res[1].split("T");
-            clockIn = clockIn[1].split("-");
-            document.getElementById("clockIn").innerHTML = "Clocked in: " + clockIn[0];
+        var clockIn = res[1].split("T");
+        clockIn = clockIn[1].split("-");
+        document.getElementById("clockIn").innerHTML = "Clocked in: " + clockIn[0];
 
-            var d = new Date(),
-                h = (d.getHours()<10?'0':'') + d.getHours(),
-                m = (d.getMinutes()<10?'0':'') + d.getMinutes(),
-                s = (d.getSeconds()<10?'0':'') + d.getSeconds();
-            var clockOut = h + ':' + m + ':' + s;
-            document.getElementById("clockOut").innerText = "Clocked out: " + clockOut;
+        var d = new Date(),
+            h = (d.getHours()<10?'0':'') + d.getHours(),
+            m = (d.getMinutes()<10?'0':'') + d.getMinutes(),
+            s = (d.getSeconds()<10?'0':'') + d.getSeconds();
+        var clockOut = h + ':' + m + ':' + s;
+        document.getElementById("clockOut").innerText = "Clocked out: " + clockOut;
 
-            var hours = res[3].split("-");
-            document.getElementById("totalHours").innerText = "Time worked: " + hours[0];
+        var hours = res[3].split("-");
+        document.getElementById("totalHours").innerText = "Time worked: " + hours[0];
 
-            document.getElementById("timeSheet").style.display = "block";
+        document.getElementById("timeSheet").style.display = "block";
 
-        }
-    </script>
+    }
+</script>
 </body>
 </html>

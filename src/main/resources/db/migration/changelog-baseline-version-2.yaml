@@ -24,32 +24,32 @@ databaseChangeLog:
                   name: hours_worked_current_week
                   type: float
                   constraints:
-                    nullable: false
+                    nullable: true
               - column:
                   name: hours_worked_last_week
                   type: float
                   constraints:
-                    nullable: false
+                    nullable: true
               - column:
                   name: hours_worked_total
                   type: float
                   constraints:
-                    nullable: false
+                    nullable: true
               - column:
                   name: hourly_pay_rate
                   type: float
                   constraints:
-                    nullable: false
+                    nullable: true
               - column:
                   name: next_pay_date
                   type: datetime
                   constraints:
-                    nullable: false
+                    nullable: true
               - column:
                   name: amount_to_be_paid
                   type: float
                   constraints:
-                    nullable: false
+                    nullable: true
               - column:
                   name: last_pay_date
                   type: datetime

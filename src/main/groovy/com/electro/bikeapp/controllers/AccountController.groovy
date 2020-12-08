@@ -124,4 +124,10 @@ class AccountController {
         accountService.getPrivilege(username)
     }
 
+    @PostMapping(value = '/account/getId', produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    Long getId (@RequestBody String username) {
+        shiftsService.getId(username)
+    }
+
 }

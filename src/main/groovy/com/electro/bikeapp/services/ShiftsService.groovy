@@ -1,8 +1,10 @@
 package com.electro.bikeapp.services
 
+import com.electro.bikeapp.domains.EmployeeDomain
 import com.electro.bikeapp.domains.ShiftsDomain
 import com.electro.bikeapp.dtos.RequestsDTO
 import com.electro.bikeapp.dtos.ShiftsDTO
+import com.electro.bikeapp.repositories.AccountRepository
 import com.electro.bikeapp.repositories.ShiftsRepository
 import groovy.util.logging.Slf4j
 import org.springframework.beans.factory.annotation.Autowired
@@ -20,6 +22,15 @@ class ShiftsService {
 
     @Autowired
     ShiftsRepository shiftsRepository
+
+    @Autowired
+    AccountRepository employeeAccountRepository
+
+    Long getId (String username){
+        Optional<EmployeeDomain> employee = employeeAccountRepository.findByUsername(username)
+        Optional<ShiftsDomain> currentEmployee = shiftsRepository.findByEmployeeName(employee.get().employeeName)
+        currentEmployee.get().employeeId
+    }
 
     OffsetDateTime clockIn (long employeeId) {
         Optional<ShiftsDomain> currentEmployee = shiftsRepository.findByEmployeeId(employeeId)

@@ -88,17 +88,15 @@
 </div>
 <script>
     function clockIn() {
-        var employeeID = 1;
         var xhttp = new XMLHttpRequest();
-        var request = "http://localhost:8080/account/timeIn/" + employeeID;
+        var request = "http://localhost:8080/account/timeIn/" + sessionStorage.getItem("getId");
         xhttp.open("GET", request);
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send();
     }
     function clockOut() {
-        var employeeID = 1;
         var xhttp = new XMLHttpRequest();
-        var request = "http://localhost:8080/account/timeOut/" + employeeID;
+        var request = "http://localhost:8080/account/timeOut/" + sessionStorage.getItem("getId");
         xhttp.open("GET", request);
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send();
@@ -109,10 +107,8 @@
         timeSheet();
     }
     function timeSheet(){
-        String:
-            employeeID = "1";
         var xhttp = new XMLHttpRequest();
-        var request = "http://localhost:8080/account/totalTime/1";
+        var request = "http://localhost:8080/account/totalTime/" + sessionStorage.getItem("getId");
         xhttp.open("GET", request);
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send();
@@ -121,7 +117,7 @@
         var request = "http://localhost:8080/account/timeSheet";
         xhttp.open("POST", request);
         xhttp.setRequestHeader("Content-type", "application/json");
-        xhttp.send(employeeID);
+        xhttp.send(sessionStorage.getItem("getId"));
         xhttp.onreadystatechange = function () {
             sessionStorage.setItem("result", xhttp.responseText);
         };
@@ -147,6 +143,5 @@
 
     }
 </script>
-
 </body>
 </html>

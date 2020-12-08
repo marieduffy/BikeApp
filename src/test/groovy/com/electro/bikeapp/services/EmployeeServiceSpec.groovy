@@ -38,7 +38,7 @@ class EmployeeServiceSpec extends Specification{
 
         then: "Verify thrown error"
         def e = thrown(NotFoundException)
-        e.message == 'username: ' + testUsername + ' not found'
+        assert e.message == 'username: ' + testUsername + ' not found'
     }
 
     void deleteAnNonExistingEmployee() {

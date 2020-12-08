@@ -6,6 +6,7 @@ import com.electro.bikeapp.dtos.SearchInventoryDTO
 import com.electro.bikeapp.repositories.InventoryRepository
 import com.electro.bikeapp.utils.ByteToHexString
 import groovy.util.logging.Slf4j
+import javassist.NotFoundException
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.nio.charset.StandardCharsets
@@ -30,7 +31,7 @@ class InventoryService {
     // This method returns a list of bikes with the given search parameters
     List<BikeDomain> searchInventory (SearchInventoryDTO searchParams) {
         // We call the bikeInventoryRepository and return it's result
-        List<BikeDomain> searchedBikeList = bikeInventoryRepository.allParamSearch(
+        Optional<List<BikeDomain>> searchedBikeList = bikeInventoryRepository.allParamSearch(
                 searchParams.bikeColor,
                 searchParams.priceMin,
                 searchParams.priceMax,
@@ -38,7 +39,13 @@ class InventoryService {
                 searchParams.condition,
                 searchParams.make
         )
-        return searchedBikeList
+        if (searchedBikeList.isPresent()) {
+            return searchedBikeList.get()
+        }
+        else {
+            throw new NotFoundException('Bike with ' + searchParams.bikeColor + ' and ' + searchParams.priceMin + ' and ' + searchParams.priceMax + ' and ' + searchParams.inStock + ' and ' + searchParams.condition + ' and ' + searchParams.make + 'does not exist ')
+        }
+
     }
 
     /**

@@ -30,8 +30,8 @@
     <node x="2240.0" y="0.0">com.electro.bikeapp.dtos.AddProductDTO</node>
     <node x="0.0" y="1024.0">com.electro.bikeapp.domains.RetailOrderDomain</node>
     <node x="320.0" y="0.0">com.electro.bikeapp.domains.BikeDomain</node>
-    <node x="791.0" y="2761.0">com.electro.bikeapp.repositories.RepairTicketRepository</node>
     <node x="640.0" y="1024.0">com.electro.bikeapp.controllers.AccountController</node>
+    <node x="791.0" y="2761.0">com.electro.bikeapp.repositories.RepairTicketRepository</node>
     <node x="2128.0" y="2274.0">com.electro.bikeapp.dtos.LoginCredentialsDTO</node>
     <node x="2448.0" y="2274.0">com.electro.bikeapp.utils.StringEncryption</node>
     <node x="0.0" y="1587.0">com.electro.bikeapp.services.AccountService</node>
@@ -55,13 +55,15 @@
   </nodes>
   <notes />
   <edges />
-  <settings layout="Hierarchic Group" zoom="0.41516754850088183" x="1483.5" y="1407.5" />
-  <SelectedNodes />
+  <settings layout="Hierarchic Group" zoom="0.23633156966490299" x="1464.5" y="1407.5" />
+  <SelectedNodes>
+    <node>com.electro.bikeapp.repositories.VendorOrderRepository</node>
+  </SelectedNodes>
   <Categories>
-    <Category>Properties</Category>
-    <Category>Methods</Category>
     <Category>Fields</Category>
     <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
     <Category>Inner Classes</Category>
   </Categories>
   <SCOPE>All</SCOPE>

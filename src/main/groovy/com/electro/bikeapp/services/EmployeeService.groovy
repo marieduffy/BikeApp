@@ -3,7 +3,6 @@ package com.electro.bikeapp.services
 import com.electro.bikeapp.domains.EmployeeDomain
 import com.electro.bikeapp.domains.ShiftsDomain
 import com.electro.bikeapp.dtos.AddEmployeeDTO
-import com.electro.bikeapp.dtos.ShiftsDTO
 import com.electro.bikeapp.dtos.UpdateEmployeeDTO
 import com.electro.bikeapp.repositories.AccountRepository
 import com.electro.bikeapp.repositories.ShiftsRepository
@@ -76,7 +75,7 @@ class EmployeeService {
                 //save employee to the database
                 employeeAccountRepository.save(employee)
             }
-            if(!s.isPresent()){
+            if (!s.isPresent()) {
                 ShiftsDomain shiftsDomain = new ShiftsDomain()
                 shiftsDomain.employeeName = employeeInfoParams[i].employeeName
 

@@ -11,7 +11,7 @@
 </head>
 <nav class="topnav">
     <a href="/owner">Home</a>
-    <a href="/inventory">Inventory</a>
+    <a href="/displayInventory">Inventory</a>
     <a href="/vendorHomePage">Vendor Orders</a>
     <a href="/bikeRepair">Bike Repair</a>
     <a href="/salesDiscounts">Sales/Discounts</a>
@@ -25,11 +25,35 @@
 </nav>
 
 <body>
-<div class="buttons-container">
-    <a class="button" href="/createEmployee" target="_blank">Create a New Employee/Manager</a><br>
-    <a class="button" href="/updateEmployee" target="_blank">Update Employee/Manager</a><br>
-</div>
+<div class="options">
+    <div id="getInfo">
 
+        <label>Employee Name: </label>
+        <input type="text" name="Employee Name" placeholder="e.g. Marie Duffy"><br> <br>
+        <label>Employee ID: </label>
+        <input type="text" name="Employee ID" placeholder="e.g. 1"><br> <br>
+        <button class="empInfo" onclick="callAPI()">Submit</button>
+
+        <br> <br>
+        <div id="displayInfo">
+            <p id="info">
+            <h1><u>Employee Information:</u></h1>
+            Name: Marie Duffy<br>
+            Address: 5200 Campanile Drive<br>
+            SSN: 87362617<br>
+            Position: Manager<br>
+            Pay Rate: $55,000.00<br>
+            Pay Type: Hourly<br>
+            Email: marie@gmail.com<br>
+            </p>
+        </div>
+    </div>
+
+    <div class="buttons-container">
+        <a class="button" href="/createEmployee" target="_blank">Create a New Employee/Manager</a><br>
+        <a class="button" href="/updateEmployee" target="_blank">Update Employee/Manager</a><br>
+    </div>
+</div>
 
 </body>
 </html>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Add Employees</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+    <link rel="icon" type="image/png" href="images/icons/favicon.png"/>
     <link rel="stylesheet" type="text/css" href="css/util.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/topnav.css">
@@ -33,19 +33,19 @@
         xhttp.send(json);
     }
     function checkLength(ssn) {
-        if (ssn.value.length != 15) {
+        if (ssn.value.length != 9) {
             window.alert("Must be exactly 9 digits.")
         }
     }
 </script>
 
-<form class="form" NAME="createEmployeeForm" ACTION="" METHOD="post">
+<form class="form" NAME="createEmployeeForm" METHOD="post">
     <label for="employeeName">Employee Name:</label><br>
     <input type="text" id="employeeName" name="employeeName"><br>
     <label for="address">Address:</label><br>
     <input type="text" id="address" name="address"><br>
     <label for="social">Social Security Number:</label><br>
-    <input type="password" id="social" name="social"
+    <input type="text" id="social" name="social"
     maxlength="9" onblur="checkLength(this)"
     oninput="javascript: if (this.value.length > this.maxLength)
     this.value = this.value.slice(0, this.maxLength);"><br>
@@ -74,7 +74,7 @@
     <label for="verifyPassword">Verify Password:</label><br>
     <input type="password" id="verifyPassword" name="verifyPassword"><br>
     <br>
-    <input type="submit" value="Submit" onclick="return callAPI(this.form)">
+    <button onclick="return callAPI(this.form)">Submit</button>
 </form>
 
 </body>

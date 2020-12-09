@@ -3,37 +3,161 @@
 <script language="javascript">
     function callAPI() {
 
-        var xhttp = new XMLHttpRequest();
-        xhttp.open("GET", "http://localhost:8080/inventory/retrieveInventory");
-        alert(xhttp.responseText);
+        const Http = new XMLHttpRequest();
+        const url="http://localhost:8080/inventory/retrieveInventory";
+        Http.open("GET", url);
+        Http.send();
+        Http.onload = (e) => {
+            if(Http.status === 200){
+                var j = JSON.parse(Http.responseText)
 
+                for (var i = 0; i < j.length; i++) {
+                    delete j[i].addedBy
+                    delete j[i].addedDate
+                    delete j[i].wholesaleCost
+                    delete j[i].soldBy
+                    delete j[i].soldDate
+                    delete j[i].hashValue
+                }
+
+                var json = j
+
+                // Extract value from table header.
+                // ('Book ID', 'Book Name', 'Category' and 'Price')
+                var col = [];
+                for (var i = 0; i < json.length; i++) {
+                    for (var key in json[i]) {
+                        if (col.indexOf(key) === -1) {
+                            col.push(key);
+                        }
+                    }
+                }
+
+                // Create a table.
+                var table = document.createElement("table");
+
+                // Create table header row using the extracted headers above.
+                var tr = table.insertRow(-1);                   // table row.
+
+                for (var i = 0; i < col.length; i++) {
+                    var th = document.createElement("th");      // table header.
+                    if(col[i] === "bikeId"){
+                        th.innerHTML = "ID";
+                    }
+                    else if(col[i] === "bikeDisplayName"){
+                        th.innerHTML = "Name";
+                    }
+                    else if(col[i] === "make"){
+                        th.innerHTML = "Make";
+                    }
+                    else if(col[i] === "model"){
+                        th.innerHTML = "Model";
+                    }
+                    else if(col[i] === "color"){
+                        th.innerHTML = "Color";
+                    }
+                    else if(col[i] === "retailCost"){
+                        th.innerHTML = "Price";
+                    }
+                    else if(col[i] === "description"){
+                        th.innerHTML = "Description";
+                    }
+                    else if(col[i] === "inStock"){
+                        th.innerHTML = "In Stock";
+                    }
+                    else if(col[i] === "condition"){
+                        th.innerHTML = "Condition";
+                    }
+                    else if(col[i] === "quantity"){
+                        th.innerHTML = "Quantity";
+                    }
+                    else{
+                        th.innerHTML = col[i];
+                    }
+                    tr.appendChild(th);
+                }
+
+                // add json data to the table as rows.
+                for (var i = 0; i < json.length; i++) {
+
+                    tr = table.insertRow(-1);
+
+                    for (var j = 0; j < col.length; j++) {
+                        var tabCell = tr.insertCell(-1);
+                        tabCell.innerHTML = json[i][col[j]];
+                    }
+                }
+
+                // Now, add the newly created table with json data, to a container.
+                var divShowData = document.getElementById('showData');
+                divShowData.innerHTML = "";
+                divShowData.appendChild(table);
+            }
+            else{
+                alert("Inventory not found")
+            }
+        }
     }
 </script>
 <head>
-    <title>Vendor Orders</title>
     <meta charset="UTF-8">
+    <title>Inventory</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
     <link rel="stylesheet" type="text/css" href="css/util.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/topnav.css">
-</head>
 
+    <style>
+        table {
+            margin-left: auto;
+            margin-right: auto;
+        }
+        h1 {
+            text-align: center;
+        }
+        table, th {
+            border: solid 1px #ddd;
+            border-collapse: collapse;
+            padding: 2px 3px;
+            text-align: center;
+        }
+        td {
+            border: solid 1px #ddd;
+            border-collapse: collapse;
+            padding: 2px 3px;
+            text-align: left;
+        }
+        th {
+            font-weight:bold;
+        }
+    </style>
+
+</head>
 <nav class="topnav">
-    <a href="/employee">Home</a>
-    <a class="active" href="/employeeDisplayInventory">Inventory</a>
-    <a href="/employeeVendorHomePage">Vendor Orders</a>
-    <a href="/employeeBikeRepair">Bike Repair</a>
-    <a href="/employeeContact">Contact</a>
-    <a href="/employeeHelp">Help</a>
+    <a href="/owner">Home</a>
+    <a href="/inventory">Search Inventory</a>
+    <a class="active" href="/displayInventory">Show Inventory</a>
+    <a href="/vendorHomePage">Vendor Orders</a>
+    <a href="/bikeRepair">Bike Repair</a>
+    <a href="/salesDiscounts">Sales/Discounts</a>
+    <a href="/employeeHome">Managers/Employees</a>
+    <a href="/payroll">Payroll</a>
+    <a href="/ownerContact">Contact</a>
+    <a href="/help">Help</a>
     <form th:action="@{/logout}" method="post">
         <input class="logoutButton" type="submit" value="Logout">
     </form>
 </nav>
 
 <body onload="callAPI()">
+<div>
+    <h1>
+        <br>Current Inventory<br><br>
+    </h1>
+</div>
 
-<p>HELLO WORLD</p>
+<p id='showData'></p>
 
 </body>
 </html>

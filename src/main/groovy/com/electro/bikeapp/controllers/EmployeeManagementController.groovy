@@ -71,9 +71,9 @@ class EmployeeManagementController {
 
     @PostMapping(value = '/bookkeeper/employeeInformation', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    String employeeInformation (@RequestBody String employeeName, long employeeId) {
+    String employeeInformation (@RequestBody long employeeId) {
         log.info('Adding a new employee to the system')
-        employeeService.employeeInformation(employeeName, employeeId)
+        employeeService.employeeInformation(employeeId)
     }
 
 }

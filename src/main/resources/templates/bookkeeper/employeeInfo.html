@@ -20,37 +20,37 @@
         <input class="logoutButton" type="submit" value="Logout">
     </form>
 </nav>
+
 <body>
 <div id="getInfo">
 
-    <label>Employee Name: </label>
-    <input type="text" name="Employee Name" placeholder="e.g. Marie Duffy"><br> <br>
-    <label>Employee ID: </label>
-    <input type="text" name="Employee ID" placeholder="e.g. 1"><br> <br>
-    <button class="empInfo" onclick="callAPI()">Submit</button>
+    <form class="form">
+        <label>Search by Employee ID: </label>
+        <input type="number" name="employeeId" id="employeeId" placeholder="e.g. 1"><br> <br>
+        <button class="empInfo" onclick="callAPI(this.form)">Submit</button>
+    </form>
 
     <br> <br>
     <div id="displayInfo">
         <p id="info">
-        <h1><u>Employee Information:</u></h1>
-            Name: Marie Duffy<br>
-            Address: 5200 Campanile Drive<br>
-            SSN: 87362617<br>
-            Position: Manager<br>
-            Pay Rate: $55,000.00<br>
-            Pay Type: Hourly<br>
-            Email: marie@gmail.com<br>
+
         </p>
     </div>
 </div>
 <script>
-    function callAPI() {
-        // var xhttp = new XMLHttpRequest();
-        // var request = "http://localhost:8080/account/timeSheet/" + obj;
-        // xhttp.open("POST", request);
-        // xhttp.setRequestHeader("Content-type", "application/json");
-        // xhttp.send(json);
-        //inner HTML for p tag
+    function callAPI(form) {
+        const employeeId =  parseInt(form.employeeId.value)
+
+        var xhttp = new XMLHttpRequest();
+        var request = "http://localhost:8080/bookkeeper/employeeInformation";
+        xhttp.open("POST", request);
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.send();
+        xhttp.onreadystatechange = function (){
+            document.getElementById("info").innerText = xhttp.responseText;
+        };
+
+        // inner HTML for p tag
         document.getElementById("displayInfo").style.display = "block";
 
     }

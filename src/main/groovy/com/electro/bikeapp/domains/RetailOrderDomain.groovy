@@ -1,7 +1,6 @@
 package com.electro.bikeapp.domains
 
 import org.hibernate.annotations.CreationTimestamp
-
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
@@ -43,4 +42,5 @@ class RetailOrderDomain {
 
     @Column(name = 'item_ids')
     String itemIds
+
 }

@@ -12,6 +12,4 @@ class VendorOrderDTO {
 
     String orderBreakdown
 
-
-
 }

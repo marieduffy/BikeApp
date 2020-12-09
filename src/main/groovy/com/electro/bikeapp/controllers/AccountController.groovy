@@ -20,9 +20,6 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 
-import java.time.OffsetDateTime
-import java.time.OffsetTime
-
 @RestController
 @Slf4j
 class AccountController {
@@ -117,7 +114,7 @@ class AccountController {
     @PostMapping(value = '/account/getPrivilege', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     String getPrivilege (@RequestBody String username) {
-        log.info(username + " just logged in.")
+//        log.info(username + " just logged in.")
         accountService.getPrivilege(username)
     }
 

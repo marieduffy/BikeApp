@@ -32,6 +32,11 @@
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send(json);
     }
+    function checkLength(ssn) {
+        if (ssn.value.length != 15) {
+            window.alert("Must be exactly 9 digits.")
+        }
+    }
 </script>
 
 <form class="form" NAME="createEmployeeForm" ACTION="" METHOD="post">
@@ -40,7 +45,10 @@
     <label for="address">Address:</label><br>
     <input type="text" id="address" name="address"><br>
     <label for="social">Social Security Number:</label><br>
-    <input type="text" id="social" name="social"><br>
+    <input type="password" id="social" name="social"
+    maxlength="9" onblur="checkLength(this)"
+    oninput="javascript: if (this.value.length > this.maxLength)
+    this.value = this.value.slice(0, this.maxLength);"><br>
     <label for="position">Company Position:</label><br>
     <input type="text" id="position" name="position"><br>
     <label for="privilegeLevel">Company Privilege Level:</label><br>

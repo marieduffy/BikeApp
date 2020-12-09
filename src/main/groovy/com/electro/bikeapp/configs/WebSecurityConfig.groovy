@@ -87,6 +87,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers('/payroll').hasAnyAuthority('OWNER')
                     .antMatchers('/salesDiscounts').hasAuthority('OWNER')
                     .antMatchers('/vendorHomePage').hasAuthority('OWNER')
+                    .antMatchers('/displayInventory').hasAuthority('OWNER')
         //BOOKKEEPER PAGES
                     .antMatchers('/bookkeeper').hasAnyAuthority('BOOKKEEPER', 'OWNER')
                     .antMatchers('/employeeInfo').hasAnyAuthority('BOOKKEEPER', 'OWNER')

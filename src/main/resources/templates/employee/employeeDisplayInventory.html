@@ -35,7 +35,6 @@
 
                 // Create a table.
                 var table = document.createElement("table");
-
                 // Create table header row using the extracted headers above.
                 var tr = table.insertRow(-1);                   // table row.
 
@@ -107,57 +106,29 @@
     <link rel="stylesheet" type="text/css" href="css/util.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/topnav.css">
-
-    <style>
-        table {
-            margin-left: auto;
-            margin-right: auto;
-        }
-        h1 {
-            text-align: center;
-        }
-        table, th {
-            border: solid 1px #ddd;
-            border-collapse: collapse;
-            padding: 2px 3px;
-            text-align: center;
-        }
-        td {
-            border: solid 1px #ddd;
-            border-collapse: collapse;
-            padding: 2px 3px;
-            text-align: left;
-        }
-        th {
-            font-weight:bold;
-        }
-    </style>
-
 </head>
 <nav class="topnav">
-    <a href="/owner">Home</a>
-    <a href="/inventory">Search Inventory</a>
-    <a class="active" href="/displayInventory">Show Inventory</a>
-    <a href="/vendorHomePage">Vendor Orders</a>
-    <a href="/bikeRepair">Bike Repair</a>
-    <a href="/salesDiscounts">Sales/Discounts</a>
-    <a href="/employeeHome">Managers/Employees</a>
-    <a href="/payroll">Payroll</a>
-    <a href="/ownerContact">Contact</a>
-    <a href="/help">Help</a>
+    <a href="/employee">Home</a>
+    <a class="active" href="/employeeDisplayInventory">Inventory</a>
+    <a href="/employeeVendorHomePage">Vendor Orders</a>
+    <a href="/employeeBikeRepair">Bike Repair</a>
+    <a href="/employeeContact">Contact</a>
+    <a href="/employeeHelp">Help</a>
     <form th:action="@{/logout}" method="post">
         <input class="logoutButton" type="submit" value="Logout">
     </form>
 </nav>
 
 <body onload="callAPI()">
-<div>
-    <h1>
-        <br>Current Inventory<br><br>
-    </h1>
+<div class="outside">
+    <div class="inventory">
+        <h1 align="center">Current Inventory<br><br></h1>
+        <p id='showData'></p>
+    </div>
+    <div class="features">
+        <a class="button" href="/inventory" target="_blank">Add To Inventory</a><br><br>
+        <a class="button" onClick="window.location.reload();">Reload Inventory Database</a>
+    </div>
 </div>
-
-<p id='showData'></p>
-
-</body>
-</html>
+<br>
+</body></html>

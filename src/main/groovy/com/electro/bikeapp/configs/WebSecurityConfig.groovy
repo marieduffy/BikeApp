@@ -115,6 +115,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers('/createEmployee').authenticated()
                     .antMatchers('/createRetailOrder').authenticated()
                     .antMatchers('/inventory').authenticated()
+                    .antMatchers('/makeSchedule').authenticated()
                     .antMatchers('/requestTime').authenticated()
                     .antMatchers('/updateEmployee').authenticated()
                     .antMatchers('/vendorOrder').authenticated()

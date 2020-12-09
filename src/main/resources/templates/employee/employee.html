@@ -76,9 +76,10 @@
 </table>
 <div id="buttons">
     <button class="clockInAndOut" onclick="clockIn()" value="Clock In">Clock In</button>
-    <button class="clockInAndOut" onclick="setTimeout(clockOut, 3000);" value="Clock Out">Clock Out</button>
-    <br>
-    <br>
+    <button class="clockInAndOut" onclick="setTimeout(clockOut, 1);" value="Clock Out">Clock Out</button>
+    <br><br>
+    <label for="ID">Employee ID: </label>
+    <input type="number" placeholder="e.g. 1" id="ID"> <br><br>
     <div id="timeSheet">
         <p id="date"></p>
         <p id="clockIn"></p>
@@ -87,11 +88,9 @@
     </div>
 </div>
 <script>
-    console.log(sessionStorage.getItem("getId"));
-
     function hours() {
         var xhttp = new XMLHttpRequest();
-        var request = "http://localhost:8080/account/totalTime/" + sessionStorage.getItem("getId");
+        var request = "http://localhost:8080/account/totalTime/" + document.getElementById("ID").value;
         xhttp.open("GET", request);
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send();
@@ -113,7 +112,7 @@
     }
     function clockIn() {
         var xhttp = new XMLHttpRequest();
-        var request = "http://localhost:8080/account/timeIn/" + sessionStorage.getItem("getId");
+        var request = "http://localhost:8080/account/timeIn/" + document.getElementById("ID").value;
         xhttp.open("GET", request);
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send();
@@ -123,7 +122,7 @@
     }
     function clockOut() {
         var xhttp = new XMLHttpRequest();
-        var request = "http://localhost:8080/account/timeOut/" + sessionStorage.getItem("getId");
+        var request = "http://localhost:8080/account/timeOut/" + document.getElementById("ID").value;
         xhttp.open("GET", request);
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send();

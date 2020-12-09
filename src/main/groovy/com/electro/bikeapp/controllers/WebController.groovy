@@ -49,6 +49,11 @@ class WebController {
         return '/other/inventory'
     }
 
+    @RequestMapping('/makeSchedule')
+    String makeSchedule() {
+        return '/other/makeSchedule'
+    }
+
     @RequestMapping('/requestTime')
     String requestTime() {
         return '/other/requestTime'

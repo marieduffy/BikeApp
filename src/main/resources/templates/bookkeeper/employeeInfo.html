@@ -4,95 +4,14 @@
     function callAPI() {
         var id = document.getElementById("employeeId").value;
         const Http = new XMLHttpRequest();
-        const url= "http://localhost:8080/bookkeeper/employeeInformation/" + id.toString();
+        const url = "http://localhost:8080/bookkeeper/employeeInformation/" + id;
         Http.open("GET", url);
         Http.send();
         Http.onreadystatechange = function () {
-            if (Http.status === 200) {
-                console.log(Http.responseText);
-                JSON.
-                var j = JSON.parse(Http.responseText.substring(1));
-                //var j = Http.responseText;
-
-                delete j.encryptedPassword;
-                delete j.isDeleted;
-
-                var json = j;
-
-                // Extract value from table header.
-                // ('Book ID', 'Book Name', 'Category' and 'Price')
-                var col = [];
-                for (var i = 0; i < json.length; i++) {
-                    for (var key in json[i]) {
-                        if (col.indexOf(key) === -1) {
-                            col.push(key);
-                        }
-                    }
-                }
-
-                // Create a table.
-                var table = document.createElement("table");
-
-                // Create table header row using the extracted headers above.
-                var tr = table.insertRow(-1);                   // table row.
-
-                for (var i = 0; i < col.length; i++) {
-                    var th = document.createElement("th");      // table header.
-                    if(col[i] === "bikeId"){
-                        th.innerHTML = "ID";
-                    }
-                    else if(col[i] === "bikeDisplayName"){
-                        th.innerHTML = "Name";
-                    }
-                    else if(col[i] === "make"){
-                        th.innerHTML = "Make";
-                    }
-                    else if(col[i] === "model"){
-                        th.innerHTML = "Model";
-                    }
-                    else if(col[i] === "color"){
-                        th.innerHTML = "Color";
-                    }
-                    else if(col[i] === "retailCost"){
-                        th.innerHTML = "Price";
-                    }
-                    else if(col[i] === "description"){
-                        th.innerHTML = "Description";
-                    }
-                    else if(col[i] === "inStock"){
-                        th.innerHTML = "In Stock";
-                    }
-                    else if(col[i] === "condition"){
-                        th.innerHTML = "Condition";
-                    }
-                    else if(col[i] === "quantity"){
-                        th.innerHTML = "Quantity";
-                    }
-                    else{
-                        th.innerHTML = col[i];
-                    }
-                    tr.appendChild(th);
-                }
-
-                // add json data to the table as rows.
-                for (var i = 0; i < json.length; i++) {
-
-                    tr = table.insertRow(-1);
-
-                    for (var j = 0; j < col.length; j++) {
-                        var tabCell = tr.insertCell(-1);
-                        tabCell.innerHTML = json[i][col[j]];
-                    }
-                }
-
-                // Now, add the newly created table with json data, to a container.
-                var divShowData = document.getElementById('showData');
-                divShowData.innerHTML = "";
-                divShowData.appendChild(table);
-
-            } else {
-                alert("Inventory not found");
-            }
+            var j = JSON.parse(Http.responseText);
+            var results = "Name: " + j.employeeName + "\nAddress: " + j.address + "\nSSN: " + j.social + "\nPosition: " + j.position + "\nPay Rate: $" + j.payRate + "\nPay Type: " + j.payrollType + "\nEmail: " + j.email;
+            document.getElementById("showData").innerText = results;
+            document.getElementById("displayInfo").style.display = "block";
         };
     }
 </script>
@@ -119,15 +38,13 @@
 
 <body>
 <div id="getInfo">
-
-        <label>Search by Employee ID: </label>
-        <input type="number" name="employeeId" id="employeeId" placeholder="e.g. 1"><br> <br>
-        <button class="empInfo" onclick="callAPI()">Submit</button>
-
-    <br> <br>
-
+    <div id="displayInfo">
         <p id="showData"></p>
-
+    </div>
+    <br> <br>
+    <label>Employee ID: </label>
+    <input type="number" name="employeeId" id="employeeId" placeholder="e.g. 1"><br> <br>
+    <button class="empInfo" onclick="setTimeout(callAPI, 1)">Submit</button>
 </div>
 </body>
 </html>

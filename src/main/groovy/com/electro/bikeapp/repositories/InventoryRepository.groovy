@@ -19,7 +19,7 @@ interface InventoryRepository extends JpaRepository<BikeDomain, Long> {
     // that meet the given parameters. Normally, you won't need to hardcode a query like this
     @Query('SELECT b FROM BikeDomain b WHERE (:bikeColor is null or b.color = :bikeColor) and (:priceMin is null or b.retailCost >= :priceMin) and (:priceMax is null or b.retailCost <= :priceMax) and (:inStock is null or b.inStock = :inStock) and (:condition is null or b.condition = :condition) and (:make is null or b.make = :make)')
     // This method returns a list of bikes. It accepts the name, make, color, lessThanCost, and greaterThanCost
-    List<BikeDomain> allParamSearch(@Param('bikeColor') String bikeColor,
+    Optional<List<BikeDomain>> allParamSearch(@Param('bikeColor') String bikeColor,
                                     @Param('priceMin') Float priceMin,
                                     @Param('priceMax') Float priceMax,
                                     @Param('inStock') Boolean inStock,

@@ -11,15 +11,13 @@
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/topnav.css">
 </head>
-<body>
-
-<div class="topnav">
+<nav class="topnav">
     <a href="/">Home</a>
     <a class="active" href="/login">Login</a>
     <a href="/contact">Contact</a>
     <a href="/about">About</a>
-</div>
-
+</nav>
+<body>
 <div class="limiter">
     <div class="container-login100" style="background-image: url('images/bikeBackground.jpg');">
         <div class="wrap-login100 p-t-30 p-b-50">
@@ -54,16 +52,13 @@
 
 <script>
     function getID() {
-
         var xhttp = new XMLHttpRequest();
-        var request = "http://localhost:8080/account/getId";
-        xhttp.open("POST", request);
+        xhttp.open("POST", "http://localhost:8080/account/getId");
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send(document.getElementById("username").value);
         xhttp.onreadystatechange = function () {
             sessionStorage.setItem("getId", xhttp.responseText);
         };
-
     }
 </script>
 </body>

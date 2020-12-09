@@ -76,7 +76,7 @@ class AccountController {
     //time in
     @GetMapping(value = '/account/timeIn/{employeeId}', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    OffsetDateTime clockIn (@PathVariable long employeeId) {
+    String clockIn (@PathVariable long employeeId) {
 //        log.info "Clock in time has been recorded for employee $employeeId"
         shiftsService.clockIn(employeeId)
     }
@@ -84,23 +84,20 @@ class AccountController {
     //time out
     @GetMapping(value = '/account/timeOut/{employeeId}', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    OffsetDateTime clockOut (@PathVariable long employeeId) {
-//        log.info "Clock out time has been recorded for employee $employeeId"
+    String clockOut (@PathVariable long employeeId) {
         shiftsService.clockOut(employeeId)
     }
-//
+
     @GetMapping(value = '/account/totalTime/{employeeId}', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    OffsetTime totalDayTime (@PathVariable long employeeId) {
-//        log.info "The total time worked has been recorded for employee $employeeId"
+    String totalDayTime (@PathVariable long employeeId) {
         shiftsService.totalDayTime(employeeId)
     }
 
-    @PostMapping(value = '/account/timeSheet', produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = '/account/date', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    String timeSheet (@RequestBody String employeeId) {
-        log.info "This is employee $employeeId's time sheet for their shift"
-        shiftsService.timeSheet(employeeId)
+    String date (@RequestBody String employeeId) {
+        shiftsService.date(employeeId)
     }
 
     //TODO: Lili /account/shiftChart
@@ -126,7 +123,7 @@ class AccountController {
 
     @PostMapping(value = '/account/getId', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    Long getId (@RequestBody String username) {
+    long getId (@RequestBody String username) {
         shiftsService.getId(username)
     }
 

@@ -26,39 +26,39 @@ class ShiftsService {
     @Autowired
     AccountRepository employeeAccountRepository
 
-    Long getId (String username){
+    long getId (String username){
         Optional<EmployeeDomain> employee = employeeAccountRepository.findByUsername(username)
         Optional<ShiftsDomain> currentEmployee = shiftsRepository.findByEmployeeName(employee.get().employeeName)
-        currentEmployee.get().employeeId
+        return currentEmployee.get().employeeId
     }
 
-    OffsetDateTime clockIn (long employeeId) {
+    String clockIn (long employeeId) {
         Optional<ShiftsDomain> currentEmployee = shiftsRepository.findByEmployeeId(employeeId)
         if (currentEmployee.isPresent()) {
             OffsetDateTime currentTime = OffsetDateTime.now()
             currentEmployee.get().timeIn = currentTime
             shiftsRepository.save(currentEmployee.get())
-            return currentTime
+            return currentTime.getHour() +":" + currentTime.getMinute() + ":" + currentTime.getSecond()
         }
         else {
             log.error("Employee with ID: $employeeId does not exist")
         }
     }
 
-    OffsetDateTime clockOut (long employeeId) {
+    String clockOut (long employeeId) {
         Optional<ShiftsDomain> currentEmployee = shiftsRepository.findByEmployeeId(employeeId)
         if (currentEmployee.isPresent()) {
             OffsetDateTime currentTime = OffsetDateTime.now() //current time is being set to the current time
             currentEmployee.get().timeOut = currentTime
             shiftsRepository.save(currentEmployee.get())
-            return currentTime
+            return currentTime.getHour() +":" + currentTime.getMinute() + ":" + currentTime.getSecond()
         }
         else {
             log.error("Employee with ID: $employeeId does not exist")
         }
     }
 
-    OffsetTime totalDayTime (long employeeId) {
+    String totalDayTime (long employeeId) {
         Optional<ShiftsDomain> currentEmployee = shiftsRepository.findByEmployeeId(employeeId)
         if (currentEmployee.isPresent()) {
             OffsetDateTime timeIn = currentEmployee.get().timeIn
@@ -82,20 +82,15 @@ class ShiftsService {
         }
     }
 
-    String timeSheet (String employeeId) {
+    String date (String employeeId) {
         long empID = Long.parseLong(employeeId)
         Optional<ShiftsDomain> currentEmployee = shiftsRepository.findByEmployeeId(empID)
         if (currentEmployee.isPresent()) {
-            String report = ""
             LocalDate today = LocalDate.now()
             Date date = java.sql.Date.valueOf(today)
             currentEmployee.get().todaysDate = date
-            report = report + "$date\n"
-            report = report + currentEmployee.get().timeIn +"\n"
-            report = report + currentEmployee.get().timeOut + "\n"
-            report = report + currentEmployee.get().totalDayHours + "\n"
-            shiftsRepository.save(currentEmployee.get())
-            return report
+
+            return date
         }
         else {
             log.error("Employee with ID: $employeeId does not exist")

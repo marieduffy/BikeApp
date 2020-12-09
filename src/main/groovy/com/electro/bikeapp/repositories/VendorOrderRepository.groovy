@@ -8,5 +8,6 @@ import org.springframework.stereotype.Repository
 interface VendorOrderRepository extends JpaRepository<VendorOrderDomain, Long> {
 
     Optional<VendorOrderDomain> findByVendorOrderId(Integer vendorOrderId)
+    Optional<VendorOrderDomain> findTopByOrderByVendorOrderIdDesc()
 
 }

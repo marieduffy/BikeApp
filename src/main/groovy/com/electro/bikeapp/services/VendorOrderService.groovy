@@ -38,6 +38,7 @@ class VendorOrderService {
         vendorOrder.quantityOrdered = vendorOrderParameters[0].quantityOrdered
         vendorOrder.purchasePrice = vendorOrderParameters[0].purchasePrice
         vendorOrder.orderBreakdown = vendorOrderParameters[0].orderBreakdown.toString()
+        vendorOrder.vendorOrderDate = OffsetDateTime.now()
 
 
         if (vendorOrder.purchasePrice < MANAGER_REQ_AMOUNT) {

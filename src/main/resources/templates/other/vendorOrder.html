@@ -12,13 +12,14 @@
         function callAPI(form) {
             const obj = [{
                 vendorName: form.vendorName.value,
+                vendorId: form.vendorId.value,
                 quantityOrdered: form.quantityOrdered.value,
                 purchasePrice: parseFloat(form.purchasePrice.value),
                 orderBreakdown: form.orderBreakdown.value
             }];
             const json = JSON.stringify(obj);
             const xhttp = new XMLHttpRequest();
-            xhttp.open("POST", "http://localhost:8080/order/create");
+            xhttp.open("POST", "http://localhost:8080/vendorOrder/create");
             xhttp.setRequestHeader("Content-type", "application/json");
             xhttp.send(json);
         }
@@ -29,8 +30,11 @@
     <div class="limiter">
         <div class="container-login100" style="background-image: url('../../static/images/bikeBackground.jpg');">
             <form class="form">
-                <label for="vendorName">Search by Vendor Name:</label><br>
+                <label for="vendorName">Vendor Name:</label><br>
                 <input type="text" id="vendorName" name="vendorName"><br>
+
+                <label for="vendorId">Vendor ID #:</label><br>
+                <input type="text" id="vendorId" name="vendorId"><br>
 
                 <label for="quantityOrdered">Quantity of Items:</label><br>
                 <input type="text" id="quantityOrdered" name="quantityOrdered"><br>

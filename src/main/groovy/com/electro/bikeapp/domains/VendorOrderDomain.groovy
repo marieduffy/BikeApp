@@ -1,19 +1,26 @@
 package com.electro.bikeapp.domains
 
 import org.hibernate.annotations.CreationTimestamp
+import org.hibernate.annotations.GenerationTime
 
 import javax.persistence.Column
 import javax.persistence.Entity
+import javax.persistence.GeneratedValue
+import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.Table
 import java.time.OffsetDateTime
+
 
 @Entity
 @Table(name = 'order_vendors')
 class VendorOrderDomain {
 
+   // public static final GenerationType VALUE = GenerationType.AUTO
+
     @Id
     @Column(name = 'vendor_order_id')
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     Integer vendorOrderId
 
     @Column(name = 'vendor_id')
@@ -21,12 +28,6 @@ class VendorOrderDomain {
 
     @Column(name = 'vendor_name')
     String vendorName
-
-    @Column(name = 'vendor_address')
-    String vendorAddress
-
-    @Column(name = 'vendor_preference_status')
-    String vendorPreference
 
     @Column(name = 'vendor_order_status')
     String vendorOrderStatus

@@ -9,7 +9,7 @@
         Http.send();
         Http.onload = (e) => {
             if(Http.status === 200){
-                var j = JSON.parse(Http.responseText)
+                var j = JSON.parse(Http.responseText);
 
                 for (var i = 0; i < j.length; i++) {
                     delete j[i].addedBy
@@ -20,7 +20,7 @@
                     delete j[i].hashValue
                 }
 
-                var json = j
+                var json = j;
 
                 // Extract value from table header.
                 // ('Book ID', 'Book Name', 'Category' and 'Price')

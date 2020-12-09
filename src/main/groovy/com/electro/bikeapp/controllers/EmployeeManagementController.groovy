@@ -1,5 +1,6 @@
 package com.electro.bikeapp.controllers
 
+import com.electro.bikeapp.domains.EmployeeDomain
 import com.electro.bikeapp.dtos.AddEmployeeDTO
 import com.electro.bikeapp.services.EmployeeService
 import groovy.util.logging.Slf4j
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.HttpRequestMethodNotSupportedException
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.ExceptionHandler
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PatchMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
@@ -69,10 +71,10 @@ class EmployeeManagementController {
         employeeService.deleteEmployee(username)
     }
 
-    @PostMapping(value = '/bookkeeper/employeeInformation', produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = '/bookkeeper/employeeInformation/{employeeId}', produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    String employeeInformation (@RequestBody long employeeId) {
-        log.info('Adding a new employee to the system')
+    EmployeeDomain employeeInformation (@PathVariable long employeeId) {
+        log.info("Getting employee with ID: $employeeId from the system")
         employeeService.employeeInformation(employeeId)
     }
 

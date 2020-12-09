@@ -16,7 +16,13 @@
     padding: 5px;
 
 }
-#assisstManInfo {
+.assisstManInfo {
+    background-color:white;
+    border:solid black;
+    padding: 5px;
+    margin-top: 20px;
+}
+#otherManInfo{
     background-color:white;
     border:solid black;
     padding: 5px;

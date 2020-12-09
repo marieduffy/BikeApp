@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service
 import java.nio.charset.StandardCharsets
 import java.security.MessageDigest
 
-@SuppressWarnings([''])
+@SuppressWarnings(['UnnecessaryElseStatement', 'DuplicateStringLiteral'])
 @Slf4j
 @Service
 class InventoryService {

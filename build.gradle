@@ -9,7 +9,7 @@ apply from: "gradle/codenarc.gradle"
 
 
 group = 'com.electro'
-version = '0.0.1-SNAPSHOT'
+version = '1.0'
 sourceCompatibility = '14'
 
 repositories {

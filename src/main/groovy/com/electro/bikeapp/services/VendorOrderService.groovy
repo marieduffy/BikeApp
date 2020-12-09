@@ -11,6 +11,7 @@ import java.time.OffsetDateTime
 
 @Slf4j
 @Service
+@SuppressWarnings(['PropertyName'])
 class VendorOrderService {
 
     @Autowired
@@ -40,7 +41,6 @@ class VendorOrderService {
         vendorOrder.orderBreakdown = vendorOrderParameters[0].orderBreakdown.toString()
         vendorOrder.vendorOrderDate = OffsetDateTime.now()
 
-
         if (vendorOrder.purchasePrice < MANAGER_REQ_AMOUNT) {
             vendorOrderRepository.save(vendorOrder)
         }
@@ -56,15 +56,16 @@ class VendorOrderService {
 
     void updateVendorOrderStatus (Integer vendorOrderId, String status) {
         Optional<VendorOrderDomain> vendorOrder = vendorOrderRepository.findByVendorOrderId(vendorOrderId)
-        OffsetDateTime offsetDateTime = OffsetDateTime.now();
+        OffsetDateTime offsetDateTime = OffsetDateTime.now()
         if (vendorOrder.isPresent()) {
             vendorOrder.get().vendorOrderStatus = status
-            if (status == "received") {
+            if (status == 'received') {
                 vendorOrder.get().vendorReceiveDate = offsetDateTime
             }
         }
         else {
-            log.error("No vendor order found")
+            log.error('No vendor order found')
         }
     }
+
 }

@@ -15,7 +15,7 @@ import java.time.OffsetDateTime
 import java.time.temporal.ChronoField
 import java.time.OffsetTime
 
-@SuppressWarnings(['UnnecessaryElseStatement'])
+@SuppressWarnings(['UnnecessaryElseStatement', 'DuplicateStringLiteral'])
 @Slf4j
 @Service
 class ShiftsService {
@@ -26,7 +26,7 @@ class ShiftsService {
     @Autowired
     AccountRepository employeeAccountRepository
 
-    long getId (String username){
+    long getId (String username) {
         Optional<EmployeeDomain> employee = employeeAccountRepository.findByUsername(username)
         Optional<ShiftsDomain> currentEmployee = shiftsRepository.findByEmployeeName(employee.get().employeeName)
         return currentEmployee.get().employeeId
@@ -38,10 +38,10 @@ class ShiftsService {
             OffsetDateTime currentTime = OffsetDateTime.now()
             currentEmployee.get().timeIn = currentTime
             shiftsRepository.save(currentEmployee.get())
-            return currentTime.getHour() +":" + currentTime.getMinute() + ":" + currentTime.getSecond()
+            return currentTime.getHour() + ':' + currentTime.getMinute() + ':' + currentTime.getSecond()
         }
         else {
-            log.error("Employee with ID: $employeeId does not exist")
+            log.error('Employee with ID: $employeeId does not exist')
         }
     }
 
@@ -51,10 +51,10 @@ class ShiftsService {
             OffsetDateTime currentTime = OffsetDateTime.now() //current time is being set to the current time
             currentEmployee.get().timeOut = currentTime
             shiftsRepository.save(currentEmployee.get())
-            return currentTime.getHour() +":" + currentTime.getMinute() + ":" + currentTime.getSecond()
+            return currentTime.getHour() + ':' + currentTime.getMinute() + ':' + currentTime.getSecond()
         }
         else {
-            log.error("Employee with ID: $employeeId does not exist")
+            log.error('Employee with ID: $employeeId does not exist')
         }
     }
 
@@ -78,7 +78,7 @@ class ShiftsService {
             return total
         }
         else {
-            log.error("Employee with ID: $employeeId does not exist")
+            log.error('Employee with ID: $employeeId does not exist')
         }
     }
 
@@ -93,7 +93,7 @@ class ShiftsService {
             return date
         }
         else {
-            log.error("Employee with ID: $employeeId does not exist")
+            log.error('Employee with ID: $employeeId does not exist')
         }
     }
 
@@ -108,7 +108,7 @@ class ShiftsService {
             shiftsRepository.save(currentEmployee.get())
         }
         else {
-            log.error("Employee with ID: $shiftsDTO.employeeId does not exist")
+            log.error('Employee with ID: $shiftsDTO.employeeId does not exist')
         }
     }
 
@@ -119,7 +119,7 @@ class ShiftsService {
             shiftsRepository.save(currentEmployee.get())
         }
         else {
-            log.error("Employee with ID: $requestsDTO.employeeId does not exist")
+            log.error('Employee with ID: $requestsDTO.employeeId does not exist')
         }
     }
 

@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification
 
 @SpringBootTest
+@SuppressWarnings(['NoDef', 'VariableTypeRequired'])
 class InventoryServiceSpec extends Specification {
 
     @Autowired
@@ -18,37 +19,37 @@ class InventoryServiceSpec extends Specification {
     InventoryRepository inventoryRepository
 
     void searchAnItemInInventory() {
-        given: 'A bike item'
+        given:'A bike item'
         SearchInventoryDTO searchParams = new SearchInventoryDTO(
-            bikeColor: "red",
-            priceMin: 10000,
-            priceMax: 10000000,
-            inStock: "true",
-            condition: "used",
-            make: "Trek",
+            bikeColor:'red',
+            priceMin:10000,
+            priceMax:10000000,
+            inStock:'true',
+            condition:'used',
+            make:'Trek',
         )
 
         // Add bike to inventory
         BikeDomain e = new BikeDomain(
-                bikeDisplayName: "bike3",
-                addedBy: "Lili",
-                make: "Trek",
-                model: "fast",
-                color: "red",
-                wholesaleCost: 30000.00,
-                retailCost: 500000.0,
-                description: "A bad ass bike",
-                inStock: "true",
-                condition: "used",
-                quantity: 8,
-                hashValue: "wy4567b"
+                bikeDisplayName:'bike3',
+                addedBy:'Lili',
+                make:'Trek',
+                model:'fast',
+                color:'red',
+                wholesaleCost:30000.00,
+                retailCost:500000.0,
+                description:'A bad ass bike',
+                inStock:'true',
+                condition:'used',
+                quantity:8,
+                hashValue:'wy4567b'
         )
         inventoryRepository.save(e)
 
-        when: "An item is found"
+        when:'An item is found'
         List<BikeDomain> list = inventoryService.searchInventory(searchParams)
 
-        then: "Verify the search parameters match passed list"
+        then:'Verify the search parameters match passed list'
         assert list.get(0).color == searchParams.bikeColor
         assert list.get(0).retailCost >= searchParams.priceMin
         assert list.get(0).retailCost <= searchParams.priceMax
@@ -61,21 +62,25 @@ class InventoryServiceSpec extends Specification {
     }
 
     void searchANonexistentItemInInventory() {
-        given: 'A nonexisting bike item'
+        given:'A nonexisting bike item'
         SearchInventoryDTO searchParams = new SearchInventoryDTO(
-                bikeColor: "blue",
-                priceMin: 10000,
-                priceMax: 10000000,
-                inStock: "true",
-                condition: "new",
-                make: "Trek",
+                bikeColor:'blue',
+                priceMin:10000,
+                priceMax:10000000,
+                inStock:'true',
+                condition:'new',
+                make:'Trek',
         )
 
-        when: "Search inventory service is called"
-        List<BikeDomain> list = inventoryService.searchInventory(searchParams)
+        when:'Search inventory service is called'
+        inventoryService.searchInventory(searchParams)
 
-        then: "Verify error thrown"
+        then:'Verify error thrown'
         def e = thrown(NotFoundException)
-        assert e.message == 'Bike with ' + searchParams.bikeColor + ' and ' + searchParams.priceMin + ' and ' + searchParams.priceMax + ' and ' + searchParams.inStock + ' and ' + searchParams.condition + ' and ' + searchParams.make + 'does not exist '
+        assert e.message == 'Bike with ' + searchParams.bikeColor +
+                ' and ' + searchParams.priceMin + ' and ' + searchParams.priceMax +
+                ' and ' + searchParams.inStock + ' and ' + searchParams.condition +
+                ' and ' + searchParams.make + 'does not exist '
     }
+
 }

@@ -12,29 +12,34 @@ import org.springframework.security.web.WebAttributes
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler
 
 @Slf4j
+@SuppressWarnings(['VariableName', 'PrivateFieldCouldBeFinal', 'UnnecessaryConstructor'])
 class UrlAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
     private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy()
 
-     UrlAuthenticationSuccessHandler() {
+    UrlAuthenticationSuccessHandler() {
         super()
     }
 
     // API
 
     @Override
-    void onAuthenticationSuccess(final HttpServletRequest request, final HttpServletResponse response, final Authentication authentication) throws IOException {
+    void onAuthenticationSuccess(final HttpServletRequest request,
+                                 final HttpServletResponse response,
+                                 final Authentication authentication) throws IOException {
         handle(request, response, authentication)
         clearAuthenticationAttributes(request)
     }
 
     // IMPL
 
-    protected void handle(final HttpServletRequest request, final HttpServletResponse response, final Authentication authentication) throws IOException {
-        final String targetUrl = determineTargetUrl(authentication);
+    protected void handle(final HttpServletRequest request,
+                          final HttpServletResponse response,
+                          final Authentication authentication) throws IOException {
+        final String targetUrl = determineTargetUrl(authentication)
 
         if (response.isCommitted()) {
-            log.debug("Response has already been committed. Unable to redirect to " + targetUrl)
+            log.debug('Response has already been committed. Unable to redirect to ' + targetUrl)
             return
         }
 
@@ -42,18 +47,16 @@ class UrlAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
     }
 
     protected String determineTargetUrl(final Authentication authentication) {
-
         Map<String, String> roleTargetUrlMap = new HashMap<>()
-        roleTargetUrlMap.put("OWNER", "/owner")
-        roleTargetUrlMap.put("MANAGER", "/manager")
-        roleTargetUrlMap.put("BOOKKEEPER", "/bookkeeper")
-        roleTargetUrlMap.put("EMPLOYEE", "/employee")
+        roleTargetUrlMap.put('OWNER', '/owner')
+        roleTargetUrlMap.put('MANAGER', '/manager')
+        roleTargetUrlMap.put('BOOKKEEPER', '/bookkeeper')
+        roleTargetUrlMap.put('EMPLOYEE', '/employee')
 
         final Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities()
         for (final GrantedAuthority grantedAuthority : authorities) {
-
             String authorityName = grantedAuthority.getAuthority()
-            if(roleTargetUrlMap.containsKey(authorityName)) {
+            if (roleTargetUrlMap.containsKey(authorityName)) {
                 return roleTargetUrlMap.get(authorityName)
             }
         }

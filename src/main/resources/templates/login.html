@@ -49,17 +49,5 @@
         </div>
     </div>
 </div>
-
-<script>
-    function getID() {
-        var xhttp = new XMLHttpRequest();
-        xhttp.open("POST", "http://localhost:8080/account/getId");
-        xhttp.setRequestHeader("Content-type", "application/json");
-        xhttp.send(document.getElementById("username").value);
-        xhttp.onreadystatechange = function () {
-            sessionStorage.setItem("getId", xhttp.responseText);
-        };
-    }
-</script>
 </body>
 </html>

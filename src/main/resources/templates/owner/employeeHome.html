@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="css/util.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/topnav.css">
+    <link rel="stylesheet" type="text/css" href="css/bookkeeper.css">
 </head>
 <nav class="topnav">
     <a href="/owner">Home</a>
@@ -25,35 +26,40 @@
 </nav>
 
 <body>
-<div class="options">
-    <div id="getInfo">
-
-        <label>Employee Name: </label>
-        <input type="text" name="Employee Name" placeholder="e.g. Marie Duffy"><br> <br>
-        <label>Employee ID: </label>
-        <input type="text" name="Employee ID" placeholder="e.g. 1"><br> <br>
-        <button class="empInfo" onclick="callAPI()">Submit</button>
-
-        <br> <br>
-        <div id="displayInfo">
-            <p id="info">
-            <h1><u>Employee Information:</u></h1>
-            Name: Marie Duffy<br>
-            Address: 5200 Campanile Drive<br>
-            SSN: 87362617<br>
-            Position: Manager<br>
-            Pay Rate: $55,000.00<br>
-            Pay Type: Hourly<br>
-            Email: marie@gmail.com<br>
-            </p>
-        </div>
+<div class="outside">
+    <div class="one">
+<div id="getInfo">
+    <div id="displayInfo">
+        <p id="showData"></p>
     </div>
-
-    <div class="buttons-container">
+    <br> <br>
+    <label>Employee ID: </label>
+    <input type="number" name="employeeId" id="employeeId" placeholder="e.g. 1"><br> <br>
+    <button class="empInfo" onclick="setTimeout(callAPI, 1)">Submit</button>
+</div>
+    </div>
+    <div class="line"></div>
+    <div class="two">
         <a class="button" href="/createEmployee" target="_blank">Create a New Employee/Manager</a><br>
         <a class="button" href="/updateEmployee" target="_blank">Update Employee/Manager</a><br>
     </div>
 </div>
+
+<script>
+    function callAPI() {
+        var id = document.getElementById("employeeId").value;
+        const Http = new XMLHttpRequest();
+        const url = "http://localhost:8080/bookkeeper/employeeInformation/" + id;
+        Http.open("GET", url);
+        Http.send();
+        Http.onreadystatechange = function () {
+            var j = JSON.parse(Http.responseText);
+            var results = "Name: " + j.employeeName + "\nAddress: " + j.address + "\nSSN: " + j.social + "\nPosition: " + j.position + "\nPay Rate: $" + j.payRate + "\nPay Type: " + j.payrollType + "\nEmail: " + j.email;
+            document.getElementById("showData").innerText = results;
+            document.getElementById("displayInfo").style.display = "block";
+        };
+    }
+</script>
 
 </body>
 </html>

@@ -145,15 +145,16 @@ class EmployeeService {
         employeeAccountRepository.save(employee.get())
     }
 
-    String employeeInformation(long employeeId){
-        Optional<EmployeeDomain> employee = employeeAccountRepository.findById(employeeId)
+    EmployeeDomain employeeInformation(long employeeId){
+        Optional<EmployeeDomain> employee = employeeAccountRepository.findByEmployeeId(employeeId)
 
-        String infoString = employee.get().employeeName + ',' + employee.get().address + ',' +
-                employee.get().social.substring(5) + ',' + employee.get().position + ',' +
-                employee.get().payRate + ',' + employee.get().payrollType + ',' + employee.get().username + ',' +
-                employee.get().email + ',' + employee.get().privilegeLevel
-        
-        return infoString
+        if(employee.isPresent()){
+            return employee.get()
+        }
+        else{
+            log.error('Employee not found')
+            throw new NotFoundException('Employee with ID: ' + employeeId + ' not found')
+        }
     }
 
 }

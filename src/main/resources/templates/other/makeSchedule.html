@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Make Schedule</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/topnav.css">
+    <link rel="stylesheet" type="text/css" href="css/calendar.css">
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+</head>
+<body>
+<br>
+<div align="center">
+    <label for="employeeId">Employee ID:
+        <input type="number" id="employeeId" placeholder="e.g. 1">
+    </label><br><br>
+    <label for="dates">Enter Week Range: <input type="text" id="dates" name="daterange"/></label><br><br>
+    <label for="monIN">Monday:
+        <input type="time" id="monIN">
+        <input type="time" id="monOUT">
+    </label><br><br>
+
+    <label for="tueIN">Tuesday:
+        <input type="time" id="tueIN">
+        <input type="time" id="tueOUT">
+    </label><br><br>
+
+    <label for="wedIN">Wednesday:
+        <input type="time" id="wedIN">
+        <input type="time" id="wedOUT">
+    </label><br><br>
+
+    <label for="thuIN">Thursday:
+        <input type="time" id="thuIN">
+        <input type="time" id="thuOUT">
+    </label><br><br>
+
+    <label for="friIN">Friday:
+        <input type="time" id="friIN">
+        <input type="time" id="friOUT">
+    </label><br><br>
+
+    <label for="satIN">Saturday:
+        <input type="time" id="satIN">
+        <input type="time" id="satOUT">
+    </label><br><br>
+
+    <label for="sunIN">Sunday:
+        <input type="time" id="sunIN">
+        <input type="time" id="sunOUT">
+    </label><br><br>
+    <button id="continue" onclick="sendSchedule()">Continue</button>
+</div>
+<br>
+<script>
+    var converting;
+    var start;
+    var exit;
+    function onTimeChange(inputEle) {
+        var timeSplit = inputEle.value.split(':'),
+            hours,
+            minutes,
+            meridian;
+        hours = timeSplit[0];
+        minutes = timeSplit[1];
+        if (hours > 12) {
+            meridian = 'PM';
+            hours -= 12;
+        } else if (hours < 12) {
+            meridian = 'AM';
+            if (hours == 0) {
+                hours = 12;
+            }
+        } else {
+            meridian = 'PM';
+        }
+        return  hours + ':' + minutes + meridian;
+    }
+    function startTimes(){
+        var m, t, w, th, f, s, su;
+        if(!document.getElementById("monIN").value){
+            m = "00:00";
+        } else {
+            m = onTimeChange(document.getElementById("monIN"));
+        }
+        if(!document.getElementById("tueIN").value){
+            t = "00:00";
+        } else {
+            t = onTimeChange(document.getElementById("tueIN"));
+        }
+        if(!document.getElementById("wedIN").value){
+            w = "00:00";
+        } else {
+            w = onTimeChange(document.getElementById("wedIN"));
+        }
+        if(!document.getElementById("thuIN").value){
+            th = "00:00";
+        } else {
+            th = onTimeChange(document.getElementById("thuIN"));
+        }
+        if(!document.getElementById("friIN").value){
+            f = "00:00";
+        } else {
+            f = onTimeChange(document.getElementById("friIN"));
+        }
+        if(!document.getElementById("satIN").value){
+            s = "00:00";
+        } else {
+            s = onTimeChange(document.getElementById("satIN"));
+        }
+        if(!document.getElementById("sunIN").value){
+            su = "00:00";
+        } else {
+            su = onTimeChange(document.getElementById("sunIN"));
+        }
+        start = m + "," + t + "," + w + "," + th + "," + f + "," + s + "," + su;
+    }
+    function endTimes(){
+        var m, t, w, th, f, s, su;
+        if(!document.getElementById("monOUT").value){
+            m = "00:00";
+        } else {
+            m = onTimeChange(document.getElementById("monOUT"));
+        }
+        if(!document.getElementById("tueOUT").value){
+            t = "00:00";
+        } else {
+            t = onTimeChange(document.getElementById("tueOUT"));
+        }
+        if(!document.getElementById("wedOUT").value){
+            w = "00:00";
+        } else {
+            w = onTimeChange(document.getElementById("wedOUT"));
+        }
+        if(!document.getElementById("thuOUT").value){
+            th = "00:00";
+        } else {
+            th = onTimeChange(document.getElementById("thuOUT"));
+        }
+        if(!document.getElementById("friOUT").value){
+            f = "00:00";
+        } else {
+            f = onTimeChange(document.getElementById("friOUT"));
+        }
+        if(!document.getElementById("satOUT").value){
+            s = "00:00";
+        } else {
+            s = onTimeChange(document.getElementById("satOUT"));
+        }
+        if(!document.getElementById("sunOUT").value){
+            su = "00:00";
+        } else {
+            su = onTimeChange(document.getElementById("sunOUT"));
+        }
+        exit = m + "," + t + "," + w + "," + th + "," + f + "," + s + "," + su;
+    }
+    function nextStep(){
+        console.log(document.getElementById("monIN").value);
+        var moIN = seconds(document.getElementById("monIN").value);
+        var moOUT = seconds(document.getElementById("monOUT").value);
+        var moTotal = difference(moIN, moOUT);
+        var tuIN = seconds(document.getElementById("tueIN").value);
+        var tuOUT = seconds(document.getElementById("tueOUT").value);
+        var tuTotal = difference(tuIN, tuOUT);
+        var weIN = seconds(document.getElementById("wedIN").value);
+        var weOUT = seconds(document.getElementById("wedOUT").value);
+        var weTotal = difference(weIN, weOUT);
+        var thIN = seconds(document.getElementById("thuIN").value);
+        var thOUT = seconds(document.getElementById("thuOUT").value);
+        var thTotal = difference(thIN, thOUT);
+        var frIN = seconds(document.getElementById("friIN").value);
+        var frOUT = seconds(document.getElementById("friOUT").value);
+        var frTotal = difference(frIN, frOUT);
+        var saIN = seconds(document.getElementById("satIN").value);
+        var saOUT = seconds(document.getElementById("satOUT").value);
+        var saTotal = difference(saIN, saOUT);
+        var suIN = seconds(document.getElementById("sunIN").value);
+        var suOUT = seconds(document.getElementById("sunOUT").value);
+        var suTotal = difference(suIN, suOUT);
+        var total = moTotal + tuTotal + weTotal + thTotal + frTotal + saTotal + suTotal;
+        var answer = new Date(total * 1000).toISOString().substr(11, 8);
+        converting = timeStringToFloat(answer);
+    }
+    function seconds(weekday){
+        var a = weekday.toString().split(':');
+        var secs =  (+a[0]) * 60 * 60 + (+a[1]) * 60;
+        if (isNaN(secs)) {
+            var na = 0;
+            return na;
+        }
+        return secs;
+    }
+    function difference(inTime, outTime){
+        var x = inTime;
+        var y = outTime;
+        var z = y - x;
+        if (isNaN(z)) {
+            var na = 0;
+            return na;
+        }
+        return (outTime - inTime);
+    }
+    function timeStringToFloat(time) {
+        var hoursMinutes = time.split(/[.:]/);
+        var hours = parseInt(hoursMinutes[0], 10);
+        var minutes = parseInt(hoursMinutes[1], 10);
+        var answer = hours + "." + minutes;
+        return parseFloat(answer);
+    }
+    $(function() {
+        $('input[name="daterange"]').daterangepicker({
+            opens: 'left'
+        }, function(start, end) {
+            console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+        });
+    });
+    function sendSchedule(){
+        nextStep();
+        startTimes();
+        endTimes();
+        var obj = {
+            employeeId: parseInt(document.getElementById("employeeId").value),
+            daysWorking: document.getElementById("dates").value,
+            enterTimes: start,
+            exitTimes: exit,
+            totalWeeklyHours: converting
+        };
+        var json = JSON.stringify(obj);
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("POST", "http://localhost:8080/account/shiftChart");
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.send(json);
+    }
+</script>
+</body>
+</html>

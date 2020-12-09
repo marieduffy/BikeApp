@@ -12,8 +12,7 @@
 </head>
 <nav class="topnav">
     <a class="active" href="/owner">Home</a>
-    <a href="/inventory">Inventory</a>
-    <a href="/displayInventory">Show Inventory</a>
+    <a href="/displayInventory">Inventory</a>
     <a href="/vendorHomePage">Vendor Orders</a>
     <a href="/bikeRepair">Bike Repair</a>
     <a href="/salesDiscounts">Sales/Discounts</a>
@@ -27,7 +26,6 @@
 </nav>
 
 <body>
-
 <div>
     <table>
         <caption>Weekly Schedule</caption>
@@ -85,7 +83,7 @@
     <div class="quickFunctionBox">
         <h2>Quick Functions</h2>
         <ul>
-            <li><a href="" target="_blank">Make Schedule</a></li>
+            <li><a href="/makeSchedule" target="_blank">Make Schedule</a></li>
             <li><a href="/createEmployee" target="_blank">Add a New employee to the system</a></li>
             <li><a href="/updateEmployee" target="_blank">Update An Existing Employee's Information</a></li>
             <li><a href="/managerInventory" target="_blank">Search for an item in SCEB inventory</a></li>
@@ -97,6 +95,8 @@
         <button class="clockInAndOut" onclick="setTimeout(clockOut, 1);" value="Clock Out">Clock Out</button>
         <br>
         <br>
+        <label for="ID">Employee ID:
+        <input type="number" placeholder="e.g. 1" id="ID"> </label><br><br>
         <div id="timeSheet">
             <p id="date"></p>
             <p id="clockIn"></p>
@@ -104,13 +104,11 @@
             <p id="totalHours"></p>
         </div>
     </div>
-
 </div>
 <script>
-    console.log(sessionStorage.getItem("getId"));
     function hours() {
         var xhttp = new XMLHttpRequest();
-        var request = "http://localhost:8080/account/totalTime/" + sessionStorage.getItem("getId");
+        var request = "http://localhost:8080/account/totalTime/" + document.getElementById("ID").value;
         xhttp.open("GET", request);
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send();
@@ -132,7 +130,7 @@
     }
     function clockIn() {
         var xhttp = new XMLHttpRequest();
-        var request = "http://localhost:8080/account/timeIn/" + sessionStorage.getItem("getId");
+        var request = "http://localhost:8080/account/timeIn/" + document.getElementById("ID").value;
         xhttp.open("GET", request);
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send();
@@ -142,7 +140,7 @@
     }
     function clockOut() {
         var xhttp = new XMLHttpRequest();
-        var request = "http://localhost:8080/account/timeOut/" + sessionStorage.getItem("getId");
+        var request = "http://localhost:8080/account/timeOut/" + document.getElementById("ID").value;
         xhttp.open("GET", request);
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send();

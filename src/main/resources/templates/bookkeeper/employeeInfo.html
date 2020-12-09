@@ -1,5 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<script>
+    function callAPI() {
+        var id = document.getElementById("employeeId").value;
+        const Http = new XMLHttpRequest();
+        const url = "http://localhost:8080/bookkeeper/employeeInformation/" + id;
+        Http.open("GET", url);
+        Http.send();
+        Http.onreadystatechange = function () {
+            var j = JSON.parse(Http.responseText);
+            var results = "Name: " + j.employeeName + "\nAddress: " + j.address + "\nSSN: " + j.social + "\nPosition: " + j.position + "\nPay Rate: $" + j.payRate + "\nPay Type: " + j.payrollType + "\nEmail: " + j.email;
+            document.getElementById("showData").innerText = results;
+            document.getElementById("displayInfo").style.display = "block";
+        };
+    }
+</script>
 <head>
     <meta charset="UTF-8">
     <title>Employee Information</title>
@@ -20,40 +35,16 @@
         <input class="logoutButton" type="submit" value="Logout">
     </form>
 </nav>
+
 <body>
 <div id="getInfo">
-
-    <label>Employee Name: </label>
-    <input type="text" name="Employee Name" placeholder="e.g. Marie Duffy"><br> <br>
-    <label>Employee ID: </label>
-    <input type="text" name="Employee ID" placeholder="e.g. 1"><br> <br>
-    <button class="empInfo" onclick="callAPI()">Submit</button>
-
-    <br> <br>
     <div id="displayInfo">
-        <p id="info">
-        <h1><u>Employee Information:</u></h1>
-            Name: Marie Duffy<br>
-            Address: 5200 Campanile Drive<br>
-            SSN: 87362617<br>
-            Position: Manager<br>
-            Pay Rate: $55,000.00<br>
-            Pay Type: Hourly<br>
-            Email: marie@gmail.com<br>
-        </p>
+        <p id="showData"></p>
     </div>
+    <br> <br>
+    <label>Employee ID: </label>
+    <input type="number" name="employeeId" id="employeeId" placeholder="e.g. 1"><br> <br>
+    <button class="empInfo" onclick="setTimeout(callAPI, 1)">Submit</button>
 </div>
-<script>
-    function callAPI() {
-        // var xhttp = new XMLHttpRequest();
-        // var request = "http://localhost:8080/account/timeSheet/" + obj;
-        // xhttp.open("POST", request);
-        // xhttp.setRequestHeader("Content-type", "application/json");
-        // xhttp.send(json);
-        //inner HTML for p tag
-        document.getElementById("displayInfo").style.display = "block";
-
-    }
-</script>
 </body>
 </html>

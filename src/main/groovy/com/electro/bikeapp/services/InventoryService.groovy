@@ -134,4 +134,12 @@ class InventoryService {
         }
     }
 
+    /**
+     * Get list of Bikes
+     * @return List<BikeDomain>
+     */
+    List<BikeDomain> getBikes () {
+        bikeInventoryRepository.findAll()
+    }
+
 }

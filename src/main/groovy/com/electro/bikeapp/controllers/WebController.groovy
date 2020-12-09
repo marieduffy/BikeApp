@@ -141,6 +141,11 @@ class WebController {
         return '/owner/vendorHomePage'
     }
 
+    @RequestMapping('/displayInventory')
+    String displayInventory() {
+        return '/owner/displayInventory'
+    }
+
     //MANAGER PAGES
     @RequestMapping('/manager')
     String manager() {
@@ -207,5 +212,6 @@ class WebController {
     String bookkeeperPayroll() {
         return '/bookkeeper/bookkeeperPayroll'
     }
+
 
 }

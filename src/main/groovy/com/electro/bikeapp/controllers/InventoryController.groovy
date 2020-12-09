@@ -8,6 +8,7 @@ import groovy.util.logging.Slf4j
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.ResponseStatus
@@ -65,6 +66,19 @@ class InventoryController {
     void addProduct(@RequestBody String[] hashList) {
         log.info 'Removing bike from inventory'
         inventoryService.removeProduct(hashList)
+    }
+
+    /**
+     * POST - remove a list of bikes from the inventory
+     * @requestBody JSON array of bike hashs
+     * @param String[]
+     * @return void
+     */
+    @GetMapping(value = '/inventory/retrieveInventory', produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    List<BikeDomain> getProducts() {
+        log.info 'Getting bikes from inventory'
+        inventoryService.getBikes()
     }
 
 }

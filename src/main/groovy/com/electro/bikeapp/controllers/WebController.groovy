@@ -44,6 +44,16 @@ class WebController {
         return '/other/createRetailOrder'
     }
 
+    @RequestMapping('/inventory')
+    String inventory() {
+        return '/other/inventory'
+    }
+
+    @RequestMapping('/requestTime')
+    String requestTime() {
+        return '/other/requestTime'
+    }
+
     @RequestMapping('/updateEmployee')
     String updateEmployee() {
         return '/other/updateEmployee'
@@ -80,9 +90,9 @@ class WebController {
         return '/employee/employeeHelp'
     }
 
-    @RequestMapping('/employeeInventory')
-    String employeeInventory() {
-        return '/employee/employeeInventory'
+    @RequestMapping('/employeeDisplayInventory')
+    String employeeDisplayInventory() {
+        return '/employee/employeeDisplayInventory'
     }
 
     @RequestMapping('/employeeVendorHomePage')
@@ -106,9 +116,9 @@ class WebController {
         return '/owner/help'
     }
 
-    @RequestMapping('/inventory')
-    String inventory() {
-        return '/owner/inventory'
+    @RequestMapping('/displayInventory')
+    String displayInventory() {
+        return '/owner/displayInventory'
     }
 
     @RequestMapping('/managersAndEmployees')
@@ -141,11 +151,6 @@ class WebController {
         return '/owner/vendorHomePage'
     }
 
-    @RequestMapping('/displayInventory')
-    String displayInventory() {
-        return '/owner/displayInventory'
-    }
-
     //MANAGER PAGES
     @RequestMapping('/manager')
     String manager() {
@@ -172,9 +177,9 @@ class WebController {
         return '/manager/managerHelp'
     }
 
-    @RequestMapping('/managerInventory')
-    String managerInventory() {
-        return '/manager/managerInventory'
+    @RequestMapping('/managerDisplayInventory')
+    String managerDisplayInventory() {
+        return '/manager/managerDisplayInventory'
     }
 
     @RequestMapping('/managerSalesDiscounts')

@@ -145,4 +145,15 @@ class EmployeeService {
         employeeAccountRepository.save(employee.get())
     }
 
+    String employeeInformation(long employeeId){
+        Optional<EmployeeDomain> employee = employeeAccountRepository.findById(employeeId)
+
+        String infoString = employee.get().employeeName + ',' + employee.get().address + ',' +
+                employee.get().social.substring(5) + ',' + employee.get().position + ',' +
+                employee.get().payRate + ',' + employee.get().payrollType + ',' + employee.get().username + ',' +
+                employee.get().email + ',' + employee.get().privilegeLevel
+        
+        return infoString
+    }
+
 }

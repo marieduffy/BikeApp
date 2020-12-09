@@ -1,7 +1,16 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" >
+<script language="javascript">
+    function callAPI() {
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "http://localhost:8080/inventory/retrieveInventory");
+        alert(xhttp.responseText);
+
+    }
+</script>
 <head>
-    <title>Bike Repairs</title>
+    <title>Vendor Orders</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
@@ -12,9 +21,9 @@
 
 <nav class="topnav">
     <a href="/employee">Home</a>
-    <a href="/employeeDisplayInventory">Inventory</a>
+    <a class="active" href="/employeeDisplayInventory">Inventory</a>
     <a href="/employeeVendorHomePage">Vendor Orders</a>
-    <a class="active" href="/employeeBikeRepair">Bike Repair</a>
+    <a href="/employeeBikeRepair">Bike Repair</a>
     <a href="/employeeContact">Contact</a>
     <a href="/employeeHelp">Help</a>
     <form th:action="@{/logout}" method="post">
@@ -22,7 +31,9 @@
     </form>
 </nav>
 
-<body>
+<body onload="callAPI()">
+
+<p>HELLO WORLD</p>
 
 </body>
 </html>

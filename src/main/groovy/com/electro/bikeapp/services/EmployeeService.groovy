@@ -157,4 +157,16 @@ class EmployeeService {
         }
     }
 
+    List<ShiftsDomain> employeePayroll() {
+        Optional<List<ShiftsDomain>> employee = shiftsRepository.findAll()
+
+        if(employee.isPresent()){
+            return employee.get()
+        }
+        else{
+            log.error('Employee not found')
+            throw new NotFoundException('No payroll info found')
+        }
+    }
+
 }

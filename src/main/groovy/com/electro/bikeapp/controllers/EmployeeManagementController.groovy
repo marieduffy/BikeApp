@@ -1,6 +1,7 @@
 package com.electro.bikeapp.controllers
 
 import com.electro.bikeapp.domains.EmployeeDomain
+import com.electro.bikeapp.domains.ShiftsDomain
 import com.electro.bikeapp.dtos.AddEmployeeDTO
 import com.electro.bikeapp.services.EmployeeService
 import groovy.util.logging.Slf4j
@@ -76,6 +77,13 @@ class EmployeeManagementController {
     EmployeeDomain employeeInformation (@PathVariable long employeeId) {
         log.info("Getting employee with ID: $employeeId from the system")
         employeeService.employeeInformation(employeeId)
+    }
+
+    @GetMapping(value = '/employee/payroll', produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    List<ShiftsDomain> employeePayroll () {
+        log.info("Getting employee payroll")
+        employeeService.employeePayroll()
     }
 
 }

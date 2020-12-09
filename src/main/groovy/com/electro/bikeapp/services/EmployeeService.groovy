@@ -78,6 +78,8 @@ class EmployeeService {
             if (!s.isPresent()) {
                 ShiftsDomain shiftsDomain = new ShiftsDomain()
                 shiftsDomain.employeeName = employeeInfoParams[i].employeeName
+                shiftsDomain.payRate = employeeInfoParams[i].payRate
+                shiftsDomain.payType = employeeInfoParams[i].payrollType
 
                 shiftsRepository.save(shiftsDomain)
             }

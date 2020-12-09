@@ -48,4 +48,10 @@ class ShiftsDomain {
     @Column(name = 'request_days_off')
     String requestMessage
 
+    @Column(name = 'pay_rate')
+    Float payRate
+
+    @Column(name = 'pay_type')
+    String payType
+
 }

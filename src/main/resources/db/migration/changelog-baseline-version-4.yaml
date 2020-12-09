@@ -65,6 +65,16 @@ databaseChangeLog:
                   type: varchar(512)
                   constraints:
                     nullable: true
+              - column:
+                  name: pay_rate
+                  type: float
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pay_type
+                  type: varchar(25)
+                  constraints:
+                    nullable: true
         - addPrimaryKey:
             clustered: true
             columnNames: employee_id

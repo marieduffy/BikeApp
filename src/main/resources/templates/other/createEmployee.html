@@ -27,8 +27,6 @@
         }];
         var json = JSON.stringify(obj);
 
-        alert(json);
-
         var xhttp = new XMLHttpRequest();
         xhttp.open("POST", "http://localhost:8080/manager/addEmployee");
         xhttp.setRequestHeader("Content-type", "application/json");
@@ -64,9 +62,9 @@
     <label for="username">Username:</label><br>
     <input type="text" id="username" name="username"><br>
     <label for="password">Password:</label><br>
-    <input type="text" id="password" name="password"><br>
+    <input type="password" id="password" name="password"><br>
     <label for="verifyPassword">Verify Password:</label><br>
-    <input type="text" id="verifyPassword" name="verifyPassword"><br>
+    <input type="password" id="verifyPassword" name="verifyPassword"><br>
     <br>
     <input type="submit" value="Submit" onclick="return callAPI(this.form)">
 </form>

@@ -3,8 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>Request Time</title>
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/topnav.css">
+
+    <script>
+        function requestTimeOff(form) {
+            var obj = {
+                employeeId: parseInt(form.employeeId.value),
+                requestMessage: form.requestMessage.value
+            }
+            var json = JSON.stringify(obj);
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("POST", "http://localhost:8080/account/timeOffRequests");
+            xhttp.setRequestHeader("Content-type", "application/json");
+            xhttp.send(json);
+
+            alert("Success! Your request was submitted!");
+        }
+
+    </script>
+
 </head>
 <body>
-
+    <form class="form">
+        <label for="employeeId">Employee ID #:</label><br>
+        <input type="text" id="employeeId" name="employeeId" placeholder="i.e. 1"><br>
+        <label for="requestMessage">Request Message:</label><br>
+        <input type="text" id="requestMessage" name="requestMessage" placeholder="12/8 to 12/10: Vacation"><br>
+        <input type="submit" value="Submit" onclick="requestTimeOff(this.form)">
+    </form>
 </body>
 </html>

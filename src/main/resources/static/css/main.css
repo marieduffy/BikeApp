@@ -250,3 +250,26 @@ td {
 th {
     font-weight:bold;
 }
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+}
+h1 {
+    text-align: center;
+}
+table, th {
+    border: solid 1px #474e5d;
+    border-collapse: collapse;
+    padding: 2px 3px;
+    text-align: center;
+}
+td {
+    border: solid 1px #6D97A4;
+    border-collapse: collapse;
+    padding: 2px 3px;
+    text-align: left;
+}
+th {
+    font-weight:bold;
+}

@@ -145,4 +145,9 @@ class EmployeeService {
         employeeAccountRepository.save(employee.get())
     }
 
+    String employeeInformation(String employeeName, long employeeId){
+        Optional<EmployeeDomain> employee = employeeAccountRepository.findByUsername(currentUsername)
+
+    }
+
 }

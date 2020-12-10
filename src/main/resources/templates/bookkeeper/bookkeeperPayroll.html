@@ -1,5 +1,106 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<script language="javascript">
+    function callAPI() {
+
+        const Http = new XMLHttpRequest();
+        const url="http://localhost:8080/employee/payroll";
+        Http.open("GET", url);
+        Http.send();
+        Http.onload = (e) => {
+            if(Http.status === 200){
+                var j = JSON.parse(Http.responseText);
+
+                for (var i = 0; i < j.length; i++) {
+                    delete j[i].enterTimes
+                    delete j[i].exitTimes
+                    delete j[i].todaysDate
+                    delete j[i].timeIn
+                    delete j[i].timeOut
+                    delete j[i].requestMessage
+                    delete j[i].totalDayHours
+
+                }
+
+                var json = j;
+
+                // Extract value from table header.
+                // ('Book ID', 'Book Name', 'Category' and 'Price')
+                var col = [];
+                for (var i = 0; i < json.length; i++) {
+                    for (var key in json[i]) {
+                        if (col.indexOf(key) === -1) {
+                            col.push(key);
+                        }
+                    }
+                }
+                col.push("Weekly Payment Due")
+
+                // Create a table.
+                var table = document.createElement("table");
+
+                // Create table header row using the extracted headers above.
+                var tr = table.insertRow(-1);                   // table row.
+
+                for (var i = 0; i < col.length; i++) {
+                    var th = document.createElement("th");      // table header.
+                    if(col[i] === "employeeId"){
+                        th.innerHTML = "ID";
+                    }
+                    else if(col[i] === "employeeName"){
+                        th.innerHTML = "Name";
+                    }
+                    else if(col[i] === "daysWorking"){
+                        th.innerHTML = "Days Worked This Week";
+                    }
+                    else if(col[i] === "totalWeeklyHours"){
+                        th.innerHTML = "Hours Worked This Week";
+                    }
+                    else if(col[i] === "payRate"){
+                        th.innerHTML = "Pay Rate";
+                    }
+                    else if(col[i] === "payType"){
+                        th.innerHTML = "Pay Type";
+                    }
+                    else{
+                        th.innerHTML = col[i];
+                    }
+                    tr.appendChild(th);
+                }
+
+                // add json data to the table as rows.
+                for (var i = 0; i < json.length; i++) {
+
+                    tr = table.insertRow(-1);
+
+                    for (var j = 0; j < col.length; j++) {
+                        if(col[j] !== "Weekly Payment Due") {
+                            var tabCell = tr.insertCell(-1);
+                            tabCell.innerHTML = json[i][col[j]];
+                        }
+                        else if (col[j] === "Weekly Payment Due"){
+                            var tabCell = tr.insertCell(-1);
+                            if(json[i][col[5]] === "Hourly") {
+                                tabCell.innerHTML = (json[i][col[3]] * json[i][col[4]]).toFixed(2);
+                            }
+                            else if(json[i][col[5]] === "Salary"){
+                                tabCell.innerHTML = (json[i][col[4]] / 52).toFixed(2);
+                            }
+                        }
+                    }
+                }
+
+                // Now, add the newly created table with json data, to a container.
+                var divShowData = document.getElementById('showData');
+                divShowData.innerHTML = "";
+                divShowData.appendChild(table);
+            }
+            else{
+                alert("Inventory not found")
+            }
+        }
+    }
+</script>
 <head>
     <meta charset="UTF-8">
     <title>Payroll</title>
@@ -9,7 +110,6 @@
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/topnav.css">
     <link rel="stylesheet" href="css/bookkeeper.css">
-
 </head>
 <nav class="topnav">
     <a href="/bookkeeper">Home</a>
@@ -21,51 +121,10 @@
         <input class="logoutButton" type="submit" value="Logout"></input>
     </form>
 </nav>
-<body>
+<body onload="callAPI()">
 <div align="center">
-<table id="payroll">
-    <caption>Payroll</caption>
-    <tr>
-        <th>Name</th>
-        <th>Employee ID</th>
-        <th>Type</th>
-        <th>Rate</th>
-        <th>Total Hours Worked November: 14-27</th>
-        <th>Amount</th>
-    </tr>
-    <tr>
-        <td>Marie Duffy</td>
-        <td>1</td>
-        <td>Hourly</td>
-        <td>$55,000.00</td>
-        <td>40</td>
-        <td>$4,400,000.00</td>
-    </tr>
-    <tr>
-        <td>Jacob Byerline</td>
-        <td>2</td>
-        <td>Hourly</td>
-        <td>$55,000.00</td>
-        <td>40</td>
-        <td>$4,400,000.00</td>
-    </tr>
-    <tr>
-        <td>Thong Le</td>
-        <td>3</td>
-        <td>Hourly</td>
-        <td>$55,000.00</td>
-        <td>40</td>
-        <td>$4,400,000.00</td>
-    </tr>
-    <tr>
-        <td>Liliana Guerrero</td>
-        <td>4</td>
-        <td>Hourly</td>
-        <td>$55,000.00</td>
-        <td>40</td>
-        <td>$4,400,000.00</td>
-    </tr>
-</table>
+    <h1 align="center">Current Payroll<br><br></h1>
+    <p id='showData'></p>
 </div>
 </body>
 </html>

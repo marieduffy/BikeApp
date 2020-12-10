@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Settings</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="images/icons/favicon.png"/>
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/topnav.css">
+</head>
+<nav class="topnav">
+    <a href="/bookkeeper">Home</a>
+    <a href="/employeeInfo">Employee Info</a>
+    <a href="/bookkeeperPayroll">Payroll</a>
+    <a href="/bookkeeperContact">Contact</a>
+    <a href="/bookkeeperHelp">Help</a>
+    <form th:action="@{/logout}" method="post">
+        <input class="logoutButton" type="submit" value="Logout"></input>
+    </form>
+    <div class="settings"> <a href="/bookkeeperSettings" class="active"><img src="images/icons/settings.png" height="16" width="16"/></a></div>
+
+</nav>
+<body>
+<br><br>
+<div align="center">
+    <a class="button" href="/changeemail" target="_blank">Change Email</a><br>
+    <a class="button" href="/changepassword" target="_blank">Reset Password</a><br>
+    <a class="button" href="/requestTime" target="_blank">Request Time Off</a><br>
+</div>
+
+</body>
+</html>

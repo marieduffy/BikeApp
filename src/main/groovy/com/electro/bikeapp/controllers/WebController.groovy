@@ -29,6 +29,16 @@ class WebController {
     }
 
     //OTHER PAGES
+    @RequestMapping('/changeemail')
+    String changeemail() {
+        return '/other/changeemail'
+    }
+
+    @RequestMapping('/changepassword')
+    String changepassword() {
+        return '/other/changepassword'
+    }
+
     @RequestMapping('/changeVOStatus')
     String changeVOStatus() {
         return '/other/changeVOStatus'
@@ -90,14 +100,19 @@ class WebController {
         return '/employee/employeeContact'
     }
 
+    @RequestMapping('/employeeDisplayInventory')
+    String employeeDisplayInventory() {
+        return '/employee/employeeDisplayInventory'
+    }
+
     @RequestMapping('/employeeHelp')
     String employeeHelp() {
         return '/employee/employeeHelp'
     }
 
-    @RequestMapping('/employeeDisplayInventory')
-    String employeeDisplayInventory() {
-        return '/employee/employeeDisplayInventory'
+    @RequestMapping('/employeeSettings')
+    String employeeSettings() {
+        return '/employee/employeeSettings'
     }
 
     @RequestMapping('/employeeVendorHomePage')
@@ -111,6 +126,11 @@ class WebController {
         return '/owner/bikeRepair'
     }
 
+    @RequestMapping('/displayInventory')
+    String displayInventory() {
+        return '/owner/displayInventory'
+    }
+
     @RequestMapping('/employeeHome')
     String employeeHome() {
         return '/owner/employeeHome'
@@ -119,11 +139,6 @@ class WebController {
     @RequestMapping('/help')
     String help() {
         return '/owner/help'
-    }
-
-    @RequestMapping('/displayInventory')
-    String displayInventory() {
-        return '/owner/displayInventory'
     }
 
     @RequestMapping('/managersAndEmployees')
@@ -172,6 +187,11 @@ class WebController {
         return '/manager/managerContact'
     }
 
+    @RequestMapping('/managerDisplayInventory')
+    String managerDisplayInventory() {
+        return '/manager/managerDisplayInventory'
+    }
+
     @RequestMapping('/managerEmployeeHome')
     String managerEmployeeHome() {
         return '/manager/managerEmployeeHome'
@@ -182,11 +202,6 @@ class WebController {
         return '/manager/managerHelp'
     }
 
-    @RequestMapping('/managerDisplayInventory')
-    String managerDisplayInventory() {
-        return '/manager/managerDisplayInventory'
-    }
-
     @RequestMapping('/managerSalesDiscounts')
     String managerSalesDiscounts() {
         return '/manager/managerSalesDiscounts'
@@ -195,6 +210,11 @@ class WebController {
     @RequestMapping('/managerVendorHomePage')
     String managerVendorHomePage() {
         return '/manager/managerVendorHomePage'
+    }
+
+    @RequestMapping('/settings')
+    String settings() {
+        return '/manager/settings'
     }
 
     //BOOKKEEPER PAGES
@@ -213,15 +233,20 @@ class WebController {
         return '/bookkeeper/bookkeeperHelp'
     }
 
-    @RequestMapping('/employeeInfo')
-    String employeeInfo() {
-        return '/bookkeeper/employeeInfo'
-    }
-
     @RequestMapping('/bookkeeperPayroll')
     String bookkeeperPayroll() {
         return '/bookkeeper/bookkeeperPayroll'
     }
 
+    @RequestMapping('/bookkeeperSettings')
+    String bookkeeperSettings() {
+        return '/bookkeeper/bookkeeperSettings'
+    }
+
+
+    @RequestMapping('/employeeInfo')
+    String employeeInfo() {
+        return '/bookkeeper/employeeInfo'
+    }
 
 }

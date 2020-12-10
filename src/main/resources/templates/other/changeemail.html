@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Change Email</title>
+    <link rel="icon" type="image/png" href="images/icons/favicon.png"/>
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/topnav.css">
+
+    <script>
+        function changePassword(form) {
+            var obj = {
+                username: form.username.value,
+                currentEmail: form.email.value,
+                newEmail: form.newEmail.value
+            }
+            var json = JSON.stringify(obj);
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("PATCH", "http://localhost:8080/account/changeEmail");
+            xhttp.setRequestHeader("Content-type", "application/json");
+            xhttp.send(json);
+
+            alert("Success! Your request was submitted!");
+        }
+
+    </script>
+
+</head>
+<body>
+<form class="form">
+    <label for="username">Employee Username:</label><br>
+    <input type="text" id="username" name="username" placeholder="e.g. thongl"><br>
+    <label for="email">Current Email:</label><br>
+    <input type="email" id="email" name="email" placeholder="e.g. thongl@gmail.com"><br>
+    <label for="newEmail">New Email:</label><br>
+    <input type="email" id="newEmail" name="newEmail" placeholder="e.g tLe@gmail.com"><br>
+    <input type="submit" value="Submit" onclick="changePassword(this.form)">
+</form>
+</body>
+</html>

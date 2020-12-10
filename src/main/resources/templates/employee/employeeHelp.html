@@ -21,16 +21,18 @@
     <form th:action="@{/logout}" method="post">
         <input class="logoutButton" type="submit" value="Logout">
     </form>
+    <div class="settings"> <a href="/employeeSettings"><img src="images/icons/settings.png" height="16" width="16"/></a></div>
+
 </nav>
 <body>
     <div id="all-collapsibles">
-        <button type="button" class="collapsible">How can I reset my username and password?</button>
+        <button type="button" class="collapsible">How can I reset my password?</button>
         <div class="content">
-            <p>Navigate and click on the setting icon in the menu bar. Once on the settings page, select change username or select change password.</p>
+            <p>Navigate and click on the setting icon in the menu bar. Once on the settings page, select reset password.</p>
         </div>
-        <button type="button" class="collapsible">How can I change my other information?</button>
+        <button type="button" class="collapsible">How can I change my email?</button>
         <div class="content">
-            <p>Other information may need to be changed by a manager or the owner.</p>
+            <p>Navigate and click on the setting icon in the menu bar. Once on the settings page, select change email.</p>
         </div>
         <button type="button" class="collapsible">Why can't I made an order with a vendor over $500?</button>
         <div class="content">

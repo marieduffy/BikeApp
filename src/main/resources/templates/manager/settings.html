@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <title>Settings</title>
     <meta charset="UTF-8">
-    <title>Bike Repairs</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="images/icons/favicon.png"/>
     <link rel="stylesheet" type="text/css" href="css/util.css">
@@ -13,7 +13,7 @@
     <a href="/manager">Home</a>
     <a href="/managerDisplayInventory">Inventory</a>
     <a href="/managerVendorHomePage">Vendor Orders</a>
-    <a class="active" href="/managerBikeRepair">Bike Repair</a>
+    <a href="/managerBikeRepair">Bike Repair</a>
     <a href="/managerSalesDiscounts">Sales/Discounts</a>
     <a href="/managerEmployeeHome">Employees</a>
     <a href="/managerContact">Contact</a>
@@ -21,14 +21,16 @@
     <form th:action="@{/logout}" method="post">
         <input class="logoutButton" type="submit" value="Logout">
     </form>
-    <div class="settings"> <a href="/settings"><img src="images/icons/settings.png" height="16" width="16"/></a></div>
+    <div class="settings"> <a href="/settings" class="active"><img src="images/icons/settings.png" height="16" width="16"/></a></div>
 
 </nav>
 <body>
 <br><br>
 <div align="center">
-    <img src="images/construction.png" height="400" width="400"/>
+    <a class="button" href="/changeemail" target="_blank">Change Email</a><br>
+    <a class="button" href="/changepassword" target="_blank">Reset Password</a><br>
+    <a class="button" href="/requestTime" target="_blank">Request Time Off</a><br>
 </div>
-<br><br>
+
 </body>
 </html>

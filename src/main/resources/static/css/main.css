@@ -174,7 +174,7 @@ body {
     border: 1px solid #000000;
 }
 
-input[type=number]{
+input[type=number], input[type=email]{
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
@@ -186,7 +186,7 @@ input[type=number]{
     margin: 5px 0;
 }
 
-input[type=number]:focus{
+input[type=number]:focus, input[type=email]:focus{
     outline: none;
     border: 1px solid #000000;
 }
@@ -272,4 +272,8 @@ td {
 }
 th {
     font-weight:bold;
+}
+
+.settings{
+    float: right;
 }

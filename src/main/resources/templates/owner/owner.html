@@ -124,7 +124,7 @@
         var request = "http://localhost:8080/account/date";
         xhttp.open("POST", request);
         xhttp.setRequestHeader("Content-type", "application/json");
-        xhttp.send(sessionStorage.getItem("getId"));
+        xhttp.send(document.getElementById("ID").value);
         xhttp.onreadystatechange = function () {
             document.getElementById("date").innerText = "Today is: " + xhttp.responseText;
         };

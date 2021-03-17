@@ -12,17 +12,6 @@ Git Clone this repository
 Open IntelliJ
 File > Open Project > Select the CS-532-Team-Project folder
 
-#### Connect to database
-Select Database tab on the right border
-Click New > Data Source > MySQL
-Name: @byerline.me
-Host: byerline.me
-Port: 3306
-User: root
-Password: adiumDB
-URL: jdbc:mysql://byerline.me:3306
-Click OK
-
 #### Build the project
 Wait for IntelliJ to index the files
 Click Green Run 'BikeappApplication'
